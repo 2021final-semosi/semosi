@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+
+#bug-fix{
+	font-size: 0;
+}
+#search-panel{
+	width: 20%;
+	padding: 0 1% 2% 1%;
+	font-size: 1rem;
+	display: inline-block;
+	position: sticky;
+	top: 0;
+}
+#search-panel hr{
+	margin: 20px 0;
+}
+#search-panel h4{
+	margin-bottom: 5px;
+}
+#search-panel>div:first-child{
+	width: 100%;
+	height: 100px;
+	margin-bottom: 20px;
+	background-image: url("/resources/images/joboffer-image.jpg");
+	background-size: cover;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	text-align: center;
+}
+#search-panel>div:first-child>p{
+	color: white;
+	font-size: 2rem;
+	font-weight: 900;
+	line-height: 100px;
+}
+#search-panel select{
+	width: 45%;
+	padding: 3% 3%;
+	border: 2px solid #f6d257;
+	border-radius: 5px;
+}
+#search-panel>div:nth-child(4) span{
+	padding: 3%;
+}
+#amount{
+	border: 0;
+	color: #f6d257;
+	font-weight: 900;
+	margin-bottom: 5px;
+}
+#search-panel>div:last-child{
+	text-align: center;
+	margin-top: 30px;
+}
+#search-panel button{
+	width: 50%;
+	color: #f6d257;
+	font-size: 1.2rem;
+	font-weight: 900;
+	border: 1px solid lightgray;
+	cursor: pointer;
+	color: gray;
+}
+
+
+
+
+#joboffer-list-panel{
+	width: 80%;
+	padding: 2%;
+	font-size: 1rem;
+	background-color: #dfdfdf;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#joboffer-list-panel li{
+	border: 1px solid lightgray;
+	background-color: white;
+	margin-bottom: 1%;
+}
+#joboffer-list-panel a{
+	width: 100%;
+	height: 100%;
+	padding: 2%;
+}
+#joboffer-list-panel a>div{
+	float: left;
+}
+#joboffer-list-panel a>div:first-child{
+	width: 15%;
+}
+#joboffer-list-panel a>div:nth-child(2){
+	width: 15%;
+	padding: 15px 0;
+}
+#joboffer-list-panel a>div:nth-child(3){
+	width: 55%;
+	padding: 15px 0;
+}
+#joboffer-list-panel a>div:last-child{
+	width: 15%;
+}
+#joboffer-list-panel img{
+	width: 60%;
+}
+#joboffer-list-panel a>div:nth-child(2)>p:first-child{
+	font-size: 1.2rem;
+	font-weight: 900;
+}

@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+	min-width: 560px;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+.container-fluid {
+	width: 70%;
+}
+
+#csMenuBox {
+	text-align: right;
+}
+
+#csMenu {
+	list-style-type: none;
+	margin: 0px;
+	padding: 10px 0 30px 0;
+	display: inline-block;
+}
+
+#csMenu>li::after {
+	content: "|";
+	padding: 0 10px;
+}
+
+#csMenu>li:last-child::after {
+	content: "";
+	padding: 0;
+}
+
+#csMenu>li {
+	float: left;
+}
+
+#csMenu>li>a {
+	color: black;
+}
+
+#csMenu>li>a:hover {
+	text-decoration: none;
+	color: #F6D257;
+}
+
+#boardNameBox {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#boardName>a {
+	font-size: 28px;
+	color: black;
+	text-decoration: none;
+	padding: 0px;
+	font-weight: bold;
+}
+
+#boardName>a:hover {
+	color: #F6D257;
+	text-decoration: none;
+}
+
+#postBox {
+	overflow-x: auto;
+	padding-bottom: 10px;
+}
+
+#post {
+	width: 80%;
+	margin: 0 auto;
+	min-width: 600px;
+}
+
+#post>caption {
+	color: black;
+	text-decoration: none;
+	caption-side: top;
+	text-align: center;
+	padding: 0px;
+	margin-bottom: 20px;
+}
+
+#post>caption a {
+	color: black;
+	font-weight: bold;
+}
+
+#post>caption a:hover {
+	color: #F6D257;
+	text-decoration: none;
+}
+
+#post>tbody>tr>td {
+	border-top: 1px solid gray;
+	text-align: center;
+	color: gray;
+	padding: 5px 0 5px 0;
+}
+
+td:nth-child(odd) {
+	background: #F6D257;
+}
+
+#post>tbody>tr>td:nth-child(2n) {
+	text-align: left;
+	padding: 5px;
+}
+
+#post>tbody>tr:last-child>td {
+	background: transparent;
+	text-align: left;
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+#btnBox {
+	padding-bottom: 20px;
+}
+
+#okBtn, #cancelBtn {
+	border: 0px;
+	background-color: #F6D257;
+	padding: 5px 35px;
+	color: #707070;
+}
+
+#writer {
+	border: 0px;
+}
