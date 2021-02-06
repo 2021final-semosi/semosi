@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style-type: none;
+}
+a{
+	text-decoration: none;
+	color: black;
+	display: inline-block;
+}
+a:hover{
+	text-decoration: none;
+}
+ul{
+	margin: 0;
+}
+p{
+	padding: 0;
+}
+.wrap{
+	width: 70%;
+	margin: 0 auto;
+}
+
+
+
+section{
+	width: 100%;
+	clear: both;
+}
+#section-wrap{
+	width: 70%;
+	height: 100%;
+}
+
+
+.carousel-item img{
+	height: 500px;
+}
+.carousel-wrap{
+	width: 70%;
+	margin: 0 auto;
+}
+#carousel1{
+	background-color: pink;
+}
+#carousel2{
+	background-color: skyblue;
+}
+#carousel3{
+	background-color: lightgray;
+}
+#carousel4{
+	background-color: lightgreen;
+}
+.carousel-control-prev{
+	left: 200px;
+}
+.carousel-control-next{
+	right: 200px;
+}
+
+
+#member-count-panel{
+	width: 100%;
+	height: 80px;
+	color: white;
+	background-color: #f6d257;
+}
+#member-count-panel .wrap{
+	height: 100%;
+	text-align: center;
+	font-weight: 900;
+}
+#member-count-panel>.wrap>span{
+	line-height: 70px;
+}
+#partition{
+	margin: 0 150px;
+	font-size: 2.0rem;
+	font-weight: 100;
+}
+.count-size{
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin-left: 20px;
+}
+
+
+
+#semosi-info-panel{
+	width: 100%;
+	background-color: #f4f4f4;
+}
+#semosi-info-panel>.wrap>div{
+	width: 100%;
+}
+.card-panel{
+	width: 49%;
+	float: left;
+	background-color: red;
+	padding: 3%;
+}
+.card-panel>div{
+	width: 100%;
+	background-color: pink;
+}
+#info-btn-panel{
+	text-align: center;
+	clear: both;
+	padding: 50px 0;
+}
+#info-btn-panel>a{
+	width: 200px;
+	height: 40px;
+	border: 2px solid #f6d257;
+	border-radius: 30px;
+	background-color: #f6d257;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+	font-weight: 900;
+}
