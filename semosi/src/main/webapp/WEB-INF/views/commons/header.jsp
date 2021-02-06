@@ -3,6 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <link href="/resources/css/commons/header.css" rel="stylesheet" type="text/css"/>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5BZSRFYEV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V5BZSRFYEV');
+</script>
+
 		<div id="header-wrap" class="wrap">
 			<div id="logo-panel">
 				<a href="/index.jsp"><img alt="세모시 로고" src="/resources/images/semosi-logo-color.png"></a>
@@ -12,8 +22,8 @@
 				<li><a href="#">고객센터</a></li>
 			</ul>
 			<ul id="btn-nav-panel">
-				<li><a href="#">가입하기</a></li>
-				<li><a href="#">로그인</a></li>
+				<li><a href="/MemberSignup.jsp">가입하기</a></li>
+				<li><a href="/MemberLogin.jsp">로그인</a></li>
 			</ul>
 			<ul id="sub-nav-panel">
 				<li><a href="#">맘시터 찾기</a> &nbsp|</li>
