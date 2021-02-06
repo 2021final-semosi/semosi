@@ -24,9 +24,9 @@
 			</div>
 			<div id="customer-center-panel" class="footer-panel">
 				<ul class="style-bold style-color-white">고객센터
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">이용가이드</a></li>
-					<li><a href="#">자주 묻는 질문</a></li>
+					<li><a href="/moveNotice.sms">공지사항</a></li>
+					<li><a href="/moveGuide.sms">이용가이드</a></li>
+					<li><a href="/moveFaq.sms">자주 묻는 질문</a></li>
 					<li><a href="#">이용약관</a></li>
 					<li><a href="#">개인정보처리방침</a></li>
 				</ul>
