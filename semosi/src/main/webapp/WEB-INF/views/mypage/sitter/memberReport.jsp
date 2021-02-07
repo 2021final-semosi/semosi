@@ -94,7 +94,8 @@
 		}
 	}
 	/*-----------------------------------*/
-* {
+
+	* {
 	box-sizing: border-box;
 }
 
@@ -133,7 +134,6 @@
 .line-content:hover {
 	background-color: #FDD7A0;
 }
-	
 	/*-----------------------------------*/
 	#kakao-talk-channel-chat-button{
 	float:right;
@@ -163,11 +163,10 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/view/mypage/common/parentsSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
-
 
 <section id="wrapper">
 	<div class="container">
@@ -299,6 +298,7 @@
 
 
 	</section>
+
 
 <!-- 여기까지 적용 -->
 	</div>

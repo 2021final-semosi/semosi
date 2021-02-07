@@ -22,6 +22,9 @@
 			<ul id="main-nav-panel">
 				<li><a href="#">이용권 구매</a></li>
 				<li><a href="/moveCsMain.sms">고객센터</a></li>
+				<li><a href="/parentProfile.do">부모myPage</a></li>
+				<li><a href="/sitterProfile.do">회원myPage</a></li>
+				
 			</ul>
 			<ul id="btn-nav-panel">
 				<li><a href="#">가입하기</a></li>

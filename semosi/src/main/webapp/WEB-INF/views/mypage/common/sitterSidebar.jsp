@@ -132,7 +132,7 @@ a:hover{
             <div id="naviContents">
                 <div id="navigation">
                     <div id="fixedNavi">
-                    	<div class="menu-main"><a href="/view/mypage/sitter/sitterProfile.jsp"><span>마이페이지</span></a></div>
+                    	<div class="menu-main"><a href="/sitterProfile.do"><span>마이페이지</span></a></div>
                     	<hr class="line">
                         <div class="menu-main row m-0">
                         	<div class="menu-title col-9 p-0">
@@ -148,11 +148,11 @@ a:hover{
 							</div>
                         </div>
                        	<div class="menu-sub">
-                                <div class="hide"><a href="/view/mypage/sitter/sitterApplicationSent.jsp"><span>내가 신청한 구직 현황</span></a></div>
-                                <div class="hide"><a href="/view/mypage/sitter/sitterApplicationReceive.jsp"><span>내게 지원한 구직 현황</span></a></div>
+                                <div class="hide"><a href="/sitterApplicationSent.do"><span>내가 신청한 구직 현황</span></a></div>
+                                <div class="hide"><a href="/sitterApplicationReceive.do"><span>내게 지원한 구직 현황</span></a></div>
                         </div>
-                        <div class="menu-main"><a href="/view/mypage/sitter/sitterInterest.jsp"><span>찜한 일자리</span></a></div>
-                        <div class="menu-main"><a href="/view/mypage/sitter/sitterApplication.jsp"><span>내 신청서 조회</span></a></div>
+                        <div class="menu-main"><a href="/sitterApplicaionScrap.do"><span>찜한 일자리</span></a></div>
+                        <div class="menu-main"><a href="/sitterApplication.do"><span>내 신청서 조회</span></a></div>
                         <hr class="line">
                         <div class="menu-main row m-0">
                         	<div class="menu-title col-9 p-0">
@@ -168,12 +168,12 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/view/mypage/parents/MemberWritedReview.jsp"><span>작성한 후기</span></a></div>
-                               <div class="hide"><a href="/view/mypage/parents/MemberReceivedReview.jsp"><span>받은 후기</span></a></div>
+                               <div class="hide"><a href="/sitterReviewReceive.do"><span>작성한 후기</span></a></div>
+                               <div class="hide"><a href="/sitterReviewWrite.do"><span>받은 후기</span></a></div>
                             </div>
-                        <div class="menu-main"><a href="/view/mypage/sitter/MemberCertification.jsp"><span>인증 관리</span></a></div>
+                        <div class="menu-main"><a href="/sitterCertification.do"><span>인증 관리</span></a></div>
                         <div class="menu-main"><a href="#"><span>내 맘시터 채용 내역</span></a></div>
-                        <div class="menu-main"><a href="/view/mypage/parents/MemberReportPage.jsp"><span>신고 내역</span></a></div>
+                        <div class="menu-main"><a href="/sitterReport.do"><span>신고 내역</span></a></div>
                         
                         <hr class="line">
                         <div class="menu-main row m-0">
@@ -190,8 +190,8 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/view/mypage/parents/VoucherBuyPage.jsp"><span>이용권 구매</span></a></div>
-                               <div class="hide"><a href="/view/mypage/parents/VoucherPayViewPage.jsp"><span>이용권 조회</span></a></div>
+                               <div class="hide"><a href="/sitterVoucherBuy.do"><span>이용권 구매</span></a></div>
+                               <div class="hide"><a href="/sitterVoucherPayView.do"><span>이용권 조회</span></a></div>
                             </div>
                        
                         

@@ -282,7 +282,7 @@ section{
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/view/mypage/common/sitterSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->

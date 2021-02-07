@@ -131,7 +131,7 @@ a:hover{
             <div id="naviContents">
                 <div id="navigation">
                     <div id="fixedNavi">
-                    	<div class="menu-main"><a href="/view/mypage/parents/parentsProfile.jsp"><span>마이페이지</span></a></div>
+                    	<div class="menu-main"><a href="/parentProfile.do"><span>마이페이지</span></a></div>
                     	<hr class="line">
                         <div class="menu-main row m-0">
                         	<div class="menu-title col-9 p-0">
@@ -147,11 +147,11 @@ a:hover{
 							</div>
                         </div>
                        	<div class="menu-sub">
-                                <div class="hide"><a href="/view/mypage/parents/parentsApplicationSent.jsp"><span>내가 신청한 구인 현황</span></a></div>
-                                <div class="hide"><a href="/view/mypage/parents/parentsApplicationReceive.jsp"><span>내게 지원한 구인 현황</span></a></div>
+                                <div class="hide"><a href="/parentApplicationSent.do"><span>내가 신청한 구인 현황</span></a></div>
+                                <div class="hide"><a href="/parentApplicationReceive.do"><span>내게 지원한 구인 현황</span></a></div>
                         </div>
-                        <div class="menu-main"><a href="/view/mypage/parents/parentsInterest.jsp"><span>찜한 맘시터</span></a></div>
-                        <div class="menu-main"><a href="/view/mypage/parents/parentsApplication.jsp"><span>내 신청서 조회</span></a></div>
+                        <div class="menu-main"><a href="/parentApplicaionScrap.do"><span>찜한 맘시터</span></a></div>
+                        <div class="menu-main"><a href="/parentApplication.do"><span>내 신청서 조회</span></a></div>
                         <hr class="line">
                         <div class="menu-main row m-0">
                         	<div class="menu-title col-9 p-0">
@@ -167,11 +167,11 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/view/mypage/parents/MemberWritedReview.jsp"><span>작성한 후기</span></a></div>
-                               <div class="hide"><a href="/view/mypage/parents/MemberReceivedReview.jsp"><span>받은 후기</span></a></div>
+                               <div class="hide"><a href="/parentReviewReceive.do"><span>작성한 후기</span></a></div>
+                               <div class="hide"><a href="/parentReviewWrite.do"><span>받은 후기</span></a></div>
                             </div>
                         <div class="menu-main"><a href="#"><span>내 채용 내역</span></a></div>
-                        <div class="menu-main"><a href="/view/mypage/parents/MemberReportPage.jsp"><span>신고 내역</span></a></div>
+                        <div class="menu-main"><a href="/parentReport.do"><span>신고 내역</span></a></div>
                         
                         <hr class="line">
                         <div class="menu-main row m-0">
@@ -188,8 +188,8 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/view/mypage/parents/VoucherBuyPage.jsp"><span>이용권 구매</span></a></div>
-                               <div class="hide"><a href="/view/mypage/parents/VoucherPayViewPage.jsp"><span>이용권 조회</span></a></div>
+                               <div class="hide"><a href="/parentVoucherBuy.do"><span>이용권 구매</span></a></div>
+                               <div class="hide"><a href="/parentVoucherPayView.do"><span>이용권 조회</span></a></div>
                             </div>
                        
                         

@@ -98,6 +98,7 @@
 		display: none;
 		}
 	}
+	
 	/*-----------------------------------*/
 	
 	div{
@@ -108,7 +109,7 @@
 	}
 
 /*---- contents ----*/
-	#parentsApplicationSent_contents{
+	#parentsApplicationReceive_contents{
 		width: 100%;
 		height: 100%;
 		margin: 0px auto;
@@ -231,14 +232,14 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/view/mypage/common/parentsSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/parentSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
-	<div id="parentsApplicationSent_contents">
+	<div id="parentsApplicationReceive_contents">
   		<div id="interest-title">
-  			<div id="interest-title-1"><span>내가 신청한 구인 현황</span></div>	
+  			<div id="interest-title-1"><span>내게 지원한 구인 현황</span></div>	
   		</div>
   		<hr class="menu-hr">
   		<div id="interest-info" class="row">
