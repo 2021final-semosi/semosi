@@ -41,6 +41,7 @@
 		width: 23%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 77%;
 	}
@@ -57,6 +58,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -73,6 +75,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -85,7 +88,7 @@
 			width: 100%;
 		}
 		#content{
-		margin: 0px;
+		padding: 30px;
 		height: 100%;
 		width: 100%;
 		}
@@ -94,21 +97,20 @@
 		}
 	}
 	/*-----------------------------------*/
-
-	* {
+* {
 	box-sizing: border-box;
 }
 
 .title {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	font-size: 50px;
+	padding-top: 30px;
+	padding-bottom: 28px;
+	font-size: 28px;
+	font-weight:600;
 	text-align: center;
 }
 
 #wrapper {
-	margin-top: 100px;
-	margin-bottom: 200px;
+	margin-top: 20px;
 }
 
 .container {
@@ -118,7 +120,7 @@
 }
 
 .c-name {
-	background-color: #FF8C00;
+	background-color: #f6d257;
 	border-bottom: 2px solid #dbdbda;
 }
 
@@ -129,11 +131,20 @@
 .line-content {
 	line-height: 32px;
 	border-bottom: 1px solid #dbdbda;
+	p
 }
 
 .line-content:hover {
-	background-color: #FDD7A0;
+	/* background-color: #FDD7A0; */
+	cursor: pointer;
 }
+
+.menu-hr{
+		margin: -1px 0px 0px; 
+		height: 15px; 
+		background-color: #f6d257;
+	}
+	
 	/*-----------------------------------*/
 	#kakao-talk-channel-chat-button{
 	float:right;
@@ -168,14 +179,13 @@
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
+
 <section id="wrapper">
 	<div class="container">
 		<div class="title row m-0">
-			<div class="col-sm-12 m-0 p-0">
-				<H1>회원 신고 내역</H1>
-
-			</div>
+			<div class="col-sm-12 m-0 p-0"><span>회원 신고 내역</span></div>
 		</div>
+		<hr class="menu-hr d-block d-lg-none">
 		<div id="subtitle" class="row p-0 m-0 category line-name text-center">
 			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name ">번호</div>
 			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">신고한
@@ -185,7 +195,6 @@
 			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">작성일</div>
 			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name">답변여부</div>
 		</div>
-
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
@@ -298,7 +307,6 @@
 
 
 	</section>
-
 
 <!-- 여기까지 적용 -->
 	</div>

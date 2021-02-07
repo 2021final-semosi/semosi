@@ -33,11 +33,11 @@ public class MypageController {
 	}
 	
 	//찜한 맘시터
-	@RequestMapping(value="/parentApplicaionScrap.do")
+	@RequestMapping(value="/parentApplicationScrap.do")
 	public String parentApplicaionScrap(){
 		
-		System.out.println("[/parentApplicaionScrap.do] 정상적으로 호출 되었습니다.");
-		return "mypage/parent/applicaionScrap";
+		System.out.println("[/parentApplicationScrap.do] 정상적으로 호출 되었습니다.");
+		return "mypage/parent/applicationScrap";
 	}
 	
 	//내 신청서 조회
@@ -127,11 +127,11 @@ public class MypageController {
 	}
 	
 	//스크랩한 일자리 (찜한 일자리)
-	@RequestMapping(value="/sitterApplicaionScrap.do")
+	@RequestMapping(value="/sitterApplicationScrap.do")
 	public String sitterApplicaionScrap(){
 		
-		System.out.println("[/sitterApplicaionScrap.do] 정상적으로 호출 되었습니다.");
-		return "mypage/sitter/applicaionScrap";
+		System.out.println("[/sitterApplicationScrap.do] 정상적으로 호출 되었습니다.");
+		return "mypage/sitter/applicationScrap";
 	}
 	
 	//내 신청서 조회

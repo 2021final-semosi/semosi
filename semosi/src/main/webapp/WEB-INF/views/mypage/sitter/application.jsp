@@ -46,6 +46,7 @@
 		width: 23%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 77%;
 	}
@@ -62,6 +63,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -78,6 +80,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -90,7 +93,7 @@
 			width: 100%;
 		}
 		#content{
-		margin: 0px;
+		padding: 30px;
 		height: 100%;
 		width: 100%;
 		}
@@ -109,7 +112,7 @@ div {
 }
 #sitterApplication_contents{
 	height: 100%;
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 	padding-top: 30px;
 }
@@ -121,7 +124,7 @@ div {
 	width: 100%;
 	margin-top:20px;
 	margin-bottom:20px;
-	font-size:1.1rem;
+	font-size:28px;
 	font-weight:600;
 }
 .application_info{
@@ -228,7 +231,7 @@ div {
 	width: 70%;
 }
 .activity_width{
-	margin-left: 15px;
+	margin-left: 25px;
 }
 textarea{
 	width: 100%;
@@ -389,13 +392,13 @@ textarea{
 				</div>
 				<div class="col-md-2 col-sm-12"><span>활동 요일</span></div>
 				<div class="col-md-10 col-sm-12">
-					<input type="checkbox" name="careDays" value="월" class="days_width"/> 월 
-					<input type="checkbox" name="careDays" value="화" class="days_width"/> 화 
-					<input type="checkbox" name="careDays" value="수" class="days_width"/> 수 
-					<input type="checkbox" name="careDays" value="목" class="days_width"/> 목 
-					<input type="checkbox" name="careDays" value="금" class="days_width"/> 금 
-					<input type="checkbox" name="careDays" value="토" class="days_width"/> 토 
-					<input type="checkbox" name="careDays" value="일" class="days_width"/> 일
+					<input type="checkbox" name="careDays" value="월" class="days_width"/>월 
+					<input type="checkbox" name="careDays" value="화" class="days_width"/>화 
+					<input type="checkbox" name="careDays" value="수" class="days_width"/>수 
+					<input type="checkbox" name="careDays" value="목" class="days_width"/>목 
+					<input type="checkbox" name="careDays" value="금" class="days_width"/>금 
+					<input type="checkbox" name="careDays" value="토" class="days_width"/>토 
+					<input type="checkbox" name="careDays" value="일" class="days_width"/>일
 				</div>
 			</div>
 		</div>
@@ -435,10 +438,10 @@ textarea{
 			<div class="info-title"><span>CCTV 동의여부</span></div>
 			<div class="info-input row">
 				<div class="col-md-6 col-sm-12">
-					<input type="checkbox" name="cctvYn" value="N" class="cctv_width"/> CCTV 퐐영을 원하지 않습니다.
+					<input type="radio" name="cctvYn" value="Y" class="cctv_width" checked="checked"/> CCTV가 있어도 당당히 일할 수 있습니다.
 				</div>
 				<div class="col-md-6 col-sm-12">
-					<input type="checkbox" name="cctvYn" value="Y" class="cctv_width"/> CCTV가 있어도 당당히 일할 수 있습니다.
+					<input type="radio" name="cctvYn" value="N" class="cctv_width"/> CCTV 퐐영을 원하지 않습니다.
 				</div>
 			</div>
 		</div>

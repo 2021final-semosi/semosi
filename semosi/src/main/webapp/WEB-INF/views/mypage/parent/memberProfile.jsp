@@ -41,6 +41,7 @@
 		width: 23%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 77%;
 	}
@@ -57,6 +58,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -73,6 +75,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -85,7 +88,7 @@
 			width: 100%;
 		}
 		#content{
-		margin: 0px;
+		padding: 30px;
 		height: 100%;
 		width: 100%;
 		}
@@ -99,7 +102,7 @@ div{
 	border: 0px solid black;
 	}
 section{
-	width: 90%;
+	width: 100%;
 	height: 100%;
 	clear: both;
 	margin:0 auto;
@@ -123,7 +126,7 @@ section{
 
 #content-title{
 	margin-top:20px;
-	font-size:1.1rem;
+	font-size:28px;
 	font-weight:600;
 	display:block;
 	
@@ -333,9 +336,9 @@ section{
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label>생년월일</label></div>
 				<div class="col-md-10 col-sm-12">
-					<input type="number" class="form-control" id="inputbirth" placeholder="1900" min="1900" max="2100"> 년 &nbsp;
-					<input type="number" class="form-control" id="inputmonth" placeholder="01" min="1" max="12"> 월 &nbsp;
-					<input type="number" class="form-control" id="inputdate" placeholder="01" min="1" max="31"> 일 &nbsp;
+					<input type="number" class="form-control" id="inputbirth" placeholder="1900" min="1900" max="2100">년&nbsp;
+					<input type="number" class="form-control" id="inputmonth" placeholder="01" min="1" max="12">월&nbsp;
+					<input type="number" class="form-control" id="inputdate" placeholder="01" min="1" max="31">일
 				</div>
 			</div>
 			<div class="input_info row">
