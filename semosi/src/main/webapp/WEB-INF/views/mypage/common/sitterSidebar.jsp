@@ -151,7 +151,7 @@ a:hover{
                                 <div class="hide"><a href="/sitterApplicationSent.do"><span>내가 신청한 구직 현황</span></a></div>
                                 <div class="hide"><a href="/sitterApplicationReceive.do"><span>내게 지원한 구직 현황</span></a></div>
                         </div>
-                        <div class="menu-main"><a href="/sitterApplicaionScrap.do"><span>찜한 일자리</span></a></div>
+                        <div class="menu-main"><a href="/sitterApplicationScrap.do"><span>찜한 일자리</span></a></div>
                         <div class="menu-main"><a href="/sitterApplication.do"><span>내 신청서 조회</span></a></div>
                         <hr class="line">
                         <div class="menu-main row m-0">

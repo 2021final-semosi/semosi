@@ -150,7 +150,7 @@ a:hover{
                                 <div class="hide"><a href="/parentApplicationSent.do"><span>내가 신청한 구인 현황</span></a></div>
                                 <div class="hide"><a href="/parentApplicationReceive.do"><span>내게 지원한 구인 현황</span></a></div>
                         </div>
-                        <div class="menu-main"><a href="/parentApplicaionScrap.do"><span>찜한 맘시터</span></a></div>
+                        <div class="menu-main"><a href="/parentApplicationScrap.do"><span>찜한 맘시터</span></a></div>
                         <div class="menu-main"><a href="/parentApplication.do"><span>내 신청서 조회</span></a></div>
                         <hr class="line">
                         <div class="menu-main row m-0">

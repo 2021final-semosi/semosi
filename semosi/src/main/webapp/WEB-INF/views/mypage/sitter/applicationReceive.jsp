@@ -46,6 +46,7 @@
 		width: 23%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 77%;
 	}
@@ -62,6 +63,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -78,6 +80,7 @@
 		width: 30%;
 	}
 	#content{
+		padding: 30px;
 		height: 100%;
 		width: 70%;
 	}
@@ -90,7 +93,7 @@
 			width: 100%;
 		}
 		#content{
-		margin: 0px;
+		padding: 30px;
 		height: 100%;
 		width: 100%;
 		}
@@ -117,10 +120,10 @@
 /*---- mypage-title ----*/
 	#interest-title{
 		margin-top:20px;
-		font-size:1.1rem;
+		font-size:28px;
 		font-weight:600;
 		display:block;
-		padding-bottom: 10px;
+		padding-bottom: 25px;
 	}
 	#interest-title-1{
 		height: 70px;
@@ -149,6 +152,7 @@
 		height: 100%;
 		width: 100%;
 		margin: 10px 0px 10px 0px;
+		padding:0px;
 		cursor: pointer;
 	}
 	
@@ -167,7 +171,7 @@
 	width: 100%;
 	height: 100%;
 	margin:0px;
-	padding-left: 10px;
+	padding: 0px;
 	
 	
 	}
@@ -264,10 +268,10 @@
   		</div>
   		<hr class="menu-hr">
   		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-2">
+  			<div id="interest-card-img" class="col-md-2 col-sm-12">
   				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
   			</div>
-  			<div id="interest-card-info" class="col-10" >
+  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
   						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
@@ -306,10 +310,10 @@
   		</div>
   		<hr class="hr">
   		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-2">
+  			<div id="interest-card-img" class="col-md-2 col-sm-12">
   				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
   			</div>
-  			<div id="interest-card-info" class="col-10" >
+  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
   						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
@@ -348,10 +352,10 @@
   		</div>
   		<hr class="hr">
   		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-2">
+  			<div id="interest-card-img" class="col-md-2 col-sm-12">
   				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
   			</div>
-  			<div id="interest-card-info" class="col-10" >
+  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
   						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
@@ -390,10 +394,10 @@
   		</div>
   		<hr class="hr">
   		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-2">
+  			<div id="interest-card-img" class="col-md-2 col-sm-12">
   				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
   			</div>
-  			<div id="interest-card-info" class="col-10" >
+  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
   						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
