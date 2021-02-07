@@ -95,7 +95,7 @@
 	}
 	/*-----------------------------------*/
 
-* {
+	* {
 	box-sizing: border-box;
 }
 
@@ -134,7 +134,6 @@
 .line-content:hover {
 	background-color: #FDD7A0;
 }
-	
 	/*-----------------------------------*/
 	#kakao-talk-channel-chat-button{
 	float:right;
@@ -164,109 +163,116 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/view/mypage/common/sitterSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/parentSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
-
 
 <section id="wrapper">
 	<div class="container">
 		<div class="title row m-0">
 			<div class="col-sm-12 m-0 p-0">
-					<H1>이용권 결제 내역</H1>
-					
+				<H1>회원 신고 내역</H1>
+
 			</div>
 		</div>
 		<div id="subtitle" class="row p-0 m-0 category line-name text-center">
 			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name ">번호</div>
-			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">사용자</div>
-			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">결제한
-				이용권</div>
-			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">금액</div>
-			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">결제일</div>
-			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name">만료여부</div>
+			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">신고한
+				회원 아이디</div>
+			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">제목</div>
+			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">작성자</div>
+			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">작성일</div>
+			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name">답변여부</div>
 		</div>
 
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
 			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
 			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
+		</div>
+		<div class="row p-0 m-0 line-content text-center">
+			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
+			<div class="col-12 col-md-3 p-0">user1</div>
+			<div class="col-3 col-md-3 p-0 ">잠수탔어요</div>
+			<div class="col-3 col-md-2 p-0 ">user22</div>
+			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
+			<div class="col-2 col-md-1 p-0 ">미답변</div>
 		</div>
 
 		<div class="row p-0 m-0 boardNavi">
@@ -292,6 +298,7 @@
 
 
 	</section>
+
 
 <!-- 여기까지 적용 -->
 	</div>

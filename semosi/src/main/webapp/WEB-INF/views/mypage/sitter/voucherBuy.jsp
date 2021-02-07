@@ -100,7 +100,7 @@
 
 .title {
 	padding-top: 40px;
-	color: gray;
+	padding-bottom: 40px;
 }
 
 #wrapper {
@@ -114,51 +114,21 @@
 	padding: 0px;
 }
 
-/*---- interest-card ----*/
-#interest-info {
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 5px;
+.voucherChoice {
+	margin: 10px;
+	border: 4px solid #FF8C00;
+	border-radius: 15px;
 }
 
-#interest-card {
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
+.voucherPayBtn
+{
+	margin:50px;
+	width:50%;
+	height:50px;
 }
-
-#interest-card-info {
-	height: 100%;
-	width: 100%;
-	margin: 10px 0px 10px 0px;
-	cursor: pointer;
-}
-
-#interest-card-img {
-	height: 100%;
-	width: 100%;
-	padding: 8px 0px 8px 0px;
-	margin: 5px 0px 5px 0px;
-	text-align: center;
-}
-
-.card-img {
-	width: 80px;
-	height: 80px;
-}
-
-#userInfo {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding-left: 10px;
-}
-
-.userInfo-p {
-	padding: 0px;
-	font-size: 14px;
+.voucherRadioBtn
+{
+	width:50px;
 }
 	
 	/*-----------------------------------*/
@@ -190,58 +160,94 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/view/mypage/common/parentsSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
-
-	<section id="wrapper">
+<section id="wrapper">
 	<div class="container">
-
-
-		<div id="review">
-			<div class="title row m-0">
-				<div class="col-sm-12 m-0 p-0">
+		<div class="title row m-0">
+			<div class="col-sm-12 m-0 p-0">
+				<center>
+					<H1>이용권 선택하기</H1>
+					<br> <img src="/resources/images/voucher.png"> <br>
+					<br>
+					<H3>부모 회원 시터 회원 상관없이 누구나 사용 가능한 이용권</H3>
+					-> 그런데 두개 다 사용 불가하고 아이디 한개만 만드니까 멘트 변경해도되지않을까? 
+					<br>
+				</center>
+			</div>
+		</div>
+		<form>
+		<div class="voucher row m-0">
+			<div class="col-sm-4 m-0 p-0">
+				<div class="voucherChoice">
 					<center>
-						<H1>받은 후기</H1>
+						<br>
+						<H5>&nbsp;</H5>
+						<H2>7일 이용권</H2>
+						<br>
+						<H5>5,000 원</H5>
+						<br>
 						<br>
 					</center>
 				</div>
-			</div>
 
-		</div>
-		<hr class="menu-hr">
-
-		<div id="interest-info" class="row m-0">
-			<div id="interest-card-img" class="col-sm-3 m-0 p-0">
 				<center>
-					<img
-						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
-						class="card-img" alt="...">
+					<input type="radio" name="voucherRadio">
 				</center>
 			</div>
-			<div id="interest-card-info" class="col-sm-8 m-0 p-0">
+			<div class="col-sm-4 m-0 p-0">
+				<div class="voucherChoice">
+					<center>
+						<br>
+						<H5 style="color: blue;">Best!</H5>
+						<H2>14일 이용권</H2>
+						<br>
+						<H5>8,000 원</H5>
+						<br>
+						<br>
+					</center>
+				</div>
 
-				<span><b>김○규</b> <sub>22일 전 작성</sub></span><br> <span>서울시
-					은평구 녹번동</span><br> <span>20세 | 희망시급 10,000원</span><br> ★★★★★<span>후기
-					0개</span>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-					fill="currentColor" class="bi bi-camera-video-fill"
-					viewBox="0 0 16 16"> <path fill-rule="evenodd"
-					d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
-				</svg>
-				<span>CCTV 동의함</span>
+				<center>
+					<input type="radio" name="voucherRadio" >
+				</center>
 
 			</div>
-			<div id="interest-card-info" class="col-sm-1 m-0 p-0">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-				</svg>
+			<div class="col-sm-4 m-0 p-0">
+				<div class="voucherChoice">
+					<center>
+						<br>
+						<H5>&nbsp;</H5>
+						<H2>30일 이용권</H2>
+						<br>
+						<H5>15,000 원</H5>
+						<br>
+						<br>
+					</center>
+				</div>
+
+				<center>
+					<input type="radio" name="voucherRadio" class="voucherRadioBtn">
+				</center>
+
+		</form>
 			</div>
 		</div>
+		<center>
+		라디오 버튼 키우는 방법?
+		<br>
+			<input type="button" id="voucherPayBtn"
+				class="btn btn-warning voucherPayBtn" value="선택한 이용권 구매하기" />
+		</center>
+
+	</div>
+
+
 	</section>
+
 
 <!-- 여기까지 적용 -->
 	</div>

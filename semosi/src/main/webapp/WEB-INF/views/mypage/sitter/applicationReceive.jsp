@@ -97,7 +97,7 @@
 		#sideBar{
 		display: none;
 		}
-	
+	}
 	/*-----------------------------------*/
 	
 	div{
@@ -108,7 +108,7 @@
 	}
 
 /*---- contents ----*/
-	#sitterInterest_contents{
+	#sitterApplicationReceive_contents{
 		width: 100%;
 		height: 100%;
 		margin: 0px auto;
@@ -253,14 +253,14 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/view/mypage/common/sitterSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
-	<div id="sitterInterest_contents">
+	<div id="sitterApplicationReceive_contents">
   		<div id="interest-title">
-  			<div id="interest-title-1"><span>찜한 일자리</span></div>	
+  			<div id="interest-title-1"><span>내게 지원한 구직 현황</span></div>	
   		</div>
   		<hr class="menu-hr">
   		<div id="interest-info" class="row">
