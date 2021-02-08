@@ -49,30 +49,28 @@ public class MypageController {
 	}
 	
 	//작성한 후기
-	@RequestMapping(value="/parentReviewReceive.do")
-	public String parentReviewReceive(){
-		
-		System.out.println("[/parentReviewReceive.do] 정상적으로 호출 되었습니다.");
-		return "mypage/parent/reviewReceive";
-	}
-	
-	//받은 후기
 	@RequestMapping(value="/parentReviewWrite.do")
 	public String parentReviewWrite(){
 		
 		System.out.println("[/parentReviewWrite.do] 정상적으로 호출 되었습니다.");
 		return "mypage/parent/reviewWrite";
 	}
-	/*
+	
+	//받은 후기
+		@RequestMapping(value="/parentReviewReceive.do")
+		public String parentReviewReceive(){
+			
+			System.out.println("[/parentReviewReceive.do] 정상적으로 호출 되었습니다.");
+			return "mypage/parent/reviewReceive";
+		}
+	
 	//내 채용내역
-	//-> 페이지없는듯
-	@RequestMapping(value="/")
-	public String parentsHire(){
+	@RequestMapping(value="/parentRecruitmentDetails.do")
+	public String parentRecruitmentDetails(){
 		
-		System.out.println("[/.do] 정상적으로 호출 되었습니다.");
-		return "mypage/parent/";
+		System.out.println("[/parentRecruitmentDetails.do] 정상적으로 호출 되었습니다.");
+		return "mypage/parent/recruitmentDetails";
 	}
-	*/
 	
 	//신고내역
 	@RequestMapping(value="/parentReport.do")
@@ -143,19 +141,19 @@ public class MypageController {
 	}
 	
 	//작성한 후기
+		@RequestMapping(value="/sitterReviewWrite.do")
+		public String sitterReviewWrite(){
+			
+			System.out.println("[/sitterReviewWrite.do] 정상적으로 호출 되었습니다.");
+			return "mypage/sitter/reviewWrite";
+		}
+		
+	//받은 후기
 	@RequestMapping(value="/sitterReviewReceive.do")
 	public String sitterReviewReceive(){
 		
 		System.out.println("[/sitterReviewReceive.do] 정상적으로 호출 되었습니다.");
 		return "mypage/sitter/reviewReceive";
-	}
-	
-	//받은 후기
-	@RequestMapping(value="/sitterReviewWrite.do")
-	public String sitterReviewWrite(){
-		
-		System.out.println("[/sitterReviewWrite.do] 정상적으로 호출 되었습니다.");
-		return "mypage/sitter/reviewWrite";
 	}
 	
 	//인증 관리
@@ -166,17 +164,14 @@ public class MypageController {
 		return "mypage/sitter/memberCertification";
 	}
 	
-	/*
 	//내 채용내역
-	//-> 페이지없는듯
-	@RequestMapping(value="/")
-	public String sitterHired(){
+	@RequestMapping(value="/sitterRecruitmentDetails.do")
+	public String sitterRecruitmentDetails(){
 		
-		System.out.println("[/.do] 정상적으로 호출 되었습니다.");
-		return "mypage/sitter/";
+		System.out.println("[/sitterRecruitmentDetails.do] 정상적으로 호출 되었습니다.");
+		return "mypage/sitter/recruitmentDetails";
 	}
 	
-	*/
 	//신고내역
 	@RequestMapping(value="/sitterReport.do")
 	public String sitterReport(){

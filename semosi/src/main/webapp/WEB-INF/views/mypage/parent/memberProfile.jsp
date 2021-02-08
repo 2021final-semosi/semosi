@@ -21,6 +21,8 @@
 		margin: 0px;
 		height: 100%;
 		width: 22%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		margin: 0px;
@@ -39,6 +41,8 @@
 	#sideBar{
 		height: 100%;
 		width: 23%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -56,6 +60,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -73,6 +79,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;

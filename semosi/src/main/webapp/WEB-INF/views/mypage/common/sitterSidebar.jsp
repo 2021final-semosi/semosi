@@ -34,7 +34,8 @@ a:hover{
 		width: 100%;
 		height: 100%;
 		padding: 0px;
-		border: 1px solid black;
+		border: 0px solid black;
+		background-color: #f3f1f1;
 		
 	}
 	.menu-main{
@@ -94,7 +95,7 @@ a:hover{
     
     .line {
     	margin: 0px;
-    	border: 5px solid #f3f1f1;
+    	border: 5px solid #E1E1E1;
     }
     #icon-up{
     	display: inline;
@@ -168,11 +169,11 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/sitterReviewReceive.do"><span>작성한 후기</span></a></div>
-                               <div class="hide"><a href="/sitterReviewWrite.do"><span>받은 후기</span></a></div>
+                               <div class="hide"><a href="/sitterReviewWrite.do"><span>작성한 후기</span></a></div>
+                               <div class="hide"><a href="/sitterReviewReceive.do"><span>받은 후기</span></a></div>
                             </div>
                         <div class="menu-main"><a href="/sitterCertification.do"><span>인증 관리</span></a></div>
-                        <div class="menu-main"><a href="#"><span>내 맘시터 채용 내역</span></a></div>
+                        <div class="menu-main"><a href="/sitterRecruitmentDetails.do"><span>내 맘시터 채용 내역</span></a></div>
                         <div class="menu-main"><a href="/sitterReport.do"><span>신고 내역</span></a></div>
                         
                         <hr class="line">

@@ -26,6 +26,8 @@
 		margin: 0px;
 		height: 100%;
 		width: 22%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		margin: 0px;
@@ -44,6 +46,8 @@
 	#sideBar{
 		height: 100%;
 		width: 23%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -61,6 +65,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -78,6 +84,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -205,7 +213,7 @@
 		color: rgb(172, 193, 191);
 		text-align: center;
 	}
-	.bi:hover{
+	#deleteBtn:hover{
 		background-color: #f3f1f1;
 	}
 	.care-days{
@@ -302,7 +310,7 @@
 						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -344,7 +352,7 @@
 						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -386,7 +394,7 @@
 						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -428,7 +436,7 @@
 						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
