@@ -1,3 +1,5 @@
+<%@page import="kr.co.semosi.member.model.vo.SitterMember"%>
+<%@page import="kr.co.semosi.member.model.vo.ParentMember"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,6 +17,10 @@
 	gtag('config', 'G-V5BZSRFYEV');
 </script>
 
+<%
+	ParentMember pm = (ParentMember)session.getAttribute("pMember");
+	SitterMember sm = (SitterMember)session.getAttribute("sMember");
+%>
 		<div id="header-wrap" class="wrap">
 			<div id="logo-panel">
 				<a href="/index.jsp"><img alt="세모시 로고" src="/resources/images/semosi-logo-color.png"></a>
@@ -26,10 +32,26 @@
 				<li><a href="/sitterProfile.do">회원myPage</a></li>
 				
 			</ul>
+			
+			<%if(pm != null){ %>
+			
 			<ul id="btn-nav-panel">
-				<li><a href="#">가입하기</a></li>
-				<li><a href="#">로그인</a></li>
+				<li><a href="/parentProfile.do">마이페이지</a></li>
+				<li><a href="/logout.do">로그아웃</a></li>
 			</ul>
+
+			<%}else if(sm != null){ %>
+			<ul id="btn-nav-panel">
+				<li><a href="/sitterProfile.do">마이페이지</a></li>
+				<li><a href="/logout.do">로그아웃</a></li>
+			</ul>
+			<%} else { %>
+			<ul id="btn-nav-panel">
+				<li><a href="/memberSignup.do">가입하기</a></li>
+				<li><a href="/loginPage.do">로그인</a></li>
+			</ul>
+			<%} %>
+			
 			<ul id="sub-nav-panel">
 				<li><a href="/jobofferPage.sms">맘시터 찾기</a> &nbsp|</li>
 				<li><a href="/jobsearchPage.sms">일자리 찾기</a></li>

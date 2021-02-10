@@ -1,8 +1,10 @@
 package kr.co.semosi.member.model.service;
 
-import org.springframework.stereotype.Service;
+import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
 
-@Service(value="memberService")
-public class MemberService {
+public interface MemberService {
 
+	public ParentMember selectLoginParent(ParentMember pm);
+	public SitterMember selectLoginSitter(SitterMember sm);
 }

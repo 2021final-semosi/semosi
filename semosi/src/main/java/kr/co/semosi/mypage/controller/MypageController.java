@@ -63,6 +63,7 @@ public class MypageController {
 		System.out.println("[/parentReviewWrite.do] 정상적으로 호출 되었습니다.");
 		return "mypage/parent/reviewWrite";
 	}
+	
 	/*
 	//내 채용내역
 	//-> 페이지없는듯

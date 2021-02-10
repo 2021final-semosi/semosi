@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+<!-- DB연동 코드 -->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@khdsc1.iptime.org:15213:xe"></property>
+	<property name="username" value="semosi"></property>
+	<property name="password" value="sms2021"></property>
+</bean> 
+
+<!-- Mybatis에서 사용하는 객체 생성 하는 코드 (sqlSession) -->
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="mapperLocations" value="classpath:/mybatis/mapper/*-mapper.xml"></property>
+	<property name="configLocation" value="classpath:/mybatis/config/mybatis-config.xml"></property>
+</bean>
+
+
+<!-- jdbcTemplate 대신 mybatis에서 제공하는 sqlSessionTemplate를 사용하기위해 객체를 생성하는 코드 -->
+<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg index="0" ref="sqlSession"></constructor-arg>
+</bean>
+
+<!-- 트랜잭션 제어 설정 -->
+<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"></property>
+</bean>
+
+<tx:advice id="txAdvice" transaction-manager="txManager">
+	<tx:attributes>
+		<tx:method name="select*" read-only="true"/>
+		<tx:method name="insert*"/>
+		<tx:method name="update*"/>
+	</tx:attributes>
+</tx:advice>
+
+
+<!-- AOP설정 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* kr.co.semosi.member.model.service.MemberServiceImpl.*(..))" 
+		id="txPointcut"/>
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config>
+
+</beans>

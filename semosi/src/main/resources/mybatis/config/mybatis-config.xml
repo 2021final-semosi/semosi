@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<typeAlias type="kr.co.semosi.member.model.vo.ParentMember" alias="ParentMember"/>
+		<typeAlias type="kr.co.semosi.member.model.vo.SitterMember" alias="SitterMember"/>
+	</typeAliases>
+</configuration>
