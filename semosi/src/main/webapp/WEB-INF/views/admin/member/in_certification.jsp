@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +21,31 @@
          });
       });
 </script>
+<script>
+$(function(){
+	$('.cretYN').click(function(){
+		var imageNo = $(this).attr('id');
+		var $btnObject = $(this);
+		
+		$.ajax({
+			url:"/documentCretYN.sms",
+			type : "post",
+			data : {"imageNo":imageNo},
+			success : function(result){
+				 if(result=="true") {
+					alert("승인 완료");
+				 } else {
+                     alert("승인을 실패했습니다.");
+                  }
+				 location.reload();
+			},
+			error:function(){
+				console.log("ajax통신 실패");
+			}
+		}); 
+	});
+});
+</script>
 <div class="page-wrapper">
 	<div class="admin-header">
 		<%@ include file="/WEB-INF/views/admin/common/admin_header.jsp"%>
@@ -36,17 +62,17 @@
 						<table id="info-table">
 							<tr id="first">
 							  <td style="width: 8%; font-weight: bold;">이름</td>
-                              <td style="width: 12%;">세모시</td>
+                              <td style="width: 12%;">${certifyview.memberName}</td>
                               <td style="width: 15%; font-weight: bold;">아이디</td>
-                              <td style="width: 25%;">semosi</td>
+                              <td style="width: 25%;">${certifyview.memberId }</td>
                               <td style="width: 15%; font-weight: bold;">전화번호</td>
-                              <td style="width: 25%;">010-0000-0000</td>
+                              <td style="width: 25%;">${certifyview.phone }</td>
 							</tr>
 							<tr id="second">
 								<td style="font-weight: bold;">성별</td>
-								<td>여자</td>
+								<td>${certifyview.gender }</td>
 								<td style="font-weight: bold;">주소</td>
-								<td colspan="3">서울특별시 땡땡구 땡땡시 땡땡로 땡땡번지</td>
+								<td colspan="3">${certifyview.address }</td>
 							</tr>
 						</table>
 						<div class="tab-content">
@@ -57,20 +83,44 @@
 								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pop">교사자격증</a></li>
 							</ul>
 							<div class="tab-pane fade show active" id="qwe">
-								<p class="img">!!첫번째 이미지임</p>
-								<input type="submit" value="승인" /><input type="submit" value="반려" />
+								<p class="img"><img src="${certifyview.imageRePath}"/></p>
+								<button type="button" class="cretYN" id="${certifyview.imageRENo}">
+								<c:choose>
+								<c:when test="${certifyview.cretREYN == 'Y'.charAt(0) }">승인 완료</c:when>
+								<c:otherwise>승인</c:otherwise>
+								</c:choose>
+								</button>
+								<input type="button" id="close" value="닫기" onclick="history.back(-1)"/>
 							</div>
 							<div class="tab-pane fade" id="asd">
-								<p class="img">!!두번째 이미지임</p>
-								<input type="submit" value="승인" /><input type="submit" value="반려" />
+								<p class="img"><img src="${certifyview.imageHePath}"/></p>
+								<button type="button" class="cretYN" id="${certifyview.imageHENo}">
+								<c:choose>
+								<c:when test="${certifyview.cretHEYN == 'Y'.charAt(0) }">승인 완료</c:when>
+								<c:otherwise>승인</c:otherwise>
+								</c:choose>
+								</button>
+								<input type="button" id="close" value="닫기" onclick="history.back(-1)"/>
 							</div>
 							<div class="tab-pane fade" id="zxc">
-								<p class="img">!!세번째 이미지임</p>
-								<input type="submit" value="승인" /><input type="submit" value="반려" />
+								<p class="img"><img src="${certifyview.imageFaPath}"/></p>
+								<button type="button" class="cretYN" id="${certifyview.imageFANo}">
+								<c:choose>
+								<c:when test="${certifyview.cretFAYN == 'Y'.charAt(0) }">승인 완료</c:when>
+								<c:otherwise>승인</c:otherwise>
+								</c:choose>
+								</button>
+								<input type="button" id="close" value="닫기" onclick="history.back(-1)"/>
 							</div>
 							<div class="tab-pane fade" id="pop">
-								<p class="img">!!네번째 이미지임</p>
-								<input type="submit" value="승인" /><input type="submit" value="반려" />
+								<p class="img"><img src="${certifyview.imageTePath}"/></p>
+								<button type="button" class="cretYN" id="${certifyview.imageTENo}">
+								<c:choose>
+								<c:when test="${certifyview.cretTEYN == 'Y'.charAt(0) }">승인 완료</c:when>
+								<c:otherwise>승인</c:otherwise>
+								</c:choose>
+								</button>
+								<input type="button" id=close value="닫기" onclick="history.back(-1)"/>
 							</div>
 						</div>
 					</center>

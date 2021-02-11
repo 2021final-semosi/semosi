@@ -30,22 +30,26 @@ table {
 }
 
 .memberid {
-	width: 150px;
+	width: 110px;
 }
 
 .membername {
-	width: 150px;
+	width: 110px;
 }
 .content{
-	width:40%;
+	width:30%;
+}
+
+.originContent{
+	width:30%;
 }
 
 .date {
-	width: 150px;
+	width: 110px;
 }
 
 .del-YN {
-	width: 100px;
+	width: 150px;
 }
 
 a {
@@ -56,7 +60,7 @@ a {
 
 #modal-content{
 	width:700px;
-	height:700px;
+	height:800px;
 }
 
 #guide-body{
@@ -71,7 +75,7 @@ a {
 
 .guide_content{
 	width:500px;
-	height:450px;
+	height:250px;
 	border : 1px solid #707070;
 	font-size:1rem;
 	resize:none;
@@ -83,7 +87,7 @@ a {
 	background-color:#9AB9EF;
 	border : 1px solid #9AB9EF;
 	color:white;
-	margin-top:20px;
+	margin-top:10px;
 }
 
 .contents{
