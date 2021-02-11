@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+
+#content-body {
+	margin: 0 auto;
+	border: 1px solid black;
+	width: 800px;
+	height: 850px;
+}
+
+#write_btn{
+	width:100px; height:40px;
+	background-color:#9AB9EF;
+	border : 1px solid #9AB9EF;
+	color:white;
+	margin-right:20px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+#modify_btn{
+	width:100px; height:40px;
+	background-color:#9AB9EF;
+	border : 1px solid #9AB9EF;
+	color:white;
+	margin-right:20px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+#write_cancle{
+	width:100px; height:40px;
+	background-color:#9AB9EF;
+	border : 1px solid #9AB9EF;
+	color:white;
+	margin-top:20px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.guide{
+	font-weight:bold;
+	font-size:1.1rem;
+	text-align:center;
+}
+
+.guide_text{
+	width:600px; height:40px;
+	border : 1px solid #707070;
+	font-size: 1.2rem;
+	margin: 0 auto;
+}
+
+.guide_content{
+	width:680px;
+	height:300px;
+	border : 1px solid #707070;
+	font-size:1rem;
+	margin: 0 auto;
+}
+
+.guide_answer{
+	width:680px;
+	height:200px;
+	border : 1px solid #707070;
+	font-size:1rem;
+	margin: 0 auto;
+}
+
+.answer_text {
+	width:100%; height:100%;
+	resize:none;
+}
+
+#title {
+	margin-top: 20px;
+}
+
+#inquiry_id {
+	font-size: 1.5rem;
+	font-weight:bold;
+	text-align:center;	
+	margin-left:360px;
+}

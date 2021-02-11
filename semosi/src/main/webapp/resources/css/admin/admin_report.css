@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+table {
+   width: 1400px;
+   margin: 0 auto;
+}
+
+.search {
+   margin-right: 60px;
+   margin-bottom: 8px;
+}
+
+.contents > td{
+	height:46px;
+}
+
+#all_select {
+   width: 70px;
+}
+
+.post-no {
+   width: 60px;
+}
+
+.reporterid{
+	width : 120px;
+}
+
+.title .reason{
+	width:30%;
+}
+
+.date {
+   width: 150px;
+}
+
+.pagenavigation{
+	 text-align: center;
+	 margin-top:20px;
+}
+
+.pagenavigation>button{
+	width:30px;
+	height:35px;
+}
+
+.report-text {
+	width: 40%;
+}
+
+.post-title {
+	border: 0;
+	
+}
+
+.post-title:hover {
+	color: black;
+	text-decoration: none;
+}
+
+#modal-content{
+	width:800px;
+	height:400px;
+}
+
+#reason_cancle{
+	width:100px;
+	height:40px;
+	background-color:#9AB9EF;
+	border : 1px solid #9AB9EF;
+	color:white;
+	margin-top:10px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+#guide-body{
+	padding: 30px;
+}
+
+.guide{
+	font-weight:bold;
+	font-size:1.1rem;
+	text-align:center;
+}
+
+.guide_text{
+	width:520px;
+	height:200px;
+	border : 1px solid #707070;
+	display: table-cell;
+	font-size: 1.2rem;
+	resize:none;
+}

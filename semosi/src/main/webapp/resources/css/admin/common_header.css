@@ -1,0 +1,49 @@
+.admin-header {
+    width: 1920px;
+    height: 80px;
+    background-color: #00ADB3;
+    box-sizing: padding-box;
+}
+
+.admin-header a {
+    text-align: right;
+    line-height: 80px;
+    color: white;
+    text-decoration: none;
+}
+
+.header-logo {
+    width: 60%;
+    height: 80px;
+    padding-left: 40px;
+    line-height: 80px;
+    display: inline-block;
+}
+
+.header-logo img{
+   width: 9%;
+   margin-top:18px;
+   margin-left:35px;
+}
+
+.header-gnb * {
+    font-size: 1.2rem;
+    align-content: right;
+}
+
+.header-gnb>a {
+    color: white;
+    cursor: pointer;
+    text-align: right;
+    font-weight: bold;
+}
+
+.header-gnb {
+    text-align: right;
+    vertical-align: top;
+    display: inline-block;
+    line-height: 80px;
+    width: 30%;
+    height: 100%;
+    margin: 0 auto;
+}
