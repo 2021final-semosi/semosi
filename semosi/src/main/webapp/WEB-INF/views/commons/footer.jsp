@@ -17,9 +17,7 @@
 			</div>
 			<div id="info-panel" class="footer-panel">
 				<ul class="style-bold style-color-white">맘시터 정보
-					<li><a href="#">서비스 소개</a></li>
-					<li><a href="#">회사 소개</a></li>
-					<li><a href="#">채용 정보</a></li>
+					<li><a href="/moveIntroduce.sms">서비스 소개</a></li>
 				</ul>
 			</div>
 			<div id="customer-center-panel" class="footer-panel">
@@ -27,8 +25,7 @@
 					<li><a href="/moveNotice.sms">공지사항</a></li>
 					<li><a href="/moveGuide.sms">이용가이드</a></li>
 					<li><a href="/moveFaq.sms">자주 묻는 질문</a></li>
-					<li><a href="#">이용약관</a></li>
-					<li><a href="#">개인정보처리방침</a></li>
+					<li><a href="/moveTerms.sms">이용약관</a></li>
 				</ul>
 				<hr>
 				<div>
