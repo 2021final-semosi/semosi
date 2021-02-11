@@ -12,9 +12,9 @@ public class IndexDAO {
 		System.out.println("[IndexDAO] 호출 성공");
 		
 		Index countData=new Index();
-		countData.setOfferCount(sqlSession.selectOne("index.offerCount"));
-		countData.setSearchCount(sqlSession.selectOne("index.searchCount"));
-		countData.setSitterCount(sqlSession.selectOne("index.sitterCount"));
+		countData.setOfferCount((Integer)sqlSession.selectOne("index.offerCount"));
+		countData.setSearchCount((Integer)sqlSession.selectOne("index.searchCount"));
+		countData.setSitterCount((Integer)sqlSession.selectOne("index.sitterCount"));
 		
 		//System.out.println("[IndexDAO] 리턴");
 		return countData;

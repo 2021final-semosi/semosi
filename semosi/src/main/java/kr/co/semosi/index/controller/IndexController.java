@@ -26,7 +26,7 @@ public class IndexController {
 		
 		Index countData=iService.applyCount();
 		
-		Map<String, String> result=new HashMap<>();
+		Map<String, String> result=new HashMap<String, String>();
 		
 		result.put("offerCount", Integer.toString(countData.getOfferCount()));
 		result.put("searchCount", Integer.toString(countData.getSearchCount()));
