@@ -1,3 +1,4 @@
+<%@page import="kr.co.semosi.index.model.vo.Index"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +22,7 @@
 	<script>
 		var sw=0;
 		$(function(){
-			/* 후기 더보기 포커스만 수정 */
+			/* 후기 더보기 기능 */
 			$("#btn-panel").click(function(){
 				if(sw==0){
 					$("#card-panel").children().eq(1).css("display", "block");
@@ -34,6 +35,19 @@
 					$("#btn-panel").children().html("+ 더 보기");
 					$("#review-panel").focus();
 					sw=0;
+				}
+			});
+			/* 회원 신청 건 수 & 인증 된 시터 수 */
+			$.ajax({
+				url : "/loadCount.sms",
+				dataType : "JSON",
+				success : function(result){
+					$("#offerCount").html(result.offerCount);
+					$("#searchCount").html(result.searchCount);
+					$("#sitter-count").html("<b>"+result.sitterCount+"</b>");
+				},
+				error : function(result){
+					// 실패 시 로직
 				}
 			});
 		});
@@ -51,17 +65,17 @@
 			<div class="carousel-inner">
 				<div id="carousel1" class="carousel-item active">
 					<div class="carousel-wrap">
-						<a href="#"><img src="/resources/images/carousel1.png"></a>
+						<a href="/moveGuide.sms"><img src="/resources/images/carousel1.png"></a>
 					</div>
 				</div>
 				<div id="carousel2" class="carousel-item">
 					<div class="carousel-wrap">
-						<a href="#"><img src="/resources/images/carousel2.png"></a>
+						<a href="/moveFaq.sms"><img src="/resources/images/carousel2.png"></a>
 					</div>
 				</div>
 				<div id="carousel3" class="carousel-item">
 					<div class="carousel-wrap">
-						<a href="#"><img src="/resources/images/carousel3.png"></a>
+						<a href="/jobofferPage.sms"><img src="/resources/images/carousel3.png"></a>
 					</div>
 				</div>
 			</div>
@@ -80,10 +94,10 @@
 		<div id="member-count-panel">
 			<div class="wrap">
 				<span>부모회원 신청 건 수</span>
-				<span class="count-size">355,608</span>
+				<span class="count-size" id="offerCount">${offerCount}</span>
 				<span id="partition">|</span>
 				<span>시터회원 신청 건 수</span>
-				<span class="count-size">1,358,184</span>
+				<span class="count-size" id="searchCount"></span>
 			</div>
 		</div>
 		
@@ -108,7 +122,7 @@
 					</div>
 				</div>
 				<div id="info-btn-panel">
-					<a href="#">세모시 더 알아보기</a>
+					<a href="/moveIntroduce.sms">세모시 더 알아보기</a>
 				</div>
 			</div>
 		</div>
