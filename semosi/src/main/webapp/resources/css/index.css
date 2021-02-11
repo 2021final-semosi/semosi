@@ -28,16 +28,13 @@ section{
 	margin: 0 auto;
 }
 #carousel1{
-	background-color: pink;
+	background-color: #ededed;
 }
 #carousel2{
-	background-color: skyblue;
+	background-color: #e3f3ff;
 }
 #carousel3{
-	background-color: lightgray;
-}
-#carousel4{
-	background-color: lightgreen;
+	background-color: #fffbf0;
 }
 .carousel-control-prev{
 	left: 200px;
