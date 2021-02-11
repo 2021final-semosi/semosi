@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,17 +9,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/common_wrapper.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/admin_main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5BZSRFYEV"></script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag() {
-      dataLayer.push(arguments);
-   }
-   gtag('js', new Date());
-
-   gtag('config', 'G-V5BZSRFYEV');
-</script>
 <body>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="  crossorigin="anonymous"></script>
@@ -42,84 +32,54 @@
 				<table class="board">
 					<tr>
 						<th class="board-column">구인게시판</th>
-						<th class="board-link"><a class="link-btn" href="/job_offer.do">더보기</a></th>
+						<th class="board-link"><a class="link-btn" href="/job_offer.sms">더보기</a></th>
 					</tr>
+					<c:forEach var="OfferList" items="${OfferList }" end="4" varStatus="status">
 					<tr>
-						<td class="content-title">가나다라마바사아자차카타파하</td>
-						<td class="content-date">2021-01-25</td>
+						<td class="content-title">${OfferList.title }</td>
+						<td class="content-date">${OfferList.memberName }</td>
 					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
+					</c:forEach>
 				</table>
 			</div>
 			<div id="s-board">
 				<table class="board">
 					<tr>
 						<th class="board-column">구직프로필</th>
-						<th class="board-link"><a class="link-btn" href="/job_search.do">더보기</a></th>
+						<th class="board-link"><a class="link-btn" href="/job_search.sms">더보기</a></th>
 					</tr>
+					<c:choose>
+					<c:when test="${fn:length(SearchList)==0 }">
+					<c:forEach begin="${fn:length(SearchList)}" end="4">
 					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
+						<td class="content-title"></td>
+						<td class="content-date"></td>
 					</tr>
+					</c:forEach>
+					</c:when>
+					<c:otherwise>
+					<c:forEach var="SearchList" items="${SearchList }" end="4" varStatus="status">
 					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
+						<td class="content-title">${SearchList.title }</td>
+						<td class="content-date">${SearchList.memberName }</td>
 					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
+					</c:forEach>
+					</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 			<div id="inquiry-board">
 				<table class="board">
 					<tr>
 						<th class="board-column">1:1문의</th>
-						<th class="board-link"><a class="link-btn" href="/inquiry.do">더보기</a></th>
+						<th class="board-link"><a class="link-btn" href="/inquiry.sms">더보기</a></th>
 					</tr>
+					<c:forEach var="QnAList" items="${QnAList }" end="4" varStatus="status">
 					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
+						<td class="content-title">${QnAList.title }</td>
+						<td class="content-date">${QnAList.writeDate }</td>
 					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
-					<tr>
-						<td class="content-title">본문</td>
-						<td class="content-date">날짜</td>
-					</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</center>

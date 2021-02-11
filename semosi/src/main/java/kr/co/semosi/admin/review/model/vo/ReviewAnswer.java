@@ -4,7 +4,7 @@ package kr.co.semosi.admin.review.model.vo;
 public class ReviewAnswer {
 
     // 후기답글번호
-    private String answerReivewNo;
+    private String answerReviewNo;
 
     // 후기번호_구인후기
     private String reviewSNo;
@@ -16,14 +16,14 @@ public class ReviewAnswer {
     private String content;
 
     // 삭제여부
-    private String delYn;
+    private char delYn;
 
-    public String getAnswerReivewNo() {
-	return answerReivewNo;
+    public String getAnswerReviewNo() {
+	return answerReviewNo;
     }
 
-    public void setAnswerReivewNo(String answerReivewNo) {
-	this.answerReivewNo = answerReivewNo;
+    public void setAnswerReviewNo(String answerReviewNo) {
+	this.answerReviewNo = answerReviewNo;
     }
 
     public String getReviewSNo() {
@@ -50,17 +50,17 @@ public class ReviewAnswer {
 	this.content = content;
     }
 
-    public String getDelYn() {
+    public char getDelYn() {
 	return delYn;
     }
 
-    public void setDelYn(String delYn) {
+    public void setDelYn(char delYn) {
 	this.delYn = delYn;
     }
 
-    public ReviewAnswer(String answerReivewNo, String reviewSNo, String reviewPNo, String content, String delYn) {
+    public ReviewAnswer(String answerReviewNo, String reviewSNo, String reviewPNo, String content, char delYn) {
 	super();
-	this.answerReivewNo = answerReivewNo;
+	this.answerReviewNo = answerReviewNo;
 	this.reviewSNo = reviewSNo;
 	this.reviewPNo = reviewPNo;
 	this.content = content;

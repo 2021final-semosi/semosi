@@ -22,9 +22,9 @@ public class MemberP {
     // 탈퇴일
     private Date endDate;
     // 탈퇴여부
-    private String endYn;
+    private char endYn;
 
-    private int birthDay;
+    private Date birthDay;
 
     public String getMemberpNo() {
 	return memberpNo;
@@ -98,24 +98,24 @@ public class MemberP {
 	this.endDate = endDate;
     }
 
-    public String getEndYn() {
+    public char getEndYn() {
 	return endYn;
     }
 
-    public void setEndYn(String endYn) {
+    public void setEndYn(char endYn) {
 	this.endYn = endYn;
     }
 
-    public int getBirthDay() {
+    public Date getBirthDay() {
 	return birthDay;
     }
 
-    public void setBirthDay(int birthDay) {
+    public void setBirthDay(Date birthDay) {
 	this.birthDay = birthDay;
     }
 
     public MemberP(String memberpNo, String memberName, String memberId, String memberPw, String phone, String address,
-	    String gender, Date enrollDate, Date endDate, String endYn, int birthDay) {
+	    String gender, Date enrollDate, Date endDate, char endYn, Date birthDay) {
 	super();
 	this.memberpNo = memberpNo;
 	this.memberName = memberName;

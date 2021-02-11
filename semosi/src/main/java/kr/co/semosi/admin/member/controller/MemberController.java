@@ -1,9 +1,11 @@
 package kr.co.semosi.admin.member.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.semosi.admin.member.model.service.MemberService;
+import kr.co.semosi.admin.member.model.vo.CertifyView;
 import kr.co.semosi.admin.member.model.vo.MemberP;
 import kr.co.semosi.admin.member.model.vo.MemberS;
 
@@ -22,7 +25,8 @@ public class MemberController {
     private MemberService mService;
 
     @RequestMapping(value = "/memberLogin.sms")
-    public String memberLogin(@RequestParam String memberId, @RequestParam String memberPw, HttpSession session, Model model) {
+    public String memberLogin(@RequestParam String memberId, @RequestParam String memberPw, HttpSession session,
+	    Model model) {
 	System.out.println("[MemberLogin.sms]" + memberId + " / " + memberPw);
 
 	MemberP mp = new MemberP();
@@ -33,7 +37,7 @@ public class MemberController {
 
 	if (memberP != null) {
 	    session.setAttribute("member", memberP);
-	    return "admin/admin_main";
+	    return "redirect:/main.sms";
 	} else {
 	    model.addAttribute("msg", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
 	    model.addAttribute("location", "/index.jsp");
@@ -48,127 +52,148 @@ public class MemberController {
 	return "redirect:/index.jsp";
     }
 
-    @RequestMapping(value = "/main.sms")
-    public String main() {
-	return "admin/admin_main";
-    }
-    
-    @RequestMapping(value="/member_board.sms")
-    public String memberAllList(@RequestParam Map<String, Object> paramMap, Model model){
-    
-	 //조회 하려는 페이지
-        int startPage = (paramMap.get("startPage")!=null?Integer.parseInt(paramMap.get("startPage").toString()):1);
-        //한페이지에 보여줄 리스트 수
-        int visiblePages = (paramMap.get("visiblePages")!=null?Integer.parseInt(paramMap.get("visiblePages").toString()):13);
-        //일단 전체 건수를 가져온다.
-       	int totalPCnt = mService.getMemberPCnt(paramMap);
-       	int totalSCnt = mService.getMemberSCnt(paramMap);
-        
-        BigDecimal decimal1 = new BigDecimal(totalPCnt);
-        BigDecimal decimal2 = new BigDecimal(totalSCnt);
-        BigDecimal decimal3 = new BigDecimal(visiblePages);
-        BigDecimal totalPage = decimal1.divide(decimal3, 0, BigDecimal.ROUND_UP);
-        
-        int startLimitPage = 0;
-        if(startPage==1){
-		startLimitPage = 0;
-	}else{
-		startLimitPage = (startPage-1)+visiblePages;
+    @RequestMapping(value = "/memberp_board.sms")
+    public String memberPList(@RequestParam Map<String, Object> paramMap,
+	    @RequestParam(defaultValue = "all") String category, @RequestParam(defaultValue = " ") String keyword, Model model) {
+
+	// 조회 하려는 페이지
+	int startPage = (paramMap.get("startPage") != null && paramMap.get("startPage").toString().length() != 0 ? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
+	// 한페이지에 보여줄 리스트 수
+	int visiblePages = (paramMap.get("visiblePages") != null && paramMap.get("visiblePages").toString().length() != 0 ? Integer.parseInt(paramMap.get("visiblePages").toString()) : 13);
+	//검색
+	paramMap.put("category", category);
+	paramMap.put("keyword", keyword);
+	
+	// 일단 전체 건수를 가져온다.
+	int totalPCnt = mService.getMemberPCnt(paramMap);
+
+	BigDecimal decimal1 = new BigDecimal(totalPCnt);
+	BigDecimal decimal2 = new BigDecimal(visiblePages);
+	BigDecimal totalPage = decimal1.divide(decimal2, 0, BigDecimal.ROUND_UP);
+
+	int startLimitPage = 0;
+	if (startPage == 1) {
+	    startLimitPage = 0;
+	} else {
+	    startLimitPage = (startPage - 1) * visiblePages + 1;
 	}
-        
-        paramMap.put("start", startLimitPage);
-        paramMap.put("end", startLimitPage+visiblePages);
-        
-        //jsp 에서 보여줄 정보 추출
-        model.addAttribute("startPage", startPage+"");//현재 페이지      
-        model.addAttribute("totalPCnt", totalPCnt);//전체 게시물수
-        model.addAttribute("totalSCnt", totalSCnt);//전체 게시물수
-        model.addAttribute("totalPage", totalPage);//페이지 네비게이션에 보여줄 리스트 수
-        model.addAttribute("memberPList", mService.memberPList(paramMap));//검색
-        model.addAttribute("memberSList", mService.memberSList(paramMap));//검색
-        
-        return "admin/member/member_board";
+
+	paramMap.put("start", startLimitPage);
+	paramMap.put("end", startLimitPage + visiblePages);
+
+	// jsp 에서 보여줄 정보 추출
+	model.addAttribute("startPage", startPage + "");// 현재 페이지
+	model.addAttribute("totalPCnt", totalPCnt);// 전체 게시물수
+	model.addAttribute("totalPage", totalPage);// 페이지 네비게이션에 보여줄 리스트 수
+	model.addAttribute("memberPList", mService.memberPList(paramMap));
+
+	return "admin/member/memberp_board";
+    }
+
+    @RequestMapping(value = "/members_board.sms")
+    public String memberSList(@RequestParam Map<String, Object> paramMap,
+	    @RequestParam(defaultValue = "all") String category, @RequestParam(defaultValue = " ") String keyword,
+	    Model model) {
+
+	// 조회 하려는 페이지
+	int startPage = (paramMap.get("startPage") != null && paramMap.get("startPage").toString().length() != 0 ? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
+	// 한페이지에 보여줄 리스트 수
+	int visiblePages = (paramMap.get("visiblePages") != null && paramMap.get("visiblePages").toString().length() != 0 ? Integer.parseInt(paramMap.get("visiblePages").toString()) : 13);
+	
+	//검색
+	paramMap.put("category", category);
+	paramMap.put("keyword", keyword);
+	
+	// 일단 전체 건수를 가져온다.
+	int totalSCnt = mService.getMemberSCnt(paramMap);
+
+	BigDecimal decimal1 = new BigDecimal(totalSCnt);
+	BigDecimal decimal2 = new BigDecimal(visiblePages);
+	BigDecimal totalPage = decimal1.divide(decimal2, 0, BigDecimal.ROUND_UP);
+
+	int startLimitPage = 0;
+	if (startPage == 1) {
+	    startLimitPage = 0;
+	} else {
+	    startLimitPage = (startPage - 1) * visiblePages + 1;
+	}
+
+	paramMap.put("start", startLimitPage);
+	paramMap.put("end", startLimitPage + visiblePages);
+
+	// jsp 에서 보여줄 정보 추출
+	model.addAttribute("startPage", startPage + "");// 현재 페이지
+	model.addAttribute("totalSCnt", totalSCnt);// 전체 게시물수
+	model.addAttribute("totalPage", totalPage);// 페이지 네비게이션에 보여줄 리스트 수
+	model.addAttribute("memberSList", mService.memberSList(paramMap));// 검색
+
+	return "admin/member/members_board";
     }
     
-    
-    
-    
-    
-    
-  /*
-    @RequestMapping(value = "/individual_certification.do")
-    public String individualCertification() {
-	return "member/in_certification";
+    @RequestMapping(value = "/memberPEndYn.sms")
+    public String memberPEndYn(@RequestParam String memberId, @RequestParam char endYn, HttpServletResponse response) throws IOException{
+	MemberP mp = new MemberP();
+	mp.setMemberId(memberId);
+	mp.setEndYn(endYn);
+	System.out.println(mp.getMemberId());
+	System.out.println(mp.getEndYn());
+	int result = mService.memberPEndYn(mp); 
+	
+	if(result>0){
+	    System.out.println("정보 변경 성공");
+	    response.getWriter().print(true);
+	}else{
+	    System.out.println("정보 변경 실패");
+	    response.getWriter().print(false);
+	}
+	return null;
     }
 
-    @RequestMapping(value = "/faq_parent.do")
-    public String faqp_board() {
-	return "customercenter/faq_parent";
+    @RequestMapping(value = "/memberSEndYn.sms")
+    public String memberSEndYn(@RequestParam String memberId, @RequestParam char endYn, HttpServletResponse response) throws IOException{
+	MemberS ms = new MemberS();
+	ms.setMemberId(memberId);
+	ms.setEndYn(endYn);
+	System.out.println(ms.getMemberId());
+	System.out.println(ms.getEndYn());
+	int result = mService.memberSEndYn(ms); 
+	
+	if(result>0){
+	    System.out.println("정보 변경 성공");
+	    response.getWriter().print(true);
+	}else{
+	    System.out.println("정보 변경 실패");
+	    response.getWriter().print(false);
+	}
+	return null;
     }
 
-    @RequestMapping(value = "/faq_sitter.do")
-    public String faqs_board() {
-	return "customercenter/faq_sitter";
+    @RequestMapping(value = "/individual_certification.sms")
+    public String individualCertification(@RequestParam("memberS_No") String membersNo, Model model) {
+	System.out.println(membersNo);
+	CertifyView certifyview = mService.inCertify(membersNo);
+	model.addAttribute("certifyview", certifyview);
+	return "admin/member/in_certification";
     }
 
-    @RequestMapping(value = "/inquiry.do")
-    public String inquiry() {
-	return "customercenter/inquiry";
-    }
+    @RequestMapping(value = "/documentCretYN.sms")
+    public String documentCretYN(@RequestParam String imageNo, HttpServletResponse response) throws IOException {
 
-    @RequestMapping(value = "/notice.do")
-    public String notice() {
-	return "customercenter/notice";
-    }
+	// 잠시 코드 약간 수정해서 테스트만 해보겠습니다.
 
-    @RequestMapping(value = "/job_offer.do")
-    public String offer_board() {
-	return "job/job_offer";
-    }
+	int result = mService.documentCretYN(imageNo);
+	System.out.println(imageNo); // 출력
 
-    @RequestMapping(value = "/job_offer_page.do")
-    public String job_offer_page() {
-	return "job/job_offer_page";
-    }
+	System.out.println(imageNo); // 출력
 
-    @RequestMapping(value = "/job_search.do")
-    public String search_board() {
-	return "job/job_search";
-    }
+	if (result > 0) {
+	    System.out.println("성공");
+	    response.getWriter().print(true);
+	} else {
+	    System.out.println("실패");
+	    response.getWriter().print(false);
+	}
 
-    @RequestMapping(value = "/job_search_page.do")
-    public String job_search_page() {
-	return "job/job_search_page";
+	return null;
     }
-
-    @RequestMapping(value = "/report_board.do")
-    public String report_board() {
-	return "job/report_board";
-    }
-
-    @RequestMapping(value = "/report_board_page.do")
-    public String report_board_page() {
-	return "job/report_board_page";
-    }
-
-    @RequestMapping(value = "/voucher_parent.do")
-    public String voucher_parent() {
-	return "voucher/voucher_parent";
-    }
-
-    @RequestMapping(value = "/voucher_sitter.do")
-    public String voucher_sitter() {
-	return "voucher/voucher_sitter";
-    }
-
-    @RequestMapping(value = "/review.do")
-    public String review() {
-	return "review/review";
-    }
-
-    @RequestMapping(value = "/profile.do")
-    public String profile() {
-	return "profile";
-    }
-*/
 }

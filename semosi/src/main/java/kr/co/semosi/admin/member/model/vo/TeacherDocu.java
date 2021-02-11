@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class TeacherDocu {
 
     // 이미지번호
-    private int imageNo;
+    private String imageNo;
 
     // 시터 회원 번호
     private String membersNo;
@@ -27,13 +27,13 @@ public class TeacherDocu {
     private String delYn;
 
     // 승인여부
-    private String cretYn;
+    private char cretYn;
 
-    public int getImageNo() {
+    public String getImageNo() {
 	return imageNo;
     }
 
-    public void setImageNo(int imageNo) {
+    public void setImageNo(String imageNo) {
 	this.imageNo = imageNo;
     }
 
@@ -85,15 +85,16 @@ public class TeacherDocu {
 	this.delYn = delYn;
     }
 
-    public String getCretYn() {
+    public char getCretYn() {
 	return cretYn;
     }
 
-    public void setCretYn(String cretYn) {
+    public void setCretYn(char cretYn) {
 	this.cretYn = cretYn;
     }
 
-    public TeacherDocu(int imageNo, String membersNo, String originalName, String changedName, String imagePath, Timestamp uploadTime, String delYn, String cretYn) {
+    public TeacherDocu(String imageNo, String membersNo, String originalName, String changedName, String imagePath,
+	    Timestamp uploadTime, String delYn, char cretYn) {
 	super();
 	this.imageNo = imageNo;
 	this.membersNo = membersNo;

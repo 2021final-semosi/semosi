@@ -33,9 +33,9 @@ public class MemberS {
     private Date endDate;
 
     // 탈퇴여부
-    private String endYn;
+    private char endYn;
 
-    private int birthDay;
+    private Date birthDay;
 
     private String documentYN;
 
@@ -111,19 +111,19 @@ public class MemberS {
 	this.endDate = endDate;
     }
 
-    public String getEndYn() {
+    public char getEndYn() {
 	return endYn;
     }
 
-    public void setEndYn(String endYn) {
+    public void setEndYn(char endYn) {
 	this.endYn = endYn;
     }
 
-    public int getBirthDay() {
+    public Date getBirthDay() {
 	return birthDay;
     }
 
-    public void setBirthDay(int birthDay) {
+    public void setBirthDay(Date birthDay) {
 	this.birthDay = birthDay;
     }
 
@@ -136,7 +136,7 @@ public class MemberS {
     }
 
     public MemberS(String membersNo, String memberName, String memberId, String memberPw, String phone, String address,
-	    String gender, Date enrollDate, Date endDate, String endYn, int birthDay, String documentYN) {
+	    String gender, Date enrollDate, Date endDate, char endYn, Date birthDay, String documentYN) {
 	super();
 	this.membersNo = membersNo;
 	this.memberName = memberName;

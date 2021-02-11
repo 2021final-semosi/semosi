@@ -1,5 +1,10 @@
 package kr.co.semosi.admin.review.model.vo;
 
+import java.sql.Date;
+import java.util.List;
+
+import kr.co.semosi.admin.member.model.vo.MemberS;
+
 //구인에 대한 후기 
 public class JobOfferReview {
 
@@ -19,7 +24,11 @@ public class JobOfferReview {
     private int grade;
 
     // 삭제여부
-    private String delYn;
+    private char delYn;
+
+    private Date writeDate;
+
+    private MemberS memberS;
 
     public String getReviewNo() {
 	return reviewNo;
@@ -61,15 +70,32 @@ public class JobOfferReview {
 	this.grade = grade;
     }
 
-    public String getDelYn() {
+    public char getDelYn() {
 	return delYn;
     }
 
-    public void setDelYn(String delYn) {
+    public void setDelYn(char delYn) {
 	this.delYn = delYn;
     }
 
-    public JobOfferReview(String reviewNo, String writerSNo, String reviewdPNo, String content, int grade, String delYn) {
+    public Date getWriteDate() {
+	return writeDate;
+    }
+
+    public void setWriteDate(Date writeDate) {
+	this.writeDate = writeDate;
+    }
+
+    public MemberS getMemberS() {
+	return memberS;
+    }
+
+    public void setMemberS(MemberS memberS) {
+	this.memberS = memberS;
+    }
+
+    public JobOfferReview(String reviewNo, String writerSNo, String reviewdPNo, String content, int grade, char delYn,
+	    Date writeDate, MemberS memberS) {
 	super();
 	this.reviewNo = reviewNo;
 	this.writerSNo = writerSNo;
@@ -77,6 +103,8 @@ public class JobOfferReview {
 	this.content = content;
 	this.grade = grade;
 	this.delYn = delYn;
+	this.writeDate = writeDate;
+	this.memberS = memberS;
     }
 
     public JobOfferReview() {
