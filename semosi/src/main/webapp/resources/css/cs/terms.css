@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+#terms{
+	padding: 5% 10%;
+}
+#terms ol>li{
+	list-style-type: decimal;
+	margin: 2% 0 2% 5%;
+}
+
+#terms h1{
+	text-align: center;
+}
+#terms p{
+	margin: 2% 0;
+}

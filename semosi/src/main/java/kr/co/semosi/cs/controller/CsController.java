@@ -46,4 +46,13 @@ public class CsController {
 		return "cs/QNA";
 	}
 	
+	@RequestMapping(value="/moveIntroduce.sms")
+	public String moveIntroduce(){
+		return "cs/introduce";
+	}
+	
+	@RequestMapping(value="/moveTerms.sms")
+	public String moveTerms(){
+		return "cs/terms";
+	}
 }

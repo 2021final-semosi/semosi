@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+#intro-panel{
+	background-color: #f6d257;
+	font-size: 0;
+}
+#intro-panel #document{
+	font-size: 1rem;
+	width: 50%;
+	display: inline-block;
+	padding: 10% 5%;
+	vertical-align: top;
+}
+#intro-panel #document>h1{
+	font-size: 2.5rem;
+	font-weight: 900;
+	color: white;
+	margin-bottom: 10%;
+}
+#intro-panel #document>p:nth-child(2){
+	font-size: 1.5rem;
+	color: white;
+	margin-bottom: 5%;
+}
+#intro-panel #document>p:last-child{
+	font-size: 1.1rem;
+	color: gray;
+	margin-top: 5%;
+}
+
+#intro-panel #image{
+	width: 50%;
+	display: inline-block;
+}
+#intro-panel #image>img{
+	width: 70%;
+	margin: 15%;
+}
+
+
+
+#how-panel{
+	font-size: 0;
+}
+#how-panel .document{
+	font-size: 1rem;
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 15% 5%;
+}
+#how-panel .document>h1{
+	font-size: 2rem;
+	margin-bottom: 5%;
+}
+#how-panel .document>p:last-child{
+	font-size: 1.1rem;
+	margin-top: 5%;
+}
+
+#how-panel .image{
+	width: 50%;
+	display: inline-block;
+}
+#how-panel .image>img{
+	width: 70%;
+	margin: 15%;
+}
