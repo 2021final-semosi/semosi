@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	<select id="loginMember" parameterType="MemberP" resultType="MemberP">
+		select
+		MEMBERP_NO as memberpNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as
+		memberId,
+		MEMBER_PW as memberPW,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN
+		as endYn,
+		BIRTH_DAY as birthDay
+		from MEMBER_P where
+		MEMBER_ID=#{memberId} and MEMBER_PW=#{memberPw} and
+		end_yn='N' and
+		MemberP_no='a0001'
+	</select>
+
+	<select id="selectMemberPContentCnt" resultType="int"
+		parameterType="java.util.HashMap">
+		select
+		count(*)
+		from
+		Member_P where memberP_no like 'p%'
+	</select>
+
+	<select id="selectMemberSContentCnt" resultType="int"
+		parameterType="java.util.HashMap">
+		select
+		count(*)
+		from
+		Member_S
+	</select>
+
+	<select id="memberPList" resultType="MemberP" parameterType="java.util.HashMap">
+		select
+		MEMBERP_NO as memberpNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as
+		memberId,
+		MEMBER_PW as memberPW,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as
+		gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN
+		as endYn,
+		BIRTH_DAY as birthDay
+		from (select row_number() over (order by
+		memberp_no) as row_num, member_P.* from member_P where memberP_no like 'p%')
+		where
+		<if test='category !=null and category != all and !keyword.equals("")'>
+			<if test='category == "memberp_no"'>
+				MEMBERP_NO like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("member_id")'>
+				MEMBER_ID like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("member_name")'>
+				MEMBER_NAME like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("gender")'>
+				<choose>
+					<when test='keyword.equals("여성")'>
+						gender='F' and
+					</when>
+					<otherwise>
+						gender='M' and
+					</otherwise>
+				</choose>
+			</if>
+			<if test='category.equals("end_YN")'>
+				<choose>
+					<when test='keyword.equals("탈퇴")'>
+						END_YN = 'Y' and
+					</when>
+					<otherwise>
+						END_YN = 'N' and
+					</otherwise>
+				</choose>
+			</if>
+		</if>
+		row_num between #{start} and #{end}
+	</select>
+
+	<select id="memberSList" resultType="MemberS" parameterType="java.util.HashMap">
+		select
+		MEMBERS_NO as membersNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as
+		memberId,
+		MEMBER_PW as memberPW,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as
+		gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN
+		as endYn,
+		BIRTH_DAY as birthDay,
+		DOCUMENT_YN as documentYN
+		from (select
+		row_number() over
+		(order by members_no)
+		as row_num, member_s.* from
+		member_s)
+		where
+		<if test='category !=null and category != all and !keyword.equals("")'>
+			<if test='category == "memberp_no"'>
+				MEMBERS_NO like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("member_id")'>
+				MEMBER_ID like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("member_name")'>
+				MEMBER_NAME like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("document_yn")'>
+				<choose>
+					<when test='keyword.equals("인증중")'>
+						document_yn='N' and
+					</when>
+					<otherwise>
+						document_yn='Y' and
+					</otherwise>
+				</choose>
+			</if>
+			<if test='category.equals("gender")'>
+				<choose>
+					<when test='keyword.equals("여성")'>
+						gender='F' and
+					</when>
+					<otherwise>
+						gender='M' and
+					</otherwise>
+				</choose>
+			</if>
+			<if test='category.equals("end_YN")'>
+				<choose>
+					<when test='keyword.equals("탈퇴")'>
+						END_YN = 'Y' and
+					</when>
+					<otherwise>
+						END_YN = 'N' and
+					</otherwise>
+				</choose>
+			</if>
+		</if>
+		row_num between #{start} and #{end}
+	</select>
+
+	<update id="memberPEndYn" parameterType="String">
+		update member_p set
+		<choose>
+			<when test="endYn=='Y'">
+				end_yn='N', end_date=null
+			</when>
+			<otherwise>
+				end_yn='Y', end_date=sysdate
+			</otherwise>
+		</choose>
+		where member_id=#{memberId}
+	</update>
+
+	<update id="memberSEndYn" parameterType="String">
+		update member_s set
+		<choose>
+			<when test="endYn=='Y'">
+				end_yn='N', end_date=null
+			</when>
+			<otherwise>
+				end_yn='Y', end_date=sysdate
+			</otherwise>
+		</choose>
+		where member_id=#{memberId}
+	</update>
+
+	<select id="inCertify" parameterType="CertifyView" resultType="CertifyView">
+		SELECT
+		MEMBERS_NO as membersNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as
+		memberId,
+		PHONE as phone,
+		GENDER as gender,
+		ADDRESS as address,
+		IMAGE_FA_NO as imageFANo,
+		IMAGE_FA_PATH as imageFaPath,
+		CRET_FA_YN as
+		cretFAYN,
+		IMAGE_HE_NO as imageHENo,
+		IMAGE_HE_PATH as imageHePath,
+		CRET_HE_YN as cretHEYN,
+		IMAGE_RE_NO as imageRENo,
+		IMAGE_RE_PATH as
+		imageRePath,
+		CRET_RE_YN as cretREYN,
+		IMAGE_TE_NO as imageTENo,
+		IMAGE_TE_PATH as imageTePath,
+		CRET_TE_YN as cretTEYN
+		FROM
+		ADMIN_CERTIFYVIEW
+		where members_no=#{membersNo}
+	</select>
+
+	<!-- 파라미터값중 한글자만 일치하면 조건이 동작하는 로직 -->
+	<update id="documentCretYN" parameterType="String">
+		update
+		<choose>
+			<when test="_parameter.charAt(0) == 'F'">
+				FAMILY_DOCU set cret_FA_YN = 'Y' where IMAGE_FA_NO =
+				#{value}
+			</when>
+			<when test="_parameter.charAt(0)=='H'">
+				HEALTH_DOCU set cret_HE_YN = 'Y' where IMAGE_HE_NO =
+				#{value}
+			</when>
+			<when test="_parameter.charAt(0)=='R'">
+				RESIDENT_DOCU set cret_RE_YN = 'Y' where IMAGE_RE_NO
+				= #{value}
+			</when>
+			<otherwise>
+				TEACHER_DOCU set cret_TE_YN = 'Y' where IMAGE_TE_NO =
+				#{value}
+			</otherwise>
+		</choose>
+	</update>
+</mapper>
