@@ -64,11 +64,6 @@
 						<a href="#"><img src="/resources/images/carousel3.png"></a>
 					</div>
 				</div>
-				<div id="carousel4" class="carousel-item">
-					<div class="carousel-wrap">
-						<a href="#"><img src="/resources/images/carousel4.png"></a>
-					</div>
-				</div>
 			</div>
 	
 			<!-- Left and right controls -->
