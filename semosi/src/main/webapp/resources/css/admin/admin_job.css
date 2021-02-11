@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+table {
+   width: 1400px;
+}
+
+.search {
+   margin-right: 60px;
+   margin-bottom: 8px;
+}
+
+#write-btn {
+   width: 95px; height: 30px;
+   background-color: #9AB9EF;
+   color: white;
+   font-weight: 300;
+   font-size: 1rem;
+   border: 0px solid white;
+   padding: 3px 20px 3px 20px;
+   border-radius: 5px;
+}
+
+#all_select {
+   width: 70px;
+}
+
+.post-no {
+   width: 70px;
+}
+
+.memberid{
+	width : 150px;
+}
+
+.membername{
+	width : 150px;
+}
+.date {
+   width: 150px;
+}
+
+.del-YN {
+   width: 120px;
+}
+
+.restore-btn {
+    background-color: #9E9E9E;
+    color: white;
+    font-weight: 400;
+    font: 0.8rem;
+    border: 0px solid white;
+    padding: 3px 20px 3px 20px;
+    border-radius: 999px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #F84949;
+    color: white;
+    font-weight: 400;
+    font: 0.8rem;
+    border: 0px solid white;
+    padding: 3px 20px 3px 20px;
+    border-radius: 999px;
+    width: 80px;
+    cursor: pointer;
+}
+
+
+.pagenavigation{
+	 margin-left:48%;
+	 margin-top:20px;
+}
+
+.pagenavigation>button{
+	width:30px;
+	height:35px;
+}
+
+.title_form {
+	border: none;
+}
+
+.title_btn {
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}

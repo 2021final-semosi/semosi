@@ -1,0 +1,106 @@
+@CHARSET "UTF-8";
+
+#content-wrapper>p {
+   margin: 50px 0 50px 0;   
+   font-size: 1.5rem;
+}
+
+.table-wrapper {
+	width: 1150px; height: 100%;
+	border: 2px solid black;
+	font-size : 1.2rem;
+	text-align : center;
+}
+
+#info-table {
+   width:100%;
+   height:110px;
+   text-align : center;
+   border-collapse : collapse;
+   border: 1px solid black;
+}
+
+td {
+	border: 1px solid black;
+}
+
+.second-table {
+	width:100%; height: 55px;
+}
+
+.data-table {
+	 width:100%; height: 65px;
+}
+
+#first{
+   height:50%;
+}
+
+#second{
+   height:50%;
+}
+
+.blank {
+	width: 100%; height: 20px;
+	border: 1px solid black;
+	background-color: #E4F6F6;
+}
+
+.tr-title {
+	width: 100%; height: 55px;
+	font-weight: bold;
+	font-size: 1.3rem;
+	border-bottom: 2px solid black;
+}
+
+.first-td {
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+
+.possible-active {
+	height: 70px;
+}
+
+.active td {
+	width: 25%;
+}
+
+.place-ranking {
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+}
+
+.time td:nth-child(odd) {
+	font-weight: bold;
+	width: 5%;
+}
+
+.time td:nth-child(even) {
+	width: 15%;
+}
+
+#first td:nth-child(odd) {
+	font-weight: bold;
+}
+
+#second td:nth-child(odd) {
+	font-weight: bold;
+}
+
+#third td:nth-child(odd) {
+	font-weight: bold;
+}
+
+#close {
+   width:180px;
+   height:50px;
+   background-color : #9AB9EF;
+   color:white;
+   border : 1px solid #9AB9EF;
+   font-size:1.3rem;
+   font-weight:700;
+   margin-top:15px;
+   margin-right: 15px;
+   cursor: pointer;
+}

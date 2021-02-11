@@ -1,0 +1,131 @@
+@CHARSET "UTF-8";
+
+table {
+   width: 1200px;
+}
+
+.search {
+   margin-right: 160px;
+   margin-bottom: 8px;
+}
+
+#write-btn {
+   width: 95px; height: 30px;
+   background-color: #9AB9EF;
+   color: white;
+   font-weight: 300;
+   font-size: 1rem;
+   border: 0px solid white;
+   padding: 3px 20px 3px 20px;
+   border-radius: 5px;
+}
+
+#all_select {
+   width: 80px;
+}
+
+.post-no {
+   width: 80px;
+}
+
+.date {
+   width: 150px;
+}
+
+.del-YN {
+   width: 120px;
+}
+
+#modal-content{
+	width:800px;
+	height:850px;
+}
+
+#guide-body{
+	padding: 30px;
+}
+
+.guide{
+	font-weight:bold;
+	font-size:1.1rem;
+	text-align:center;
+}
+
+.guide_text{
+	width:520px;
+	height:40px;
+	border : 1px solid #707070;
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 1.2rem;
+	resize:none;
+}
+
+.guide_content{
+	width:520px;
+	height:520px;
+	border : 1px solid #707070;
+	font-size:1rem;
+	resize:none;
+}
+
+#modify_submit{
+	width:100px;
+	height:40px;
+	background-color:#9AB9EF;
+	border : 1px solid #9AB9EF;
+	color:white;
+	margin-right:10px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+#modify_cancle{
+	width:100px;
+	height:40px;
+	background-color:#9AB9EF;
+	border : 1px solid #9AB9EF;
+	color:white;
+	margin-top:10px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.modal_input {
+	border:0px;
+	font-size:1.1rem;
+	width:100%;
+	height:100%;
+	resize:none;
+}
+
+a{
+	text-decoration : none;
+	border:0;
+}
+
+.pagenavigation{
+	 margin-left:48%;
+	 margin-top:20px;
+}
+
+.pagenavigation>button{
+	width:30px;
+	height:35px;
+}
+
+.form-btn {
+	border: 0px solid white;
+    padding: 3px 20px 3px 20px;
+    border-radius: 999px;
+}
+
+#answer_form {
+	border: none;
+}
+
+#answer_btn {
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}

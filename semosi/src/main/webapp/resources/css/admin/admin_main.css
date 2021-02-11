@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+#statistics {
+	width: 1060px;
+	height: 420px;
+	display: inline-block;
+	border: 1px solid black;
+}
+
+#statistics2 {
+   width: 425px;
+   height: 265px;
+   border: 1px solid black;
+   display: inline-block;
+   margin-left: 20px;
+   margin-bottom: 75px;
+}
+
+#p-board {
+	width: 500px;
+	height: 245px;
+	display: inline-block;
+	margin-top: 50px;
+}
+
+#s-board {
+	width: 500px;
+	height: 245px;
+	display: inline-block;
+		margin-top: 50px;
+}
+
+#inquiry-board {
+	width: 500px;
+	height: 245px;
+	display: inline-block;
+		margin-top: 50px;
+}
+
+.board {
+	font-size: 0.8rem;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.board th {
+	background-color: #ECF0F7;
+}
+
+.board tr {
+	height: 45px;
+}
+
+.board-column {
+	width: 75%;
+	padding-left: 20px;
+	font-size: 1rem;
+}
+
+.board-link {
+	width: 35%;
+	text-align: right;
+	padding-right: 18px;
+}
+
+.link-btn {
+	padding: 5px 10px 5px 10px;
+	border-radius: 999px;
+	background-color: #9AB9EF;
+	width: 70px;
+	height: 50px;
+	color: white;
+	font-weight: 600;
+	font-size: 0.8rem;
+	border: 0px solid white;
+	margin-right: 10px;
+}
+
+.content-title {
+	width: 75%;
+	padding-left: 20px;
+	border-bottom: 1px solid #ECEBEB;
+	font-size: 0.9rem;
+	border-collapse : collapse;
+}
+
+.content-date {
+	width: 25%;
+	text-align: right;
+	padding-right: 20px;
+	font-size: 0.9rem;
+	border-bottom: 1px solid #ECEBEB;
+	border-collapse : collapse;
+}
