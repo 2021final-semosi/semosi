@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import kr.co.semosi.admin.job.model.dao.JobDAO;
+import kr.co.semosi.admin.job.model.dao.AdminJobDAO;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminReport;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
@@ -16,10 +16,10 @@ import kr.co.semosi.admin.job.model.vo.JobOffer;
 import kr.co.semosi.admin.job.model.vo.JobSearch;
 
 @Service("jobService")
-public class JobService {
+public class AdminJobService {
 	
 	@Resource(name="jobDAO")
-	private JobDAO jobDAO;
+	private AdminJobDAO jobDAO;
 
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSession;

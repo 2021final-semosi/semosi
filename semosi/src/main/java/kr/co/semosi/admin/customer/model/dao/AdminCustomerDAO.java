@@ -13,7 +13,7 @@ import kr.co.semosi.admin.customer.model.vo.QnA;
 import kr.co.semosi.admin.customer.model.vo.QnAComment;
 
 @Repository("customerDAO")
-public class CustomerDAO {
+public class AdminCustomerDAO {
 
 	public List<FAQ> selectPFAQList(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
 		return sqlSession.selectList("customer.selectPFAQList",paramMap);
