@@ -108,7 +108,7 @@ $(function(){
 				<form class="form-inline" id="frmSearch" action="/review_answer.sms">
 					<input type="hidden" id="startPage" name="startPage" value="">
 					<!-- 페이징을 위한 hidden타입 추가 -->
-					<input type="hidden" id="visiblePages" name="visiblePages" value="/review_answer.sms">
+					<input type="hidden" id="visiblePages" name="visiblePages" value="">
 					<!-- 페이징을 위한 hidden타입 추가 -->
 					<div class="page-contents">
 						<div id="content-wrapper" class="board-wrapper">

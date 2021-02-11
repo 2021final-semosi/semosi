@@ -22,18 +22,22 @@ a{
 	border:0;
 }
 .member-name{
-	width:200px;
+	width:30%;
 }
 
 .enroll-date{
-	width:150px;
+	width:130px;
 }
 .end-date{
-	width:150px;
+	width:130px;
 }
 
 .function{
 	width:100px;
+}
+
+.member-no{
+	width:70px;
 }
 
 .contents{
@@ -41,11 +45,12 @@ a{
 }
 
 .pagenavigation{
-	 margin-left:48%;
 	 margin-top:20px;
+	 text-align:center;
 }
 
 .pagenavigation>button{
 	width:30px;
 	height:35px;
+	
 }
