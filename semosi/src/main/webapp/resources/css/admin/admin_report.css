@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+table {
+   width: 1400px;
+}
+
+.search {
+   margin-right: 60px;
+   margin-bottom: 8px;
+}
+
+.contents > td{
+	height:46px;
+}
+
+#all_select {
+   width: 70px;
+}
+
+.post-no {
+   width: 60px;
+}
+
+.memberid{
+	width : 120px;
+}
+.reporterid{
+	width : 120px;
+}
+
+.title .reason{
+	width:30%;
+}
+
+.date {
+   width: 150px;
+}
+
+a{
+	text-decoration : none;
+	border:0;
+}

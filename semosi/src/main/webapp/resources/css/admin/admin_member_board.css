@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+table {
+   width: 1400px;
+}
+
+.member-ul {
+   margin-left: 60px;
+}
+
+.member-ul li {
+   width: 120px;
+   text-align: center;
+}
+
+.search {
+   margin-right: 60px;
+}
+
+a{
+	text-decoration : none;
+	border:0;
+}
+.member-name{
+	width:30%;
+}
+
+.enroll-date{
+	width:130px;
+}
+.end-date{
+	width:130px;
+}
+
+.function{
+	width:100px;
+}
+
+.member-no{
+	width:70px;
+}
+
+.contents{
+	height:46px;
+}
+
+.pagenavigation{
+	 margin-top:20px;
+	 text-align:center;
+}
+
+.pagenavigation>button{
+	width:30px;
+	height:35px;
+	
+}

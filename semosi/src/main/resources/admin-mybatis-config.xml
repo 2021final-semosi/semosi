@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<typeAlias type="kr.co.semosi.admin.member.model.vo.MemberP" alias="MemberP" />
+		<typeAlias type="kr.co.semosi.admin.member.model.vo.MemberS" alias="MemberS" />
+		<typeAlias type="kr.co.semosi.admin.member.model.vo.CertifyView" alias="CertifyView" />
+		
+		<typeAlias type="kr.co.semosi.admin.review.model.vo.JobOfferReview" alias="JobOfferReview" />
+		<typeAlias type="kr.co.semosi.admin.review.model.vo.JobSearchReview" alias="JobSearchReview" />
+		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswer" alias="ReviewAnswer" />
+		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswerMP" alias="ReviewAnswerMP" />
+		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswerMS" alias="ReviewAnswerMS" />
+		
+		<typeAlias type="kr.co.semosi.admin.customer.model.vo.FAQ" alias="FAQ"/>
+     	<typeAlias type="kr.co.semosi.admin.customer.model.vo.Notice" alias="Notice"/>
+      	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnA" alias="QnA"/>
+      	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnAComment" alias="QnAComment"/>
+      
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminOffer" alias="AdminOffer"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminSearch" alias="AdminSearch"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.JobOfferApply" alias="JobOfferApply"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.JobSearch" alias="JobSearch"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.JobSearchApply" alias="JobSearchApply"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.PostReport" alias="PostReport"/>
+      
+     	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.ParentsVoucher" alias="ParentsVoucher"/>
+      	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.SitterVoucher" alias="SitterVoucher"/>
+	</typeAliases>
+</configuration>
+
+
+	

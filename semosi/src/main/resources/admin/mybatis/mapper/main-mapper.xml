@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main">
+
+	<select id="selectOfferMainList" resultType="AdminOffer">
+		SELECT
+		POST_NO as postNo, TITLE as title, MEMBERP_NO as memberpNo, MEMBER_NAME as memberName
+		FROM ADMIN_OFFER_VIEW order by POST_NO
+	</select>
+	
+	<select id="selectSearchMainList" resultType="AdminSearch">
+		SELECT
+		POST_NO as postNo, TITLE as title, MEMBERS_NO as membersNo, MEMBER_NAME as memberName
+		FROM ADMIN_SEARCH_VIEW order by POST_NO
+	</select>
+	
+	<select id="selectInquiryMainList" resultType="QnA">
+	select TITLE as title, WRITE_DATE as writeDate
+	from QNA order by WRITE_DATE	
+	</select>
+	
+
+</mapper>

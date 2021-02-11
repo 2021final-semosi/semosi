@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+table {
+   width: 1400px;
+}
+
+.search {
+   margin-right: 60px;
+   margin-bottom: 8px;
+}
+
+#write-btn {
+   width: 95px; height: 30px;
+   background-color: #9AB9EF;
+   color: white;
+   font-weight: 300;
+   font-size: 1rem;
+   border: 0px solid white;
+   padding: 3px 20px 3px 20px;
+   border-radius: 5px;
+}
+
+#all_select {
+   width: 70px;
+}
+
+.post-no {
+   width: 70px;
+}
+
+.memberid{
+	width : 150px;
+}
+
+.membername{
+	width : 150px;
+}
+.date {
+   width: 150px;
+}
+
+.del-YN {
+   width: 120px;
+}
+
+a{
+	text-decoration : none;
+	border:0;
+	text-align:left;
+}
