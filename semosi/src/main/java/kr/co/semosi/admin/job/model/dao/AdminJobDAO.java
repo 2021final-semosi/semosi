@@ -13,7 +13,7 @@ import kr.co.semosi.admin.job.model.vo.JobOffer;
 import kr.co.semosi.admin.job.model.vo.JobSearch;
 
 @Repository("jobDAO")
-public class JobDAO {
+public class AdminJobDAO {
 
 	public int deletePost(SqlSessionTemplate sqlSession, int postNo) {
 		int result = sqlSession.update("job.deletePost",postNo);

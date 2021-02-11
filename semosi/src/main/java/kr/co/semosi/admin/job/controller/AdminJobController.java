@@ -12,16 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.semosi.admin.job.model.service.JobService;
+import kr.co.semosi.admin.job.model.service.AdminJobService;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminReport;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
 
 @Controller
-public class JobController {
+public class AdminJobController {
 	
 	@Resource(name="jobService")
-	private JobService jobService;
+	private AdminJobService jobService;
 	
 	@RequestMapping(value="/job_offer_list.sms")
 	public String jobOfferList(

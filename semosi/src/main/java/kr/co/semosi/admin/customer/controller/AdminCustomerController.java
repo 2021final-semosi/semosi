@@ -13,17 +13,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.semosi.admin.customer.model.service.CustomerService;
+import kr.co.semosi.admin.customer.model.service.AdminCustomerService;
 import kr.co.semosi.admin.customer.model.vo.FAQ;
 import kr.co.semosi.admin.customer.model.vo.Inquiry;
 import kr.co.semosi.admin.customer.model.vo.Notice;
 import kr.co.semosi.admin.customer.model.vo.QnA;
 
 @Controller
-public class CustomerController {
+public class AdminCustomerController {
 	
 	@Resource(name="customerService")
-	private CustomerService customerService;
+	private AdminCustomerService customerService;
 
 	@RequestMapping(value="/faq_parents_list.sms")
 	public String selectPFAQList(

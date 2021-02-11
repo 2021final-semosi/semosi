@@ -9,17 +9,17 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import kr.co.semosi.admin.customer.model.dao.CustomerDAO;
+import kr.co.semosi.admin.customer.model.dao.AdminCustomerDAO;
 import kr.co.semosi.admin.customer.model.vo.FAQ;
 import kr.co.semosi.admin.customer.model.vo.Inquiry;
 import kr.co.semosi.admin.customer.model.vo.Notice;
 import kr.co.semosi.admin.customer.model.vo.QnA;
 
 @Service("customerService")
-public class CustomerService {
+public class AdminCustomerService {
 	
 	@Resource(name="customerDAO")
-	private CustomerDAO customerDAO;
+	private AdminCustomerDAO customerDAO;
 
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSession;
