@@ -19,9 +19,9 @@ import kr.co.semosi.admin.member.model.vo.MemberP;
 import kr.co.semosi.admin.member.model.vo.MemberS;
 
 @Controller
-public class MemberController {
+public class AdminMemberController {
 
-    @Resource(name = "memberService")
+    @Resource(name = "adminMemberService")
     private MemberService mService;
 
     @RequestMapping(value = "/memberLogin.sms")
