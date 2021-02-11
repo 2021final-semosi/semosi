@@ -8,16 +8,16 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import kr.co.semosi.admin.review.model.dao.ReviewDAO;
+import kr.co.semosi.admin.review.model.dao.AdminReviewDAO;
 import kr.co.semosi.admin.review.model.vo.JobOfferReview;
 import kr.co.semosi.admin.review.model.vo.JobSearchReview;
 import kr.co.semosi.admin.review.model.vo.ReviewAnswer;
 
-@Service("reviewService")
-public class ReviewService {
+@Service("adminReviewService")
+public class AdminReviewService {
     
-    @Resource(name="reviewDAO")
-    private ReviewDAO rDAO;
+    @Resource(name="adminReviewDAO")
+    private AdminReviewDAO rDAO;
     
     @Resource(name="sqlSessionTemplate")
     private SqlSessionTemplate sqlSession;

@@ -10,8 +10,8 @@ import kr.co.semosi.admin.member.model.vo.CertifyView;
 import kr.co.semosi.admin.member.model.vo.MemberP;
 import kr.co.semosi.admin.member.model.vo.MemberS;
 
-@Repository("memberDAO")
-public class MemberDAO {
+@Repository("adminMemberDAO")
+public class AdminMemberDAO {
 
     public MemberP loginMember(SqlSessionTemplate sqlSession, MemberP mp) {
 	MemberP memberP = sqlSession.selectOne("member.loginMember", mp);

@@ -12,16 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.semosi.admin.review.model.service.ReviewService;
+import kr.co.semosi.admin.review.model.service.AdminReviewService;
 import kr.co.semosi.admin.review.model.vo.JobOfferReview;
 import kr.co.semosi.admin.review.model.vo.JobSearchReview;
 import kr.co.semosi.admin.review.model.vo.ReviewAnswer;
 
 @Controller
-public class ReviewController {
+public class AdminReviewController {
 
-    @Resource(name = "reviewService")
-    private ReviewService rService;
+    @Resource(name = "adminReviewService")
+    private AdminReviewService rService;
 
     @RequestMapping(value = "/offer_review.sms")
     public String offerReviewList(@RequestParam Map<String, Object> paramMap, 

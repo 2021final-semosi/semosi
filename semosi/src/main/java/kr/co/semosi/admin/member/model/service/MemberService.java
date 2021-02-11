@@ -8,16 +8,16 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import kr.co.semosi.admin.member.model.dao.MemberDAO;
+import kr.co.semosi.admin.member.model.dao.AdminMemberDAO;
 import kr.co.semosi.admin.member.model.vo.CertifyView;
 import kr.co.semosi.admin.member.model.vo.MemberP;
 import kr.co.semosi.admin.member.model.vo.MemberS;
 
-@Service("memberService")
+@Service("adminMemberService")
 public class MemberService {
 
-    @Resource(name = "memberDAO")
-    private MemberDAO mDAO;
+    @Resource(name = "adminMemberDAO")
+    private AdminMemberDAO mDAO;
 
     @Resource(name = "sqlSessionTemplate")
     private SqlSessionTemplate sqlSession;

@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import kr.co.semosi.admin.customer.model.vo.QnA;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
-import kr.co.semosi.admin.main.model.dao.MainDAO;
+import kr.co.semosi.admin.main.model.dao.AdminMainDAO;
 
-@Service("mainService")
-public class MainService {
+@Service("adminMainService")
+public class AdminMainService {
     
-    @Resource(name="mainDAO")
-    private MainDAO maDAO;
+    @Resource(name="adminMainDAO")
+    private AdminMainDAO maDAO;
     
     @Resource(name="sqlSessionTemplate")
     private SqlSessionTemplate sqlSession;

@@ -9,8 +9,8 @@ import kr.co.semosi.admin.customer.model.vo.QnA;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
 
-@Repository("mainDAO")
-public class MainDAO {
+@Repository("adminMainDAO")
+public class AdminMainDAO {
 
     public List<AdminOffer> selectOfferMainList(SqlSessionTemplate sqlSession) {
 	return sqlSession.selectList("main.selectOfferMainList");

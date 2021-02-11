@@ -11,13 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.semosi.admin.customer.model.vo.QnA;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
-import kr.co.semosi.admin.main.model.service.MainService;
+import kr.co.semosi.admin.main.model.service.AdminMainService;
 
 @Controller
-public class MainController {
+public class AdminMainController {
 
-    @Resource(name="mainService")
-    private MainService maService;
+    @Resource(name="adminMainService")
+    private AdminMainService maService;
     
     @RequestMapping(value="/main.sms")
     public ModelAndView mainBoardList(ModelAndView mav){

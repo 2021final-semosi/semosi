@@ -10,8 +10,8 @@ import kr.co.semosi.admin.review.model.vo.JobOfferReview;
 import kr.co.semosi.admin.review.model.vo.JobSearchReview;
 import kr.co.semosi.admin.review.model.vo.ReviewAnswer;
 
-@Repository("reviewDAO")
-public class ReviewDAO {
+@Repository("adminReviewDAO")
+public class AdminReviewDAO {
 
     public int getReviewCnt(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
 	return sqlSession.selectOne("review.getReviewCnt", paramMap);
