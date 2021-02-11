@@ -278,7 +278,7 @@
 					</div>
 				</div>
 				<div id="faq-btn-panel">
-					<a href="#">FAQ 더 알아보기</a>
+					<a href="/moveFaq.sms">FAQ 더 알아보기</a>
 				</div>
 			</div>
 		</div>

@@ -21,8 +21,7 @@
 	width: 100%;
 	height: 100px;
 	margin-bottom: 20px;
-	background-image: url("/resources/images/joboffer-image.jpg");
-	background-size: cover;
+	background-color: #f6d257;
 	border-top-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	text-align: center;
