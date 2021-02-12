@@ -26,7 +26,8 @@ public class AdminJobController {
 	@RequestMapping(value="/job_offer_list.sms")
 	public String jobOfferList(
 			@RequestParam Map<String, Object> paramMap, 
-			Model model){
+			Model model, @RequestParam(defaultValue = "all") String category, 
+			@RequestParam(defaultValue = " ") String keyword){
 		//조회 하려는 페이지
         int startPage = (paramMap.get("startPage")!=null && paramMap.get("startPage").toString().length()!=0 ?Integer.parseInt(paramMap.get("startPage").toString()):1);
         //한페이지에 보여줄 리스트 수
@@ -49,6 +50,10 @@ public class AdminJobController {
         paramMap.put("start", startLimitPage);
         paramMap.put("end", startLimitPage+visiblePages);
         
+        // 검색 카테고리와 키워드 넣어주기
+        paramMap.put("category", category);
+		paramMap.put("keyword", keyword);
+        
         //jsp에서 보여줄 정보 추출
         model.addAttribute("startPage", startPage+"");//현재 페이지      
         model.addAttribute("totalCnt", totalCnt);//전체 게시물 수
@@ -61,7 +66,8 @@ public class AdminJobController {
 	@RequestMapping(value="/job_search_list.sms")
 	public String jobSearchList(
 			@RequestParam Map<String, Object> paramMap, 
-			Model model){
+			Model model, @RequestParam(defaultValue = "all") String category, 
+			@RequestParam(defaultValue = " ") String keyword){
 		//조회 하려는 페이지
         int startPage = (paramMap.get("startPage")!=null && paramMap.get("startPage").toString().length()!=0 ?Integer.parseInt(paramMap.get("startPage").toString()):1);
         //한페이지에 보여줄 리스트 수
@@ -84,6 +90,10 @@ public class AdminJobController {
         paramMap.put("start", startLimitPage);
         paramMap.put("end", startLimitPage+visiblePages);
         
+        // 검색 카테고리와 키워드 넣어주기
+        paramMap.put("category", category);
+		paramMap.put("keyword", keyword);
+        
         //jsp에서 보여줄 정보 추출
         model.addAttribute("startPage", startPage+"");//현재 페이지      
         model.addAttribute("totalCnt", totalCnt);//전체 게시물 수
@@ -96,7 +106,8 @@ public class AdminJobController {
 	@RequestMapping(value="/post_report_list.sms")
 	public String postReportList(
 			@RequestParam Map<String, Object> paramMap, 
-			Model model){
+			Model model, @RequestParam(defaultValue = "all") String category, 
+			@RequestParam(defaultValue = " ") String keyword){
 		//조회 하려는 페이지
         int startPage = (paramMap.get("startPage")!=null && paramMap.get("startPage").toString().length()!=0 ?Integer.parseInt(paramMap.get("startPage").toString()):1);
         //한페이지에 보여줄 리스트 수
@@ -118,6 +129,10 @@ public class AdminJobController {
         
         paramMap.put("start", startLimitPage);
         paramMap.put("end", startLimitPage+visiblePages);
+        
+        // 검색 카테고리와 키워드 넣어주기
+        paramMap.put("category", category);
+		paramMap.put("keyword", keyword);
         
         //jsp에서 보여줄 정보 추출
         model.addAttribute("startPage", startPage+"");//현재 페이지      

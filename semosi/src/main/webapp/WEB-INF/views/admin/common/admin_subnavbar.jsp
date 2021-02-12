@@ -41,29 +41,29 @@ $(function() {
 
                 <li id="main-item"><img src="/resources/img/sub_customer.png" /> &nbsp; &nbsp; &nbsp; 고객센터
                     <ul class="submenu">
-                        <li><a href="/notice.sms">공지사항</a></li>
+                        <li><a href="/notice_list.sms">공지사항</a></li>
                         <li>FAQ
                         	<ul class="submenu" id="sub_submenu">
-                            	<li><a href="/faq_parent.sms">부모회원</a></li>
-                            	<li><a href="/faq_sitter.sms">시터회원</a></li>
+                            	<li><a href="/faq_parents_list.sms">부모회원</a></li>
+                            	<li><a href="/faq_sitter_list.sms">시터회원</a></li>
                            </ul>
                         </li>
-                        <li><a href="/inquiry.sms">1:1문의</a></li>
+                        <li><a href="/inquiry_list.sms">1:1문의</a></li>
                     </ul>
                 </li>
 
                 <li id="main-item"><img src="/resources/img/sub_board.png" /> &nbsp; &nbsp; &nbsp; 구인 / 구직
                     <ul class="submenu">
-                        <li><a href="/job_offer.sms">구인 게시판</a></li>
-                        <li><a href="/job_search.sms">구직 게시판</a></li>
-                        <li><a href="/report_board.sms">게시판 신고 리스트</a></li>
+                        <li><a href="/job_offer_list.sms">구인 게시판</a></li>
+                        <li><a href="/job_search_list.sms">구직 게시판</a></li>
+                        <li><a href="/post_report_list.sms">게시판 신고 리스트</a></li>
                     </ul>
                 </li>
 
                 <li id="main-item"><img src="/resources/img/sub_voucher.png" /> &nbsp; &nbsp; &nbsp; 이용권 관리
                     <ul class="submenu">
-                        <li><a href="/voucher_parent.sms">부모 이용권</a></li>
-                        <li><a href="/voucher_sitter.sms">시터 이용권</a></li>
+                        <li><a href="/voucher_parents_list.sms">부모 이용권</a></li>
+                        <li><a href="/voucher_sitter_list.sms">시터 이용권</a></li>
                     </ul>
                 </li>
 

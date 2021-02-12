@@ -24,22 +24,22 @@ table {
    width: 70px;
 }
 
-.post-no {
+.post_no {
    width: 70px;
 }
 
-.memberid{
+.member_id{
 	width : 150px;
 }
 
-.membername{
+.member_name{
 	width : 150px;
 }
 .date {
    width: 150px;
 }
 
-.del-YN {
+.del_YN {
    width: 120px;
 }
 

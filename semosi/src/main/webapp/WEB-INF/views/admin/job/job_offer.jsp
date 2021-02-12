@@ -86,16 +86,17 @@ $("#pagination").append(pagination);//--페이지 셋팅
 				<div id="content-wrapper" class="board-wrapper">
 					<p>구인게시판</p>
 					<div class="search">
-						<form action="/searchBoard.ad" method="get" id="search">
+						<form action="job_offer_list.sms" method="get">
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
-								<option>전체</option>
+								<option value="all">전체</option>
 								<option value="post_no">게시글 번호</option>
+								<option value="member_id">아이디</option>
 								<option value="title">제목</option>
 								<option value="content">내용</option>
 								<option value="del_YN">삭제여부</option>
 							</select>
-							<input type="text" name="keyword" />
+							<input type="text" name="keyword"/>
 							<button class="search-btn" type="submit">검색</button>
 						</form>
 					</div>
@@ -103,29 +104,29 @@ $("#pagination").append(pagination);//--페이지 셋팅
 						<table class="board">
 							<tr class="head">
 								<th id="all_select"><input type="checkbox" /></th>
-								<th class='post-no'>번호</th>
-								<th class='memberid'>아이디</th>
+								<th class='post_no'>번호</th>
+								<th class='member_id'>아이디</th>
+								<th class='member_name'>이름</th>
 								<th class='title'>제목</th>
-								<th class='membername'>작성자</th>
 								<th class='date'>작성일</th>
-								<th class='del-YN'>삭제</th>
+								<th class='del_YN'>삭제</th>
 							</tr>
 							<c:choose>
 								<c:when test="${fn:length(jobOfferList)!=0 }">
 									<c:forEach var="jobOfferList" items="${jobOfferList}" varStatus="status">
 										<tr class="contents">
 											<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-											<td class='post-no'>${jobOfferList.postNo}</td>
-											<td class='memberid'>${jobOfferList.memberId}</td>
+											<td class='post_no'>${jobOfferList.postNo}</td>
+											<td class='member_id'>${jobOfferList.memberId}</td>
+											<td class='member_name'>${jobOfferList.memberName}</td>
 											<td class='title'>
 												<form action="/job_offer_page.sms" method="post" class="title_form">
 													<input type="hidden" value="${jobOfferList.postNo}" name="postNo"/>
 													<button type="submit" name="title" class="title_btn" value="${jobOfferList.title}">${jobOfferList.title}</button>
 												</form>
 											</td>
-											<td class='membername'>${jobOfferList.memberName}</td>
 											<td class='date'>${jobOfferList.writeDate}</td>
-											<td class='del-YN'><c:choose>
+											<td class='del_YN'><c:choose>
 											<c:when test="${jobOfferList.delYN eq 'N'.charAt(0)}">
 												<button type="button" class="delete-btn delChangeOffer" id="${jobOfferList.postNo}" name="${jobOfferList.delYN}">삭제</button>
 											</c:when>

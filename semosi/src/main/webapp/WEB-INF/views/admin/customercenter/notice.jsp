@@ -87,20 +87,19 @@
 				<div id="content-wrapper" class="board-wrapper">
 					<p>공지사항</p>
 					<div class="search">
-						<form action="/searchBoard.ad" method="get" id="search">
+						<form action="notice_list.sms" method="get">
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
-								<option>전체</option>
+								<option value="all">전체</option>
 								<option value="post_no">게시글 번호</option>
 								<option value="title">제목</option>
 								<option value="content">내용</option>
 								<option value="del_YN">삭제여부</option>
 							</select>
-							<input type="text" name="keyword" />
+							<input type="text" name="keyword"/>
 							<button class="search-btn" type="submit">검색</button>
-							<button id="write-btn" type="button"><a data-toggle="modal" data-target="#writeModal">글쓰기</a></button>
-							</td>
 						</form>
+						<button id="write-btn" type="button"><a data-toggle="modal" data-target="#writeModal">글쓰기</a></button>
 					</div>
 					<div class="tab-content">
 						<table class="board">
