@@ -28,27 +28,27 @@
 			<ul id="main-nav-panel">
 				<li><a href="#">이용권 구매</a></li>
 				<li><a href="/moveCsMain.sms">고객센터</a></li>
-				<li><a href="/parentProfile.do">부모myPage</a></li>
-				<li><a href="/sitterProfile.do">회원myPage</a></li>
+				<li><a href="/parentProfile.sms">부모myPage</a></li>
+				<li><a href="/sitterProfile.sms">회원myPage</a></li>
 				
 			</ul>
 			
 			<%if(pm != null){ %>
 			
 			<ul id="btn-nav-panel">
-				<li><a href="/parentProfile.do">마이페이지</a></li>
-				<li><a href="/logout.do">로그아웃</a></li>
+				<li><a href="/parentProfile.sms">마이페이지</a></li>
+				<li><a href="/logout.sms">로그아웃</a></li>
 			</ul>
 
 			<%}else if(sm != null){ %>
 			<ul id="btn-nav-panel">
-				<li><a href="/sitterProfile.do">마이페이지</a></li>
-				<li><a href="/logout.do">로그아웃</a></li>
+				<li><a href="/sitterProfile.sms">마이페이지</a></li>
+				<li><a href="/logout.sms">로그아웃</a></li>
 			</ul>
 			<%} else { %>
 			<ul id="btn-nav-panel">
-				<li><a href="/memberSignup.do">가입하기</a></li>
-				<li><a href="/loginPage.do">로그인</a></li>
+				<li><a href="/memberSignup.sms">가입하기</a></li>
+				<li><a href="/loginPage.sms">로그인</a></li>
 			</ul>
 			<%} %>
 			
