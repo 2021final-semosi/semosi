@@ -2,11 +2,11 @@ package kr.co.semosi.admin.voucher.model.vo;
 
 import java.sql.Date;
 
-public class SitterVoucher {
-	// 이용권번호 
-    private String voucherId;
-    // 시터회원번호 
-    private String membersNo;
+public class ParentsVoucherView {
+	 // 이용권번호 
+    private String voucherNo;
+    // 부모 회원 아이디 
+    private String memberpId;
     // 이용권종류 
     private String voucherName;
     // 이용권금액 
@@ -17,38 +17,38 @@ public class SitterVoucher {
     private Date endDate;
     // 환불여부 
     private String refundYn;
-
-    public SitterVoucher() {
+    
+    public ParentsVoucherView() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SitterVoucher(String voucherId, String membersNo, String voucherName, String voucherPrice, Date boughtDate,
+	public ParentsVoucherView(String voucherNo, String memberpId, String voucherName, String voucherPrice, Date boughtDate,
 			Date endDate, String refundYn) {
 		super();
-		this.voucherId = voucherId;
-		this.membersNo = membersNo;
+		this.voucherNo = voucherNo;
+		this.memberpId = memberpId;
 		this.voucherName = voucherName;
 		this.voucherPrice = voucherPrice;
 		this.boughtDate = boughtDate;
 		this.endDate = endDate;
 		this.refundYn = refundYn;
 	}
-
-	public String getVoucherId() {
-        return voucherId;
+    
+    public String getVoucherNo() {
+        return voucherNo;
     }
 
-    public void setVoucherId(String voucherId) {
-        this.voucherId = voucherId;
+    public void setVoucherNo(String voucherNo) {
+        this.voucherNo = voucherNo;
     }
 
-    public String getMembersNo() {
-        return membersNo;
+    public String getMemberpId() {
+        return memberpId;
     }
 
-    public void setMembersNo(String membersNo) {
-        this.membersNo = membersNo;
+    public void setMemberpId(String memberpId) {
+        this.memberpId = memberpId;
     }
 
     public String getVoucherName() {

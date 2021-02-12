@@ -88,17 +88,19 @@ $("#pagination").append(pagination);//--페이지 셋팅
 				<div id="content-wrapper" class="board-wrapper">
 					<p>FAQ - 구인회원</p>
 					<div class="search">
-						<form action="/faq_parents_search.sms" method="get" name="searchForm">
-							<select name="search_option">
+						<form action="faq_parents_list.sms" method="get">
+							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
-								<option value="all" <c:if test="${map.search_option=='all'}">selected</c:if>>전체</option>
-								<option value="title" <c:if test="${map.search_option=='title'}">selected</c:if>>제목</option>
-								<option value="del_YN" <c:if test="${map.search_option=='delYn'}">selected</c:if>>삭제여부</option>
+								<option value="all">전체</option>
+								<option value="post_no">게시글 번호</option>
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+								<option value="del_YN">삭제여부</option>
 							</select>
-							<input type="text" name="keyword" value="${map.keyword}"/>
+							<input type="text" name="keyword"/>
 							<button class="search-btn" type="submit">검색</button>
-							<button id="write-btn" type="button"><a data-toggle="modal" data-target="#writeModal">글쓰기</a></button>
 						</form>
+						<button id="write-btn" type="button"><a data-toggle="modal" data-target="#writeModal">글쓰기</a></button>
 					</div>
 					<div class="tab-content">
 						<table class="board">

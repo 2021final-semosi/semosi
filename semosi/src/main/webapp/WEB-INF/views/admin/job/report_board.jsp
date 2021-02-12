@@ -86,39 +86,38 @@ $("#pagination").append(pagination);//--페이지 셋팅
 				<div id="content-wrapper" class="board-wrapper">
 					<p>게시판 신고 리스트</p>
 					<div class="search">
-						<form action="/searchBoard.ad" method="get" id="search">
+						<form action="post_report_list.sms" method="get">
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
-								<option>전체</option>
+								<option value="all">전체</option>
 								<option value="post_no">게시글 번호</option>
-								<option value="reporterid">신고자 아이디</option>
-								<option value="memberid">회원 아이디</option>
-								<option value="reportText">신고글 내용</option>
+								<option value="reporter_id">신고 회원</option>
+								<option value="report_text">신고 게시글 내용</option>
 								<option value="reason">신고 사유</option>
+								<option value="del_YN">삭제여부</option>
 							</select>
-							<input type="text" name="keyword" />
+							<input type="text" name="keyword"/>
 							<button class="search-btn" type="submit">검색</button>
-							</td>
 						</form>
 					</div>
 					<div class="tab-content">
 						<table class="board">
 							<tr class="head">
 								<th id="all_select"><input type="checkbox" /></th>
-								<th class='post-no'>번호</th>
-								<th class='reporter-id'>신고 회원</th>
-								<th class='report-text'>신고 게시글 내용</th>
+								<th class='post_no'>번호</th>
+								<th class='reporter_id'>신고 회원</th>
+								<th class='report_text'>신고 게시글 내용</th>
 								<th class='reason'>신고 사유</th>
 								<th class='date'>신고일</th>
-								<th class="del-yn">삭제여부</th>
+								<th class="del_YN">삭제여부</th>
 							</tr>
 							<c:choose>
 								<c:when test="${fn:length(postReportList)!=0}">
 									<c:forEach var="postReportList" items="${postReportList}" varStatus="status">
 									<tr class="contents">
 										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-										<td class='post-no'>${postReportList.reportNo}</td>
-										<td class='reporter-id'> <c:choose>
+										<td class='post_no'>${postReportList.reportNo}</td>
+										<td class='reporter_id'> <c:choose>
 											<c:when test="${postReportList.oId eq null}">
 												${postReportList.sId}
 											</c:when>
@@ -127,7 +126,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 											</c:otherwise>
 										</c:choose>
 										</td>
-										<td class='report-text'> 
+										<td class='report_text'> 
 										<c:choose>
 											<c:when test="${postReportList.oText eq null}">
 												<a href="/post_report_page.sms?reportNo=${postReportList.reportNo}" class="post-title">${postReportList.sText}</a>
@@ -158,7 +157,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 										</div>
 										
 										<td class='date'>${postReportList.reportDate}</td>
-										<td class='del-yn'> <c:choose>
+										<td class='del_YN'> <c:choose>
 											<c:when test='${postReportList.oDel eq ""}'>${postReportList.sDel}</c:when>
 											<c:otherwise>${postReportList.oDel}</c:otherwise>
 										</c:choose>											

@@ -18,11 +18,11 @@ table {
    width: 70px;
 }
 
-.post-no {
+.post_no {
    width: 60px;
 }
 
-.reporterid{
+.reporter_id{
 	width : 120px;
 }
 
@@ -44,7 +44,7 @@ table {
 	height:35px;
 }
 
-.report-text {
+.report_text {
 	width: 40%;
 }
 

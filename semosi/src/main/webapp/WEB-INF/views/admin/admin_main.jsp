@@ -32,7 +32,7 @@
 				<table class="board">
 					<tr>
 						<th class="board-column">구인게시판</th>
-						<th class="board-link"><a class="link-btn" href="/job_offer.sms">더보기</a></th>
+						<th class="board-link"><a class="link-btn" href="/job_offer_list.sms">더보기</a></th>
 					</tr>
 					<c:forEach var="OfferList" items="${OfferList }" end="4" varStatus="status">
 					<tr>
@@ -46,7 +46,7 @@
 				<table class="board">
 					<tr>
 						<th class="board-column">구직프로필</th>
-						<th class="board-link"><a class="link-btn" href="/job_search.sms">더보기</a></th>
+						<th class="board-link"><a class="link-btn" href="/job_search_list.sms">더보기</a></th>
 					</tr>
 					<c:choose>
 					<c:when test="${fn:length(SearchList)==0 }">
@@ -72,7 +72,7 @@
 				<table class="board">
 					<tr>
 						<th class="board-column">1:1문의</th>
-						<th class="board-link"><a class="link-btn" href="/inquiry.sms">더보기</a></th>
+						<th class="board-link"><a class="link-btn" href="/inquiry_list.sms">더보기</a></th>
 					</tr>
 					<c:forEach var="QnAList" items="${QnAList }" end="4" varStatus="status">
 					<tr>
