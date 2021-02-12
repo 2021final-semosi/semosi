@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="job">
+
+  <select id="jobOfferList" resultType="AdminOffer" parameterType="java.util.HashMap">
+	SELECT 
+		POST_NO AS postNo,
+		TITLE AS title,
+		MEMBERP_NO AS memberpNo,
+		CONTENT AS content,
+		AGE as age,
+		CARE_PERSON AS carePerson,
+		CARE_AGE AS careAge,
+		LOCATION AS location,
+		CARE_TYPE AS careType,
+		START_DATE AS startDate,
+		END_DATE AS endDate,
+		CARE_DAYS AS careDays,
+		CARE_TIME AS careTime,
+		PAY AS pay,
+		CARE_ACTIVITY AS careActivity,
+		PREPER_GENDER AS preperGender,
+		MEMBER_NAME AS memberName,
+		MEMBER_ID AS memberId,
+		PHONE AS phone,
+		GENDER AS gender,
+		ADDRESS AS address,
+		WRITE_DATE AS writeDate,
+		DEL_YN AS delYN
+	FROM(
+  		SELECT RANK() OVER(ORDER BY POST_NO DESC) AS RNUM,
+  		ADMIN_OFFER_VIEW.* FROM ADMIN_OFFER_VIEW  
+  	)
+  	WHERE 
+  		<if test='category!=null and category!=all and !keyword.equals("")'>
+  		<if test='category.equals("postNo")'>
+  			POST_NO LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("member_id")'>
+  			MEMBER_ID LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("title")'>
+  			TITLE LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("content")'>
+  			CONTENT LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("del_YN")'>
+  			<choose>
+  				<when test='keyword.equals("삭제")'>
+  					DEL_YN = 'N' and
+  				</when>
+  				<otherwise>DEL_YN = 'Y' and</otherwise>
+  			</choose>
+  		</if>
+  	</if>
+  	RNUM BETWEEN #{start} AND #{end} 
+  </select>
+  
+  <select id="jobOfferContentCnt" resultType="int" parameterType="java.util.HashMap">
+  	SELECT count(*) FROM ADMIN_OFFER_VIEW
+  </select>
+  
+  <select id="jobSearchList" resultType="AdminSearch" parameterType="java.util.HashMap">
+	SELECT 
+		POST_NO AS postNo,
+		MEMBERS_NO AS membersNo,
+		TITLE AS title,
+		SELF_INTRODUCE AS selfIntroduce,
+		CARE_TYPE AS careType,	
+		CARE_AGE AS careAge,	
+		CARE_ACTIVITY AS careActivity,
+		LOCATION AS location,
+		START_DATE AS startDate,
+		END_DATE AS endDate,
+		CARE_DAYS AS careDays,
+		CARE_TIME AS careTime,
+		PAY AS pay,
+		CCTV_YN AS cctvYN,
+		MEMBER_NAME AS memberName,
+		MEMBER_ID AS memberId,
+		PHONE AS phone,
+		GENDER AS gender,
+		ADDRESS AS address,
+		WRITE_DATE AS writeDate,
+		DEL_YN AS delYN
+	FROM(
+  		SELECT RANK() OVER(ORDER BY POST_NO DESC) AS RNUM,
+  		ADMIN_SEARCH_VIEW.* FROM ADMIN_SEARCH_VIEW  
+  	)
+  	WHERE 
+  		<if test='category!=null and category!=all and !keyword.equals("")'>
+  		<if test='category.equals("postNo")'>
+  			POST_NO LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("member_id")'>
+  			MEMBER_ID LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("title")'>
+  			TITLE LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("content")'>
+  			CONTENT LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("del_YN")'>
+  			<choose>
+  				<when test='keyword.equals("삭제")'>
+  					DEL_YN = 'N' and
+  				</when>
+  				<otherwise>DEL_YN = 'Y' and</otherwise>
+  			</choose>
+  		</if>
+  	</if>
+  	RNUM BETWEEN #{start} AND #{end} 
+  </select>
+  
+  <select id="jobSearchContentCnt" resultType="int" parameterType="java.util.HashMap">
+  	SELECT count(*) FROM ADMIN_SEARCH_VIEW
+  </select>
+  
+  <select id="jobOfferPage" resultType="AdminOffer">
+  	SELECT 
+  		POST_NO AS postNo,
+		TITLE AS title,
+		MEMBERP_NO AS memberpNo,
+		CONTENT AS content,
+		AGE as age,
+		CARE_PERSON AS carePerson,
+		CARE_AGE AS careAge,
+		LOCATION AS location,
+		CARE_TYPE AS careType,
+		START_DATE AS startDate,
+		END_DATE AS endDate,
+		CARE_DAYS AS careDays,
+		CARE_TIME AS careTime,
+		PAY AS pay,
+		CARE_ACTIVITY AS careActivity,
+		PREPER_GENDER AS preperGender,
+		MEMBER_NAME AS memberName,
+		MEMBER_ID AS memberId,
+		PHONE AS phone,
+		GENDER AS gender,
+		ADDRESS AS address,
+		WRITE_DATE AS writeDate,
+		DEL_YN AS delYN
+	FROM ADMIN_OFFER_VIEW WHERE POST_NO=#{postNo}  	
+  </select>
+  
+  <select id="jobSearchPage" resultType="AdminSearch">
+  	SELECT 
+		POST_NO AS postNo,
+		MEMBERS_NO AS membersNo,
+		TITLE AS title,
+		SELF_INTRODUCE AS selfIntroduce,
+		CARE_TYPE AS careType,	
+		CARE_AGE AS careAge,	
+		CARE_ACTIVITY AS careActivity,
+		LOCATION AS location,
+		START_DATE AS startDate,
+		END_DATE AS endDate,
+		CARE_DAYS AS careDays,
+		CARE_TIME AS careTime,
+		PAY AS pay,
+		CCTV_YN AS cctvYN,
+		MEMBER_NAME AS memberName,
+		MEMBER_ID AS memberId,
+		PHONE AS phone,
+		GENDER AS gender,
+		ADDRESS AS address,
+		WRITE_DATE AS writeDate,
+		DEL_YN AS delYN
+	FROM ADMIN_SEARCH_VIEW WHERE POST_NO=#{postNo}  	
+  </select>
+  
+  <select id="postReportList" resultType="AdminReport" parameterType="java.util.HashMap">
+  	SELECT
+  		O_POST_NO AS oPostNo,
+  		O_NAME AS oName,
+  		O_ID AS oId,
+  		O_TITLE AS oTitle,
+  		O_TEXT AS oText,
+  		S_POST_NO AS sPostNo,
+  		S_NAME AS sName,
+  		S_ID AS sId,
+  		S_TITLE AS sTitle,
+  		S_TEXT AS sText,
+  		REPORT_NO AS reportNo,
+  		CONTENT AS content,
+  		REPORT_DATE AS reportDate,
+  		ODEL AS oDel,
+  		SDEL AS sDel
+  	FROM(
+  		SELECT RANK() OVER(ORDER BY REPORT_NO DESC) AS RNUM,
+  		ADMIN_REPORT_VIEW.* FROM ADMIN_REPORT_VIEW  
+  	)
+  	WHERE 
+  		<if test='category!=null and category!=all and !keyword.equals("")'>
+  		<if test='category=="post_no"'>
+  			REPORT_NO LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("reporter_id")'>
+  			(O_ID || S_ID) LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("report_text")'>
+  			(O_TEXT || S_TEXT) LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("reason")'>
+  			CONTENT LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("del_YN")'>
+  			<choose>
+  				<when test='keyword.equals("삭제")'>
+  					DEL_YN = 'N' and
+  				</when>
+  				<otherwise>DEL_YN = 'Y' and</otherwise>
+  			</choose>
+  		</if>
+  	</if>
+  	RNUM BETWEEN #{start} AND #{end} 
+  </select>
+  
+  <select id="postReportContentCnt" resultType="int" parameterType="java.util.HashMap">
+  	SELECT count(*) FROM ADMIN_REPORT_VIEW
+  </select>
+  
+  <update id="delChangeOffer">
+  	update ADMIN_OFFER_VIEW set del_YN=#{delYN} where post_no=#{postNo}
+  </update>
+  
+  <update id="delChangeSearch">
+  	update ADMIN_SEARCH_VIEW set del_YN=#{delYN} where post_no=#{postNo}
+  </update>
+  
+  <select id="postReportPage" resultType="AdminReport">
+  	SELECT
+  		O_POST_NO AS oPostNo,
+  		O_NAME AS oName,
+  		O_ID AS oId,
+  		O_TITLE AS oTitle,
+  		O_TEXT AS oText,
+  		S_POST_NO AS sPostNo,
+  		S_NAME AS sName,
+  		S_ID AS sId,
+  		S_TITLE AS sTitle,
+  		S_TEXT AS sText,
+  		REPORT_NO AS reportNo,
+  		CONTENT AS content,
+  		REPORT_DATE AS reportDate,
+  		ODEL AS oDel,
+  		SDEL AS sDel
+  	FROM ADMIN_REPORT_VIEW WHERE REPORT_NO=#{reportNo} 
+  </select>
+  
+  <update id="postReportDelete">
+  	update 
+  		<choose>
+  			<when test="_parameter.charAt(0)=='O'">
+  				job_offer set del_YN='Y' where post_no=#{postNo}
+  			</when>
+  			<otherwise>job_search set del_YN='Y' where post_no=#{postNo}</otherwise>
+  		</choose>
+  </update>
+</mapper>
