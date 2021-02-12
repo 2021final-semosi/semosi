@@ -20,17 +20,17 @@ public class MemberController {
 	@Qualifier(value = "memberService")
 	private MemberServiceImpl mService;
 
-	@RequestMapping(value = "/loginPage.do")
+	@RequestMapping(value = "/loginPage.sms")
 	public String memberLogin() {
-		System.out.println("[/loginPage.do] 정상적으로 호출되었습니다.");
+		System.out.println("[/loginPage.sms] 정상적으로 호출되었습니다.");
 		return "member/memberLogin";
 	}
 
-	@RequestMapping(value = "/memberLogin.do")
+	@RequestMapping(value = "/userMemberLogin.sms")
 	public String selectParentLogin(@RequestParam String member, @RequestParam String memberId,
 			@RequestParam String memberPw, HttpServletRequest request) {
 
-		System.out.println("[/memberLogin.do] 정상적으로 호출되었습니다.");
+		System.out.println("[/memberLogin.sms] 정상적으로 호출되었습니다.");
 		
 		//부모 회원일 때 로그인
 		if (member.equals("parent")) {
@@ -74,7 +74,7 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/logout.do")
+	@RequestMapping(value = "/logout.sms")
 	public String memberLogout(HttpSession session) {
 		// spring에선 session객체를 바로 가져올 수 있음!
 		session.invalidate();

@@ -148,11 +148,11 @@ a:hover{
 							</div>
                         </div>
                        	<div class="menu-sub">
-                                <div class="hide"><a href="/sitterApplicationSent.do"><span>내가 신청한 구직 현황</span></a></div>
-                                <div class="hide"><a href="/sitterApplicationReceive.do"><span>내게 지원한 구직 현황</span></a></div>
+                                <div class="hide"><a href="/sitterApplicationSent.sms"><span>내가 신청한 구직 현황</span></a></div>
+                                <div class="hide"><a href="/sitterApplicationReceive.sms"><span>내게 지원한 구직 현황</span></a></div>
                         </div>
-                        <div class="menu-main"><a href="/sitterApplicationScrap.do"><span>찜한 일자리</span></a></div>
-                        <div class="menu-main"><a href="/sitterApplication.do"><span>내 신청서 조회</span></a></div>
+                        <div class="menu-main"><a href="/sitterApplicationScrap.sms"><span>찜한 일자리</span></a></div>
+                        <div class="menu-main"><a href="/sitterApplication.sms"><span>내 신청서 조회</span></a></div>
                         <hr class="line">
                         <div class="menu-main row m-0">
                         	<div class="menu-title col-9 p-0">
@@ -168,12 +168,12 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/sitterReviewReceive.do"><span>작성한 후기</span></a></div>
-                               <div class="hide"><a href="/sitterReviewWrite.do"><span>받은 후기</span></a></div>
+                               <div class="hide"><a href="/sitterReviewReceive.sms"><span>작성한 후기</span></a></div>
+                               <div class="hide"><a href="/sitterReviewWrite.sms"><span>받은 후기</span></a></div>
                             </div>
-                        <div class="menu-main"><a href="/sitterCertification.do"><span>인증 관리</span></a></div>
+                        <div class="menu-main"><a href="/sitterCertification.sms"><span>인증 관리</span></a></div>
                         <div class="menu-main"><a href="#"><span>내 맘시터 채용 내역</span></a></div>
-                        <div class="menu-main"><a href="/sitterReport.do"><span>신고 내역</span></a></div>
+                        <div class="menu-main"><a href="/sitterReport.sms"><span>신고 내역</span></a></div>
                         
                         <hr class="line">
                         <div class="menu-main row m-0">
@@ -190,8 +190,8 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/sitterVoucherBuy.do"><span>이용권 구매</span></a></div>
-                               <div class="hide"><a href="/sitterVoucherPayView.do"><span>이용권 조회</span></a></div>
+                               <div class="hide"><a href="/sitterVoucherBuy.sms"><span>이용권 구매</span></a></div>
+                               <div class="hide"><a href="/sitterVoucherPayView.sms"><span>이용권 조회</span></a></div>
                             </div>
                        
                         

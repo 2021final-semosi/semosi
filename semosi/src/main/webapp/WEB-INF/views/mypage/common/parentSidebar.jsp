@@ -147,11 +147,11 @@ a:hover{
 							</div>
                         </div>
                        	<div class="menu-sub">
-                                <div class="hide"><a href="/parentApplicationSent.do"><span>내가 신청한 구인 현황</span></a></div>
-                                <div class="hide"><a href="/parentApplicationReceive.do"><span>내게 지원한 구인 현황</span></a></div>
+                                <div class="hide"><a href="/parentApplicationSent.sms"><span>내가 신청한 구인 현황</span></a></div>
+                                <div class="hide"><a href="/parentApplicationReceive.sms"><span>내게 지원한 구인 현황</span></a></div>
                         </div>
-                        <div class="menu-main"><a href="/parentApplicationScrap.do"><span>찜한 맘시터</span></a></div>
-                        <div class="menu-main"><a href="/parentApplication.do"><span>내 신청서 조회</span></a></div>
+                        <div class="menu-main"><a href="/parentApplicationScrap.sms"><span>찜한 맘시터</span></a></div>
+                        <div class="menu-main"><a href="/parentApplication.sms"><span>내 신청서 조회</span></a></div>
                         <hr class="line">
                         <div class="menu-main row m-0">
                         	<div class="menu-title col-9 p-0">
@@ -167,11 +167,11 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/parentReviewReceive.do"><span>작성한 후기</span></a></div>
-                               <div class="hide"><a href="/parentReviewWrite.do"><span>받은 후기</span></a></div>
+                               <div class="hide"><a href="/parentReviewReceive.sms"><span>작성한 후기</span></a></div>
+                               <div class="hide"><a href="/parentReviewWrite.sms"><span>받은 후기</span></a></div>
                             </div>
                         <div class="menu-main"><a href="#"><span>내 채용 내역</span></a></div>
-                        <div class="menu-main"><a href="/parentReport.do"><span>신고 내역</span></a></div>
+                        <div class="menu-main"><a href="/parentReport.sms"><span>신고 내역</span></a></div>
                         
                         <hr class="line">
                         <div class="menu-main row m-0">
@@ -188,8 +188,8 @@ a:hover{
 							</div>
                         </div>
                         <div class="menu-sub">
-                               <div class="hide"><a href="/parentVoucherBuy.do"><span>이용권 구매</span></a></div>
-                               <div class="hide"><a href="/parentVoucherPayView.do"><span>이용권 조회</span></a></div>
+                               <div class="hide"><a href="/parentVoucherBuy.sms"><span>이용권 구매</span></a></div>
+                               <div class="hide"><a href="/parentVoucherPayView.sms"><span>이용권 조회</span></a></div>
                             </div>
                        
                         

@@ -69,7 +69,7 @@
 		<div id="formArea">
 			<center>
 
-				<form action="/memberLogin.do" method="post">
+				<form action="/userMemberLogin.sms" method="post">
 					<input type="radio" value="parent" name="member" checked><label>부모
 						회원</label> <input type="radio" value="sitter" name="member"><label>시터
 						회원</label> <input type="text" class="form-control" id="idArea"
