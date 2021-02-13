@@ -23,7 +23,7 @@
 %>
 		<div id="header-wrap" class="wrap">
 			<div id="logo-panel">
-				<a href="/index.jsp"><img alt="세모시 로고" src="/resources/images/semosi-logo-color.png"></a>
+				<a href="/"><img alt="세모시 로고" src="/resources/images/semosi-logo-color.png"></a>
 			</div>
 			<ul id="main-nav-panel">
 				<li><a href="#">이용권 구매</a></li>

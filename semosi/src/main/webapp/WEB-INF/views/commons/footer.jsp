@@ -19,7 +19,7 @@
 				<ul class="style-bold style-color-white">맘시터 정보
 					<li><a href="/moveIntroduce.sms">서비스 소개</a></li>
 					<hr>
-					<li><a href="">관리자 페이지</a></li>
+					<li><a href="/admin_index.jsp">관리자 페이지</a></li>
 				</ul>
 			</div>
 			<div id="customer-center-panel" class="footer-panel">
