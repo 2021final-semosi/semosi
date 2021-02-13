@@ -33,7 +33,7 @@
   	)
   	WHERE 
   		<if test='category!=null and category!=all and !keyword.equals("")'>
-  		<if test='category.equals("postNo")'>
+  		<if test='category.equals("post_no")'>
   			POST_NO LIKE '%'||#{keyword}||'%' and
   		</if>
   		<if test='category.equals("member_id")'>

@@ -32,8 +32,8 @@
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminSearch" alias="AdminSearch"/>
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminReport" alias="AdminReport"/>
       
-     	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.ParentsVoucher" alias="ParentsVoucher"/>
-      	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.SitterVoucher" alias="SitterVoucher"/>	
+     	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.ParentsVoucherView" alias="ParentsVoucherView"/>
+      	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.SitterVoucherView" alias="SitterVoucherView"/>	
       	<!-- 관리자  -->
 	
 		<typeAlias type="kr.co.semosi.member.model.vo.ParentMember" alias="ParentMember"/>

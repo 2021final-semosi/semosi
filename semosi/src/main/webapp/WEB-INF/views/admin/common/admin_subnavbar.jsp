@@ -62,8 +62,8 @@ $(function() {
 
                 <li id="main-item"><img src="/resources/img/sub_voucher.png" /> &nbsp; &nbsp; &nbsp; 이용권 관리
                     <ul class="submenu">
-                        <li><a href="/voucher_parents_list.sms">부모 이용권</a></li>
-                        <li><a href="/voucher_sitter_list.sms">시터 이용권</a></li>
+                        <li><a href="/parents_voucher_list.sms">부모 이용권</a></li>
+                        <li><a href="/sitter_voucher_list.sms">시터 이용권</a></li>
                     </ul>
                 </li>
 

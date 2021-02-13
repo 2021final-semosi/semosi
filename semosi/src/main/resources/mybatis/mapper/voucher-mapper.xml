@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="voucher">
+  <select id="parentsVoucher" resultType="ParentsVoucherView" parameterType="java.util.HashMap">
+  SELECT
+  	VOUCHER_NO AS voucherNo,
+  	MEMBER_ID AS memberId,
+  	VOUCHER_NAME AS voucherName,
+  	VOUCHER_PRICE AS voucherPrice,
+  	BOUGHT_DATE AS boughtDate,
+  	END_DATE AS endDate,
+  	REFUND_YN AS refundYN
+  	FROM(
+  		SELECT RANK() OVER(ORDER BY VOUCHER_NO DESC) AS RNUM,
+  		ADMIN_P_VOUCHER_VIEW.* FROM ADMIN_P_VOUCHER_VIEW  
+  	)
+  	WHERE 
+  		<if test='category!=null and category!=all and !keyword.equals("")'>
+  		<if test='category=="voucher_no"'>
+  			VOUCHER_NO LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("member_id")'>
+  			MEMBER_ID LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("voucher_name")'>
+  			VOUCHER_NAME LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("voucher_price")'>
+  			VOUCHER_PRICE LIKE '%'||#{keyword}||'%' and
+  		</if>
+  		<if test='category.equals("refund_YN")'>
+  			<choose>  		
+  				<when test='keyword.equals("환불신청")'>
+  					REFUND_YN = 'N' and
+  				</when>  				
+  				<otherwise>REFUND_YN = 'Y' and</otherwise>
+  			</choose>
+  		</if>
+  	</if>
+  	RNUM BETWEEN #{start} AND #{end} 
+  </select>
   
+  <select id="parentsVoucherContentCnt" resultType="int" parameterType="java.util.HashMap">
+  	SELECT count(*) FROM ADMIN_P_VOUCHER_VIEW
+  </select>
 </mapper>

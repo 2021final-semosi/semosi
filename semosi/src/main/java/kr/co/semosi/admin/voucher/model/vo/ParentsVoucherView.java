@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class ParentsVoucherView {
 	 // 이용권번호 
-    private String voucherNo;
+    private int voucherNo;
     // 부모 회원 아이디 
-    private String memberpId;
+    private String memberId;
     // 이용권종류 
     private String voucherName;
     // 이용권금액 
@@ -16,39 +16,39 @@ public class ParentsVoucherView {
     // 만료일 
     private Date endDate;
     // 환불여부 
-    private String refundYn;
+    private String refundYN;
     
     public ParentsVoucherView() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ParentsVoucherView(String voucherNo, String memberpId, String voucherName, String voucherPrice, Date boughtDate,
-			Date endDate, String refundYn) {
+	public ParentsVoucherView(int voucherNo, String memberId, String voucherName, String voucherPrice, Date boughtDate,
+			Date endDate, String refundYN) {
 		super();
 		this.voucherNo = voucherNo;
-		this.memberpId = memberpId;
+		this.memberId = memberId;
 		this.voucherName = voucherName;
 		this.voucherPrice = voucherPrice;
 		this.boughtDate = boughtDate;
 		this.endDate = endDate;
-		this.refundYn = refundYn;
+		this.refundYN = refundYN;
 	}
     
-    public String getVoucherNo() {
+    public int getVoucherNo() {
         return voucherNo;
     }
 
-    public void setVoucherNo(String voucherNo) {
+    public void setVoucherNo(int voucherNo) {
         this.voucherNo = voucherNo;
     }
 
-    public String getMemberpId() {
-        return memberpId;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setMemberpId(String memberpId) {
-        this.memberpId = memberpId;
+    public void setMemberpId(String memberId) {
+        this.memberId = memberId;
     }
 
     public String getVoucherName() {
@@ -83,11 +83,11 @@ public class ParentsVoucherView {
         this.endDate = endDate;
     }
 
-    public String getRefundYn() {
-        return refundYn;
+    public String getRefundYN() {
+        return refundYN;
     }
 
-    public void setRefundYn(String refundYn) {
-        this.refundYn = refundYn;
+    public void setRefundYN(String refundYN) {
+        this.refundYN = refundYN;
     }
 }
