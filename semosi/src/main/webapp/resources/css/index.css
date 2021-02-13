@@ -170,6 +170,8 @@ section{
 
 #card-panel{
 	margin: 50px 0;
+	height: 550px;
+	overflow: hidden;
 }
 #card-panel>div:last-child{
 	display: none;
@@ -188,14 +190,19 @@ section{
 .card-title>img{
 	float: left;
 	margin-right: 5%;
+	border-radius: 50px;
+	width: 50px;
 }
-.card-title>p{
-	float: left;
+.card-title>div>p{
+	margin: 0;
+}
+.card-title>div>p{
 	font-weight: 900;
 	font-size: 1.1rem;
 }
-.card img{
-	width: 50px;
+.card-title>div>p:last-child{
+	color: #f6d257;
+	font-size: 1.3rem;
 }
 .card>p{
 	overflow: hidden;
