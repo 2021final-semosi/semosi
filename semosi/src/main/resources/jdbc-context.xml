@@ -47,8 +47,7 @@
 
 <!-- AOP설정 -->
 	<aop:config>
-		<aop:pointcut expression="execution(* kr.co.semosi.member.model.service.MemberServiceImpl.*(..))" 
-		id="txPointcut"/>
+		<aop:pointcut expression="execution(* kr.co.semosi..model.service.*Service.*(..))" id="txPointcut"/>
 		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
 	</aop:config>
 

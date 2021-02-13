@@ -1,6 +1,9 @@
 package kr.co.semosi.member.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +80,54 @@ public class MemberController {
 	@RequestMapping(value = "/logout.sms")
 	public String memberLogout(HttpSession session) {
 		// spring에선 session객체를 바로 가져올 수 있음!
+
+		System.out.println("[/logout.sms] 정상적으로 호출되었습니다.");
+		
 		session.invalidate();
 		return "redirect:/index.jsp";
 
 	}
+	
+	@RequestMapping(value="/memberIdCheck.sms")
+	public void memberIdCheck(@RequestParam String memberId, HttpServletResponse response) throws IOException
+	{
+		
 
+		System.out.println("[/memberIdCheck.sms] 정상적으로 호출되었습니다.");
+		
+		System.out.println(memberId);
+		
+		int result = mService.selectMemberIdCheck(memberId);
+		
+		if(result==0){
+			//Id 사용 가능
+			response.getWriter().print(false);
+		}else{
+			//result>0 이면 사용 불가 
+			response.getWriter().print(true);
+		}
+		return ;
+		// ajax는 비동기 방식이기 때문에 리턴값 X
+	}
+
+	@RequestMapping(value="/memberJoinPageIndex.sms")
+	public String memberJoinPageIndex()
+	{
+		return "member/memberJoinPageIndex";
+	}
+	
+	@RequestMapping(value="/memberJoinPage.sms")
+	public String memberJoinPage()
+	{
+		return "member/memberJoinPage";
+	}
+	
+	@RequestMapping(value="/memberSignup.sms")
+	public String memberSignup()
+	{
+		return null;
+	}
+	
+	
+	
 }

@@ -37,4 +37,27 @@ public class MemberServiceImpl implements MemberService {
 		return sMember;
 	}
 
+	public int selectMemberIdCheck(String memberId) {
+		System.out.println("[MemberServiceImpl] selectMemberIdCheck 메소드 호출");
+		
+		//parent 테이블과 sitter 테이블 두개 다 확인하여야 함 
+		ParentMember pMember = mDAO.selectMemberParentIdCheck(sqlSession,memberId); //부모 회원 테이블 확인
+		SitterMember sMember = mDAO.selectMemberSitterIdCheck(sqlSession,memberId); //시터 회원 테이블 확인
+		
+		
+		//결과 전달을 위한 구문 
+		int result = 0;
+		
+		//둘 중에 하나라도 일치하는 id가 있다면 result>0 이고
+		//일치하는 아이디가 없다면 result==0
+		if(pMember!=null){
+			result++;
+		}else if(sMember!=null){
+			result++;
+		}
+		
+		return result;
+		
+	}
+
 }

@@ -47,7 +47,7 @@
 			</ul>
 			<%} else { %>
 			<ul id="btn-nav-panel">
-				<li><a href="/memberSignup.sms">가입하기</a></li>
+				<li><a href="/memberJoinPageIndex.sms">가입하기</a></li>
 				<li><a href="/loginPage.sms">로그인</a></li>
 			</ul>
 			<%} %>
