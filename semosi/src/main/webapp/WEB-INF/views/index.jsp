@@ -1,4 +1,5 @@
-<%@page import="kr.co.semosi.index.model.vo.Index"%>
+<%@page import="kr.co.semosi.index.model.vo.IndexReviews"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,7 +23,9 @@
 	<script>
 		var sw=0;
 		$(function(){
+			
 			/* 후기 더보기 기능 */
+			/* 
 			$("#btn-panel").click(function(){
 				if(sw==0){
 					$("#card-panel").children().eq(1).css("display", "block");
@@ -32,6 +35,21 @@
 				}
 				else{
 					$("#card-panel").children().eq(1).css("display", "none");
+					$("#btn-panel").children().html("+ 더 보기");
+					$("#review-panel").focus();
+					sw=0;
+				}
+			});		// display 수정 방식에서 아래 코드로 대체
+			 */
+			 $("#btn-panel").click(function(){
+				if(sw==0){
+					$("#card-panel").css("height", "1100px");
+					$("#btn-panel").children().html("닫기");
+					$("#review-panel").focus();
+					sw=1;
+				}
+				else{
+					$("#card-panel").css("height", "550px");
 					$("#btn-panel").children().html("+ 더 보기");
 					$("#review-panel").focus();
 					sw=0;
@@ -50,8 +68,24 @@
 					// 실패 시 로직
 				}
 			});
+			/* 
+			$.ajax({
+				url : "/loadReview.sms",
+				dataType : "JSON",
+				success : function(result){
+					alert("성공");
+				},
+				error : function(result){
+					alert("실패");
+				}
+			});
+			 */
 		});
 	</script>
+
+	<%
+		ArrayList<IndexReviews> list=(ArrayList<IndexReviews>)request.getAttribute("list");
+	%>
 
 	<header>
 		<%@ include file="/WEB-INF/views/commons/header.jsp" %>
@@ -94,7 +128,7 @@
 		<div id="member-count-panel">
 			<div class="wrap">
 				<span>부모회원 신청 건 수</span>
-				<span class="count-size" id="offerCount">${offerCount}</span>
+				<span class="count-size" id="offerCount"></span>
 				<span id="partition">|</span>
 				<span>시터회원 신청 건 수</span>
 				<span class="count-size" id="searchCount"></span>
@@ -108,7 +142,7 @@
 					<div id="card-panel1" class="card-panel">
 						<div>
 							<p><mark>가장 빨리,</mark> 원하는 조건의<br>아이돌보미를 구할 수 있어요.</p>
-							<p>지금 당장 활동 가능한 베이비시터가 <span id="sitter-count"><b>78,551</b></span>명</p>
+							<p>지금 당장 활동 가능한 베이비시터가 <span id="sitter-count"></span>명</p>
 							<img src="/resources/images/info-card1.png" alt="카드1">
 						</div>
 					</div>
@@ -134,123 +168,26 @@
 					<h1><b>실시간</b> 세모시 후기!</h1>
 				</div>
 				<div id="card-panel">
-					<div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
+				<% for(IndexReviews ir : list) { %>
+					<div class="card">
+						<div class="card-title">
+							<img alt="프로필사진" src="/resources/images/profile/<%=ir.getOriginalName() %>" onerror="this.src='/resources/images/profile-image.png'">
+							<div>
+								<p><%=ir.getAddress() %></p>
+								<p>
+								<% for(int i=0; i<ir.getGrade(); i++) { %>
+								★
+								<% } %>
+								<% for(int i=0; i<5-ir.getGrade(); i++) { %>
+								☆
+								<% } %>
+								</p>
 							</div>
-							<p>가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라가나다라</p>
 						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
+						<p><%=ir.getpReview() %></p>
 					</div>
-					<!-- 여기부터 숨겨지는 후기 페이지 -->
-					<div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-						<div class="card">
-							<div class="card-title">
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-								<p>뉴욕시 파리구 런던동</p>
-							</div>
-							<p>냉무</p>
-						</div>
-					</div>
+				<% } %>	
+					 <p>test</p>
 				</div>
 				<div id="btn-panel">
 					<a href="#review-panel">+ 더 보기</a>

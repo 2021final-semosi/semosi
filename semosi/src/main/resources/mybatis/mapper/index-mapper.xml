@@ -10,4 +10,7 @@
   <select id="sitterCount" resultType="_int">
   	SELECT COUNT(*) FROM MEMBER_S WHERE DOCUMENT_YN='Y'
   </select>
+  <select id="selectRecentReviews" resultType="IndexReviews">
+  	<![CDATA[SELECT FILE_NO AS fileNo, ORIGINAL_NAME AS originalName, MEMBERP_NO AS memberpNo, ADDRESS AS address, P_REVIEW AS pReview, GRADE AS grade, WRITE_DATE AS writeDate, DEL_YN AS delYN FROM INDEX_REVIEW_VIEW WHERE ROWNUM<=16 ORDER BY WRITE_DATE DESC]]>
+  </select>
 </mapper>
