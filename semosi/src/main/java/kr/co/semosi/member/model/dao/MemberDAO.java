@@ -20,4 +20,14 @@ public class MemberDAO {
 		return sMember;
 	}
 
+	public ParentMember selectMemberParentIdCheck(SqlSessionTemplate sqlSession, String memberId) {
+		ParentMember pMember = sqlSession.selectOne("parentMember.selectIdCheck",memberId);
+		return pMember;
+	}
+
+	public SitterMember selectMemberSitterIdCheck(SqlSessionTemplate sqlSession, String memberId) {
+		SitterMember sMember = sqlSession.selectOne("sitterMember.selectIdCheck",memberId);
+		return sMember;
+	}
+
 }

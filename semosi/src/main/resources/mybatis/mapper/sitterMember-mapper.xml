@@ -18,4 +18,22 @@
   	FROM MEMBER_S
   	WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
   </select>
+  
+    <select id="selectIdCheck" resultType="SitterMember">
+  	SELECT 
+  		MEMBERS_NO as memberNo,
+  		MEMBER_NAME as memberName,
+  		MEMBER_ID as memberId,
+  		MEMBER_PW as memberPw,
+  		PHONE as phone,
+  		ADDRESS as address,
+  		GENDER as gender,
+  		ENROLL_DATE as enrollDate,
+  		END_DATE as endDate,
+  		END_YN as endYN,
+  		BIRTH_DAY as birthDay,
+  		DOCUMENT_YN as documentYN
+  	FROM MEMBER_S
+  	WHERE MEMBER_ID=#{memberId}  
+  </select>
 </mapper>
