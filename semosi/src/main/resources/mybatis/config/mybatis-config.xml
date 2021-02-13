@@ -40,5 +40,7 @@
 		<typeAlias type="kr.co.semosi.member.model.vo.SitterMember" alias="SitterMember"/>
 		
 		<typeAlias type="kr.co.semosi.index.model.vo.IndexReviews" alias="IndexReviews"/>
+		
+		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferList" alias="JobOfferList"/>
 	</typeAliases>
 </configuration>

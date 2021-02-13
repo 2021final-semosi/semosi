@@ -63,9 +63,6 @@
 					$("#offerCount").html(result.offerCount);
 					$("#searchCount").html(result.searchCount);
 					$("#sitter-count").html("<b>"+result.sitterCount+"</b>");
-				},
-				error : function(result){
-					// 실패 시 로직
 				}
 			});
 			/* 

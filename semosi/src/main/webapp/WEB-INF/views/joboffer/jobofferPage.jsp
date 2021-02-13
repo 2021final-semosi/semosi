@@ -1,3 +1,6 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="kr.co.semosi.joboffer.model.vo.JobOfferList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -74,9 +77,58 @@
                 }
             });
             $("#amount").val($("#slider-range").slider("values", 0) + " 원 - " + $("#slider-range").slider("values", 1) + " 원");
+            
+            
+            /* 페이징 처리 스크립트 */
+            var page=1;
+            $("#btn-panel>a").click(function(){
+            	page=page+10;
+            	$.ajax({
+    				url : "/moreJobofferPage.sms",
+    				type : "post",
+    				data : {page : page},
+    				success : function(result){
+    					if(result.length==0){
+    						alert("마지막 글입니다.");
+    						page=page-10;
+    					}
+    					else{
+    						for(var i=0; i<result.length; i++){
+    							var content="";
+    							content+='<li>';
+    							content+='<a href="/moveSearchSitterPost.sms">';
+    							content+='<div>';
+    							content+='<img alt="프로필사진" src="/resources/images/profile/'+result[i].originalName+'" onerror="this.src='+"'"+'/resources/images/sitter_image.png'+"'"+'">';
+    							content+='</div>';
+    							content+='<div>';
+    							content+='<p>'+result[i].memberName+'</p>';
+    							content+='<p>★★★★★</p>';
+    							content+='</div>';
+    							content+='<div>';
+    							content+='<p>'+result[i].location+'</p>';
+    							content+='<p>50세 | 희망시급 '+result[i].pay+'원</p>';
+    							content+='</div>';
+    							content+='<div>';
+    							content+='<p>등본인증</p>';
+    							content+='<p>건강인증</p>';
+    							content+='<p>부모인증</p>';
+    							content+='<p>선생님인증</p>';
+    							content+='</div>';
+    							content+='</a>';
+    							content+='</li>';
+    							$("#joboffer-list-panel>ul>li:last-child").after(content);
+    						}
+    					}
+    				}
+    			});
+            });
 		});
 	</script>
 
+	<%
+		ArrayList<JobOfferList> list=(ArrayList<JobOfferList>)request.getAttribute("list");
+	%>
+	
 	<header>
 		<%@ include file="/WEB-INF/views/commons/header.jsp" %>
 	</header>
@@ -118,280 +170,64 @@
 			
 			<div id="joboffer-list-panel">
 				<ul>
+				<% LocalDate present=LocalDate.now();		// 현재 날짜 변수 %>
+				<% for(JobOfferList jol : list) { %>
+				<%	// 나이 계산 로직
+					LocalDate birth=new java.sql.Date(jol.getBirthDay().getTime()).toLocalDate();	// 계산을 위해 java.sql.Date 형식을 java.time 형식으로 변환 
+					int age=present.minusYears(birth.getYear()).getYear();		// 현재 년도 - 생일 년도
+					if(birth.plusYears(age).isAfter(present)){					// 생년월일을 현재년도월일로 바꿔주고 월일이 지났는지 비교
+						age=age-1;
+					}
+				%>
 					<li>
 						<a href="/moveSearchSitterPost.sms">
 							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
+								<img alt="프로필사진" src="/resources/images/profile/<%=jol.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'">
 							</div>
 							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
+								<p><%=jol.getMemberName() %></p>
+								<p>
+								<% for(int i=0; i<jol.getAvgGrade(); i++) { %>
+								★
+								<% } %>
+								<% for(int i=0; i<5-jol.getAvgGrade(); i++) { %>
+								☆
+								<% } %>
+								</p>
 							</div>
 							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
+								<p><%=jol.getLocation() %></p>
+								<p><%=age %>세 | 희망시급 <%=jol.getPay() %>원</p>
 							</div>
 							<div>
+							<% if(jol.getCertReYN()=='Y') { %>
+								<p style="font-weight: 900; color: black;">등본인증</p>
+							<% } else { %>
 								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
+							<% } %>
+							<% if(jol.getCertHeYN()=='Y') { %>
+								<p style="font-weight: 900; color: black;">건강인증</p>
+							<% } else { %>
+								<p>건강인증</p>
+							<% } %>
+							<% if(jol.getCertFaYN()=='Y') { %>
+								<p style="font-weight: 900; color: black;">부모인증</p>
+							<% } else { %>
+								<p>부모인증</p>
+							<% } %>
+							<% if(jol.getCertTeYN()=='Y') { %>
+								<p style="font-weight: 900; color: black;">선생님인증</p>
+							<% } else { %>
+								<p>선생님인증</p>
+							<% } %>
 							</div>
 						</a>
 					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchSitterPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>김말동</p>
-								<p>★★★★☆</p>
-							</div>
-							<div>
-								<p>뉴욕턱별시 런던구 빠리동 | 목성 소환사의 협곡</p>
-								<p>40세 | 희망시급 100000원</p>
-							</div>
-							<div>
-								<p>등본인증</p>
-								<p>건강정보</p>
-								<p>부모정보</p>
-								<p>선생님정보</p>
-							</div>
-						</a>
-					</li>
+				<% } %>	
 				</ul>
+				<div id="btn-panel">
+					<a href="#review-panel">+ 더 보기</a>
+				</div>
 			</div>
 		</div>
 	</section>
