@@ -9,17 +9,6 @@ table {
    margin-bottom: 8px;
 }
 
-#write-btn {
-   width: 95px; height: 30px;
-   background-color: #9AB9EF;
-   color: white;
-   font-weight: 300;
-   font-size: 1rem;
-   border: 0px solid white;
-   padding: 3px 20px 3px 20px;
-   border-radius: 5px;
-}
-
 #all_select {
    width: 70px;
 }

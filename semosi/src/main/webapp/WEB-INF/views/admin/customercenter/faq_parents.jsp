@@ -106,17 +106,17 @@ $("#pagination").append(pagination);//--페이지 셋팅
 						<table class="board">
 							<tr class="head">
 								<th id="all_select"><input type="checkbox" /></th>
-								<th class='post-no'>번호</th>
+								<th class='post_no'>번호</th>
 								<th class='title'>제목</th>
 								<th class='date'>작성일</th>
-								<th class='del-YN'>삭제여부</th>
+								<th class='del_YN'>삭제여부</th>
 							</tr>
 							<c:choose>
 								<c:when test="${fn:length(selectPFAQList)!=0 }">
 									<c:forEach var="selectPFAQList" items="${selectPFAQList}" varStatus="status">
 									<tr class="contents">
 										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-										<td class='post-no'>${selectPFAQList.postNo}</td>
+										<td class='post_no'>${selectPFAQList.postNo}</td>
 										<td class='title'><a data-toggle="modal" data-target="#modifyModal${status.index}">${selectPFAQList.title}</a></td>
 										
 										<!-- Modal -->
@@ -146,7 +146,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 
 										<td class='date'>${selectPFAQList.writeDate}</td>
 
-										<td class='del-YN'><c:choose>
+										<td class='del_YN'><c:choose>
 											<c:when test="${selectPFAQList.delYn eq 'N'}">
 												<button type="button" class="delete-btn delChangeFAQ" id="${selectPFAQList.postNo}" name="${selectPFAQList.delYn}">삭제</button>
 											</c:when>
@@ -162,10 +162,10 @@ $("#pagination").append(pagination);//--페이지 셋팅
 							<c:forEach begin="${fn:length(selectPFAQList)}" end="12">
 									<tr class="contents">
 										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-										<td class='post-no'></td>
+										<td class='post_no'></td>
 										<td class='title'></td>
 										<td class='date'></td>
-										<td class='del-YN'></td>
+										<td class='del_YN'></td>
 									</tr>
 							</c:forEach>
 						</table>
