@@ -9,8 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import kr.co.semosi.admin.review.model.dao.AdminReviewDAO;
-import kr.co.semosi.admin.review.model.vo.JobOfferReview;
-import kr.co.semosi.admin.review.model.vo.JobSearchReview;
+import kr.co.semosi.admin.review.model.vo.JobOfferReviewView;
+import kr.co.semosi.admin.review.model.vo.JobSearchReviewView;
 import kr.co.semosi.admin.review.model.vo.ReviewAnswer;
 
 @Service("adminReviewService")
@@ -26,7 +26,7 @@ public class AdminReviewService {
 	return rDAO.getReviewCnt(sqlSession, paramMap);
     }
 
-    public List<JobOfferReview> offerReviewList(Map<String, Object> paramMap) {
+    public List<JobOfferReviewView> offerReviewList(Map<String, Object> paramMap) {
 	return rDAO.offerReviewList(sqlSession, paramMap);
     }
 
@@ -34,7 +34,7 @@ public class AdminReviewService {
 	return rDAO.getReviewCount(sqlSession, paramMap);
     }
 
-    public List<JobSearchReview> searchReviewList(Map<String, Object> paramMap) {
+    public List<JobSearchReviewView> searchReviewList(Map<String, Object> paramMap) {
 	return rDAO.searchReviewList(sqlSession, paramMap);
     }
 
@@ -50,11 +50,11 @@ public class AdminReviewService {
 	return rDAO.answerDelYN(sqlSession, ra);
     }
 
-    public int offerDelYN(JobOfferReview jo) {
+    public int offerDelYN(JobOfferReviewView jo) {
 	return rDAO.offerDelYN(sqlSession, jo);
     }
 
-    public int searchDelYN(JobSearchReview js) {
+    public int searchDelYN(JobSearchReviewView js) {
 	return rDAO.searchDelYN(sqlSession, js);
     }
 

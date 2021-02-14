@@ -149,8 +149,8 @@ $(function(){
 													<td class='select'><input type="checkbox" value="" name="send-select" /></td>
 													<td class='post-no'><c:out value='${orList.reviewNo }'/></td>
 													<td class="membertype">시터회원</td>
-													<td class='memberid'>${orList.memberS.memberId }</td>
-													<td class='membername'>${orList.memberS.memberName}</td>
+													<td class='memberid'>${orList.memberId }</td>
+													<td class='membername'>${orList.memberName}</td>
 													<td class='content'><a data-toggle="modal"
 														data-target="#viewModal${status.index }">${orList.content }</a></td>
 													<!-- Modal -->

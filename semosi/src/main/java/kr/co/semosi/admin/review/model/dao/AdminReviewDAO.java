@@ -6,8 +6,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.co.semosi.admin.review.model.vo.JobOfferReview;
-import kr.co.semosi.admin.review.model.vo.JobSearchReview;
+import kr.co.semosi.admin.review.model.vo.JobOfferReviewView;
+import kr.co.semosi.admin.review.model.vo.JobSearchReviewView;
 import kr.co.semosi.admin.review.model.vo.ReviewAnswer;
 
 @Repository("adminReviewDAO")
@@ -17,8 +17,8 @@ public class AdminReviewDAO {
 	return sqlSession.selectOne("review.getReviewCnt", paramMap);
     }
 
-    public List<JobOfferReview> offerReviewList(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
-	List<JobOfferReview> list =sqlSession.selectList("review.OfferReviewList", paramMap); 
+    public List<JobOfferReviewView> offerReviewList(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
+	List<JobOfferReviewView> list =sqlSession.selectList("review.OfferReviewList", paramMap); 
 	return list;
     }
 
@@ -26,7 +26,7 @@ public class AdminReviewDAO {
 	return sqlSession.selectOne("review.getReviewCount", paramMap);
     }
 
-    public List<JobSearchReview> searchReviewList(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
+    public List<JobSearchReviewView> searchReviewList(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
 	return sqlSession.selectList("review.SearchReviewList", paramMap);
     }
 
@@ -47,11 +47,11 @@ public class AdminReviewDAO {
 	return sqlSession.update("review.answerDelYN", ra);
     }
 
-    public int offerDelYN(SqlSessionTemplate sqlSession, JobOfferReview jo) {
+    public int offerDelYN(SqlSessionTemplate sqlSession, JobOfferReviewView jo) {
 	return sqlSession.update("review.offerDelYN", jo);
     }
 
-    public int searchDelYN(SqlSessionTemplate sqlSession, JobSearchReview js) {
+    public int searchDelYN(SqlSessionTemplate sqlSession, JobSearchReviewView js) {
 	return sqlSession.update("review.searchDelYN", js);
     }
 

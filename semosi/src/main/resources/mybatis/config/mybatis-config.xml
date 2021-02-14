@@ -11,8 +11,8 @@
 		<typeAlias type="kr.co.semosi.admin.member.model.vo.TeacherDocu" alias="TeacherDocu" />
 		<typeAlias type="kr.co.semosi.admin.member.model.vo.CertifyView" alias="CertifyView" />
 		
-		<typeAlias type="kr.co.semosi.admin.review.model.vo.JobOfferReview" alias="JobOfferReview" />
-		<typeAlias type="kr.co.semosi.admin.review.model.vo.JobSearchReview" alias="JobSearchReview" />
+		<typeAlias type="kr.co.semosi.admin.review.model.vo.JobOfferReviewView" alias="JobOfferReviewView" />
+     	<typeAlias type="kr.co.semosi.admin.review.model.vo.JobSearchReviewView" alias="JobSearchReviewView" />
 		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswer" alias="ReviewAnswer" />
 		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswerMP" alias="ReviewAnswerMP" />
 		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswerMS" alias="ReviewAnswerMS" />

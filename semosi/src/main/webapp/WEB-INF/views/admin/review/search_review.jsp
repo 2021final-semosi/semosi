@@ -112,7 +112,7 @@ $(function(){
 					<!-- 페이징을 위한 hidden타입 추가 -->
 					<div class="page-contents">
 						<div id="content-wrapper" class="board-wrapper">
-							<p>구인 후기 게시판</p>
+							<p>구직 후기 게시판</p>
 							<div class="search">
 								<form>
 									<select name="category">
@@ -149,8 +149,8 @@ $(function(){
 													<td class='select'><input type="checkbox" value="" name="send-select" /></td>
 													<td class='post-no'><c:out value='${srList.reviewNo }'/></td>
 													<td class="membertype">부모회원</td>
-													<td class='memberid'>${srList.memberP.memberId }</td>
-													<td class='membername'>${srList.memberP.memberName}</td>
+													<td class='memberid'>${srList.memberId }</td>
+													<td class='membername'>${srList.memberName}</td>
 													<td class='content'><a data-toggle="modal"
 														data-target="#viewModal${status.index }">${srList.content }</a></td>
 													<!-- Modal -->
