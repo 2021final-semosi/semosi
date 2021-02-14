@@ -2,62 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="review">
 
-	<resultMap type="JobOfferReview" id="joReview">
-		<result property="reviewNo" column="REVIEWNO" />
-		<result property="reviewdPNo" column="REVIEWDPNO" />
-		<result property="content" column="CONTENT" />
-		<result property="grade" column="GRADE" />
-		<result property="delYn" column="DELYN" />
-		<result property="writeDate" column="WRITEDATE" />
-		<association javaType="MemberS" property="memberS">
-			<id property="membersNo" column="MEMBERSNO" />
-			<result property="memberName" column="MEMBERNAME" />
-			<result property="memberId" column="MEMBERID" />
-		</association>
-	</resultMap>
-
 	<select id="getReviewCnt" resultType="int" parameterType="java.util.HashMap">
-		select
-		count(*) from JOB_OFFER_REVIEW
+		select count(*) from JOB_OFFER_REVIEW
 	</select>
 
-	<select id="OfferReviewList" resultMap="joReview" parameterType="java.util.HashMap">
+	<select id="OfferReviewList" resultType="JobOfferReviewView" parameterType="java.util.HashMap">
 		SELECT
-		jo.REVIEW_NO as reviewNo,
-		s.MEMBER_ID as memberId,
-		s.MEMBER_NAME
-		as memberName,
-		jo.CONTENT as content,
-		jo.GRADE as grade,
-		jo.WRITE_DATE as
-		writeDate,
-		jo.DEL_YN as delYn
-		From(select Rank() over(order by review_NO
-		DESC) as RNUM from JOB_OFFER_REVIEW), JOB_OFFER_REVIEW jo, member_s s
-		WHERE WRITER_S_NO = s.MEMBERS_NO and
+		REVIEWNO as reviewNo,
+		MEMBERID as memberId,
+		MEMBERNAME as memberName,
+		CONTENT as content,
+		GRADE as grade,
+		WRITEDATE as writeDate,
+		DELYN as delYn
+		From(select Rank() over(order by REVIEWNO DESC) as RNUM, JOB_OFFER_REVIEW_VIEW.* from JOB_OFFER_REVIEW_VIEW)
+		WHERE
 		<if test='category !=null and category != all and !keyword.equals("")'>
 			<if test='category == "REVIEW_NO"'>
-				jo.REVIEW_NO like '%'||#{keyword}||'%' and
+				REVIEWNO like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("member_id")'>
-				s.MEMBER_ID like '%'||#{keyword}||'%' and
+				MEMBERID like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("member_name")'>
-				s.MEMBER_NAME like '%'||#{keyword}||'%' and
+				MEMBERNAME like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("content")'>
-				jo.content like '%'||#{keyword}||'%' and
+				CONTENT like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("grade")'>
-				jo.grade like '%'||#{keyword}||'%' and
+				GRADE like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("del_YN")'>
 				<choose>
 					<when test='keyword.equals("삭제")'>
-						DEL_YN = 'Y' and
+						DELYN = 'Y' and
 					</when>
 					<otherwise>
-						DEL_YN = 'N' and
+						DELYN = 'N' and
 					</otherwise>
 				</choose>
 			</if>
@@ -65,59 +47,44 @@
 		RNUM between #{start} and #{end}
 	</select>
 
-	<resultMap type="JobSearchReview" id="jsReview">
-		<result property="reviewNo" column="REVIEWNO" />
-		<result property="reviewdPNo" column="REVIEWDPNO" />
-		<result property="content" column="CONTENT" />
-		<result property="grade" column="GRADE" />
-		<result property="delYn" column="DELYN" />
-		<result property="writeDate" column="WRITEDATE" />
-		<association javaType="MemberP" property="memberP">
-			<id property="memberpNo" column="MEMBERPNO" />
-			<result property="memberName" column="MEMBERNAME" />
-			<result property="memberId" column="MEMBERID" />
-		</association>
-	</resultMap>
-
 	<select id="getReviewCount" resultType="int" parameterType="java.util.HashMap">
 		select count(*) from JOB_SEARCH_REVIEW
 	</select>
 
-	<select id="SearchReviewList" resultMap="jsReview" parameterType="java.util.HashMap">
+	<select id="SearchReviewList" resultType="JobSearchReviewView" parameterType="java.util.HashMap">
 		SELECT
-		js.REVIEW_NO as reviewNo,
-		p.MEMBER_ID as memberId,
-		p.MEMBER_NAME as memberName,
-		js.CONTENT as content,
-		js.GRADE as grade,
-		js.WRITE_DATE as
-		writeDate,
-		js.DEL_YN as delYn
-		From(select Rank() over(order by review_NO DESC) as RNUM from JOB_SEARCH_REVIEW), JOB_SEARCH_REVIEW js, MEMBER_P p
-		WHERE WRITER_P_NO = p.MEMBERP_NO and
+		REVIEWNO as reviewNo,
+		MEMBERID as memberId,
+		MEMBERNAME as memberName,
+		CONTENT as content,
+		GRADE as grade,
+		WRITEDATE as writeDate,
+		DELYN as delYn
+		From(select Rank() over(order by REVIEWNO DESC) as RNUM, JOB_SEARCH_REVIEW_VIEW.* from JOB_SEARCH_REVIEW_VIEW)
+		WHERE
 		<if test='category !=null and category != all and !keyword.equals("")'>
 			<if test='category == "REVIEW_NO"'>
-				js.REVIEW_NO like '%'||#{keyword}||'%' and
+				REVIEWNO like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("member_id")'>
-				p.MEMBER_ID like '%'||#{keyword}||'%' and
+				MEMBERID like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("member_name")'>
-				p.MEMBER_NAME like '%'||#{keyword}||'%' and
+				MEMBERNAME like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("content")'>
-				js.CONTENT like '%'||#{keyword}||'%' and
+				CONTENT like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("grade")'>
-				js.GRADE like '%'||#{keyword}||'%' and
+				GRADE like '%'||#{keyword}||'%' and
 			</if>
 			<if test='category.equals("del_YN")'>
 				<choose>
 					<when test='keyword.equals("삭제")'>
-						js.DEL_YN = 'Y' and
+						DELYN = 'Y' and
 					</when>
 					<otherwise>
-						js.DEL_YN = 'N' and
+						DELYN = 'N' and
 					</otherwise>
 				</choose>
 			</if>
@@ -135,7 +102,7 @@
 		<result property="writer" column="writer" />
 		<result property="memberId" column="memberid" />
 		<result property="memberName" column="membername" />
-		<association javaType="JobOfferReview" property="jobReview">
+		<association javaType="JobOfferReviewView" property="jobReview">
 			<id property="reviewNo" column="REVIEWNO" />
 			<result property="content" column="content" />
 		</association>
@@ -151,7 +118,7 @@
 		<result property="writer" column="writer" />
 		<result property="memberId" column="memberid" />
 		<result property="memberName" column="membername" />
-		<association javaType="JobSearchReview" property="jobReview">
+		<association javaType="JobSearchReviewView" property="jobReview">
 			<id property="reviewNo" column="REVIEWNO" />
 			<result property="content" column="content" />
 		</association>

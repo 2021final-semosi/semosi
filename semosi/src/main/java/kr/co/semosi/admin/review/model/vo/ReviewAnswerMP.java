@@ -12,7 +12,7 @@ public class ReviewAnswerMP {
     private String writer;
     private String memberId;
     private String memberName;
-    private JobOfferReview jobReview;
+    private JobOfferReviewView jobReview;
     
     public String getAnswerReviewNo() {
         return answerReviewNo;
@@ -68,14 +68,14 @@ public class ReviewAnswerMP {
     public void setMemberName(String memberName) {
         this.memberName = memberName;
     }
-    public JobOfferReview getJobReview() {
+    public JobOfferReviewView getJobReview() {
         return jobReview;
     }
-    public void setJobReview(JobOfferReview jobReview) {
+    public void setJobReview(JobOfferReviewView jobReview) {
         this.jobReview = jobReview;
     }
     public ReviewAnswerMP(String answerReviewNo, String reviewSNo, String reviewPNo, String answerContent, char delYN,
-	    Date writeDate, String writer, String memberId, String memberName, JobOfferReview jobReview) {
+	    Date writeDate, String writer, String memberId, String memberName, JobOfferReviewView jobReview) {
 	super();
 	this.answerReviewNo = answerReviewNo;
 	this.reviewSNo = reviewSNo;

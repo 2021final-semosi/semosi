@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.semosi.admin.review.model.service.AdminReviewService;
-import kr.co.semosi.admin.review.model.vo.JobOfferReview;
-import kr.co.semosi.admin.review.model.vo.JobSearchReview;
+import kr.co.semosi.admin.review.model.vo.JobOfferReviewView;
+import kr.co.semosi.admin.review.model.vo.JobSearchReviewView;
 import kr.co.semosi.admin.review.model.vo.ReviewAnswer;
 
 @Controller
@@ -164,7 +164,7 @@ public class AdminReviewController {
     
     @RequestMapping(value = "/offerDelYN.sms")
     public String offerDelYN(@RequestParam String reviewNo, @RequestParam char delYn, HttpServletResponse response) throws IOException{
-	JobOfferReview jo = new JobOfferReview();
+	JobOfferReviewView jo = new JobOfferReviewView();
 	
 	if(delYn=='Y'){
 	   delYn='N';
@@ -189,7 +189,7 @@ public class AdminReviewController {
     
     @RequestMapping(value = "/searchDelYN.sms")
     public String searchDelYN(@RequestParam String reviewNo, @RequestParam char delYn, HttpServletResponse response) throws IOException{
-	JobSearchReview js = new JobSearchReview();
+	JobSearchReviewView js = new JobSearchReviewView();
 	
 	if(delYn=='Y'){
 	   delYn='N';
