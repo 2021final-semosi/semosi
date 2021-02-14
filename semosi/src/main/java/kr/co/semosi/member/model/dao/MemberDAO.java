@@ -30,4 +30,16 @@ public class MemberDAO {
 		return sMember;
 	}
 
+	public int insertAuthenticationNum(SqlSessionTemplate sqlSession, int random) {
+		int result = sqlSession.insert("authentication.insertNumber",random);
+		return result;
+	}
+
+	public int selectAuthenticationNum(SqlSessionTemplate sqlSession, int checkNumber) {
+		
+		int result = sqlSession.insert("authentication.selectNumber",checkNumber);
+		System.out.println("result ::::" +result);
+		return result;
+	}
+
 }
