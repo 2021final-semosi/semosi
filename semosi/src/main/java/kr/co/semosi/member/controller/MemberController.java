@@ -1,14 +1,31 @@
 package kr.co.semosi.member.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.AuthCache;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -82,7 +99,6 @@ public class MemberController {
 		// spring에선 session객체를 바로 가져올 수 있음!
 
 		System.out.println("[/logout.sms] 정상적으로 호출되었습니다.");
-		
 		session.invalidate();
 		return "redirect:/";
 
@@ -116,15 +132,131 @@ public class MemberController {
 		return "member/memberJoinPageIndex";
 	}
 	
-	@RequestMapping(value="/memberJoinPage.sms")
-	public String memberJoinPage()
-	{
+	@RequestMapping(value="/parentJoinPage.sms")
+	public String parentJoinPage(Model model)
+	{	
+		//부모 테이블에 들어갈 수 있게끔 임시 값을 같이 넘겨준다 
+		model.addAttribute("member","parent");
 		return "member/memberJoinPage";
 	}
 	
-	@RequestMapping(value="/memberSignup.sms")
-	public String memberSignup()
+	@RequestMapping(value="/sitterJoinPage.sms")
+	public String sitterJoinPage(Model model)
 	{
+		//시터 테이블에 들어갈 수 있게끔 임시 값을 같이 넘겨준다 
+		model.addAttribute("member","sitter");
+		return "member/memberJoinPage";
+	}
+	
+	
+	//본인인증 api 
+	@RequestMapping(value="/sendSMS.sms")
+    public void sendSMS(@RequestParam String receiver, HttpServletResponse response){
+    	
+    	//인증 번호를 받을 전화번호
+		System.out.println(receiver);
+		
+		//본인 인증을 위한 임의의 수  (6자리)
+		int random = (int) (Math.random() * 899999) + 100000;
+ 
+    	//문자 보내기
+        String hostname = "api.bluehouselab.com";
+        String url = "https://"+hostname+"/smscenter/v1.0/sendsms";
+
+        CredentialsProvider credsProvider = new BasicCredentialsProvider();
+        credsProvider.setCredentials(
+            new AuthScope(hostname, 443, AuthScope.ANY_REALM),
+           
+            //청기와랩에 등록한 Applicaion Id와 API key 입력
+            new UsernamePasswordCredentials(Config.appid, Config.apikey)
+        );
+        
+        
+        // Create AuthCache instance
+        AuthCache authCache = new BasicAuthCache();
+        authCache.put(new HttpHost(hostname, 443, "https"), new BasicScheme());
+
+        // Add AuthCache to the execution context
+        HttpClientContext context = HttpClientContext.create();
+        context.setCredentialsProvider(credsProvider);
+        context.setAuthCache(authCache);
+
+        DefaultHttpClient client = new DefaultHttpClient();
+
+        try {
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setHeader("Content-type", "application/json; charset=utf-8");
+            
+            //문자에 대한 정보
+			String json = "{\"sender\":\"" + Config.sender + "\",\"receivers\":[\"" + receiver + "\"],\"content\":\""
+					+ Config.content + random + "\"}";
+			
+            StringEntity se = new StringEntity(json, "UTF-8");
+            httpPost.setEntity(se);
+
+            HttpResponse httpResponse = client.execute(httpPost, context);
+            System.out.println(httpResponse.getStatusLine().getStatusCode());
+
+            InputStream inputStream = httpResponse.getEntity().getContent();
+            if(inputStream != null) {
+                BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+                String line = "";
+                while((line = bufferedReader.readLine()) != null)
+                    System.out.println(line);
+                inputStream.close();
+            }
+            
+
+        	
+        	//본인 인증 번호 DB 저장
+        	int result = mService.insertAuthenticationNum(random);
+        	
+
+    		if(result>0){
+    			//DB에 제대로 저장
+    			response.getWriter().print(true);
+    		}else{
+    			//DB에 저장 X
+    			response.getWriter().print(false);
+    		}
+            
+        } catch (Exception e) {
+            System.err.println("Error: "+e.getLocalizedMessage());
+        } finally {
+            client.getConnectionManager().shutdown();
+        }
+
+		return ;
+
+	}
+	
+	//본인 인증 번호 DB 확인 -ajax
+	@RequestMapping(value="/checkSMS.sms")
+	public void selectAuthenticationNum(@RequestParam int checkNumber, HttpServletResponse response) throws IOException{
+    	int result = mService.selectAuthenticationNum(checkNumber);
+    	if(result>0){
+    		//디비에 일치된 정보가 있다면
+			response.getWriter().print(true);
+    	}else{
+			response.getWriter().print(false);
+    	}
+		return ;
+	}
+	//본인 인증 번호 DB 삭제 
+
+	public String deleteAuthenticationNum(){
+		
+		return null;
+	}
+	
+	
+	//회원가입 로직 진행
+	@RequestMapping(value="/memberSignup.sms")
+	public String memberSignup(@RequestParam String memberType)
+	{
+		System.out.println(memberType);
+		
+		
 		return null;
 	}
 	

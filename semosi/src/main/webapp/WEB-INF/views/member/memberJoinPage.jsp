@@ -39,19 +39,21 @@
 	width: 100%;
 	height: 100%;
 }
+
 .birthArea {
 	display: inline-block;
 	border: 1px solid #dbdbda;
 	width: 33.3%;
 	height: 100%;
 }
-#birthYY{
-	border-right:0px;
+
+#birthYY {
+	border-right: 0px;
 	border-radius: 10px 0px 0px 10px;
-	
 }
-#birthDD{
-	border-left:0px;
+
+#birthDD {
+	border-left: 0px;
 	border-radius: 0px 10px 10px 0px;
 }
 
@@ -122,13 +124,12 @@
 .form-message {
 	text-align: left;
 }
-
-
 </style>
 
 
 </head>
 <body>
+
 	<!-- 주소 api -->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -142,7 +143,6 @@
 		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 		crossorigin="anonymous">
-
 
 
 	<script>
@@ -286,9 +286,6 @@
 						}
 					}).open();
 		}
-		
-		
-		
 	</script>
 
 	<header> <%@ include file="/WEB-INF/views/commons/header.jsp"%>
@@ -304,6 +301,24 @@
 		<div id="formArea">
 			<center>
 				<form action="/memberSignup.sms" method="post">
+
+					<!-- DB처리를 위해 parent회원가입인지 sitter회원가입인지 명시 -->
+					<%
+						String memberType = (String) request.getAttribute("member");
+					%>
+
+					<%
+						if (memberType.equals("parent")) {
+					%>
+					<input type="hidden" value="memberType" name="parent" />
+
+					<%
+						} else if (memberType.equals("sitter")) {
+					%>
+					<input type="hidden" value="memberType" name="sitter" />
+					<%
+						}
+					%>
 
 
 					<div class="form-group row m-0">
@@ -372,26 +387,27 @@
 						<label for="inputText" class="col-sm-2 col-form-label">생년월일</label>
 						<div class="col-sm-10 m-0 p-0">
 							<!-- BIRTH_YY -->
-									<span class="birthArea" id="birthYY"> <input type="text" id="yy"
-										class="inputArea" maxlength="4" placeholder="년(4자)">
-									</span><span class="birthArea" id="birthMM"> <select id="mm" class="inputArea">
-											<option>월</option>
-											<option value="01">1</option>
-											<option value="02">2</option>
-											<option value="03">3</option>
-											<option value="04">4</option>
-											<option value="05">5</option>
-											<option value="06">6</option>
-											<option value="07">7</option>
-											<option value="08">8</option>
-											<option value="09">9</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
-									</select>
-									</span><span class="birthArea" id="birthDD"> <input type="text" id="dd"
-										class="inputArea" maxlength="2" placeholder="일">
-									</span>
+							<span class="birthArea" id="birthYY"> <input type="text"
+								id="yy" class="inputArea" maxlength="4" placeholder="년(4자)">
+							</span><span class="birthArea" id="birthMM"> <select id="mm"
+								class="inputArea">
+									<option>월</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+							</select>
+							</span><span class="birthArea" id="birthDD"> <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일">
+							</span>
 
 						</div>
 					</div>
@@ -404,13 +420,15 @@
 					<div class="form-group row m-0">
 						<label for="inputText" class="col-sm-2 col-form-label">성별</label>
 						<div class="col-sm-10 m-0 p-0">
-							<span class="spanArea"> <select id="gender" class="inputArea">
-											<option>성별</option>
-											<option value="M">남</option>
-											<option value="F">여</option>
-									</select></span>
+							<span class="spanArea"> <select id="gender"
+								class="inputArea">
+									<option>성별</option>
+									<option value="M">남</option>
+									<option value="F">여</option>
+							</select></span>
 						</div>
 					</div>
+
 
 					<div class="form-message row m-0">
 						<label for="inputText" class="col-sm-2 message"></label> <span
@@ -424,7 +442,7 @@
 						</div>
 						<div class="col-sm-2 m-0 p-0">
 							<span> <input type="button" id="phoneConfirmBtn"
-								class="btn btn-light" name="phone" value="인증번호 받기">
+								class="btn btn-light" value="인증번호 받기">
 							</span>
 						</div>
 					</div>
@@ -438,10 +456,78 @@
 						<div class="col-sm-2 col-form-label"></div>
 						<div class="col-sm-10 m-0 p-0">
 							<span class="spanArea"> <input type="text"
-								class="inputArea" id="phoneConfirmNo" placeholder="인증번호 입력"></span>
+								class="inputArea" id="authenticationNumber"
+								placeholder="인증번호 입력"></span>
 						</div>
 
 					</div>
+
+
+					<script>
+						var phoneBtn = $('#phoneConfirmBtn');
+
+						if (phoneBtn.val() == '인증 번호 받기') {
+
+							phoneBtn.click(function() {
+								//글씨 바꿔주고
+								phoneBtn.val('인증 번호 확인')
+
+								//ajax로 전송 
+								sendSMS();
+							});
+						} else if (phoneBtn.val() == '인증 번호 확인') {
+
+							phoneBtn.click(function() {
+
+								phoneBtn.val('인증 중')
+								//ajax로 전송 
+								checkSMS();
+							});
+						}
+
+						function sendSMS(result) {
+							$.ajax({
+								url : "/sendSMS.sms",
+								data : {
+									receiver : $('#phone').val()
+								},
+								type : "post",
+								success : function() {
+									if (result == true) {
+										alert('인증 번호 전송 성공 : ' + result);
+
+									} else {
+										alert('인증 번호 전송 실패');
+									}
+								},
+								error: function(){
+									console.log('send 에러'); 
+								}
+							});
+						}
+
+						function checkSMS() {
+							$.ajax({
+								url : "/checkSMS.sms",
+								data : {
+									receiver : $('#authenticationNumber').val()
+								},
+								type : "post",
+								success : function(result) {
+									if (result == true) {
+										alert('인증 번호 일치');
+
+									} else {
+										alert('인증 번호 불일치');
+									}
+								},
+								error: function(){
+									console.log('check 에러'); 
+								}
+							});
+						}
+					</script>
+
 
 					<div class="form-message row m-0">
 						<label for="inputText" class="col-sm-2 message"></label> <span
@@ -457,14 +543,14 @@
 								class="inputArea" id="sample6_address" placeholder="주소" readonly></span>
 						</div>
 						<div class="col-sm-2 m-0 p-0">
-							<span> <input type="button"
-								class="btn btn-light" id="addressFindBtn" name="address"
-								value="주소 찾기" onclick="sample6_execDaumPostcode()"></span>
+							<span> <input type="button" class="btn btn-light"
+								id="addressFindBtn" name="address" value="주소 찾기"
+								onclick="sample6_execDaumPostcode()"></span>
 						</div>
 
 					</div>
 
-					<br> <input type="button" id="submitBtn"
+					<br> <input type="sumbit" id="submitBtn"
 						class="btn btn-warning" value="회원가입" />
 				</form>
 

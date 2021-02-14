@@ -22,10 +22,9 @@
 }
 
 .formArea{
-	padding-top:100px;
-	padding-bottom:100px;
+	padding-top:150px;
 	width:100%;
-	height:700px;
+	height:500px;
 	border:1px solid red;
 }
 
@@ -52,7 +51,29 @@ line-height:200px;
 font-size:1.3rem;
 }
 
+#sitterJoin{
+	margin-left:100px;
+}
 
+
+@media (max-width:1200px){
+#sitterJoin{
+	margin-left:50px;
+}
+}
+
+@media (max-width:1000px){
+
+#sitterJoin{
+	margin-left:0px;
+	margin-top:50px;
+}
+
+#wrapper {
+	margin-bottom: 250px;
+}
+
+}
 </style>
 </head>
 <body>
@@ -69,9 +90,8 @@ font-size:1.3rem;
 	<div class="container">
 		<div class="formArea">
 		<div id="choiceArea">
-			<div class="choice" id="parentJoin"><b>부모 회원 가입</b></div>
-			<div id="nbspArea" style="width:100px;">&nbsp;</div>
-			<div class="choice" id="sitterJoin"><b>시터 회원 가입</b></div>
+			<div class="choice" id="parentJoin"><a href="/parentJoinPage.sms"><b>부모 회원 가입</b></a></div>
+			<div class="choice" id="sitterJoin"><a href="/sitterJoinPage.sms"><b>시터 회원 가입</b></a></div>
 </div>
 		</div>
 
