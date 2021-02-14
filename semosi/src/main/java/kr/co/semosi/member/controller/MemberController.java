@@ -48,7 +48,7 @@ public class MemberController {
 				HttpSession session = request.getSession();
 				session.setAttribute("pMember", pMember);
 				System.out.println("로그인 성공[ 부모 회원 : " + pMember.getMemberId() + "]");
-				return "redirect:/index.jsp";
+				return "redirect:/";
 			} else {
 				System.out.println("로그인 실패");
 				return "member/loginFail";
@@ -68,7 +68,7 @@ public class MemberController {
 				HttpSession session = request.getSession();
 				session.setAttribute("sMember", sMember);
 				System.out.println("로그인 성공[ 시터 회원 : " + sMember.getMemberId() + "]");
-				return "redirect:/index.jsp";
+				return "redirect:/";
 			} else {
 				System.out.println("로그인 실패");
 				return "member/loginFail";
@@ -84,7 +84,7 @@ public class MemberController {
 		System.out.println("[/logout.sms] 정상적으로 호출되었습니다.");
 		
 		session.invalidate();
-		return "redirect:/index.jsp";
+		return "redirect:/";
 
 	}
 	
