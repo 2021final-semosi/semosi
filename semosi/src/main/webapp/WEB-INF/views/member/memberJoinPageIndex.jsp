@@ -30,7 +30,6 @@
 }
 
 #choiceArea{
-	margin: 0 auto;
 	width:50%;
 	heigh:100%;
 }
