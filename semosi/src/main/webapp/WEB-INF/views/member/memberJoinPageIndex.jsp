@@ -51,10 +51,6 @@ line-height:200px;
 font-size:1.3rem;
 }
 
-<!--미디어 쿼리로 페이지줄어들었을때 원 크기 줄어들게-->
-@media {
-
-}
 
 </style>
 </head>
