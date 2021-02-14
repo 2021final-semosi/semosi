@@ -1,4 +1,3 @@
-<%@page import="java.time.LocalDate"%>
 <%@page import="kr.co.semosi.joboffer.model.vo.JobOfferList"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -102,17 +101,44 @@
     							content+='</div>';
     							content+='<div>';
     							content+='<p>'+result[i].memberName+'</p>';
-    							content+='<p>★★★★★</p>';
+    							content+='<p>';
+    							for(var j=0; j<result[i].avgGrade; j++){
+    								content+='★ ';
+    							}
+    							for(var k=0; k<5-result[i].avgGrade; k++){
+    								content+='☆ ';
+    							}
+    							content+='</p>';
     							content+='</div>';
     							content+='<div>';
     							content+='<p>'+result[i].location+'</p>';
-    							content+='<p>50세 | 희망시급 '+result[i].pay+'원</p>';
+    							content+='<p>만 '+result[i].age+'세 | 희망시급 '+result[i].pay+'원</p>';
     							content+='</div>';
     							content+='<div>';
-    							content+='<p>등본인증</p>';
-    							content+='<p>건강인증</p>';
-    							content+='<p>부모인증</p>';
-    							content+='<p>선생님인증</p>';
+    							if(result[i].certReYN=='Y'){
+    								content+='<p style="font-weight: 900; color: black;">등본인증</p>';
+    							}
+    							else{
+    								content+='<p>등본인증</p>';
+    							}
+    							if(result[i].certHeYN=='Y'){
+    								content+='<p style="font-weight: 900; color: black;">건강인증</p>';
+    							}
+    							else{
+    								content+='<p>건강인증</p>';
+    							}
+    							if(result[i].certFaYN=='Y'){
+    								content+='<p style="font-weight: 900; color: black;">부모인증</p>';
+    							}
+    							else{
+    								content+='<p>부모인증</p>';
+    							}
+    							if(result[i].certTeYN=='Y'){
+    								content+='<p style="font-weight: 900; color: black;">선생님인증</p>';
+    							}
+    							else{
+    								content+='<p>선생님인증</p>';
+    							}
     							content+='</div>';
     							content+='</a>';
     							content+='</li>';
@@ -170,15 +196,7 @@
 			
 			<div id="joboffer-list-panel">
 				<ul>
-				<% LocalDate present=LocalDate.now();		// 현재 날짜 변수 %>
 				<% for(JobOfferList jol : list) { %>
-				<%	// 나이 계산 로직
-					LocalDate birth=new java.sql.Date(jol.getBirthDay().getTime()).toLocalDate();	// 계산을 위해 java.sql.Date 형식을 java.time 형식으로 변환 
-					int age=present.minusYears(birth.getYear()).getYear();		// 현재 년도 - 생일 년도
-					if(birth.plusYears(age).isAfter(present)){					// 생년월일을 현재년도월일로 바꿔주고 월일이 지났는지 비교
-						age=age-1;
-					}
-				%>
 					<li>
 						<a href="/moveSearchSitterPost.sms">
 							<div>
@@ -197,7 +215,7 @@
 							</div>
 							<div>
 								<p><%=jol.getLocation() %></p>
-								<p><%=age %>세 | 희망시급 <%=jol.getPay() %>원</p>
+								<p>만 <%=jol.getAge() %>세 | 희망시급 <%=jol.getPay() %>원</p>
 							</div>
 							<div>
 							<% if(jol.getCertReYN()=='Y') { %>

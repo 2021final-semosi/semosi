@@ -16,14 +16,15 @@ public class JobOfferList {
 	private char certReYN;
 	private char certTeYN;
 	private int avgGrade;
+	private int age;
 	
 	public JobOfferList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public JobOfferList(int fileNo, String originalName, String memberNo, String location, int pay, Date writeDate,
-			String memberName, Date birthDay, char certFaYN, char certHeYN, char certReYN, char certTeYN,
-			int avgGrade) {
+			String memberName, Date birthDay, char certFaYN, char certHeYN, char certReYN, char certTeYN, int avgGrade,
+			int age) {
 		super();
 		this.fileNo = fileNo;
 		this.originalName = originalName;
@@ -38,6 +39,7 @@ public class JobOfferList {
 		this.certReYN = certReYN;
 		this.certTeYN = certTeYN;
 		this.avgGrade = avgGrade;
+		this.age = age;
 	}
 	
 	public int getFileNo() {
@@ -117,5 +119,11 @@ public class JobOfferList {
 	}
 	public void setAvgGrade(int avgGrade) {
 		this.avgGrade = avgGrade;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 }
