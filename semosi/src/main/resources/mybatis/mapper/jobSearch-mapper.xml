@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jobsearch">
+  <select id="selectOfferAllList" resultType="JobSearchList">
+  	<![CDATA[
+	  	SELECT
+	  		FILE_NO AS fileNo,
+	  		ORIGINAL_NAME AS originalName,
+	  		MEMBERP_NO AS memberpNo,
+	  		TITLE AS title,
+	  		CARE_AGE AS careBirth,
+	  		LOCATION AS location,
+	  		CARE_TYPE AS careType,
+	  		START_DATE AS startDate,
+	  		PAY AS pay,
+	  		WRITE_DATE AS writeDate
+	  	FROM (SELECT A.*, ROWNUM AS RNUM FROM (SELECT * FROM JOB_SEARCH_LIST WHERE DEL_YN='N' ORDER BY WRITE_DATE DESC) A)
+	  	WHERE #{page}<=RNUM AND RNUM<=#{page}+9
+	]]>
+  </select>
+</mapper>

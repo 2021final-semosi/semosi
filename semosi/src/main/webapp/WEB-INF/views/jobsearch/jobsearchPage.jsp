@@ -1,3 +1,5 @@
+<%@page import="kr.co.semosi.jobsearch.model.vo.JobSearchList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -74,9 +76,68 @@
                 }
             });
             $("#amount").val($("#slider-range").slider("values", 0) + " 원 - " + $("#slider-range").slider("values", 1) + " 원");
+            
+            
+            /* 페이징 처리 스크립트 */
+            var page=1;
+            $("#btn-panel>a").click(function(){
+            	page=page+10;
+            	$.ajax({
+    				url : "/moreJobsearchPage.sms",
+    				type : "post",
+    				data : {page : page},
+    				success : function(result){
+    					if(result.length==0){
+    						alert("마지막 글입니다.");
+    						page=page-10;
+    					}
+    					else{
+    						for(var i=0; i<result.length; i++){
+    							var content="";
+    							var startDay=result[i].startDate;
+    							var test=startDay.split(",");
+    							content+='<li>';
+    							content+='<a href="/moveSearchJobPost.sms">';
+    							content+='<div>';
+    							content+='<img alt="프로필사진" src="/resources/images/profile/'+result[i].originalName+'" onerror="this.src='+"'"+'/resources/images/sitter_image.png'+"'"+'">';
+    							content+='</div>';
+    							content+='<div>';
+    							if(result[i].age<=3){
+    								content+='<p>'+result[i].months+' 개월</p>';
+    							} else {
+    								content+='<p>만 '+result[i].age+'세</p>';
+    							}
+    							if(result[i].careType=="CT1"){
+    								content+='<p>정기</p>';
+    							} else if(result[i].careType=="CT2"){
+    								content+='<p>단기</p>';
+    							} else {
+    								content+='<p>협의</p>';
+    							}
+    							content+='</div>';
+    							content+='<div>';
+    							content+='<p>'+result[i].title+'</p>';
+    							content+='<p>'+result[i].location+'</p>';
+    							content+='</div>';
+    							content+='<div>';
+    							content+='<p>희망 시급 '+result[i].pay+'원</p>';
+    							content+='<p>'+test[0]+'일 시작</p>';
+    							content+='</div>';
+    							content+='</a>';
+    							content+='</li>';
+    							$("#joboffer-list-panel>ul>li:last-child").after(content);
+    						}
+    					}
+    				}
+    			});
+            });
 		});
 	</script>
 
+	<%
+		ArrayList<JobSearchList> list=(ArrayList<JobSearchList>)request.getAttribute("list");
+	%>
+	
 	<header>
 		<%@ include file="/WEB-INF/views/commons/header.jsp" %>
 	</header>
@@ -130,273 +191,41 @@
 			
 			<div id="joboffer-list-panel">
 				<ul>
+				<% for(JobSearchList jsl : list) { %>
 					<li>
 						<a href="/moveSearchJobPost.sms">
 							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
+								<img alt="프로필사진" src="/resources/images/profile/<%=jsl.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'">
 							</div>
 							<div>
-								<p>만 2세(28개월)</p>
+							<% if(jsl.getAge()<=3) { %>
+								<p><%=jsl.getMonths() %> 개월</p>
+							<% } else { %>
+								<p>만 <%=jsl.getAge() %>세</p>
+							<% } %>
+							<% if(jsl.getCareType().equals("CT1")) { %>
 								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 32세(18개월)</p>
+							<% } else if(jsl.getCareType().equals("CT2")) { %>
 								<p>단기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 3세(28개월)</p>
+							<% } else { %>
 								<p>협의</p>
+							<% } %>
 							</div>
 							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
+								<p><%=jsl.getTitle() %></p>
+								<p><%=jsl.getLocation() %></p>
 							</div>
 							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
+								<p>희망 시급 <%=jsl.getPay() %>원</p>
+								<p><%=jsl.getStartDate().getMonth()+1 %>월 <%=jsl.getStartDate().getDate() %>일 시작</p>
 							</div>
 						</a>
 					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="/moveSearchJobPost.sms">
-							<div>
-								<img alt="프로필사진" src="/resources/images/profile-image.png">
-							</div>
-							<div>
-								<p>만 2세(28개월)</p>
-								<p>정기</p>
-							</div>
-							<div>
-								<p>만 32세 유아 실내놀이 해주실 시터 찾습니다(제목)</p>
-								<p>뉴욕턱별시 런던구 빠리동</p>
-							</div>
-							<div>
-								<p>희망 시급 1800원</p>
-								<p>12/32일 시작</p>
-							</div>
-						</a>
-					</li>
+				<% } %>
 				</ul>
+				<div id="btn-panel">
+					<a href="#review-panel">+ 더 보기</a>
+				</div>
 			</div>
 		</div>
 	</section>
