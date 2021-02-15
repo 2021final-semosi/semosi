@@ -5,16 +5,14 @@
 		select
 		MEMBERP_NO as memberpNo,
 		MEMBER_NAME as memberName,
-		MEMBER_ID as
-		memberId,
+		MEMBER_ID as memberId,
 		MEMBER_PW as memberPW,
 		PHONE as phone,
 		ADDRESS as address,
 		GENDER as gender,
 		ENROLL_DATE as enrollDate,
 		END_DATE as endDate,
-		END_YN
-		as endYn,
+		END_YN as endYn,
 		BIRTH_DAY as birthDay
 		from MEMBER_P where
 		MEMBER_ID=#{memberId} and MEMBER_PW=#{memberPw} and
@@ -42,17 +40,14 @@
 		select
 		MEMBERP_NO as memberpNo,
 		MEMBER_NAME as memberName,
-		MEMBER_ID as
-		memberId,
+		MEMBER_ID as memberId,
 		MEMBER_PW as memberPW,
 		PHONE as phone,
 		ADDRESS as address,
-		GENDER as
-		gender,
+		GENDER as gender,
 		ENROLL_DATE as enrollDate,
 		END_DATE as endDate,
-		END_YN
-		as endYn,
+		END_YN as endYn,
 		BIRTH_DAY as birthDay
 		from (select row_number() over (order by
 		memberp_no) as row_num, member_P.* from member_P where memberP_no like 'p%')
@@ -95,21 +90,17 @@
 		select
 		MEMBERS_NO as membersNo,
 		MEMBER_NAME as memberName,
-		MEMBER_ID as
-		memberId,
+		MEMBER_ID as memberId,
 		MEMBER_PW as memberPW,
 		PHONE as phone,
 		ADDRESS as address,
-		GENDER as
-		gender,
+		GENDER as gender,
 		ENROLL_DATE as enrollDate,
 		END_DATE as endDate,
-		END_YN
-		as endYn,
+		END_YN as endYn,
 		BIRTH_DAY as birthDay,
 		DOCUMENT_YN as documentYN
-		from (select
-		row_number() over
+		from (select row_number() over
 		(order by members_no)
 		as row_num, member_s.* from
 		member_s)
@@ -188,50 +179,47 @@
 		SELECT
 		MEMBERS_NO as membersNo,
 		MEMBER_NAME as memberName,
-		MEMBER_ID as
-		memberId,
+		MEMBER_ID as memberId,
 		PHONE as phone,
 		GENDER as gender,
 		ADDRESS as address,
 		IMAGE_FA_NO as imageFANo,
 		IMAGE_FA_PATH as imageFaPath,
-		CRET_FA_YN as
-		cretFAYN,
+		CERT_FA_YN as certFAYN,
 		IMAGE_HE_NO as imageHENo,
 		IMAGE_HE_PATH as imageHePath,
-		CRET_HE_YN as cretHEYN,
+		CERT_HE_YN as certHEYN,
 		IMAGE_RE_NO as imageRENo,
-		IMAGE_RE_PATH as
-		imageRePath,
-		CRET_RE_YN as cretREYN,
+		IMAGE_RE_PATH as imageRePath,
+		CERT_RE_YN as certREYN,
 		IMAGE_TE_NO as imageTENo,
 		IMAGE_TE_PATH as imageTePath,
-		CRET_TE_YN as cretTEYN
+		CERT_TE_YN as certTEYN
 		FROM
 		ADMIN_CERTIFYVIEW
 		where members_no=#{membersNo}
 	</select>
 
 	<!-- 파라미터값중 한글자만 일치하면 조건이 동작하는 로직 -->
-	<update id="documentCretYN" parameterType="String">
+	<update id="documentCertYN" parameterType="String">
 		update
 		<choose>
 			<when test="_parameter.charAt(0) == 'F'">
-				FAMILY_DOCU set cret_FA_YN = 'Y' where IMAGE_FA_NO =
-				#{value}
+				FAMILY_DOCU set cert_FA_YN = 'Y' where IMAGE_FA_NO = #{value}
 			</when>
 			<when test="_parameter.charAt(0)=='H'">
-				HEALTH_DOCU set cret_HE_YN = 'Y' where IMAGE_HE_NO =
-				#{value}
+				HEALTH_DOCU set cert_HE_YN = 'Y' where IMAGE_HE_NO = #{value}
 			</when>
 			<when test="_parameter.charAt(0)=='R'">
-				RESIDENT_DOCU set cret_RE_YN = 'Y' where IMAGE_RE_NO
-				= #{value}
+				RESIDENT_DOCU set cert_RE_YN = 'Y' where IMAGE_RE_NO = #{value}
 			</when>
 			<otherwise>
-				TEACHER_DOCU set cret_TE_YN = 'Y' where IMAGE_TE_NO =
-				#{value}
+				TEACHER_DOCU set cert_TE_YN = 'Y' where IMAGE_TE_NO = #{value}
 			</otherwise>
 		</choose>
+	</update>
+
+	<update id="documentYN">
+	update MEMBER_S set document_YN='Y' where members_no=#{membersNo}
 	</update>
 </mapper>

@@ -60,4 +60,8 @@ public class MemberService {
 	return mDAO.documentCretYN(sqlSession, imageNo);
     }
 
+	public int documentYN(String membersNo) {
+		return mDAO.documentYN(sqlSession, membersNo);
+	}
+
 }

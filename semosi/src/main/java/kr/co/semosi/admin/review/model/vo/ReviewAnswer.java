@@ -1,22 +1,18 @@
 package kr.co.semosi.admin.review.model.vo;
 
-//후기답글 
+import java.sql.Date;
+
 public class ReviewAnswer {
-
-	// 후기답글번호
 	private String answerReviewNo;
-
-	// 후기번호_구인후기
 	private String reviewSNo;
-
-	// 후기번호_구직후기
 	private String reviewPNo;
-
-	// 내용
+	private String answerContent;
+	private char delYN;
+	private Date writeDate;
+	private String writer;
+	private String memberId;
+	private String memberName;
 	private String content;
-
-	// 삭제여부
-	private char delYn;
 
 	public String getAnswerReviewNo() {
 		return answerReviewNo;
@@ -42,6 +38,54 @@ public class ReviewAnswer {
 		this.reviewPNo = reviewPNo;
 	}
 
+	public String getAnswerContent() {
+		return answerContent;
+	}
+
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
+	}
+
+	public char getDelYN() {
+		return delYN;
+	}
+
+	public void setDelYN(char delYN) {
+		this.delYN = delYN;
+	}
+
+	public Date getWriteDate() {
+		return writeDate;
+	}
+
+	public void setWriteDate(Date writeDate) {
+		this.writeDate = writeDate;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -50,21 +94,19 @@ public class ReviewAnswer {
 		this.content = content;
 	}
 
-	public char getDelYn() {
-		return delYn;
-	}
-
-	public void setDelYn(char delYn) {
-		this.delYn = delYn;
-	}
-
-	public ReviewAnswer(String answerReviewNo, String reviewSNo, String reviewPNo, String content, char delYn) {
+	public ReviewAnswer(String answerReviewNo, String reviewSNo, String reviewPNo, String answerContent, char delYN,
+			Date writeDate, String writer, String memberId, String memberName, String content) {
 		super();
 		this.answerReviewNo = answerReviewNo;
 		this.reviewSNo = reviewSNo;
 		this.reviewPNo = reviewPNo;
+		this.answerContent = answerContent;
+		this.delYN = delYN;
+		this.writeDate = writeDate;
+		this.writer = writer;
+		this.memberId = memberId;
+		this.memberName = memberName;
 		this.content = content;
-		this.delYn = delYn;
 	}
 
 	public ReviewAnswer() {

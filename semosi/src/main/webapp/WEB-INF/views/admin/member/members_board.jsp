@@ -153,8 +153,7 @@ $(function(){
 										<c:forEach var="memberSList" items="${memberSList }"
 											varStatus="status">
 											<tr class="contents">
-												<td class='select'><input type="checkbox" value=""
-													name="send-select" /></td>
+												<td class='select'><input type="checkbox" value="" name="send-select" /></td>
 												<td class='member-no'>${memberSList.membersNo }</td>
 												<td class='member-id'>${memberSList.memberId }</td>
 												<td class='member-name'>${memberSList.memberName }</td>

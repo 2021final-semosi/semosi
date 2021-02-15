@@ -92,84 +92,51 @@
 		RNUM between #{start} and #{end}
 	</select>
 
-	<resultMap type="ReviewAnswerMP" id="answermp">
-		<result property="answerReviewNo" column="answerreviewno" />
-		<result property="reviewSNo" column="reviewsno" />
-		<result property="reviewPNo" column="reviewpno" />
-		<result property="answerContent" column="answerContent" />
-		<result property="delYN" column="DELYN" />
-		<result property="writeDate" column="WRITEDATE" />
-		<result property="writer" column="writer" />
-		<result property="memberId" column="memberid" />
-		<result property="memberName" column="membername" />
-		<association javaType="JobOfferReviewView" property="jobReview">
-			<id property="reviewNo" column="REVIEWNO" />
-			<result property="content" column="content" />
-		</association>
-	</resultMap>
-
-	<resultMap type="ReviewAnswerMS" id="answerms">
-		<result property="answerReviewNo" column="answerreviewno" />
-		<result property="reviewSNo" column="reviewsno" />
-		<result property="reviewPNo" column="reviewpno" />
-		<result property="answerContent" column="answerContent" />
-		<result property="delYN" column="DELYN" />
-		<result property="writeDate" column="WRITEDATE" />
-		<result property="writer" column="writer" />
-		<result property="memberId" column="memberid" />
-		<result property="memberName" column="membername" />
-		<association javaType="JobSearchReviewView" property="jobReview">
-			<id property="reviewNo" column="REVIEWNO" />
-			<result property="content" column="content" />
-		</association>
-	</resultMap>
-
 	<select id="getReAnswerCount" resultType="int" parameterType="java.util.HashMap">
 		select count(*) from Review_Answer
 	</select>
-
-	<sql id="answerms">
+	
+	<select id="reviewAnswerList" resultType="ReviewAnswer" parameterType="java.util.HashMap">
 		SELECT
-		ar.ANSWER_REVIEW_NO as answerReviewNo,
-		ar.REVIEW_S_NO
-		as reviewSNo,
-		ar.REVIEW_P_NO as reviewPNo,
-		ar.CONTENT as answerContent,
-		ar.DEL_YN as delYN,
-		ar.WRITER as writer,
-		ar.WRITE_DATE as writeDate,
-		ar.MEMBER_ID as memberId,
-		ar.MEMBER_NAME as memberName,
-		jo.CONTENT as
-		content
-		FROM ADMIN_REVIEW_ANSWER_MP ar JOIN JOB_OFFER_REVIEW jo ON ar.REVIEW_S_NO = jo.REVIEW_NO
-		WHERE ar.REVIEW_P_NO IS NULL
-	</sql>
-
-	<sql id="answermp">
-		SELECT
-		rm.ANSWER_REVIEW_NO as answerReviewNo,
-		rm.REVIEW_S_NO
-		as reviewSNo,
-		rm.REVIEW_P_NO as reviewPNo,
-		rm.CONTENT as answerContent,
-		rm.DEL_YN as delYN,
-		rm.WRITER as writer,
-		rm.WRITE_DATE as writeDate,
-		rm.MEMBER_ID as memberId,
-		rm.MEMBER_NAME as memberName,
-		js.content as
-		content
-		FROM ADMIN_REVIEW_ANSWER_MS rm JOIN JOB_Search_review js ON rm.REVIEW_P_NO = js.REVIEW_NO
-		WHERE rm.REVIEW_S_NO IS NULL
-	</sql>
-
-	<select id="reviewAnswerList" resultMap="answermp, answerms" parameterType="java.util.HashMap">
-		<include refid="answerms"></include>
-		union
-		<include refid="answermp"></include>
+		ANSWERREVIEWNO as answerReviewNo,
+		REVIEWSNO as reviewSNo,
+		REVIEWPNO as reviewPNo,
+		ANSWERCONTENT as answerContent,
+		DELYN as delYN,
+		WRITER as writer,
+		WRITEDATE as writeDate,
+		MEMBERID as memberId,
+		MEMBERNAME as memberName,
+		CONTENT as content
+		From(select Rank() over(order by ANSWERREVIEWNO DESC) as RNUM, ADMIN_REVIEW_ANSWER.* from ADMIN_REVIEW_ANSWER)
+		WHERE
+		<if test='category !=null and category != all and !keyword.equals("")'>
+			<if test='category == "ANSWERREVIEWNO"'>
+				ANSWERREVIEWNO like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("MEMBERID")'>
+				MEMBERID like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("MEMBERNAME")'>
+				MEMBERNAME like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("content")'>
+				CONTENT like '%'||#{keyword}||'%' and
+			</if>
+			<if test='category.equals("DELYN")'>
+				<choose>
+					<when test='keyword.equals("삭제")'>
+						DELYN = 'Y' and
+					</when>
+					<otherwise>
+						DELYN = 'N' and
+					</otherwise>
+				</choose>
+			</if>
+		</if>
+		RNUM between #{start} and #{end}
 	</select>
-
+	
 	<update id="answerDelYN">
 		update review_answer set del_yn = #{delYn} where answer_review_no=#{answerReviewNo}
 	</update>
