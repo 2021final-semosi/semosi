@@ -222,4 +222,11 @@
 	<update id="documentYN">
 	update MEMBER_S set document_YN='Y' where members_no=#{membersNo}
 	</update>
+	
+	<update id="memberPcheckDelete" parameterType="java.util.List">
+	update member_p set end_yn = 'Y' where 
+	<foreach collection="list" item="item" separator=" or ">
+	memberp_no=#{list.memberPList}
+	</foreach>
+	</update>
 </mapper>
