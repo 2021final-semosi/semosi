@@ -34,4 +34,8 @@
   	FROM MEMBER_P
   	WHERE MEMBER_ID=#{memberId}  
   </select>
+  
+  <insert id="memberSignup" parameterType="ParentMember">
+  	INSERT INTO MEMBER_P VALUES(MEMBERP_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, default, default, default, #{birthDay} )
+  </insert>
 </mapper>

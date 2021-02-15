@@ -36,4 +36,8 @@
   	FROM MEMBER_S
   	WHERE MEMBER_ID=#{memberId}  
   </select>
+  
+    <insert id="memberSignup" parameterType="SitterMember">
+  	INSERT INTO MEMBER_S VALUES(MEMBERS_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, sysdate, null, null, #{birthDay}, 'N')
+  </insert>
 </mapper>

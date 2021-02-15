@@ -3,6 +3,7 @@ package kr.co.semosi.member.model.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.co.semosi.member.model.vo.Authentication;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 
@@ -35,10 +36,32 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int selectAuthenticationNum(SqlSessionTemplate sqlSession, int checkNumber) {
+	public boolean selectAuthenticationNum(SqlSessionTemplate sqlSession, int checkNumber) {
+		System.out.println(checkNumber);
+		Authentication authen = sqlSession.selectOne("authentication.selectNumber",checkNumber);
 		
-		int result = sqlSession.insert("authentication.selectNumber",checkNumber);
-		System.out.println("result ::::" +result);
+		boolean result = false;
+		
+		if(authen!=null){ //일치한다면
+			result = true;
+		}
+		return result;
+	}
+
+	public int deleteAuthenticationNum(SqlSessionTemplate sqlSession, int checkNumber) {
+		
+		int result = sqlSession.delete("authentication.deleteNumber", checkNumber);
+		System.out.println(result);
+		return result;
+	}
+
+	public int insertParentMemberSignup(SqlSessionTemplate sqlSession, ParentMember pMember) {
+		int result = sqlSession.insert("parentMember.memberSignup", pMember);
+		return result;
+	}
+
+	public int insertSitterMemberSignup(SqlSessionTemplate sqlSession, SitterMember sMember) {
+		int result = sqlSession.insert("sitterMember.memberSignup", sMember);
 		return result;
 	}
 

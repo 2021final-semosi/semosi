@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<script>
-		alert("로그인 실패 ( ID/PW를 확인해주세요. )");
-		location.replace('/loginPage.sms');
+		alert('${msg}');
+		location.replace('${location}');
 	</script>
+
+
 </body>
 </html>
