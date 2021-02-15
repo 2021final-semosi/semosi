@@ -5,10 +5,16 @@
 		INSERT INTO AUTHENTICATION VALUES(#{random})
 	</insert>
 	
-	<select id="selectNumber">
+	<select id="selectNumber" resultType="Authentication">
 	SELECT 
-  		AUTHENTICATIONNUMBER
+  		AUTHENTICATIONNUMBER as autenticationNumber
   	FROM authentication
   	WHERE authenticationNumber = #{checkNumber}
 	</select>
+	
+	<delete id="deleteNumber">
+		DELETE 
+		FROM authentication
+		WHERE authenticationNumber = #{checkNumber}
+	</delete>
 </mapper>

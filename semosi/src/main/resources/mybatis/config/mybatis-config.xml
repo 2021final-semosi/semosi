@@ -33,6 +33,7 @@
       	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.SitterVoucherView" alias="SitterVoucherView"/>	
       	<!-- 관리자  -->
 	
+		<typeAlias type="kr.co.semosi.member.model.vo.Authentication" alias="Authentication"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.ParentMember" alias="ParentMember"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.SitterMember" alias="SitterMember"/>
 		
