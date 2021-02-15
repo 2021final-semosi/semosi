@@ -30,6 +30,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.semosi.member.model.service.MemberService;
@@ -201,16 +202,16 @@ public class MemberController {
 
 			// 본인 인증 번호 DB 저장
 			int result = mService.insertAuthenticationNum(random);
-			//이러면 발신 실패해도 DB에 데이터 저장이 이루어짐 
+			// 이러면 발신 실패해도 DB에 데이터 저장이 이루어짐
 			response.getWriter().print(true);
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getLocalizedMessage());
 			response.getWriter().print(false);
-			
+
 		} finally {
 			client.getConnectionManager().shutdown();
 		}
-		
+
 		return;
 
 	}
@@ -230,8 +231,7 @@ public class MemberController {
 		}
 		return;
 	}
-	
-	
+
 	// 본인 인증 번호 DB 삭제
 	public void deleteAuthenticationNum(int checkNumber) {
 
@@ -241,43 +241,114 @@ public class MemberController {
 
 	// 회원가입 로직 진행
 	@RequestMapping(value = "/memberSignup.sms")
-	public ModelAndView memberSignup(@RequestParam String memberType, ParentMember pMember, SitterMember sMember, @RequestParam String yyyy, @RequestParam String mm, @RequestParam String dd, ModelAndView mav) {
+	public ModelAndView memberSignup(@RequestParam String memberType, ParentMember pMember, SitterMember sMember,
+			@RequestParam String yyyy, @RequestParam String mm, @RequestParam String dd, ModelAndView mav) {
 		System.out.println("[/memberSignup.sms] 정상적으로 호출되었습니다.");
-		//System.out.println(memberType);
-		//System.out.println("부모"+pMember.getMemberId());
-		//System.out.println("시터"+sMember.getMemberId());
-		
-		//쪼개서 받아온 생년월일 정보를 합쳐서 Date형으로 변환
+		// System.out.println(memberType);
+		// System.out.println("부모"+pMember.getMemberId());
+		// System.out.println("시터"+sMember.getMemberId());
+
+		// 쪼개서 받아온 생년월일 정보를 합쳐서 Date형으로 변환
 		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
-		//String yy = yyyy.substring(0, 1);
-		String birthDate = yyyy+"-"+mm+"-"+dd;
+		// String yy = yyyy.substring(0, 1);
+		String birthDate = yyyy + "-" + mm + "-" + dd;
 
-        java.sql.Date formattedDate = java.sql.Date.valueOf(birthDate);
+		java.sql.Date formattedDate = java.sql.Date.valueOf(birthDate);
 
-        pMember.setBirthDay(formattedDate);
+		pMember.setBirthDay(formattedDate);
 		sMember.setBirthDay(formattedDate);
-		
-		if(memberType.equals("parent")){
+
+		if (memberType.equals("parent")) {
 			int parentResult = mService.insertParentMemberSignup(pMember);
-			if(parentResult>0){ //회원 가입 성공
-				mav.addObject("msg","회원 가입이 완료되었습니다.");
-			}else{ //회원 가입 실패 
-				mav.addObject("msg","회원 가입에 실패하였습니다. 다시 시도해 주세요.");	
+			if (parentResult > 0) { // 회원 가입 성공
+				mav.addObject("msg", "회원 가입이 완료되었습니다.");
+			} else { // 회원 가입 실패
+				mav.addObject("msg", "회원 가입에 실패하였습니다. 다시 시도해 주세요.");
 			}
-			
-		}else if(memberType.equals("sitter")){
+
+		} else if (memberType.equals("sitter")) {
 			int sitterResult = mService.insertSitterMemberSignup(sMember);
-			if(sitterResult>0){ //회원 가입 성공
-				mav.addObject("msg","회원 가입이 완료되었습니다.");
-			}else{ //회원 가입 실패 
-				mav.addObject("msg","회원 가입에 실패하였습니다. 다시 시도해 주세요.");
+			if (sitterResult > 0) { // 회원 가입 성공
+				mav.addObject("msg", "회원 가입이 완료되었습니다.");
+			} else { // 회원 가입 실패
+				mav.addObject("msg", "회원 가입에 실패하였습니다. 다시 시도해 주세요.");
 			}
 		}
 
-		mav.addObject("location","/");
-		
+		mav.addObject("location", "/");
+
 		mav.setViewName("member/result");
 		return mav;
+	}
+
+	// ID 찾기
+	@RequestMapping(value = "/memberIdFind.sms")
+	public void memberIdFind() {
+
+	}
+
+	// PW 찾기
+	@RequestMapping(value = "/memberPwFind.sms")
+	public void memberPwFind() {
+
+	}
+
+	// 이용권 구매 - 부모
+	// DB에 값 넣어주기 - ajax
+	@RequestMapping(value = "/buyVoucherParent.sms")
+	public void buyVoucherParent(@SessionAttribute("pMember") ParentMember sessionMember,
+			@RequestParam String voucherType, HttpServletResponse response) throws IOException {
+		// sessionMember는 session에 저장된 회원 정보
+
+		// 만약 추가 구매를 한 회원이라면 어떻게?
+
+		String memberNo = sessionMember.getMemberNo();
+		int result = 0;
+		if (voucherType.equals("7days")) { // 7일 이용권이라면
+			result = mService.insertParentVoucher7Days(memberNo);
+		} else if (voucherType.equals("14days")) {
+			result = mService.insertParentVoucher14Days(memberNo);
+		} else if (voucherType.equals("30days")) {
+			result = mService.insertParentVoucher30Days(memberNo);
+		}
+
+		if (result > 0) {
+			// 디비에 저장이 완료되었다면
+			response.getWriter().print(true);
+		} else { // 디비 저장 실패
+			response.getWriter().print(false);
+		}
+
+		return;
+	}
+
+	// 이용권 구매 - 시터
+	// DB에 값 넣어주기 - ajax
+	@RequestMapping(value = "/buyVoucherSitter.sms")
+	public void buyVoucherSitter(@SessionAttribute("sMember") SitterMember sessionMember,
+			@RequestParam String voucherType, HttpServletResponse response) throws IOException {
+		// sessionMember는 session에 저장된 회원 정보
+
+		// 만약 추가 구매를 한 회원이라면 어떻게?
+
+		String memberNo = sessionMember.getMemberNo();
+		int result = 0;
+		if (voucherType.equals("7days")) { // 7일 이용권이라면
+			result = mService.insertSitterVoucher7Days(memberNo);
+		} else if (voucherType.equals("14days")) {
+			result = mService.insertSitterVoucher14Days(memberNo);
+		} else if (voucherType.equals("30days")) {
+			result = mService.insertSitterVoucher30Days(memberNo);
+		}
+
+		if (result > 0) {
+			// 디비에 저장이 완료되었다면
+			response.getWriter().print(true);
+		} else { // 디비 저장 실패
+			response.getWriter().print(false);
+		}
+
+		return;
 	}
 
 }

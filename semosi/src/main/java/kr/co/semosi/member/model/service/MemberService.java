@@ -42,8 +42,13 @@ public class MemberService implements MemberServiceInterface {
 		System.out.println("[MemberServiceImpl] selectMemberIdCheck 메소드 호출");
 
 		// parent 테이블과 sitter 테이블 두개 다 확인하여야 함
-		ParentMember pMember = mDAO.selectMemberParentIdCheck(sqlSession, memberId); // 부모 회원 테이블확인
-		SitterMember sMember = mDAO.selectMemberSitterIdCheck(sqlSession, memberId); // 시터 회원 테이블 확인
+		ParentMember pMember = mDAO.selectMemberParentIdCheck(sqlSession, memberId); // 부모
+																						// 회원
+																						// 테이블확인
+		SitterMember sMember = mDAO.selectMemberSitterIdCheck(sqlSession, memberId); // 시터
+																						// 회원
+																						// 테이블
+																						// 확인
 
 		// 결과 전달을 위한 구문
 		int result = 0;
@@ -93,6 +98,46 @@ public class MemberService implements MemberServiceInterface {
 		System.out.println("[MemberServiceImpl] insertParentMemberSignup 메소드 호출");
 		int sitterResult = mDAO.insertSitterMemberSignup(sqlSession, sMember);
 		return sitterResult;
+	}
+
+	public int insertParentVoucher7Days(String memberNo) {
+
+		System.out.println("[MemberServiceImpl] insertParentVoucher7Days 메소드 호출");
+		int result = mDAO.insertParentVoucher7Days(sqlSession, memberNo);
+		return result;
+
+	}
+
+	public int insertParentVoucher14Days(String memberNo) {
+		System.out.println("[MemberServiceImpl] insertParentVoucher14Days 메소드 호출");
+		int result = mDAO.insertParentVoucher14Days(sqlSession, memberNo);
+		return result;
+	}
+
+	public int insertParentVoucher30Days(String memberNo) {
+		System.out.println("[MemberServiceImpl] insertParentVoucher30Days 메소드 호출");
+		int result = mDAO.insertParentVoucher30Days(sqlSession, memberNo);
+		return result;
+	}
+
+	public int insertSitterVoucher7Days(String memberNo) {
+
+		System.out.println("[MemberServiceImpl] insertSitterVoucher7Days 메소드 호출");
+		int result = mDAO.insertSitterVoucher7Days(sqlSession, memberNo);
+		return result;
+
+	}
+
+	public int insertSitterVoucher14Days(String memberNo) {
+		System.out.println("[MemberServiceImpl] insertSitterVoucher14Days 메소드 호출");
+		int result = mDAO.insertSitterVoucher14Days(sqlSession, memberNo);
+		return result;
+	}
+
+	public int insertSitterVoucher30Days(String memberNo) {
+		System.out.println("[MemberServiceImpl] insertSitterVoucher30Days 메소드 호출");
+		int result = mDAO.insertSitterVoucher30Days(sqlSession, memberNo);
+		return result;
 	}
 
 }

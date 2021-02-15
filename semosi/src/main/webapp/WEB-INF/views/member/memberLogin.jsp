@@ -78,8 +78,8 @@
 						placeholder="비밀번호를 입력하세요" /> <br> <input type="submit"
 						id="submitBtn" class="btn btn-warning" value="로그인" />
 				</form>
-				<br> <a href="" class="finder">로그인 정보를 잊으셨나요?</a> <br>
-				<br> <a href="" class="finder">회원 가입</a>
+				<br> <a href="/memberIdFind.sms" class="finder">아이디 찾기</a> | <a href="/memberPwFine.sms" class="finder">비밀번호 찾기</a> <br>
+				<br> <a href="/memberJoinPageIndex.sms" class="finder">회원 가입</a>
 			</center>
 		</div>
 
