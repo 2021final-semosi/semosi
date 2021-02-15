@@ -135,29 +135,30 @@
 			for (var i = 0; i < list.length; i++) {
 				valueArr.push(list[i].value);
 			}
-			alert(valueArr);
 		if (valueArr.length == 0) {
 			alert("선택된 글이 없습니다.");
 		}else{
 			var chk = confirm("정말 삭제하시겠습니까?");
-			$.ajax({
-				url : "/memberPcheckDelete.sms",
-				type : "post",
-				data : {'valueArr' : valueArr},
-				success : function(result){
-					if (result == "true") {
-							alert("삭제 성공");
-					} else {
-						console.log("삭제 실패");
+			if(chk==true){
+				$.ajax({
+					url : "/memberPcheckDelete.sms",
+					type : "post",
+					data : {'valueArr' : valueArr},
+					success : function(result){
+						if (result == "true") {
+								alert("삭제 성공");
+						} else {
+							console.log("삭제 실패");
+						}
+						location.reload();
+					},
+					error : function() {
+						console.log("ajax통신 실패");
 					}
-					location.reload();
-				},
-				error : function() {
-					console.log("ajax통신 실패");
-				}
-			});
+				});
+			}
 		}
-		};
+	};
 </script>
 		
 	<div class="page-wrapper">
