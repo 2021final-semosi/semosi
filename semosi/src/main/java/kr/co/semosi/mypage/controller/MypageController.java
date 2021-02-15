@@ -64,6 +64,7 @@ public class MypageController {
 		return "mypage/parent/reviewWrite";
 	}
 	
+	//내 채용내역
 	@RequestMapping(value="/parentMyRecruitment.sms")
 	public String parentsHire(){
 		System.out.println("[/parentMyRecruitment.sms] 정상적으로 호출 되었습니다.");
@@ -162,7 +163,7 @@ public class MypageController {
 		return "mypage/sitter/memberCertification";
 	}
 	
-	
+	//내 채용내역
 	@RequestMapping(value="/sitterMyRecruitment.sms")
 	public String sitterHired(){
 		

@@ -219,7 +219,7 @@ svg {
 					</div>
 				</div>
 				<div class="menu-main">
-					<a href="#"><span>내 채용 내역</span></a>
+					<a href="/parentMyRecruitment.sms"><span>내 채용 내역</span></a>
 				</div>
 				<div class="menu-main">
 					<a href="/parentReport.sms"><span>신고 내역</span></a>
