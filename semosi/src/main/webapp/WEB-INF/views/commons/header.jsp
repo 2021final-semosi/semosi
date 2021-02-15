@@ -26,11 +26,18 @@
 				<a href="/"><img alt="세모시 로고" src="/resources/images/semosi-logo-color.png"></a>
 			</div>
 			<ul id="main-nav-panel">
-				<li><a href="#">이용권 구매</a></li>
+			<%if(pm != null){ %>
+			
+				<li><a href="/parentVoucherBuy.sms">이용권 구매</a></li>
 				<li><a href="/moveCsMain.sms">고객센터</a></li>
-				<li><a href="/parentProfile.sms">부모myPage</a></li>
-				<li><a href="/sitterProfile.sms">회원myPage</a></li>
-				
+
+			<%}else if(sm != null){ %>
+				<li><a href="/sitterVoucherBuy.sms">이용권 구매</a></li>
+				<li><a href="/moveCsMain.sms">고객센터</a></li>
+			<%} else { %>
+				<li><a href="/moveCsMain.sms">고객센터</a></li>
+			
+			<%} %>	
 			</ul>
 			
 			<%if(pm != null){ %>

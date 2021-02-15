@@ -156,7 +156,7 @@ svg {
 		<div id="navigation">
 			<div id="fixedNavi">
 				<div class="menu-main">
-					<a href="/sitterProfile.do"><span>마이페이지</span></a>
+					<a href="/sitterProfile.sms"><span>마이페이지</span></a>
 				</div>
 				<hr class="line">
 				<div class="menu-main row m-0">
@@ -211,17 +211,17 @@ svg {
 				</div>
 				<div class="menu-sub">
 					<div class="hide">
-						<a href="/sitterReviewReceive.sms"><span>작성한 후기</span></a>
+						<a href="/sitterReviewWrite.sms"><span>작성한 후기</span></a>
 					</div>
 					<div class="hide">
-						<a href="/sitterReviewWrite.sms"><span>받은 후기</span></a>
+						<a href="/sitterReviewReceive.sms"><span>받은 후기</span></a>
 					</div>
 				</div>
 				<div class="menu-main">
 					<a href="/sitterCertification.sms"><span>인증 관리</span></a>
 				</div>
 				<div class="menu-main">
-					<a href="#"><span>내 맘시터 채용 내역</span></a>
+					<a href="/sitterMyRecruitment.sms"><span>내 맘시터 채용 내역</span></a>
 				</div>
 				<div class="menu-main">
 					<a href="/sitterReport.sms"><span>신고 내역</span></a>

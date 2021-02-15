@@ -64,16 +64,11 @@ public class MypageController {
 		return "mypage/parent/reviewWrite";
 	}
 	
-	/*
-	//내 채용내역
-	//-> 페이지없는듯
-	@RequestMapping(value="/")
+	@RequestMapping(value="/parentMyRecruitment.sms")
 	public String parentsHire(){
-		
-		System.out.println("[/.do] 정상적으로 호출 되었습니다.");
-		return "mypage/parent/";
+		System.out.println("[/parentMyRecruitment.sms] 정상적으로 호출 되었습니다.");
+		return "mypage/parent/recruitmentDetails";
 	}
-	*/
 	
 	//신고내역
 	@RequestMapping(value="/parentReport.sms")
@@ -167,17 +162,14 @@ public class MypageController {
 		return "mypage/sitter/memberCertification";
 	}
 	
-	/*
-	//내 채용내역
-	//-> 페이지없는듯
-	@RequestMapping(value="/")
+	
+	@RequestMapping(value="/sitterMyRecruitment.sms")
 	public String sitterHired(){
 		
-		System.out.println("[/.do] 정상적으로 호출 되었습니다.");
-		return "mypage/sitter/";
+		System.out.println("[/sitterMyRecruitment.sms] 정상적으로 호출 되었습니다.");
+		return "mypage/sitter/recruitmentDetails";
 	}
 	
-	*/
 	//신고내역
 	@RequestMapping(value="/sitterReport.sms")
 	public String sitterReport(){

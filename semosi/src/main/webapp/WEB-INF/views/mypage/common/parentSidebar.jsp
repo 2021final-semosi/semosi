@@ -157,7 +157,7 @@ svg {
 		<div id="navigation">
 			<div id="fixedNavi">
 				<div class="menu-main">
-					<a href="/parentProfile.do"><span>마이페이지</span></a>
+					<a href="/parentProfile.sms"><span>마이페이지</span></a>
 				</div>
 				<hr class="line">
 				<div class="menu-main row m-0">
@@ -212,10 +212,10 @@ svg {
 				</div>
 				<div class="menu-sub">
 					<div class="hide">
-						<a href="/parentReviewReceive.sms"><span>작성한 후기</span></a>
+						<a href="/parentReviewWrite.sms"><span>작성한 후기</span></a>
 					</div>
 					<div class="hide">
-						<a href="/parentReviewWrite.sms"><span>받은 후기</span></a>
+						<a href="/parentReviewReceive.sms"><span>받은 후기</span></a>
 					</div>
 				</div>
 				<div class="menu-main">
@@ -228,7 +228,7 @@ svg {
 				<hr class="line">
 				<div class="menu-main row m-0">
 					<div class="menu-title col-9 p-0">
-						<a href="#"><span>이용권 관리<span></a>
+						<a href="/parentMyRecruitment.sms"><span>이용권 관리<span></a>
 					</div>
 					<div class="menu-svg col-3">
 						<svg xmlns="http://www.w3.org/2000/svg" id="icon-down" width="16"
