@@ -21,6 +21,8 @@
 		margin: 0px;
 		height: 100%;
 		width: 22%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		margin: 0px;
@@ -39,6 +41,8 @@
 	#sideBar{
 		height: 100%;
 		width: 23%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		height: 100%;
@@ -55,6 +59,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		height: 100%;
@@ -71,6 +77,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		height: 100%;
@@ -99,14 +107,15 @@
 }
 
 .title {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	font-size: 50px;
-	text-align: center;
+	margin-top:50px;
+		font-size:28px;
+		font-weight:600;
+		display:block;
+		padding-bottom: 25px;
 }
 
 #wrapper {
-	margin-top: 100px;
+	margin-top: 30px;
 	margin-bottom: 200px;
 }
 
@@ -116,24 +125,73 @@
 	padding: 0px;
 }
 
-.c-name {
-	background-color: #FF8C00;
-	border-bottom: 2px solid #dbdbda;
+/*---- interest-card ----*/
+#interest-info {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 5px;
 }
 
-.line-name {
-	line-height: 40px;
+#interest-card {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
 
-.line-content {
-	line-height: 32px;
-	border-bottom: 1px solid #dbdbda;
+#interest-card-info {
+	height: 100%;
+	width: 100%;
+	margin: 10px 0px 10px 0px;
+	cursor: pointer;
 }
 
-.line-content:hover {
-	background-color: #FDD7A0;
+#interest-card-img {
+	height: 100%;
+	width: 100%;
+	padding: 8px 0px 8px 0px;
+	margin: 5px 0px 5px 0px;
+	text-align: center;
 }
-	
+#interest-card-img img{
+	height: 80px;
+	width: 80px;
+}
+#userInfo {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+#userInfo-1 {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+#userInfo-2 {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+ #deleteBtn:hover{
+		background-color: #f3f1f1;
+	}
+.menu-hr{
+		margin: -1px 0px 0px; 
+		height: 15px; 
+		background-color: #f3f1f1;
+	}
+.hr{
+		margin: 0px auto; 
+		height: 0.5px; 
+		background-color: #f3f1f1; 
+		width: 95%;
+		color: rgb(172, 193, 191);
+		text-align: center;
+	}
 	/*-----------------------------------*/
 	#kakao-talk-channel-chat-button{
 	float:right;
@@ -169,129 +227,146 @@
 <!-- 여기서 부터 적용 -->
 
 
+
 	<section id="wrapper">
 	<div class="container">
 
 
 		<div id="review">
-			<div class="title row m-0">
-				<div class="col-sm-12 m-0 p-0">
-					<center>
-						<H1>받은 후기</H1>
-						<br>
-					</center>
+			<div class="title row">
+				<div class="col-sm-12">
+					<center><span>작성한 후기</span></center>
 				</div>
 			</div>
 
 		</div>
 		<hr class="menu-hr">
 
-		<div id="interest-info" class="row m-0">
-			<div id="interest-card-img" class="col-sm-3 m-0 p-0">
+		<div id="interest-info" class="row">
+			<div id="interest-card-img" class="col-md-2 col-sm-12">
 				<center>
 					<img
 						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
 						class="card-img" alt="...">
 				</center>
 			</div>
-			<div id="interest-card-info" class="col-sm-8 m-0 p-0">
-
-				<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
-
+			<div id="interest-card-info" class="col-md-10 col-sm-12">
+				<div  id="userInfo" class="row">
+					<div id="userInfo-1" class="col-11">	
+						<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
+		
+					</div>
+					<div id="userInfo-2" class="col-1">
+						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+						</svg>
+					</div>
+				</div>
 			</div>
-			<div id="interest-card-info" class="col-sm-1 m-0 p-0">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-				</svg>
-			</div>
-		</div>		<hr class="menu-hr">
+		</div>		
+		
+		<hr class="hr">
 
-		<div id="interest-info" class="row m-0">
-			<div id="interest-card-img" class="col-sm-3 m-0 p-0">
+		<div id="interest-info" class="row">
+			<div id="interest-card-img" class="col-md-2 col-sm-12">
 				<center>
 					<img
 						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
 						class="card-img" alt="...">
 				</center>
 			</div>
-			<div id="interest-card-info" class="col-sm-8 m-0 p-0">
-
-				<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
-
-			</div>
-			<div id="interest-card-info" class="col-sm-1 m-0 p-0">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-				</svg>
-			</div>
-		</div>		<hr class="menu-hr">
-
-		<div id="interest-info" class="row m-0">
-			<div id="interest-card-img" class="col-sm-3 m-0 p-0">
-				<center>
-					<img
-						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
-						class="card-img" alt="...">
-				</center>
-			</div>
-			<div id="interest-card-info" class="col-sm-8 m-0 p-0">
-
-				<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
-
-			</div>
-			<div id="interest-card-info" class="col-sm-1 m-0 p-0">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-				</svg>
-			</div>
-		</div>		<hr class="menu-hr">
-
-		<div id="interest-info" class="row m-0">
-			<div id="interest-card-img" class="col-sm-3 m-0 p-0">
-				<center>
-					<img
-						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
-						class="card-img" alt="...">
-				</center>
-			</div>
-			<div id="interest-card-info" class="col-sm-8 m-0 p-0">
-
-				<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
-
-			</div>
-			<div id="interest-card-info" class="col-sm-1 m-0 p-0">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-				</svg>
+			<div id="interest-card-info" class="col-md-10 col-sm-12">
+				<div  id="userInfo" class="row">
+					<div id="userInfo-1" class="col-11">	
+						<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
+		
+					</div>
+					<div id="userInfo-2" class="col-1">
+						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+						</svg>
+					</div>
+				</div>
 			</div>
 		</div>
-				<hr class="menu-hr">
 
-		<div id="interest-info" class="row m-0">
-			<div id="interest-card-img" class="col-sm-3 m-0 p-0">
+		<hr class="hr">
+		
+		<div id="interest-info" class="row">
+			<div id="interest-card-img" class="col-md-2 col-sm-12">
 				<center>
 					<img
 						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
 						class="card-img" alt="...">
 				</center>
 			</div>
-			<div id="interest-card-info" class="col-sm-8 m-0 p-0">
-
-				<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
-
-			</div>
-			<div id="interest-card-info" class="col-sm-1 m-0 p-0">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"> <path
-					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-				</svg>
+			<div id="interest-card-info" class="col-md-10 col-sm-12">
+				<div  id="userInfo" class="row">
+					<div id="userInfo-1" class="col-11">	
+						<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
+		
+					</div>
+					<div id="userInfo-2" class="col-1">
+						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+						</svg>
+					</div>
+				</div>
 			</div>
 		</div>
-	<hr>
+
+		<hr class="hr">
+		
+		<div id="interest-info" class="row">
+			<div id="interest-card-img" class="col-md-2 col-sm-12">
+				<center>
+					<img
+						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
+						class="card-img" alt="...">
+				</center>
+			</div>
+			<div id="interest-card-info" class="col-md-10 col-sm-12">
+				<div  id="userInfo" class="row">
+					<div id="userInfo-1" class="col-11">	
+						<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
+		
+					</div>
+					<div id="userInfo-2" class="col-1">
+						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr class="hr">
+		
+		<div id="interest-info" class="row">
+			<div id="interest-card-img" class="col-md-2 col-sm-12">
+				<center>
+					<img
+						src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png"
+						class="card-img" alt="...">
+				</center>
+			</div>
+			<div id="interest-card-info" class="col-md-10 col-sm-12">
+				<div  id="userInfo" class="row">
+					<div id="userInfo-1" class="col-11">	
+						<span><b>김○규</b> <span> 유아 2명 | 채용 후기 </span> <sub>22일 전 작성</sub><br>★★★★★ <br><br><span>넘 친절하셔요 감사합니다</span>
+		
+					</div>
+					<div id="userInfo-2" class="col-1">
+						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<hr class="menu-hr">
+	</div>
 	</section>
 <!-- 여기까지 적용 -->
 	</div>

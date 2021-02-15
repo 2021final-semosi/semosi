@@ -26,6 +26,8 @@
 		margin: 0px;
 		height: 100%;
 		width: 22%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		margin: 0px;
@@ -44,6 +46,8 @@
 	#sideBar{
 		height: 100%;
 		width: 23%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -61,6 +65,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -78,6 +84,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -112,7 +120,7 @@
 	}
 
 /*---- contents ----*/
-	#sitterInterest_contents{
+	#parentsInterest_contents{
 		width: 100%;
 		height: 100%;
 		margin: 0px auto;
@@ -152,8 +160,8 @@
 	#interest-card-info{
 		height: 100%;
 		width: 100%;
-		margin: 10px 0px 10px 0px;
 		padding: 0px;
+		margin: 10px 0px 10px 0px;
 		cursor: pointer;
 	}
 	
@@ -161,7 +169,7 @@
 		height: 100%;
 		width : 100%;
 		padding: 8px 0px 8px 0px;
-		margin: 10px 0px 10px 0px;
+		margin: 5px 0px 5px 0px;
 		text-align: center;
 	}
 	#interest-card-img>img{
@@ -180,9 +188,7 @@
 		padding: 0px;
 		font-size: 14px;
 	}
-	#userInfo-4>svg{
-		padding: 0px;
-	}
+
 /*---------------------------------*/	
 	.menu-hr{
 		margin: -1px 0px 0px; 
@@ -205,29 +211,9 @@
 		color: rgb(172, 193, 191);
 		text-align: center;
 	}
-	.bi:hover{
+	 #deleteBtn:hover{
 		background-color: #f3f1f1;
 	}
-	.care-days{
-		width: 25px;
-		height: 25px;
-		text-align: center;
-		border:0px;
-		background-color: #f3f1f1;
-		pointer-events: none;
-	}
-	#care-days{
-		width: 25px;
-		height: 25px;
-		text-align: center;
-		border:0px;
-		background-color: #848484;
-		pointer-events: none;
-	}
-	#userInfo-br{
-		height: 10px;
-	}
-	
 	
 	/*-----------------------------------*/
 	#kakao-talk-channel-chat-button{
@@ -258,14 +244,14 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/parentSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
-	<div id="sitterInterest_contents">
+	<div id="parentsInterest_contents">
   		<div id="interest-title">
-  			<div id="interest-title-1"><span>찜한 일자리</span></div>	
+  			<div id="interest-title-1"><span>찜한 맘시터</span></div>	
   		</div>
   		<hr class="menu-hr">
   		<div id="interest-info" class="row">
@@ -275,34 +261,18 @@
   			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>매주 토요일 6시간정도 돌봐주실분 구합니다.</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>서울시 은평구 녹번동 |김○규 | 02/13 시작</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">
-  							<!-- 달러 아이콘 -->
-  						<svg xmlns="http://www.w3.org/2000/svg" style="width: 17px; height: 13px; margin-right: 5px; fill: rgb(189, 189, 189);">
-  							<g fill="none" fill-rule="evenodd">
-  							<g fill="#ACC9C3">
-  							<path fill-rule="nonzero" d="M16.981 6.49c0-3.578-2.99-6.48-6.677-6.48-.412 0-.816.037-1.208.107 3.112.551 5.47 3.195 5.47 6.374s-2.358 5.823-5.47 6.374c.392.07.796.106 1.208.106 3.688 0 6.677-2.901 6.677-6.48z"></path>
-  							<path d="M12.93 6.49c0 3.466-2.895 6.275-6.466 6.275C2.894 12.765 0 9.955 0 6.49 0 3.026 2.894.217 6.464.217c3.57 0 6.465 2.809 6.465 6.274zM2.785 6.057v.831h.99l.741 3.058h1.16l.697-3.066h.714l.696 3.066h1.17l.732-3.058h1v-.831H9.82l.616-2.478h-1.08l-.518 2.478h-.991l-.545-2.478H6.16l-.545 2.478h-1l-.508-2.478h-1.08l.607 2.478h-.848zm3.713.017l.17-.823.062-.546.072.546.151.823H6.5zm2.196.797l-.241 1.265-.098.624-.098-.624L7.98 6.87h.714zm-3.231 0l-.268 1.265-.09.624-.098-.624-.25-1.265h.706z"></path>
-  							</g>
-  							</g>
-  						</svg>
-  						<span>희망시급 13,500원 협의가능</span>
+  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
+  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
+  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
+  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
+  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+							</svg>
+  							<span>CCTV 동의함</span>
   						</div>
-  						<div id="userInfo-br"></div>
-  						<div id="userInfo-5" class="userInfo-p col-12"><span>단기-15일 동안</span> 
-						<input type="button" value="월" class="care-days"/>
-						<input type="button" value="화" class="care-days"/>
-						<input type="button" value="수" class="care-days"/>
-						<input type="button" value="목" class="care-days"/>
-						<input type="button" value="금" class="care-days"/>
-						<input type="button" value="토" id="care-days"/>
-						<input type="button" value="일" class="care-days"/>
-						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -317,34 +287,18 @@
   			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>매주 토요일 6시간정도 돌봐주실분 구합니다.</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>서울시 은평구 녹번동 |김○규 | 02/13 시작</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">
-  							<!-- 달러 아이콘 -->
-  						<svg xmlns="http://www.w3.org/2000/svg" style="width: 17px; height: 13px; margin-right: 5px; fill: rgb(189, 189, 189);">
-  							<g fill="none" fill-rule="evenodd">
-  							<g fill="#ACC9C3">
-  							<path fill-rule="nonzero" d="M16.981 6.49c0-3.578-2.99-6.48-6.677-6.48-.412 0-.816.037-1.208.107 3.112.551 5.47 3.195 5.47 6.374s-2.358 5.823-5.47 6.374c.392.07.796.106 1.208.106 3.688 0 6.677-2.901 6.677-6.48z"></path>
-  							<path d="M12.93 6.49c0 3.466-2.895 6.275-6.466 6.275C2.894 12.765 0 9.955 0 6.49 0 3.026 2.894.217 6.464.217c3.57 0 6.465 2.809 6.465 6.274zM2.785 6.057v.831h.99l.741 3.058h1.16l.697-3.066h.714l.696 3.066h1.17l.732-3.058h1v-.831H9.82l.616-2.478h-1.08l-.518 2.478h-.991l-.545-2.478H6.16l-.545 2.478h-1l-.508-2.478h-1.08l.607 2.478h-.848zm3.713.017l.17-.823.062-.546.072.546.151.823H6.5zm2.196.797l-.241 1.265-.098.624-.098-.624L7.98 6.87h.714zm-3.231 0l-.268 1.265-.09.624-.098-.624-.25-1.265h.706z"></path>
-  							</g>
-  							</g>
-  						</svg>
-  						<span>희망시급 13,500원 협의가능</span>
+  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
+  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
+  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
+  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
+  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+							</svg>
+  							<span>CCTV 동의함</span>
   						</div>
-  						<div id="userInfo-br"></div>
-  						<div id="userInfo-5" class="userInfo-p col-12"><span>단기-15일 동안</span> 
-						<input type="button" value="월" class="care-days"/>
-						<input type="button" value="화" class="care-days"/>
-						<input type="button" value="수" class="care-days"/>
-						<input type="button" value="목" class="care-days"/>
-						<input type="button" value="금" class="care-days"/>
-						<input type="button" value="토" id="care-days"/>
-						<input type="button" value="일" class="care-days"/>
-						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -359,34 +313,18 @@
   			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>매주 토요일 6시간정도 돌봐주실분 구합니다.</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>서울시 은평구 녹번동 |김○규 | 02/13 시작</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">
-  							<!-- 달러 아이콘 -->
-  						<svg xmlns="http://www.w3.org/2000/svg" style="width: 17px; height: 13px; margin-right: 5px; fill: rgb(189, 189, 189);">
-  							<g fill="none" fill-rule="evenodd">
-  							<g fill="#ACC9C3">
-  							<path fill-rule="nonzero" d="M16.981 6.49c0-3.578-2.99-6.48-6.677-6.48-.412 0-.816.037-1.208.107 3.112.551 5.47 3.195 5.47 6.374s-2.358 5.823-5.47 6.374c.392.07.796.106 1.208.106 3.688 0 6.677-2.901 6.677-6.48z"></path>
-  							<path d="M12.93 6.49c0 3.466-2.895 6.275-6.466 6.275C2.894 12.765 0 9.955 0 6.49 0 3.026 2.894.217 6.464.217c3.57 0 6.465 2.809 6.465 6.274zM2.785 6.057v.831h.99l.741 3.058h1.16l.697-3.066h.714l.696 3.066h1.17l.732-3.058h1v-.831H9.82l.616-2.478h-1.08l-.518 2.478h-.991l-.545-2.478H6.16l-.545 2.478h-1l-.508-2.478h-1.08l.607 2.478h-.848zm3.713.017l.17-.823.062-.546.072.546.151.823H6.5zm2.196.797l-.241 1.265-.098.624-.098-.624L7.98 6.87h.714zm-3.231 0l-.268 1.265-.09.624-.098-.624-.25-1.265h.706z"></path>
-  							</g>
-  							</g>
-  						</svg>
-  						<span>희망시급 13,500원 협의가능</span>
+  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
+  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
+  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
+  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
+  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+							</svg>
+  							<span>CCTV 동의함</span>
   						</div>
-  						<div id="userInfo-br"></div>
-  						<div id="userInfo-5" class="userInfo-p col-12"><span>단기-15일 동안</span> 
-						<input type="button" value="월" class="care-days"/>
-						<input type="button" value="화" class="care-days"/>
-						<input type="button" value="수" class="care-days"/>
-						<input type="button" value="목" class="care-days"/>
-						<input type="button" value="금" class="care-days"/>
-						<input type="button" value="토" id="care-days"/>
-						<input type="button" value="일" class="care-days"/>
-						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -401,34 +339,18 @@
   			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>영아 1명, 유아 1명</b> <sub>하루 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>매주 토요일 6시간정도 돌봐주실분 구합니다.</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>서울시 은평구 녹번동 |김○규 | 02/13 시작</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">
-  							<!-- 달러 아이콘 -->
-  						<svg xmlns="http://www.w3.org/2000/svg" style="width: 17px; height: 13px; margin-right: 5px; fill: rgb(189, 189, 189);">
-  							<g fill="none" fill-rule="evenodd">
-  							<g fill="#ACC9C3">
-  							<path fill-rule="nonzero" d="M16.981 6.49c0-3.578-2.99-6.48-6.677-6.48-.412 0-.816.037-1.208.107 3.112.551 5.47 3.195 5.47 6.374s-2.358 5.823-5.47 6.374c.392.07.796.106 1.208.106 3.688 0 6.677-2.901 6.677-6.48z"></path>
-  							<path d="M12.93 6.49c0 3.466-2.895 6.275-6.466 6.275C2.894 12.765 0 9.955 0 6.49 0 3.026 2.894.217 6.464.217c3.57 0 6.465 2.809 6.465 6.274zM2.785 6.057v.831h.99l.741 3.058h1.16l.697-3.066h.714l.696 3.066h1.17l.732-3.058h1v-.831H9.82l.616-2.478h-1.08l-.518 2.478h-.991l-.545-2.478H6.16l-.545 2.478h-1l-.508-2.478h-1.08l.607 2.478h-.848zm3.713.017l.17-.823.062-.546.072.546.151.823H6.5zm2.196.797l-.241 1.265-.098.624-.098-.624L7.98 6.87h.714zm-3.231 0l-.268 1.265-.09.624-.098-.624-.25-1.265h.706z"></path>
-  							</g>
-  							</g>
-  						</svg>
-  						<span>희망시급 13,500원 협의가능</span>
+  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
+  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
+  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
+  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
+  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+							</svg>
+  							<span>CCTV 동의함</span>
   						</div>
-  						<div id="userInfo-br"></div>
-  						<div id="userInfo-5" class="userInfo-p col-12"><span>단기-15일 동안</span> 
-						<input type="button" value="월" class="care-days"/>
-						<input type="button" value="화" class="care-days"/>
-						<input type="button" value="수" class="care-days"/>
-						<input type="button" value="목" class="care-days"/>
-						<input type="button" value="금" class="care-days"/>
-						<input type="button" value="토" id="care-days"/>
-						<input type="button" value="일" class="care-days"/>
-						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 						</svg>
 					</div>
@@ -436,8 +358,7 @@
   			</div>
   		</div>
   		<hr class="menu-hr">
-  	</div>
-
+  	</div>	
 
 <!-- 여기까지 적용 -->
 	</div>
