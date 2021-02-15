@@ -21,6 +21,8 @@
 		margin: 0px;
 		height: 100%;
 		width: 22%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		margin: 0px;
@@ -39,6 +41,8 @@
 	#sideBar{
 		height: 100%;
 		width: 23%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -56,6 +60,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -73,6 +79,8 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
+		position: sticky;
+		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -174,7 +182,7 @@
 </header>
 <div id="mypage-wrap" class="row">
 	<div id="sideBar">
-		<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
+		<%@ include file="/WEB-INF/views/mypage/common/parentSidebar.jsp"%>
 	</div>
 	<div id="content">
 <!-- 여기서 부터 적용 -->
