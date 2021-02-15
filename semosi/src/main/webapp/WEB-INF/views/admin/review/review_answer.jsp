@@ -117,11 +117,11 @@ $(function(){
 									<select name="category">
 										<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
 										<option value="all">전체</option>
-										<option value="ANSWER_REVIEW_NO">게시글 번호</option>
-										<option value=MEMBER_ID>작성자 아이디</option>
-										<option value="member_name">작성자 이름</option>
-										<option value="content">후기 답변 내용</option>
-										<option value="del_YN">삭제여부</option>
+										<option value="ANSWERREVIEWNO">게시글 번호</option>
+										<option value=MEMBERID>작성자 아이디</option>
+										<option value="MEMBERNAME">작성자 이름</option>
+										<option value="CONTENT">후기 답변 내용</option>
+										<option value="DELYN">삭제여부</option>
 									</select>
 									<input type="text" name="keyword"/>
 									<button type="submit" class="search-btn" >검색</button>
@@ -146,7 +146,7 @@ $(function(){
 												<tr class="contents">
 													<td class='select'><input type="checkbox" value="" name="send-select" /></td>
 													<td class='post-no'>${raList.answerReviewNo }</td>
-													<td class="originContent">${raList.jobReview.content}</td>
+													<td class="originContent">${raList.content}</td>
 													<td class='memberid'>${raList.memberId }</td>
 													<td class='membername'>${raList.memberName }</td>
 													<td class='content'><a data-toggle="modal"
@@ -161,7 +161,7 @@ $(function(){
 																		<p class="guide" style="margin-top: 50px;">후기 답글 상세 보기</p>
 																		<p class="guide">본 후기</p>
 																		<p class="guide_content">
-																			<textarea class="guide_content" readonly>${raList.jobReview.content}</textarea>
+																			<textarea class="guide_content" readonly>${raList.content}</textarea>
 																		</p>
 																		<p class="guide">후기 답글</p>
 																		<p class="guide_content">
