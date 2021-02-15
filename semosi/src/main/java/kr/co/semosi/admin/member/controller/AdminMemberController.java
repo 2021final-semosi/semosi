@@ -216,10 +216,15 @@ public class AdminMemberController {
 	}
 	
 	@RequestMapping(value="/memberPcheckDelete.sms")
-	public String memberPcheckDelete(@RequestParam(value="valueArr[]") List<String> memberPList, HttpServletResponse response) throws IOException{
-		System.out.println(memberPList);
+	public String memberPcheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String [] memberPList = new String[20];
+		int i=0;
+		for(String data : datas)
+		{
+			memberPList[i] = data;
+			i++;
+		}
 		int result = mService.memberPcheckDelete(memberPList);
-		
 		if(result>0){
 			response.getWriter().print(true);
 		}else{

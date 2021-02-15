@@ -64,8 +64,7 @@ public class MemberService {
 		return mDAO.documentYN(sqlSession, membersNo);
 	}
 
-	public int memberPcheckDelete(List<String> memberPList) {
-		System.out.println("서비스" + memberPList);
+	public int memberPcheckDelete(String[] memberPList) {
 		return mDAO.memberPcheckDelete(sqlSession, memberPList);
 	}
 
