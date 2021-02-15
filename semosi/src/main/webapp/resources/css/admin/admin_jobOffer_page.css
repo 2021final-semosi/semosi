@@ -36,6 +36,18 @@ td {
    height:50%;
 }
 
+.first-td {
+	font-weight: bold;
+	font-size: 1.3rem;
+	width: 287.5px;
+}
+
+.sitter_age {
+	width: 15%;
+	background-color: #00ADB3;
+	color: white;
+}
+
 #second{
    height:50%;
 }
@@ -51,11 +63,6 @@ td {
 	font-weight: bold;
 	font-size: 1.3rem;
 	border-bottom: 2px solid black;
-}
-
-.first-td {
-	font-weight: bold;
-	font-size: 1.3rem;
 }
 
 .possible-active {

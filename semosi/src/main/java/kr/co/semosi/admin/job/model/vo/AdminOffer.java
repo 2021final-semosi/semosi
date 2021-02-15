@@ -7,10 +7,10 @@ public class AdminOffer {
     private String title;
     private String memberpNo;
     private String content;
-    private int age;
+    private String age;
 
     private int carePerson;
-    private String careAge;
+    private Date careAge;
     private String location;
     private char careType;
     private Date startDate;
@@ -62,11 +62,11 @@ public class AdminOffer {
    this.content = content;
     }
 
-    public int getAge() {
+    public String getAge() {
    return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
    this.age = age;
     }
 
@@ -78,11 +78,11 @@ public class AdminOffer {
    this.carePerson = carePerson;
     }
 
-    public String getCareAge() {
+    public Date getCareAge() {
    return careAge;
     }
 
-    public void setCareAge(String careAge) {
+    public void setCareAge(Date careAge) {
    this.careAge = careAge;
     }
 
@@ -219,8 +219,8 @@ public class AdminOffer {
    // TODO Auto-generated constructor stub
     }
 
-    public AdminOffer(String postNo, String title, String memberpNo, String content, int age, int carePerson,
-       String careAge, String location, char careType, Date startDate, Date endDate, String careDays,
+    public AdminOffer(String postNo, String title, String memberpNo, String content, String age, int carePerson,
+       Date careAge, String location, char careType, Date startDate, Date endDate, String careDays,
        String careTime, int pay, String careActivity, char preperGender, String memberName, String memberId,
        String phone, char gender, String address, Date writeDate, char delYN) {
    super();

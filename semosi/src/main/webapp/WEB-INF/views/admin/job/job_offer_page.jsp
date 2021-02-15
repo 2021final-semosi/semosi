@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,18 +64,49 @@
 									<td style="width: 16%;">돌봄 아이 수</td>
 									<td>${aOffer.carePerson}</td>
 									<td style="width: 17%;">돌봄 아이 연령</td>
-									<td>${aOffer.careAge}</td>
+									<td>
+										<c:set var="now" value="<%=new java.util.Date()%>" />
+										<fmt:formatDate var="sysMonth" value="${now}" pattern="MM"/>
+										<fmt:formatDate var="birthMonth" value="${aOffer.careAge}" pattern="MM"/>
+										<fmt:formatDate var="sysMilli" value="${now}" pattern="SSS"/>
+										<fmt:formatDate var="birthMilli" value="${aOffer.careAge}" pattern="SSS"/>
+										<c:choose>
+										<c:when test="${(sysMilli-birthMilli)}"></c:when>
+										<c:if test="${birthMonth < sysMonth}">
+											<fmt:formatDate var="sysYear" value="${now}" pattern="yyyy"/>
+											<fmt:formatDate var="birthYear" value = "${aOffer.careAge}" pattern = "yyyy" />
+											만 <c:out value="${sysYear-birthYear-1}"/>세
+										</c:if>
+										<c:if test="${birthMonth => sysMonth}">
+											<fmt:formatDate var="sysYear" value="${now}" pattern="yyyy"/>
+											<fmt:formatDate var="birthYear" value = "${aOffer.careAge}" pattern = "yyyy" />
+											만 <c:out value="${sysYear-birthYear}"/>세
+										</c:if>		
+										</c:choose>																	
+									</td>
 								</tr>
 							</table>
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr id="fourth">
-									<td style="width: 25%;" class="first-td">원하는 시터 나이</td>
-									<td style="width: 15%;">20대</td>
-									<td style="width: 15%;">30대</td>
-									<td style="width: 15%;">40대</td>
-									<td style="width: 15%;">50대</td>
-									<td style="width: 15%;">60대</td>
+									<td class="first-td">원하는 시터 나이</td>
+									<c:forTokens var="age" items="${aOffer.age}" delims=",">
+										<c:if test='${age eq "G20"}'>
+											<td class="sitter_age">20대</td>
+										</c:if>
+										<c:if test='${age eq "G30"}'>
+											<td class="sitter_age">30대</td>
+										</c:if>
+										<c:if test='${age eq "G40"}'>
+											<td class="sitter_age">40대</td>
+										</c:if>
+										<c:if test='${age eq "G50"}'>
+											<td class="sitter_age">50대</td>
+										</c:if>
+										<c:if test='${age eq "G60"}'>
+											<td class="sitter_age">60대</td>
+										</c:if>										
+									</c:forTokens>
 								</tr>
 							</table>
 							<div class="blank"></div>

@@ -12,11 +12,11 @@ public class JobOffer {
 	// 신청내용(요청사항)
 	private String content;
 	// 원하는시터나이
-	private int age;
+	private String age;
 	// 돌봄아이수
 	private int carePerson;
 	// 돌봄아이연령
-	private String careAge;
+	private Date careAge;
 	// 돌봄주소
 	private String location;
 	// 돌봄유형
@@ -45,8 +45,8 @@ public class JobOffer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public JobOffer(String postNo, String memberpNo, String title, String content, int age, int carePerson,
-			String careAge, String location, String careType, Date startDate, Date endDate, String careDays,
+	public JobOffer(String postNo, String memberpNo, String title, String content, String age, int carePerson,
+			Date careAge, String location, String careType, Date startDate, Date endDate, String careDays,
 			String careTime, int pay, String careActivity, String preperGender, Date writeDate, char delYN) {
 		super();
 		this.postNo = postNo;
@@ -101,11 +101,11 @@ public class JobOffer {
 		this.content = content;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
@@ -117,11 +117,11 @@ public class JobOffer {
 		this.carePerson = carePerson;
 	}
 
-	public String getCareAge() {
+	public Date getCareAge() {
 		return careAge;
 	}
 
-	public void setCareAge(String careAge) {
+	public void setCareAge(Date careAge) {
 		this.careAge = careAge;
 	}
 

@@ -23,7 +23,7 @@
 
     <div class='row admin-header'>
         <div class="header-logo">
-            <a href="/main.sms"><img src="/resources/img/semosi_logo.png"/></a>
+            <a href="/main.sms"><img src="/resources/img/semosi-logo-white.png"/></a>
         </div>
         <div class="header-gnb">
             <a href="/memberLogout.sms">로그아웃</a> &nbsp; &nbsp; &nbsp; <a href="#">나가기</a>

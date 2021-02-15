@@ -9,7 +9,7 @@ public class AdminSearch {
     private String selfIntroduce;
     private char careType;
 
-    private String careAge;
+    private Date careAge;
     private String careActivity;
     private String location;
     private Date startDate;
@@ -67,11 +67,11 @@ public class AdminSearch {
    this.careType = careType;
     }
 
-    public String getCareAge() {
+    public Date getCareAge() {
    return careAge;
     }
 
-    public void setCareAge(String careAge) {
+    public void setCareAge(Date careAge) {
    this.careAge = careAge;
     }
 
@@ -196,7 +196,7 @@ public class AdminSearch {
 	}
 
 	public AdminSearch(String postNo, String membersNo, String title, String selfIntroduce, char careType,
-       String careAge, String careActivity, String location, Date startDate, Date endDate, String careDays,
+       Date careAge, String careActivity, String location, Date startDate, Date endDate, String careDays,
        String careTime, int pay, char cctvYN, String memberName, String memberId, String phone, char gender,
        String address, Date wirteDate, char delYN) {
    super();
