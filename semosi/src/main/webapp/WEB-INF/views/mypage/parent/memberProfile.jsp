@@ -1,5 +1,8 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="kr.co.semosi.member.model.vo.ParentMember"%>
+<%@page import="java.util.Calendar" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,8 +24,6 @@
 		margin: 0px;
 		height: 100%;
 		width: 22%;
-		position: sticky;
-		top: 52px;
 	}
 	#content{
 		margin: 0px;
@@ -41,8 +42,6 @@
 	#sideBar{
 		height: 100%;
 		width: 23%;
-		position: sticky;
-		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -60,8 +59,6 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
-		position: sticky;
-		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -79,8 +76,6 @@
 	#sideBar{
 		height: 100%;
 		width: 30%;
-		position: sticky;
-		top: 52px;
 	}
 	#content{
 		padding: 30px;
@@ -200,9 +195,9 @@ section{
 	width:15%;
 	display:inline-block;
 }
-#inputZipcode{
+#address{
 	width:40%;
-	display:inline-block;
+	display: inline-block;
 }
 
 #inputPhone{
@@ -235,6 +230,7 @@ section{
 	width:100px;
 	background-color:#f6d257;
 	border:#ffc107;
+
 }
 
 #certify_btn{
@@ -242,6 +238,7 @@ section{
 	width:120px;
 	background-color:#f6d257;
 	border:#ffc107;
+
 }
 
 #modify_btn{
@@ -263,6 +260,10 @@ section{
 	margin: 5px;
 	width: 99%;
 }
+.hideText{
+	display: none;
+}
+
 	
 	/*-----------------------------------*/
 	#kakao-talk-channel-chat-button{
@@ -270,6 +271,7 @@ section{
 	margin-right:50px;
 }
 </style>
+
 
 <%--카카오톡 채팅 스크립트--%>
 <script>
@@ -298,7 +300,110 @@ section{
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
+<%
+	ParentMember pMember = (ParentMember)session.getAttribute("pMember");
 
+	//BirthDay 문자열 나누기
+	String birthDay = String.valueOf(pMember.getBirthDay());
+	String[] array = birthDay.split("-");
+	
+	//나이 계산하기
+	//BirthDay 년도 형변환
+	int birthYear = Integer.parseInt(array[0]);
+	
+	//현재 년도 가져오기
+	Calendar cal = Calendar.getInstance();
+	int year = cal.get(Calendar.YEAR);
+	
+	//현제나이 
+	int memberAge = (year - birthYear);
+
+%>
+<script>
+$(document).ready(function(){
+	
+	$('input').attr('readonly',true);
+	
+	var gender = $('#gender').text();
+	if(gender == 'F'){
+		$('#gender').text('여자');
+	}else{
+		$('#gender').text('남자');
+	}
+	
+	$("#modify_btn").click(function(){
+		var updateBtn = $(this).val();
+		if(updateBtn == "수정하기")
+		{
+			var modify = window.confirm("프로필 정보를 수정하시겠습니까?");
+			if(modify == true)
+				{
+				$(this).val("저장하기");
+				$('input').attr('readonly',false);
+				$('.hideText').css('display','block');
+				$('#certify_btn').css('display','inline-block');
+				$('#checkPhone').css('display','block');
+				$('#search_btn').css('display','inline-block');
+				$('#addrText_1').css('display','block');
+				$('#addrText_2').css('display','block');
+				$('#memberPw').val("");
+				
+				//비밀번호 유효성검사
+				function pwCheck() {
+					var memberPw = $('#memberPw').val();
+
+					if ((/^[a-zA-Z0-9`~!@#$%^&*(),.?\[\]\'\"=+:;{}<>|_-]{8,16}$/
+							.test(memberPw))) {
+						//유효성 검사를 통과 하였을 때
+
+						$('#pwCheckMessage').text("현재 비밀번호는 사용 가능합니다.");
+						$('#pwCheckMessage').show();
+						$('#pwCheckMessage').css('color', 'green');
+					} else {
+						//통과하지 못했을때
+						$('#pwCheckMessage').text("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요");
+						$('#pwCheckMessage').show();
+						$('#pwCheckMessage').css('color', 'red');
+					}
+
+				}
+
+				//비밀번호 + 비밀번호 확인 일치 여부 
+				function passwordCheckFunction() {
+
+					var memberPw = $('#memberPw').val();
+					var memberPwRe = $('#memberPwRe').val();
+
+					if (memberPw != memberPwRe) {
+						$('#pwReMessage').text("비밀번호가 일치하지 않습니다.");
+						$('#pwReMessage').show();
+						$('#pwReMessage').css('color', 'red');
+					} else {
+						$('#pwReMessage').hide();
+					}
+				}
+				}
+		}else{
+			var update = window.confirm("프로필 정보를 저장하시겠습니까?")
+			if(update == true)
+				{
+					$(this).val("수정하기");
+					$('input').attr('readonly',true);
+					$('.hideText').css('display','none');
+					$('#certify_btn').css('display','none');
+					$('#checkPhone').css('display','none');
+					$('#search_btn').css('display','none');
+					$('#addrText_1').css('display','none');
+					$('#addrText_2').css('display','none');
+					
+				}else{
+					location.href = "/parentProfile.sms";
+				}
+		}
+		
+	});
+});
+</script>
 		<section id="section-wrap">
 	<div id="wrap">
 		<center>
@@ -315,55 +420,67 @@ section{
 		<form id="info-table">
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label>아이디</label></div>
-				<div class="col-md-10 col-sm-12"><input type="text" class="form-control" id=""></div>
+				<div class="col-md-10 col-sm-12">&nbsp; <%=pMember.getMemberId()%></div>
 			</div>
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label>비밀번호</label></div>
-				<div class="col-md-10 col-sm-12"><input type="password" class="form-control" id=""></div>
+				<div class="col-md-10 col-sm-12">
+					<input type="password" class="form-control" name="memberPw" id="memberPw"
+					onblur="pwCheck();" placeholder="공백 없는 영문, 숫자, 특수문자  8~16자" value="<%=pMember.getMemberPw()%>">
+				</div>
 			</div>
-			<div class="input_info row">
-				<div class="col-md-2 col-sm-12"><label>비밀번호 재확인</label></div>
-				<div class="col-md-10 col-sm-12"><input type="password" class="form-control" id=""></div>
+			<div class="input_info row m-0 p-0">
+				<label for="inputText" class="col-sm-2 message"></label> <span
+					class="col-sm-10 message p-0" style="display: none;"
+				id="pwCheckMessage"></span>
+			</div>
+			<div class="input_info row  m-0 p-0">
+				<div class="hideText col-md-2 col-sm-12"><label>비밀번호 재확인</label></div>
+				<div class="hideText col-md-10 col-sm-12">
+					<input type="password" class="form-control" name="memberPwRe" id="memberPwRe"
+					onblur="passwordCheckFunction();">
+				</div>
+			</div>
+			<div class="form-message row m-0 p-0">
+				<label for="inputText" class="col-sm-2 message"></label> <span
+					class="col-sm-10 message p-0" style="display: none;"
+					id="pwReMessage"></span>
 			</div>
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label>이름</label></div>
-				<div class="col-md-10 col-sm-12"><input type="text" class="form-control" id=""></div>
+				<div class="col-md-10 col-sm-12">&nbsp; <%=pMember.getMemberName()%></div>
 			</div>
-			<div class="input_info row">
-				<div class="col-md-2 col-sm-12"><label>닉네임</label></div>
-				<div class="col-md-10 col-sm-12"><input type="text" class="form-control" id=""></div>
-			</div>
-			<div class="input_info row">
-				<div class="col-md-2 col-sm-12"><label>Email</label></div>
-				<div class="col-md-10 col-sm-12">
-					<input type="text" class="form-control" id="inputEmail-first">&nbsp;@&nbsp;
-					<input type="text" class="form-control" id="inputEmail-second">
-					<input type="text" class="form-control" id="inputEmail-type">
-				</div>
-			</div>
+			
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label>생년월일</label></div>
 				<div class="col-md-10 col-sm-12">
-					<input type="number" class="form-control" id="inputbirth" placeholder="1900" min="1900" max="2100">년&nbsp;
-					<input type="number" class="form-control" id="inputmonth" placeholder="01" min="1" max="12">월&nbsp;
-					<input type="number" class="form-control" id="inputdate" placeholder="01" min="1" max="31">일
+					&nbsp;&nbsp;<%=array[0] %>년&nbsp;
+					&nbsp;<%=array[1] %>월&nbsp;
+					&nbsp;<%=array[2] %>일&nbsp;
+					&nbsp;(만 <%=memberAge %>세)
 				</div>
 			</div>
 			<div class="input_info row">
-				<div class="col-md-2 col-sm-12"><label style="display:block;">주소</label></div>
+				<div class="col-md-2 col-sm-12"><label style="display:block;">성별</label></div>
 				<div class="col-md-10 col-sm-12">
-					<input type="text" class="form-control" id="inputZipcode">
-					<input type="button" id="search_btn" class="btn btn-warning" value="주소검색 " />
-					<input type="text" class="form-control" id="">
-					<input type="text" class="form-control" id="">
+					&nbsp; <span id="gender"><%=pMember.getGender() %></span>
 				</div>
 			</div>
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label style="display: block;">핸드폰 번호</label></div>
 				<div class="col-md-10 col-sm-12">
-					<input type="text" class="form-control" id="inputPhone">
-					<input type="button" id="certify_btn" class="btn btn-warning" value="핸드폰 인증" />
-					<input type="text" class="form-control" placeholder="인증번호를 입력하세요" id="checkPhone">
+					<input type="text" class="form-control" id="inputPhone"  value="<%=pMember.getPhone()%>">
+					<input type="button" id="certify_btn" class="btn btn-warning" style="display: none" value="핸드폰 인증" />
+					<input type="text" class="form-control" placeholder="인증번호를 입력하세요" style="display: none" id="checkPhone">
+				</div>
+			</div>
+			<div class="input_info row">
+				<div class="col-md-2 col-sm-12"><label style="display:block;">주소</label></div>
+				<div class="col-md-10 col-sm-12">
+					<input type="text" class="form-control" id="address" name="address" value="<%=pMember.getAddress()%>">
+					<input type="button" id="search_btn"  style="display: none" class="btn btn-warning" value="주소검색 " />
+					<input type="text" class="form-control" style="display: none" id="addrText_1">
+					<input type="text" class="form-control" style="display: none" id="addrText_2">
 				</div>
 			</div>
 			<input type="button" id="modify_btn" class="btn btn-warning" value="수정하기" />
