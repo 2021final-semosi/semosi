@@ -2,6 +2,7 @@ package kr.co.semosi.admin.job.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.semosi.admin.job.model.service.AdminJobService;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
-import kr.co.semosi.admin.job.model.vo.AdminReport;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
 
 @Controller
