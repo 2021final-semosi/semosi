@@ -56,4 +56,9 @@ public class AdminMemberDAO {
 		return sqlSession.update("member.documentYN", membersNo);
 	}
 
+	public int memberPcheckDelete(SqlSessionTemplate sqlSession, List<String> memberPList) {
+		System.out.println("DAO" + memberPList);
+		return sqlSession.update("member.memberPcheckDelete", memberPList);
+	}
+
 }

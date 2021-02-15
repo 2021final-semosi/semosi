@@ -2,6 +2,7 @@ package kr.co.semosi.admin.member.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -211,7 +212,19 @@ public class AdminMemberController {
 			System.out.println("실패");
 			response.getWriter().print(false);
 		}
-
+		return null;
+	}
+	
+	@RequestMapping(value="/memberPcheckDelete.sms")
+	public String memberPcheckDelete(@RequestParam(value="valueArr[]") List<String> memberPList, HttpServletResponse response) throws IOException{
+		System.out.println(memberPList);
+		int result = mService.memberPcheckDelete(memberPList);
+		
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
 		return null;
 	}
 }
