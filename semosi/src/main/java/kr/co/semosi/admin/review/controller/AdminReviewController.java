@@ -148,7 +148,7 @@ public class AdminReviewController {
 	}
 	
 	ra.setAnswerReviewNo(answerReviewNo);
-	ra.setDelYn(delYn);
+	ra.setDelYN(delYn);
 	
 	int result = rService.answerDelYN(ra); 
 	
