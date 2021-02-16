@@ -15,13 +15,9 @@
      	<typeAlias type="kr.co.semosi.admin.review.model.vo.JobSearchReviewView" alias="JobSearchReviewView" />
 		<typeAlias type="kr.co.semosi.admin.review.model.vo.ReviewAnswer" alias="ReviewAnswer" />
 
-		<typeAlias type="kr.co.semosi.admin.customer.model.vo.FAQ" alias="FAQ"/>
-     	<typeAlias type="kr.co.semosi.admin.customer.model.vo.Notice" alias="Notice"/>
-      	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnA" alias="QnA"/>
-		<typeAlias type="kr.co.semosi.cs.model.vo.Notice" alias="Notice"/>
-		<typeAlias type="kr.co.semosi.cs.model.vo.Guide" alias="Guide"/>
-		<typeAlias type="kr.co.semosi.cs.model.vo.FAQ" alias="FAQ"/>
-		<typeAlias type="kr.co.semosi.cs.model.vo.QnA" alias="QnA"/>
+		<typeAlias type="kr.co.semosi.admin.customer.model.vo.FAQ" alias="AFAQ"/>
+     	<typeAlias type="kr.co.semosi.admin.customer.model.vo.Notice" alias="ANotice"/>
+      	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnA" alias="AQnA"/>
       	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnAComment" alias="QnAComment"/>
       	<typeAlias type="kr.co.semosi.admin.customer.model.vo.Inquiry" alias="Inquiry"/>
       
@@ -44,5 +40,10 @@
 		<typeAlias type="kr.co.semosi.index.model.vo.IndexReviews" alias="IndexReviews"/>
 		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferList" alias="JobOfferList"/>
 		<typeAlias type="kr.co.semosi.jobsearch.model.vo.JobSearchList" alias="JobSearchList"/>
+		
+		<typeAlias type="kr.co.semosi.cs.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.Guide" alias="Guide"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.FAQ" alias="FAQ"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.QnA" alias="QnA"/>
 	</typeAliases>
 </configuration>
