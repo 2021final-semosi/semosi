@@ -4,6 +4,10 @@ table {
    width: 1200px;
 }
 
+tr {
+	height: 46px;
+}
+
 .search {
    margin-right: 160px;
    margin-bottom: 8px;
