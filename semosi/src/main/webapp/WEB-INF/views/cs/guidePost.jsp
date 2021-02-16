@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="kr.co.semosi.cs.model.vo.Guide"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,10 +25,10 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="csMenuBox">
 				<ul id="csMenu">
-					<li><a href="/moveNotice.sms">공지사항</a></li>
-					<li><a href="/moveGuide.sms">이용가이드</a></li>
-					<li><a href="/moveFaq.sms">자주묻는질문</a></li>
-					<li><a href="/moveQna.sms">1:1문의</a></li>
+					<li><a href="/csNotice.sms">공지사항</a></li>
+					<li><a href="/csGuide.sms">이용가이드</a></li>
+					<li><a href="/csFAQ.sms">자주묻는질문</a></li>
+					<li><a href="/csQnA.sms">1:1문의</a></li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +36,7 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="boardNameBox">
 				<div id="boardName">
-					<a href="/moveNotice.sms">공지사항</a>
+					<a href="/csGuide.sms">이용 가이드</a>
 				</div>
 			</div>
 			<div class="col-12" id="postBox">
@@ -45,22 +47,21 @@
 						<col width="10%">
 						<col width="20%">
 					</colgroup>
+					<% Guide guidePost = (Guide)request.getAttribute("guidePost");%>
 					<tr>
 						<td>제목</td>
-						<td colspan="3">게시글 제목이 표시됩니다.</td>
+						<td colspan="3"><%=guidePost.getTitle() %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td>관리자</td>
+						<td><%=guidePost.getWriter() %></td>
 						<td>작성일</td>
-						<td>2021-01-24 12:00:00</td>
+						<%SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); %>
+						<td><%=sdf.format(guidePost.getWriteDate()) %></td>
 					</tr>
 					<tr>
-						<td colspan="4">게시글 내용<br> 게시글 내용 게시글 내용<br> 게<br>
-							시<br> 글<br> 내<br> 용<br> br태그<br> br태그<br>
-							br태그<br> br태그<br> br태그<br> br태그<br> br태그<br>
-							br태그<br> br태그<br> br태그<br> br태그<br> br태그<br>
-							br태그<br> <br> <br> <br>
+						<td colspan="4">
+						<div id="content"><%=guidePost.getContent() %></div>
 						</td>
 					</tr>
 				</table>
@@ -69,35 +70,10 @@
 				<div id="btnBox">
 					<button id="modBtn">수정</button>
 					<button id="delBtn">삭제</button>
-					<button id="listBtn" onclick="location.href='#'">목록</button>
+					<a href="/csGuide.sms" id="listBtn">목록</a>
 				</div>
 			</div>
 		</div>
-		<div class="row no-gutters">
-			<div class="col-md-12" id="commentBox">
-				<ul id="comment">
-					<li>
-						<p>
-							<strong>작성자1</strong> 2021-01-15 20:50:00
-						</p>
-						<div>댓글 내용입니다.</div>
-					</li>
-					<li>
-						<p>
-							<strong>작성자1</strong> 2021-01-15 20:50:00
-						</p>
-						<div>댓글 내용입니다.</div>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-12" id="commentInputBox">
-				<div id="commentInput">
-					<textarea></textarea>
-					<button>댓글</button>
-				</div>
-			</div>
-		</div>
-
 	</div>
 	<footer><%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 	</footer>

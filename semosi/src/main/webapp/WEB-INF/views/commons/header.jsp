@@ -29,13 +29,13 @@
 			<%if(pm != null){ %>
 			
 				<li><a href="/parentVoucherBuy.sms">이용권 구매</a></li>
-				<li><a href="/moveCsMain.sms">고객센터</a></li>
+				<li><a href="/csMain.sms">고객센터</a></li>
 
 			<%}else if(sm != null){ %>
 				<li><a href="/sitterVoucherBuy.sms">이용권 구매</a></li>
-				<li><a href="/moveCsMain.sms">고객센터</a></li>
+				<li><a href="/csMain.sms">고객센터</a></li>
 			<%} else { %>
-				<li><a href="/moveCsMain.sms">고객센터</a></li>
+				<li><a href="/csMain.sms">고객센터</a></li>
 			
 			<%} %>	
 			</ul>
