@@ -36,7 +36,7 @@
   </select>
   
   <insert id="memberSignup" parameterType="ParentMember">
-  	INSERT INTO MEMBER_P VALUES(MEMBERP_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, default, default, default, #{birthDay} )
+  	INSERT INTO MEMBER_P VALUES('P'||MEMBERP_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, default, default, default, #{birthDay} )
   </insert>
   
   <insert id="7daysVoucher">
