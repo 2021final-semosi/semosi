@@ -1,5 +1,6 @@
 package kr.co.semosi.admin.job.model.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

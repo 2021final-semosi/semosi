@@ -28,7 +28,12 @@ th {
 
 td{
 	font-size:1rem;
-	border: 2px solid black;
+	border: 2px solid black;	 
+}
+
+.td_content {
+	vertical-align: top;
+	text-align: left;
 }
 
 .first_re{
