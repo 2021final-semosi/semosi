@@ -69,7 +69,58 @@ $("#pagination").append(pagination);//--페이지 셋팅
 	});
 });
 </script>
+<script>
+	$(document).ready(function() {
+		$("#all_select").click(function() {
+			if ($(".allSelect").prop("checked")) {
+				$(".check").prop("checked", true);
+			} else {
+				$(".check").prop("checked", false);
+			}
+		});
+		$(".check").click(function() {
+			if ($("input[name='send-select']:checked").length == 13) {
+				$(".allSelect").prop("checked", true);
+			} else {
+				$(".allSelect").prop("checked", false);
+			}
+		});
+	});
 
+	function deleteValue() {
+		var valueArr = new Array();
+		var list = $("input[name='send-select']:checked");
+		for (var i = 0; i < list.length; i++) {
+			valueArr.push(list[i].value);
+		}
+
+		if (valueArr.length == 0) {
+			alert("선택된 글이 없습니다.");
+		} else {
+			var chk = confirm("정말 삭제하시겠습니까?");
+			if (chk == true) {
+				$.ajax({
+					url : "/jocheckDelete.sms",
+					type : "post",
+					data : {
+						'valueArr' : valueArr
+					},
+					success : function(result) {
+						if (result == "true") {
+							alert("삭제 성공");
+						} else {
+							console.log("삭제 실패");
+						}
+						location.reload();
+					},
+					error : function() {
+						console.log("ajax통신 실패");
+					}
+				});
+			};
+		};
+	};
+</script>
 <div class="page-wrapper">
 	<div class="admin-header">
 		<%@ include file="/WEB-INF/views/admin/common/admin_header.jsp"%>
@@ -86,7 +137,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 				<div id="content-wrapper" class="board-wrapper">
 					<p>구인게시판</p>
 					<div class="search">
-						<form action="job_offer_list.sms" method="get">
+						<form>
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
 								<option value="all">전체</option>
@@ -101,9 +152,10 @@ $("#pagination").append(pagination);//--페이지 셋팅
 						</form>
 					</div>
 					<div class="tab-content">
+					<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
 						<table class="board">
 							<tr class="head">
-								<th id="all_select"><input type="checkbox" /></th>
+								<th id="all_select"><input type="checkbox" class="allSelect"/></th>
 								<th class='post_no'>번호</th>
 								<th class='member_id'>아이디</th>
 								<th class='member_name'>이름</th>
@@ -115,7 +167,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 								<c:when test="${fn:length(jobOfferList)!=0 }">
 									<c:forEach var="jobOfferList" items="${jobOfferList}" varStatus="status">
 										<tr class="contents">
-											<td class='select'><input type="checkbox" value="" name="send-select" /></td>
+											<td class='select'><input type="checkbox" value="${jobOfferList.postNo}" class="check" name="send-select" /></td>
 											<td class='post_no'>${jobOfferList.postNo}</td>
 											<td class='member_id'>${jobOfferList.memberId}</td>
 											<td class='member_name'>${jobOfferList.memberName}</td>
@@ -139,6 +191,17 @@ $("#pagination").append(pagination);//--페이지 셋팅
 									</c:forEach>
 								</c:when>
 							</c:choose>
+							<c:forEach begin="${fn:length(jobOfferList)}" end="12">
+									<tr class="contents">
+											<td class='select'></td>
+											<td class='post_no'></td>
+											<td class='member_id'></td>
+											<td class='member_name'></td>
+											<td class='title'></td>
+											<td class='date'></td>
+											<td class='del_YN'></td>
+										</tr>
+							</c:forEach>
 						</table>
 					</div>
 					<div id="pagination" class="pagenavigation"></div>

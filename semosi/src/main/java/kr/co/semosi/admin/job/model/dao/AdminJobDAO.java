@@ -79,4 +79,12 @@ public class AdminJobDAO {
 	public int postReportDelete(SqlSessionTemplate sqlSession, String postNo) {
 		return sqlSession.update("job.postReportDelete",postNo);
 	}
+
+	public int jocheckDelete(SqlSessionTemplate sqlSession, String[] joList) {
+		return sqlSession.update("job.jocheckDelete", joList);
+	}
+
+	public int jscheckDelete(SqlSessionTemplate sqlSession, String[] jsList) {
+		return sqlSession.update("job.jscheckDelete", jsList);
+	}
 }
