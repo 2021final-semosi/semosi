@@ -1,3 +1,9 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="kr.co.semosi.cs.model.vo.QnA"%>
+<%@page import="kr.co.semosi.cs.model.vo.FAQ"%>
+<%@page import="kr.co.semosi.cs.model.vo.Guide"%>
+<%@page import="kr.co.semosi.cs.model.vo.Notice"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,6 +19,7 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 <link href="/resources/css/cs/csMain.css" rel="stylesheet"
 	type="text/css" />
 <title>세모시 - 세상의 모든 시터</title>
@@ -31,143 +38,120 @@
 		</div>
 
 		<div class="row no-gutters" id="csBtnRow">
-			<div class="col-lg-1"></div>
-			<div class="col-6 col-sm-6 col-md-4 col-lg-2 csBtnBox">
-				<button class="csBtn" onclick="location.href='/moveGuide.sms'">이용가이드</button>
+			<div class="col-6 col-sm-6 col-md-3 col-lg-3 csBtnBox">
+				<a href="/csGuide.sms" class="csBtn">이용가이드</a>
 			</div>
-			<div class="col-6 col-sm-6 col-md-4 col-lg-2 csBtnBox">
-				<button class="csBtn" onclick="location.href='/moveFaq.sms'">
-					부모회원<br>자주 묻는 질문
-				</button>
+			<div class="col-6 col-sm-6 col-md-3 col-lg-3 csBtnBox">
+				<a href="/csFAQ.sms" class="csBtn">
+					자주 묻는 질문
+				</a>
 			</div>
-			<div class="col-6 col-sm-6 col-md-4 col-lg-2 csBtnBox">
-				<button class="csBtn" onclick="location.href='/moveFaq.sms'">
-					시터회원<br>자주 묻는 질문
-				</button>
+			<div class="col-6 col-sm-6 col-md-3 col-lg-3 csBtnBox">
+				<a href="/csNotice.sms" class="csBtn">공지사항</a>
 			</div>
-			<div class="col-6 col-sm-6 col-md-6 col-lg-2 csBtnBox">
-				<button class="csBtn" onclick="location.href='/moveNotice.sms'">공지사항</button>
+			<div class="col-6 col-sm-6 col-md-3 col-lg-3 csBtnBox">
+				<a href="/csQnA.sms" class="csBtn">1:1문의</a>
 			</div>
-			<div class="col-6 col-sm-6 col-md-6 col-lg-2 csBtnBox">
-				<button class="csBtn" onclick="location.href='/moveQna.sms'">1:1문의</button>
-			</div>
-			<div class="col-lg-1"></div>
 		</div>
 		<div class="row no-gutters" id="csTableRow">
 			<div class="col-md-6 csTableBox">
 				<table class="csTable" cellspacing="0px" cellpadding="0px">
 					<caption>
 						<h4>
-							<a href="/moveNotice.sms">공지사항</a>
+							<a href="/csNotice.sms">공지사항</a>
 						</h4>
 					</caption>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>
+					
+					<% ArrayList<Notice> noticeList = (ArrayList<Notice>)request.getAttribute("noticeList");
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
+					<% for(int i=0;i<5;i++){ %>
+						<tr>
+							<td style="text-align: left;"><a href="/csNoticePost.sms?postNo=<%=noticeList.get(i).getPostNo()%>"><%= noticeList.get(i).getTitle() %></a></td>
+							<td style="text-align: right;"><%= sdf.format(noticeList.get(i).getWriteDate()) %></td>
+						</tr>
+					<%} %>
 				</table>
 			</div>
 			<div class="col-md-6 csTableBox">
 				<table class="csTable" cellspacing="0px" cellpadding="0px">
 					<caption>
 						<h4>
-							<a href="/moveGuide.sms">이용가이드</a>
+							<a href="/csGuide.sms">이용가이드</a>
 						</h4>
 					</caption>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>					
+					<% ArrayList<Guide> guideList = (ArrayList<Guide>)request.getAttribute("guideList");%>
+
+					<% for(int i=0;i<5;i++){ 
+						if(guideList.get(i).getCategory().equals("S")){%>
+						<tr>
+							<td><a href="/csGuidePost.sms?postNo=<%=guideList.get(i).getPostNo()%>">[시터회원] <%= guideList.get(i).getTitle() %></a></td>
+							<td><%= sdf.format(guideList.get(i).getWriteDate()) %></td>
+						</tr>
+						<%}else if(guideList.get(i).getCategory().equals("P")) {%>
+						<tr>
+							<td><a href="/csGuidePost.sms?postNo=<%=guideList.get(i).getPostNo()%>">[부모회원] <%= guideList.get(i).getTitle() %></a></td>
+							<td><%= sdf.format(guideList.get(i).getWriteDate()) %></td>
+						</tr>
+						<%} %>
+					<%} %>
 				</table>
 			</div>
 			<div class="col-md-6 csTableBox">
 				<table class="csTable" cellspacing="0px" cellpadding="0px">
 					<caption>
 						<h4>
-							<a href="/moveFaq.sms">자주 묻는 질문</a>
+							<a href="/csFAQ.sms">자주 묻는 질문</a>
 						</h4>
 					</caption>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>					
+					<% ArrayList<FAQ> FAQList = (ArrayList<FAQ>)request.getAttribute("FAQList");%>
+
+					<% for(int i=0;i<5;i++){ 
+						if(FAQList.get(i).getCategory().equals("S")){%>
+						<tr>
+							<td><a href="/csFAQPost.sms?postNo=<%=FAQList.get(i).getPostNo()%>">[시터회원] <%= FAQList.get(i).getTitle() %></a></td>
+							<td><%= sdf.format(FAQList.get(i).getWriteDate()) %></td>
+						</tr>
+						<%}else if(FAQList.get(i).getCategory().equals("P")) {%>
+						<tr>
+							<td><a href="/csFAQPost.sms?postNo=<%=FAQList.get(i).getPostNo()%>">[부모회원] <%= FAQList.get(i).getTitle() %></a></td>
+							<td><%= sdf.format(FAQList.get(i).getWriteDate()) %></td>
+						</tr>
+						<%} %>
+					<%} %>
 				</table>
 			</div>
 			<div class="col-md-6 csTableBox">
 				<table class="csTable" cellspacing="0px" cellpadding="0px">
 					<caption>
 						<h4>
-							<a href="/moveQna.sms">1:1문의</a>
+							<a href="/csQnA.sms">1:1문의</a>
 						</h4>
 					</caption>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
-					<tr>
-						<td>게시글 제목이 표시됩니다.</td>
-						<td>2021-01-15</td>
-					</tr>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>	
+					<% ArrayList<QnA> QnAList = (ArrayList<QnA>)request.getAttribute("QnAList");%>
+
+					<% for(int i=0;i<5;i++){ %>
+						<tr>
+							<td><a href="/csQnAPost.sms?postNo=<%=QnAList.get(i).getPostNo()%>"><%= QnAList.get(i).getTitle() %></a></td>
+							
+							<td><%= sdf.format(QnAList.get(i).getWriteDate()) %></td>
+						</tr>
+					<%} %>
 				</table>
 			</div>
 		</div>

@@ -1,3 +1,6 @@
+<%@page import="oracle.jdbc.proxy.annotation.Post"%>
+<%@page import="kr.co.semosi.cs.model.vo.QnA"%>
+<%@page import="kr.co.semosi.cs.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,7 +16,8 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<link href="/resources/css/cs/post.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/cs/postWrite.css" rel="stylesheet"
+	type="text/css" />
 <title>세모시 - 세상의 모든 시터</title>
 </head>
 <body>
@@ -34,66 +38,58 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="boardNameBox">
 				<div id="boardName">
-					<a href="/moveNotice.sms">공지사항</a>
+					<a href="/moveQna.sms">1:1 문의</a>
 				</div>
 			</div>
 			<div class="col-12" id="postBox">
 				<table id="post" cellspacing="0px" cellpadding="0px">
 					<colgroup>
 						<col width="10%">
-						<col width="50%">
-						<col width="10%">
-						<col width="20%">
+						<col width="90%">
 					</colgroup>
+					<% 
+					String board = (String)request.getAttribute("board");
+					Notice noticePost = (Notice)request.getAttribute("noticePost");
+					QnA QnAPost = (QnA)request.getAttribute("QnAPost");
+					String code = (String)request.getAttribute("code");
+					%>
+					<%if(noticePost==null) {%>
 					<tr>
 						<td>제목</td>
-						<td colspan="3">게시글 제목이 표시됩니다.</td>
+						<td><input type="text" style="width: 100%;" value="<%=QnAPost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td>관리자</td>
-						<td>작성일</td>
-						<td>2021-01-24 12:00:00</td>
+						<%if(code.equals("P")) {%>
+						<td><input type="text" value="<%=QnAPost.getWriterPNo() %>" id="writer" readonly /></td>
+						<%} else if(code.equals("S")){ %>
+						<td><input type="text" value="<%=QnAPost.getWriterSNo() %>" id="writer" readonly /></td>
+						<%} %>
 					</tr>
 					<tr>
-						<td colspan="4">게시글 내용<br> 게시글 내용 게시글 내용<br> 게<br>
-							시<br> 글<br> 내<br> 용<br> br태그<br> br태그<br>
-							br태그<br> br태그<br> br태그<br> br태그<br> br태그<br>
-							br태그<br> br태그<br> br태그<br> br태그<br> br태그<br>
-							br태그<br> <br> <br> <br>
+						<td colspan="2"><textarea style="width: 100%; height: 500px;"><%=QnAPost.getContent()%></textarea>
 						</td>
 					</tr>
+					<%} else if(QnAPost==null) {%>
+					<tr>
+						<td>제목</td>
+						<td><input type="text" style="width: 100%;" value="<%=noticePost.getTitle() %>" /></td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td><input type="text" value="<%=noticePost.getWriter() %>" id="writer" readonly /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea style="width: 100%; height: 500px;"><%=noticePost.getContent()%></textarea>
+						</td>
+					</tr>
+					<%} %>
 				</table>
 			</div>
-			<div class="col-12" >
-				<div id="btnBox">
-					<button id="modBtn">수정</button>
-					<button id="delBtn">삭제</button>
-					<button id="listBtn" onclick="location.href='#'">목록</button>
-				</div>
-			</div>
-		</div>
-		<div class="row no-gutters">
-			<div class="col-md-12" id="commentBox">
-				<ul id="comment">
-					<li>
-						<p>
-							<strong>작성자1</strong> 2021-01-15 20:50:00
-						</p>
-						<div>댓글 내용입니다.</div>
-					</li>
-					<li>
-						<p>
-							<strong>작성자1</strong> 2021-01-15 20:50:00
-						</p>
-						<div>댓글 내용입니다.</div>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-12" id="commentInputBox">
-				<div id="commentInput">
-					<textarea></textarea>
-					<button>댓글</button>
+			<div class="col-12" id="btnBox">
+				<div style="text-align: center;">
+					<button id="okBtn">확인</button>
+					<button id="cancelBtn">취소</button>
 				</div>
 			</div>
 		</div>

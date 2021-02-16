@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="kr.co.semosi.cs.model.vo.QnA"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,10 +25,10 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="csMenuBox">
 				<ul id="csMenu">
-					<li><a href="/moveNotice.sms">공지사항</a></li>
-					<li><a href="/moveGuide.sms">이용가이드</a></li>
-					<li><a href="/moveFaq.sms">자주묻는질문</a></li>
-					<li><a href="/moveQna.sms">1:1문의</a></li>
+					<li><a href="/csNotice.sms">공지사항</a></li>
+					<li><a href="/csGuide.sms">이용가이드</a></li>
+					<li><a href="/csFAQ.sms">자주묻는질문</a></li>
+					<li><a href="/csQnA.sms">1:1문의</a></li>
 				</ul>
 			</div>
 		</div>
@@ -34,7 +36,7 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="boardNameBox">
 				<div id="boardName">
-					<a href="/moveNotice.sms">공지사항</a>
+					<a href="/csQnA.sms">1:1 문의</a>
 				</div>
 			</div>
 			<div class="col-12" id="postBox">
@@ -45,22 +47,21 @@
 						<col width="10%">
 						<col width="20%">
 					</colgroup>
+					<% QnA QnAPost = (QnA)request.getAttribute("QnAPost");%>
 					<tr>
 						<td>제목</td>
-						<td colspan="3">게시글 제목이 표시됩니다.</td>
+						<td colspan="3"><%=QnAPost.getTitle() %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td>관리자</td>
+						<td><%=QnAPost.getWriterSNo() %></td>
 						<td>작성일</td>
-						<td>2021-01-24 12:00:00</td>
+						<%SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); %>
+						<td><%=sdf.format(QnAPost.getWriteDate())%></td>
 					</tr>
 					<tr>
-						<td colspan="4">게시글 내용<br> 게시글 내용 게시글 내용<br> 게<br>
-							시<br> 글<br> 내<br> 용<br> br태그<br> br태그<br>
-							br태그<br> br태그<br> br태그<br> br태그<br> br태그<br>
-							br태그<br> br태그<br> br태그<br> br태그<br> br태그<br>
-							br태그<br> <br> <br> <br>
+						<td colspan="4">
+						<div id="content"><%=QnAPost.getContent() %></div>
 						</td>
 					</tr>
 				</table>
@@ -69,7 +70,7 @@
 				<div id="btnBox">
 					<button id="modBtn">수정</button>
 					<button id="delBtn">삭제</button>
-					<button id="listBtn" onclick="location.href='#'">목록</button>
+					<a href="/csQnA.sms" id="listBtn">목록</a>
 				</div>
 			</div>
 		</div>
@@ -90,7 +91,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="col-md-12" id="commentInputBox">
+			<div class="col-md-12" id="commentInputBox" style="">
 				<div id="commentInput">
 					<textarea></textarea>
 					<button>댓글</button>
