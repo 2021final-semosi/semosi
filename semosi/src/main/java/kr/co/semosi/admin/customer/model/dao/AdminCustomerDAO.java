@@ -134,6 +134,22 @@ public class AdminCustomerDAO {
 	public int delChangeInquiry(SqlSessionTemplate sqlSession, QnA qna) {
 		return sqlSession.update("customer.delChangeInquiry",qna);
 	}
+	
+	public int FAQPcheckDelete(SqlSessionTemplate sqlSession, String[] fAQPList) {
+		return sqlSession.update("customer.FAQPcheckDelete", fAQPList);
+	}
+	
+	public int FAQScheckDelete(SqlSessionTemplate sqlSession, String[] fAQSList) {
+		return sqlSession.update("customer.FAQScheckDelete", fAQSList);
+	}
+
+	public int noticeCheckDelete(SqlSessionTemplate sqlSession, String[] nList) {
+		return sqlSession.update("customer.noticeCheckDelete", nList);
+	}
+
+	public int inquiryCheckDelete(SqlSessionTemplate sqlSession, String[] iList) {
+		return sqlSession.update("customer.inquiryCheckDelete", iList);
+	}
 
 
 }

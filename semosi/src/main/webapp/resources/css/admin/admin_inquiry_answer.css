@@ -39,15 +39,17 @@
 
 .guide{
 	font-weight:bold;
-	font-size:1.1rem;
+	font-size:1.2rem;
 	text-align:center;
 }
 
 .guide_text{
 	width:600px; height:40px;
 	border : 1px solid #707070;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	margin: 0 auto;
+	resize:none;
+	padding:5px;
 }
 
 .guide_content{
@@ -56,6 +58,7 @@
 	border : 1px solid #707070;
 	font-size:1rem;
 	margin: 0 auto;
+	padding:5px;
 }
 
 .guide_answer{
@@ -64,11 +67,14 @@
 	border : 1px solid #707070;
 	font-size:1rem;
 	margin: 0 auto;
+
 }
 
 .answer_text {
 	width:100%; height:100%;
 	resize:none;
+	padding:5px;
+	border:0;
 }
 
 #title {
@@ -76,7 +82,7 @@
 }
 
 #inquiry_id {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-weight:bold;
 	text-align:center;	
 	margin-left:360px;

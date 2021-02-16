@@ -78,11 +78,17 @@ $("#pagination").append(pagination);//--페이지 셋팅
 			<%@ include file="/WEB-INF/views/admin/common/admin_subnavbar.jsp"%>
 		</div>
 		<div class="page-container">
+		<!-- 페이징 처리를 위한 form -->
+		<form class="form-inline" id="frmSearch" action="/parents_voucher_list.sms">
+			<input type="hidden" id="startPage" name="startPage" value="">
+			<!-- 페이징을 위한 hidden타입 추가 -->
+			<input type="hidden" id="visiblePages" name="visiblePages" value="">
+			<!-- 페이징을 위한 hidden타입 추가 -->
 			<div class="page-contents">
 				<div id="content-wrapper" class="board-wrapper">
 					<p>구인자 이용권</p>
 					<div class="search">
-						<form action="/parents_voucher_list.sms" method="get">
+						<form>
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
 								<option value="all">전체</option>
@@ -94,13 +100,11 @@ $("#pagination").append(pagination);//--페이지 셋팅
 							</select>
 							<input type="text" name="keyword" />
 							<button class="search-btn" type="submit">검색</button>
-							</td>
 						</form>
 					</div>
 					<div class="tab-content">
 						<table class="board">
 							<tr class="head">
-								<th id="all_select"><input type="checkbox" /></th>
 								<th class='voucher_no'>번호</th>
 								<th class='member_id'>아이디</th>
 								<th class='voucher_name'>이용권 종류</th>
@@ -113,10 +117,9 @@ $("#pagination").append(pagination);//--페이지 셋팅
 								<c:when test="${fn:length(parentsVoucher)!=0 }">
 									<c:forEach var="parentsVoucher" items="${parentsVoucher}" varStatus="status">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
 										<td class='voucher_no'>${parentsVoucher.voucherNo}</td>
 										<td class='member_id'>${parentsVoucher.memberId}</td>
-										<td class='voucher_name'>${parentsVoucher.voucherName}</a></td>
+										<td class='voucher_name'>${parentsVoucher.voucherName}</td>
 										<td class='voucher_price'>${parentsVoucher.voucherPrice}</td>
 										<td class='bought_date'>${parentsVoucher.boughtDate}</td>
 										<td class='end_date'>
@@ -143,14 +146,13 @@ $("#pagination").append(pagination);//--페이지 셋팅
 							</c:choose>
 							<c:forEach begin="${fn:length(parentsVoucher)}" end="12">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-										<td class='voucher_no'></th>
-										<td class='member_id'></th>
-										<td class='voucher_name'></th>
-										<td class='voucher_price'></th>
-										<td class='bought_date'></th>
-										<td class='end_date'></th>
-										<td class='refund_YN'></th>
+										<td class='voucher_no'></td>
+										<td class='member_id'></td>
+										<td class='voucher_name'></td>
+										<td class='voucher_price'></td>
+										<td class='bought_date'></td>
+										<td class='end_date'></td>
+										<td class='refund_YN'></td>
 									</tr>
 							</c:forEach>
 						</table>

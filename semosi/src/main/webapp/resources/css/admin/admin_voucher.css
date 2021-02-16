@@ -13,8 +13,43 @@ tr {
    margin-bottom: 8px;
 }
 
+select[name="category"] {
+    width: 120px; height: 28px;
+    padding: 3px 5px 3px 0px;
+    border-radius: 5px;
+    padding-left:8px;
+    background-color:white;
+}
+
+input[name="keyword"] {
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+    font: 0.6rem;
+}
+
+input[name="keyword"] {
+   width: 200px; height: 28px;
+   padding: 3px 0px 3px 10px;
+    font: 0.6rem;
+    
+}
+
+.search-btn {
+   height: 30px;
+   background-color: #9AB9EF;
+   color: white;
+   font-weight: 300;
+   font-size: 1rem;
+   border: 0px solid white;
+   padding: 3px 20px 3px 20px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
 #all_select {
-	width: 4%;
+   width: 80px;
+   height:100%;
 }
 
 .voucher_no {
@@ -25,12 +60,16 @@ tr {
 	width: 15%;
 }
 
+.voucher_name{
+	width:30%;
+}
+
 .voucher_price {
 	width: 15%;
 }
 
 .bought_date .end_date {
-	width: 20%;
+	width: 10%;
 }
 
 .refund_YN {

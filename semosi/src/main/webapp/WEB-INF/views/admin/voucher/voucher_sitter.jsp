@@ -77,6 +77,12 @@ $("#pagination").append(pagination);//--페이지 셋팅
 			<%@ include file="/WEB-INF/views/admin/common/admin_subnavbar.jsp"%>
 		</div>
 		<div class="page-container">
+		<!-- 페이징 처리를 위한 form -->
+		<form class="form-inline" id="frmSearch" action="/sitter_voucher_list.sms">
+			<input type="hidden" id="startPage" name="startPage" value="">
+			<!-- 페이징을 위한 hidden타입 추가 -->
+			<input type="hidden" id="visiblePages" name="visiblePages" value="">
+			<!-- 페이징을 위한 hidden타입 추가 -->
 			<div class="page-contents">
 				<div id="content-wrapper" class="board-wrapper">
 					<p>구직자 이용권</p>
