@@ -251,66 +251,62 @@
 
 
 			<script>
-			
-			//체크된 radio의 value값 가져오기 
-			var checkedVoucherType = $('input:radio[name="voucherBuy"]:checked').val();
-			var voucherPrice ;
-			if(checkedVoucherType=='7days'){
-				voucherPrice = 5000;
-			}else if(checkedVoucherType=='14days'){
-				voucherPrice = 8000;
-			}else if(checkedVoucherType=='30days'){
-				voucherPrice = 15000;
-			}
-			console.log("선택한 라디오"+checkedVoucherType);
-			
-			console.log("금액"+voucherPrice);
-			
-				$('#voucherPayBtn')
-						.click(
-								function() {
-									var IMP = window.IMP; // 생략가능
-									IMP.init('imp47577433');
-									IMP.request_pay(
-													{
-														pg : 'inicis', // version 1.1.0부터 지원.
-														pay_method : 'card',
-														merchant_uid : 'semosi_'+ new Date().getTime(), //물품 주문번호 
-														name : '이용권 결제_'+checkedVoucherType, //물품 이름
-														amount : voucherPrice, //물품 가격 
-														buyer_name : '<%=pm.getMemberName()%>',
-														buyer_tel : <%=pm.getPhone()%>,
-														buyer_addr : '<%=pm.getAddress()%>'
-													},
-													function(rsp) {
-														if (rsp.success) {
-															var msg = '결제가 완료되었습니다.';
-															//DB table에 저장 
-															$.ajax({
-											            		url: "/buyVoucherSitter.sms",
-											            		data: {
-											            			"voucherType": checkedVoucherType
-											            		},
-											            		type: "post",
-											            		success : function(result){
-											            			if(result==true){
-											            				var msg = '이용권 구매가 완료되었습니다.\n자유롭게 사이트를 이용해주세요.';
-											            			}else{
-											            				var msg = '이용권이 결제되었으나 디비저장 실패';
-											            			}
-											            		},
-											            		error : function(){
-											            			console.log('ajax 통신 실패')
-											            		}
-											            	});	
-														} else {
-															var msg = '결제에 실패하였습니다.';
-															msg += '에러내용 : '
-																	+ rsp.error_msg;
-														}
-														alert(msg);
-													});
-								});
+			$(function(){
+				$('#voucherPayBtn').click(function() {
+					//체크된 radio의 value값 가져오기 
+					var checkedVoucherType = $('input:radio[name="voucherBuy"]:checked').val();
+					var voucherPrice ;
+					if(checkedVoucherType=='7days'){
+						voucherPrice = 5000;
+					}else if(checkedVoucherType=='14days'){
+						voucherPrice = 8000;
+					}else if(checkedVoucherType=='30days'){
+						voucherPrice = 15000;
+					}
+					console.log("선택한 라디오"+checkedVoucherType);
+					console.log("금액"+voucherPrice);
+									
+					var IMP = window.IMP; // 생략가능
+					IMP.init('imp47577433');
+					IMP.request_pay(
+					{
+						pg : 'inicis', // version 1.1.0부터 지원.
+						pay_method : 'card',
+						merchant_uid : 'semosi_'+ new Date().getTime(), //물품 주문번호 
+						name : '이용권 결제_'+checkedVoucherType, //물품 이름
+						amount : voucherPrice, //물품 가격 
+						buyer_name : '<%=pm.getMemberName()%>',
+						buyer_tel : <%=pm.getPhone()%>,
+						buyer_email: "",
+						buyer_addr : '<%=pm.getAddress()%>'
+					},
+					function(rsp) {
+						if (rsp.success) {
+							var msg = '결제가 완료되었습니다.';
+							//DB table에 저장 
+							$.ajax({
+								url: "/buyVoucherSitter.sms",
+								data: {"voucherType": checkedVoucherType},
+								type: "post",
+								success : function(result){
+									if(result==true){
+										var msg = '이용권 구매가 완료되었습니다.\n자유롭게 사이트를 이용해주세요.';
+									}else{
+										var msg = '이용권이 결제되었으나 디비저장 실패';
+									}
+								},
+								error : function(){
+									console.log('ajax 통신 실패')
+								}
+							});	
+						} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += rsp.error_msg;
+						}	
+						alert(msg);
+					});
+				});
+			});
 			</script>
 		</center>
 
