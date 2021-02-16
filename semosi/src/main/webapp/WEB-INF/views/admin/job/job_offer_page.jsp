@@ -1,7 +1,9 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,6 +24,7 @@
 		});
 	});
 </script>
+
 <div class="page-wrapper">
 	<div class="admin-header">
 		<%@ include file="/WEB-INF/views/admin/common/admin_header.jsp"%>
@@ -57,6 +60,7 @@
 									<td colspan="3">${aOffer.address}</td>
 								</tr>
 							</table>
+						
 							<table class="second-table">
 								<tr id="third">
 									<td style="width: 12%;">희망시급</td>
@@ -65,28 +69,42 @@
 									<td>${aOffer.carePerson}</td>
 									<td style="width: 17%;">돌봄 아이 연령</td>
 									<td>
-										<c:set var="now" value="<%=new java.util.Date()%>" />
-										<fmt:formatDate var="sysMonth" value="${now}" pattern="MM"/>
+										<%
+											Date today = new Date();
+											SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+											
+										%>
+										<c:set var="date" value="<%= new java.util.Date() %>" />
+										<c:set var="now" value="<%=f.format(today)%>"/>
+							
+										<fmt:formatDate var="sysMonth" value="${date}" pattern="MM"/>
 										<fmt:formatDate var="birthMonth" value="${aOffer.careAge}" pattern="MM"/>
-										<fmt:formatDate var="sysMilli" value="${now}" pattern="SSS"/>
-										<fmt:formatDate var="birthMilli" value="${aOffer.careAge}" pattern="SSS"/>
+										<fmt:formatDate var="sysYear" value="${date}" pattern="yyyy"/>
+										<fmt:formatDate var="birthYear" value = "${aOffer.careAge}" pattern = "yyyy" />
 										<c:choose>
-										<c:when test="${(sysMilli-birthMilli)}"></c:when>
-										<c:if test="${birthMonth < sysMonth}">
-											<fmt:formatDate var="sysYear" value="${now}" pattern="yyyy"/>
-											<fmt:formatDate var="birthYear" value = "${aOffer.careAge}" pattern = "yyyy" />
-											만 <c:out value="${sysYear-birthYear-1}"/>세
-										</c:if>
-										<c:if test="${birthMonth => sysMonth}">
-											<fmt:formatDate var="sysYear" value="${now}" pattern="yyyy"/>
-											<fmt:formatDate var="birthYear" value = "${aOffer.careAge}" pattern = "yyyy" />
-											만 <c:out value="${sysYear-birthYear}"/>세
-										</c:if>		
-										</c:choose>																	
+											<c:when test="${(sysYear-birthYear)<3}">
+												<fmt:parseDate  var="sDate"  value="${now}" pattern="yyyy-MM-dd"/>
+												<fmt:parseNumber value="${sDate.time / (1000*60*60*24)}" integerOnly="true" var="sysDate"></fmt:parseNumber>
+												<fmt:parseDate value="${aOffer.careAge}" var="bDate" pattern="yyyy-MM-dd"/>
+												<fmt:parseNumber value="${bDate.time / (1000*60*60*24)}" integerOnly="true" var="birthDate"></fmt:parseNumber>
+												<fmt:parseNumber value="${(sysDate-birthDate)/30}" integerOnly="true" var="bMonth"></fmt:parseNumber>
+												${bMonth}개월
+												
+											</c:when>											
+											<c:when test="${birthMonth < sysMonth}">
+												만 <c:out value="${sysYear-birthYear-1}"/>세
+											</c:when>
+											<c:otherwise>
+												만 <c:out value="${sysYear-birthYear}"/>세
+											</c:otherwise>
+										</c:choose>	
+																																			
 									</td>
 								</tr>
 							</table>
 							<div class="blank"></div>
+							
+							
 							<table class="data-table">
 								<tr id="fourth">
 									<td class="first-td">원하는 시터 나이</td>
@@ -168,6 +186,7 @@
 									<td>체육놀이</td>
 								</tr>
 							</table>
+							
 						</div>
 						<button id="close">닫기</button>	
 					</center>
@@ -176,5 +195,6 @@
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

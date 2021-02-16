@@ -15,7 +15,7 @@
   		ADMIN_P_VOUCHER_VIEW.* FROM ADMIN_P_VOUCHER_VIEW  
   	)
   	WHERE 
-  		<if test='category!=null and category!=all and !keyword.equals("")'>
+  	<if test='category!=null and category!=all and !keyword.equals("")'>
   		<if test='category=="voucher_no"'>
   			VOUCHER_NO LIKE '%'||#{keyword}||'%' and
   		</if>

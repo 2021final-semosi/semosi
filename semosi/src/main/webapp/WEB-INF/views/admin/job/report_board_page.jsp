@@ -65,7 +65,7 @@
 								</tr>
 								<tr class="second_re">
 									<th class='content'>게시판 내용</th>
-									<td class='content' colspan="5">
+									<td class='content td_content' colspan="5">
 										<c:choose>
 											<c:when test="${postReportPage.oText eq null}">${postReportPage.sText}</c:when>
 											<c:otherwise>${postReportPage.oText}</c:otherwise>
@@ -74,7 +74,7 @@
 								</tr>
 								<tr class="second_re">
 									<th class='reason'>신고사유</th>
-									<td class='reason' colspan="5">${postReportPage.content}</td>
+									<td class='reason td_content' colspan="5">${postReportPage.content}</td>
 								</tr>
 						</table>
 						<center>

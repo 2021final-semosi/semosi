@@ -110,7 +110,11 @@ table {
 }
 
 .form-btn {
-	border: 0px solid white;
+	border: 0;
     padding: 3px 20px 3px 20px;
     border-radius: 999px;
+}
+
+a {
+	border: 0;
 }
