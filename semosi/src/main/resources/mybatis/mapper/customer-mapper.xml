@@ -37,7 +37,7 @@
   </select>
   
   <select id="selectPFAQContentCnt" resultType="int" parameterType="java.util.HashMap">
-    select count(*) from FAQ where category='P' 
+    select count(*) from FAQ where category='P'
   </select>
   
   <insert id="insertParentsFAQWrite">
@@ -211,6 +211,34 @@
   
   <update id="delChangeInquiry"> 
   	update QNA set del_YN=#{delYn} where post_no=#{postNo}
+  </update>
+  
+  <update id="FAQPcheckDelete">
+  	update FAQ set del_yn='Y' where post_no IN 
+  	<foreach collection="array" item="data" open="(" separator=", " close=")">
+  		'${data}'
+  	</foreach>
+  </update>
+  
+  <update id="FAQScheckDelete">
+ 	update FAQ set del_yn='Y' where post_no IN 
+ 	 <foreach collection="array" item="data" open="(" separator=", " close=")">
+  		'${data}'
+ 	</foreach>
+  </update>
+  
+  <update id="noticeCheckDelete">
+ 	 update NOTICE set del_YN='Y' where post_NO IN
+  	<foreach collection="array" item="data" open="(" separator=", " close=")">
+  		'${data}'
+  	</foreach>
+  </update>
+  
+  <update id="inquiryCheckDelete">
+ 	 update QNA set del_YN='Y' where post_NO IN
+ 	 <foreach collection="array" item="data" open="(" separator=", " close=")">
+ 		 '${data}'
+  	</foreach> 
   </update>
  
 </mapper>

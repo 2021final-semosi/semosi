@@ -81,11 +81,11 @@ $(function(){
 			type : "post",
 			data : {"reviewNo":reviewNo, "delYn":delYn},
 			success : function(result){
-				 if(result=="true") {
-					console.log("성공");
-				 } else {
-                     console.log("사용자 상태 변경 실패");
-                  }
+				if(result=="true") {
+					alert("상태를 변경하였습니다.");
+				} else {
+					alert("상태를 변경하지 못했습니다.");
+				}
 				 location.reload();
 			},
 			error:function(){
@@ -201,8 +201,7 @@ function deleteValue() {
 													<td class="membertype">시터회원</td>
 													<td class='memberid'>${orList.memberId }</td>
 													<td class='membername'>${orList.memberName}</td>
-													<td class='content'><a data-toggle="modal"
-														data-target="#viewModal${status.index }">${orList.content }</a></td>
+													<td class='content'><a data-toggle="modal" data-target="#viewModal${status.index }">${orList.content }</a></td>
 													<!-- Modal -->
 													<!-- 글 수정 -->
 													<div class="modal fade" id="viewModal${status.index }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -210,8 +209,8 @@ function deleteValue() {
 															<div class="modal-content" id="modal-content">
 																<div class="modal-body">
 																	<div>
-																		<p class="guide" style="margin-top: 50px;">후기 내용</p>
-																		<textarea class="guide_content" style="margin-top: 30px;">${orList.content }</textarea>
+																		<p class="guide" style="margin-top: 40px;">후기 내용</p>
+																		<textarea class="guide_content" style="margin-top: 20px;">${orList.content }</textarea>
 																	</div>
 																	<center>
 																		<button type="button" class="class" data-dismiss="modal" aria-label="Close" id="modify_cancle">닫기</button>
@@ -238,8 +237,7 @@ function deleteValue() {
 									</c:choose>
 									<c:forEach begin="${fn:length(OfferReviewList)}" end="12">
 										<tr class="contents">
-											<td class='select'><input type="checkbox" value=""
-												name="send-select" /></td>
+											<td class='select'></td>
 											<td class='post-no'></td>
 											<td class="membertype"></td>
 											<td class='memberid'></td>
@@ -251,7 +249,7 @@ function deleteValue() {
 										</tr>
 									</c:forEach>
 								</table>
-						</div>
+							</div>
 						<div id="pagination" class="pagenavigation"></div>
 					</div>
 				</form>

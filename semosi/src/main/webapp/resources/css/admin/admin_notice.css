@@ -4,6 +4,10 @@ table {
    width: 1200px;
 }
 
+tr {
+	height: 46px;
+}
+
 .search {
    margin-right: 160px;
    margin-bottom: 8px;
@@ -37,12 +41,12 @@ table {
 }
 
 #modal-content{
-	width:800px;
-	height:850px;
+	width:780px;
+	height:800px;
 }
 
 #guide-body{
-	padding: 30px;
+	padding: 20px;
 }
 
 .guide{
@@ -67,6 +71,7 @@ table {
 	border : 1px solid #707070;
 	font-size:1rem;
 	resize:none;
+	padding:5px;
 }
 
 #modify_submit{
@@ -86,16 +91,17 @@ table {
 	background-color:#9AB9EF;
 	border : 1px solid #9AB9EF;
 	color:white;
-	margin-top:10px;
+	margin-top:5px;
 	font-size: 1rem;
 	cursor: pointer;
 }
 
 .modal_input {
 	border:0px;
-	font-size:1.1rem;
+	font-size:1rem;
 	width:100%;
-	height:100%;
+	height:28px;
+	margin:6px 0 6px 0;
 	resize:none;
 }
 
@@ -115,6 +121,7 @@ table {
     border-radius: 999px;
 }
 
-a {
-	border: 0;
+a{
+	text-decoration : none;
+	border:0;
 }

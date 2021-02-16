@@ -65,27 +65,77 @@
 			var visiblePages = 13;//리스트 보여줄 페이지
 			$('#startPage').val($(this).attr("start_page"));//보고 싶은 페이지
 			$('#visiblePages').val(visiblePages);
-			$("#frmSearch").submit();
 		});
 	});
 </script>
 <script>
-		$(function() {
-			$('.endChangeBtn').click(function() {
-				var memberId = $(this).attr('id');
-				var endYn = $(this).attr('name');
+$(function() {
+	$('.endChangeBtn').click(function() {
+		var memberId = $(this).attr('id');
+		var endYn = $(this).attr('name');
 
+		$.ajax({
+			url : "/memberPEndYn.sms",
+			type : "post",
+			data : {
+				"memberId" : memberId,
+				"endYn" : endYn
+			},
+			success : function(result) {
+				if (result == "true") {
+					alert("상태를 변경하였습니다.");
+				} else {
+					alert("상태를 변경하지 못했습니다.");
+				}
+				location.reload();
+			},
+			error : function() {
+				console.log("ajax통신 실패");
+			}
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#all_select").click(function() {
+			if ($(".allSelect").prop("checked")) {
+				$(".check").prop("checked", true);
+			} else {
+				$(".check").prop("checked", false);
+			}
+		});
+		$(".check").click(function() {
+			if ($("input[name='send-select']:checked").length == 13) {
+				$(".allSelect").prop("checked", true);
+			} else {
+				$(".allSelect").prop("checked", false);
+			}
+		});
+	});
+
+	function deleteValue() {
+		var valueArr = new Array();
+		var list = $("input[name='send-select']:checked");
+		for (var i = 0; i < list.length; i++) {
+			valueArr.push(list[i].value);
+		}
+
+		if (valueArr.length == 0) {
+			alert("선택된 글이 없습니다.");
+		} else {
+			var chk = confirm("정말 삭제하시겠습니까?");
+			if (chk == true) {
 				$.ajax({
-					url : "/memberPEndYn.sms",
+					url : "/memberPcheckDelete.sms",
 					type : "post",
-					data : { "memberId" : memberId, "endYn" : endYn },
+					data : {
+						'valueArr' : valueArr
+					},
 					success : function(result) {
 						if (result == "true") {
-							if (endYn == 'N') {
-								alert("정보 변경 성공");
-							}
+							alert("삭제 성공");
 						} else {
-							console.log("사용자 상태 변경 실패");
+							console.log("삭제 실패");
 						}
 						location.reload();
 					},
@@ -93,60 +143,11 @@
 						console.log("ajax통신 실패");
 					}
 				});
-			});
-		});
-</script>
-<script>
-$(document).ready(function() {
-	$("#all_select").click(function() {
-		if ($(".allSelect").prop("checked")) {
-			$(".check").prop("checked", true);
-		} else {
-			$(".check").prop("checked", false);
-		}
-	});
-	$(".check").click(function() {
-		if ($("input[name='send-select']:checked").length == 13) {
-			$(".allSelect").prop("checked", true);
-		} else {
-			$(".allSelect").prop("checked", false);
-		}
-	});
+			};
+		};
+	};
 });
-	
-function deleteValue() {
-	var valueArr = new Array();
-	var list = $("input[name='send-select']:checked");
-	for (var i = 0; i < list.length; i++) {
-		valueArr.push(list[i].value);
-	}
-	
-	if (valueArr.length == 0) {
-		alert("선택된 글이 없습니다.");
-	}else{
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if(chk==true){
-			$.ajax({
-				url : "/memberPcheckDelete.sms",
-				type : "post",
-				data : {'valueArr' : valueArr},
-				success : function(result){
-					if (result == "true") {
-						alert("삭제 성공");
-					} else {
-						console.log("삭제 실패");
-					}
-					location.reload();
-				},
-				error : function() {
-					console.log("ajax통신 실패");
-				}
-			});
-		}
-	}
-};
 </script>
-
 	<div class="page-wrapper">
 		<div class="admin-header">
 			<c:import url="/WEB-INF/views/admin/common/admin_header.jsp" />
@@ -234,8 +235,7 @@ function deleteValue() {
 								</c:choose>
 								<c:forEach begin="${fn:length(memberPList)}" end="12">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value=""
-											name="send-select" /></td>
+										<td class='select'></td>
 										<td class='member-no'></td>
 										<td class='member-id'></td>
 										<td class='member-name'></td>

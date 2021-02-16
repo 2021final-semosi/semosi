@@ -56,11 +56,11 @@ a {
 
 #modal-content{
 	width:700px;
-	height:700px;
+	height:670px;
 }
 
 #guide-body{
-	padding: 30px;
+	padding: 20px;
 }
 
 .guide{
@@ -75,15 +75,18 @@ a {
 	border : 1px solid #707070;
 	font-size:1rem;
 	resize:none;
+	padding:5px;
 }
 
 #modify_cancle{
-	width:70px;
-	height:30px;
+	width:100px;
+	height:40px;
 	background-color:#9AB9EF;
 	border : 1px solid #9AB9EF;
 	color:white;
-	margin-top:20px;
+	margin-top: 25px;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
 .contents{

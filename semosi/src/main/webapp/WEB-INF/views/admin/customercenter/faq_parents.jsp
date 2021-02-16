@@ -67,9 +67,58 @@ $("#pagination").append(pagination);//--페이지 셋팅
 		var visiblePages = 13;//리스트 보여줄 페이지
 		$('#startPage').val($(this).attr("start_page"));//보고 싶은 페이지
 		$('#visiblePages').val(visiblePages);
-		
 	});
 });
+</script>
+<script>
+$(document).ready(function() {
+	$("#all_select").click(function() {
+		if ($(".allSelect").prop("checked")) {
+			$(".check").prop("checked", true);
+		} else {
+			$(".check").prop("checked", false);
+		}
+	});
+	$(".check").click(function() {
+		if ($("input[name='send-select']:checked").length == 13) {
+			$(".allSelect").prop("checked", true);
+		} else {
+			$(".allSelect").prop("checked", false);
+		}
+	});
+});
+	
+function deleteValue() {
+	var valueArr = new Array();
+	var list = $("input[name='send-select']:checked");
+	for (var i = 0; i < list.length; i++) {
+		valueArr.push(list[i].value);
+	}
+
+	if (valueArr.length == 0) {
+		alert("선택된 글이 없습니다.");
+	}else{
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk==true){
+			$.ajax({
+				url : "/FAQPcheckDelete.sms",
+				type : "post",
+				data : {'valueArr' : valueArr},
+				success : function(result){
+					if (result == "true") {
+						alert("삭제 성공");
+					} else {
+						console.log("삭제 실패");
+					}
+					location.reload();
+				},
+				error : function() {
+					console.log("ajax통신 실패");
+				}
+			});
+		}
+	}
+};
 </script>
 	<div class="page-wrapper">
 	<div class="admin-header">
@@ -88,7 +137,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 				<div id="content-wrapper" class="board-wrapper">
 					<p>FAQ - 구인회원</p>
 					<div class="search">
-						<form action="faq_parents_list.sms" method="get">
+						<form>
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
 								<option value="all">전체</option>
@@ -103,9 +152,10 @@ $("#pagination").append(pagination);//--페이지 셋팅
 						<button id="write-btn" type="button"><a data-toggle="modal" data-target="#writeModal">글쓰기</a></button>
 					</div>
 					<div class="tab-content">
+					<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();" style="margin-left:11%;">
 						<table class="board">
 							<tr class="head">
-								<th id="all_select"><input type="checkbox" /></th>
+								<th id="all_select"><input type="checkbox" class="allSelect"/></th>
 								<th class='post_no'>번호</th>
 								<th class='title'>제목</th>
 								<th class='date'>작성일</th>
@@ -115,7 +165,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 								<c:when test="${fn:length(selectPFAQList)!=0 }">
 									<c:forEach var="selectPFAQList" items="${selectPFAQList}" varStatus="status">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
+										<td class='select'><input type="checkbox" value="${selectPFAQList.postNo}" class="check" name="send-select" /></td>
 										<td class='post_no'>${selectPFAQList.postNo}</td>
 										<td class='title'><a data-toggle="modal" data-target="#modifyModal${status.index}">${selectPFAQList.title}</a></td>
 										
@@ -161,7 +211,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 							</c:choose>
 							<c:forEach begin="${fn:length(selectPFAQList)}" end="12">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
+										<td class='select'></td>
 										<td class='post_no'></td>
 										<td class='title'></td>
 										<td class='date'></td>

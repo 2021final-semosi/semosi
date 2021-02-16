@@ -65,7 +65,6 @@
 			var visiblePages = 13;//리스트 보여줄 페이지
 			$('#startPage').val($(this).attr("start_page"));//보고 싶은 페이지
 			$('#visiblePages').val(visiblePages);
-			$("#frmSearch").submit();
 		});
 	});
 </script>
@@ -80,12 +79,11 @@ $(function(){
 			type : "post",
 			data : {"memberId":memberId, "endYn":endYn},
 			success : function(result){
-				 if(result=="true") {
-					if(endYn=='N'){
-					alert("정보 변경 성공"); }
-				 } else {
-                     console.log("사용자 상태 변경 실패");
-                  }
+				if(result=="true") {
+					alert("상태를 변경하였습니다.");
+				} else {
+					alert("상태를 변경하지 못했습니다.");
+				}
 				 location.reload();
 			},
 			error:function(){
@@ -245,7 +243,7 @@ function deleteValue() {
 
 								<c:forEach begin="${fn:length(memberSList)}" end="12">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
+										<td class='select'></td>
 										<td class='member-no'></td>
 										<td class='member-id'></td>
 										<td class='member-name'></td>

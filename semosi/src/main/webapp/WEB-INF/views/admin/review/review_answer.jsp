@@ -80,11 +80,11 @@ $(function(){
 			type : "post",
 			data : {"answerReviewNo":answerReviewNo, "delYN":delYN},
 			success : function(result){
-				 if(result=="true") {
-					console.log("성공");
-				 } else {
-                     console.log("사용자 상태 변경 실패");
-                  }
+				if(result=="true") {
+					alert("상태를 변경하였습니다.");
+				} else {
+					alert("상태를 변경하지 못했습니다.");
+				}
 				 location.reload();
 			},
 			error:function(){
@@ -210,14 +210,10 @@ function deleteValue() {
 																<div class="modal-body">
 																	<div>
 																		<p class="guide" style="margin-top: 50px;">후기 답글 상세 보기</p>
-																		<p class="guide">본 후기</p>
-																		<p class="guide_content">
-																			<textarea class="guide_content" readonly>${raList.content}</textarea>
-																		</p>
-																		<p class="guide">후기 답글</p>
-																		<p class="guide_content">
-																			<textarea class="guide_content" readonly>${raList.answerContent }</textarea>
-																		</p>
+																		<p class="guide_title">본 후기</p>
+																		<p class="guide_content">${raList.content}</p><br>
+																		<p class="guide_title">후기 답글</p>
+																		<p class="guide_content">${raList.answerContent }</p>
 																	</div>
 																	<center>
 																		<button type="button" class="class" data-dismiss="modal" aria-label="Close" id="modify_cancle">닫기</button>
@@ -243,8 +239,7 @@ function deleteValue() {
 									</c:choose>
 									<c:forEach begin="${fn:length(ReviewAnswerList)}" end="12">
 										<tr class="contents">
-											<td class='select'><input type="checkbox" value=""
-												name="send-select" /></td>
+											<td class='select'></td>
 											<td class='post-no'></td>
 											<td class="orignContent"></td>
 											<td class='memberid'></td>

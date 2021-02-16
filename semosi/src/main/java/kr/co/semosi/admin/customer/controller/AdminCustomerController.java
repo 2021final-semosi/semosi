@@ -2,6 +2,7 @@ package kr.co.semosi.admin.customer.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -351,6 +352,72 @@ public class AdminCustomerController {
 		
 		int result = customerService.delChangeInquiry(qna);
 		
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value="/FAQPcheckDelete.sms")
+	public void FAQPcheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String [] FAQPList = new String[20]; //넉넉하게 배열 공간을 잡은것
+		int i=0;
+		//배열로 받아온 data를 datas만큼 memberSList에 넣어준다
+		for(String data : datas){
+			FAQPList[i] = data;
+			i++;
+		}
+		int result = customerService.FAQPcheckDelete(FAQPList);
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value="/FAQScheckDelete.sms")
+	public void FAQScheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String [] FAQSList = new String[20]; //넉넉하게 배열 공간을 잡은것
+		int i=0;
+		//배열로 받아온 data를 datas만큼 memberSList에 넣어준다
+		for(String data : datas){
+			FAQSList[i] = data;
+			i++;
+		}
+		int result = customerService.FAQScheckDelete(FAQSList);
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value="/noticeCheckDelete.sms")
+	public void noticeCheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String[] nList = new String[20];
+		int i=0;
+		for(String data:datas){
+			nList[i] = data;
+			i++;
+		}
+		int result = customerService.noticeCheckDelete(nList);
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value="/inquiryCheckDelete.sms")
+	public void inquiryCheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String[] iList = new String[20];
+		int i=0;
+		for(String data:datas){
+			iList[i] = data;
+			i++;
+		}
+		int result = customerService.inquiryCheckDelete(iList);
 		if(result>0){
 			response.getWriter().print(true);
 		}else{

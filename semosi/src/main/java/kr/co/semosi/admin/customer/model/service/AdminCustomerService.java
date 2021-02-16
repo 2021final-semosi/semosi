@@ -110,4 +110,20 @@ public class AdminCustomerService {
 	public int delChangeInquiry(QnA qna) {
 		return customerDAO.delChangeInquiry(sqlSession,qna);
 	}
+	
+	public int FAQPcheckDelete(String[] FAQPList) {
+		return customerDAO.FAQPcheckDelete(sqlSession,FAQPList);
+	}
+
+	public int FAQScheckDelete(String[] fAQSList) {
+		return customerDAO.FAQScheckDelete(sqlSession,fAQSList);
+	}
+
+	public int noticeCheckDelete(String[] nList) {
+		return customerDAO.noticeCheckDelete(sqlSession, nList);
+	}
+
+	public int inquiryCheckDelete(String[] iList) {
+		return customerDAO.inquiryCheckDelete(sqlSession, iList);
+	}
 }

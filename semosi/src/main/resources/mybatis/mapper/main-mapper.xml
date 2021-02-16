@@ -5,19 +5,17 @@
 	<select id="selectOfferMainList" resultType="AdminOffer">
 		SELECT
 		POST_NO as postNo, TITLE as title, MEMBERP_NO as memberpNo, MEMBER_NAME as memberName
-		FROM ADMIN_OFFER_VIEW order by POST_NO
+		FROM ADMIN_OFFER_VIEW order by POST_NO desc
 	</select>
 	
 	<select id="selectSearchMainList" resultType="AdminSearch">
 		SELECT
 		POST_NO as postNo, TITLE as title, MEMBERS_NO as membersNo, MEMBER_NAME as memberName
-		FROM ADMIN_SEARCH_VIEW order by POST_NO
+		FROM ADMIN_SEARCH_VIEW order by POST_NO desc
 	</select>
 	
 	<select id="selectInquiryMainList" resultType="QnA">
-	select TITLE as title, WRITE_DATE as writeDate
-	from QNA order by WRITE_DATE	
+	select TITLE as title, WRITE_DATE as writeDate 
+	from QNA order by WRITE_DATE desc	
 	</select>
-	
-
 </mapper>
