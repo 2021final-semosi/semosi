@@ -42,12 +42,12 @@
   </insert>
   
    <insert id="7daysVoucher">
-  	INSERT INTO SITTER_VOUCHER VALUES(SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'7일 이용권',5000,sysdate,sysdate+7,'N' )
+  	INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'7일 이용권',5000,sysdate,sysdate+7,'N' )
   </insert>
   <insert id="14daysVoucher">
-  	INSERT INTO SITTER_VOUCHER VALUES(SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'14일 이용권',8000,sysdate,sysdate+14,'N' )
+  	INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'14일 이용권',8000,sysdate,sysdate+14,'N' )
   </insert>
   <insert id="30daysVoucher">
-  	INSERT INTO SITTER_VOUCHER VALUES(SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
+  	INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
   </insert>
 </mapper>

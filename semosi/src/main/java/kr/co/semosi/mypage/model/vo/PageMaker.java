@@ -8,8 +8,15 @@ public class PageMaker {
     private boolean prev;	//이전 버튼 생성 여부
     private boolean next;	//다음 버튼 생성 여부
     private int displayPageNum = 5;	//화면 하단에 보여지는 페이지 버튼의 수 
+    private String memberNo;
     
-    public Criteria getCri() {
+    public String getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+	public Criteria getCri() {
         return cri;
     }
     public void setCri(Criteria cri) {

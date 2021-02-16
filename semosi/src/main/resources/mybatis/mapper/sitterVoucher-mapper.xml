@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sitterVoucher">
+  
+  <select id="selectVoucherTotalCount" resultType="Integer">
+  	SELECT count(*)
+  	FROM SITTER_VOUCHER
+  	WHERE MEMBERS_NO = #{memberNo}
+  </select>
+  
+  <select id="selectVoucherList" parameterType="java.util.HashMap" resultType="SitterVoucher" >
+  	SELECT
+  		VOUCHER_NO AS voucherNo,
+  		MEMBERS_NO AS memberNo,
+  		VOUCHER_NAME AS voucherName,
+  		VOUCHER_PRICE AS voucherPrice,
+  		BOUGHT_DATE AS boughtDate,
+  		END_DATE AS endDate,
+  		REFUND_YN AS refundYN
+  		FROM(
+  			SELECT Row_NUMBER() OVER (order by VOUCHER_NO DESC) AS Row_Num, SITTER_VOUCHER.* 
+						FROM SITTER_VOUCHER WHERE MEMBERS_NO = #{memberNo}
+  		)
+  		WHERE Row_Num BETWEEN #{startPage} AND #{endPage} 
+  </select>
+  
+</mapper>

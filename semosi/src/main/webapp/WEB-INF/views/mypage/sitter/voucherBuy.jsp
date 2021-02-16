@@ -175,7 +175,7 @@
 	</header>
 	<div id="mypage-wrap" class="row">
 		<div id="sideBar">
-			<%@ include file="/WEB-INF/views/mypage/common/parentSidebar.jsp"%>
+			<%@ include file="/WEB-INF/views/mypage/common/sitterSidebar.jsp"%>
 		</div>
 		<div id="content">
 			<!-- 여기서 부터 적용 -->
@@ -275,10 +275,10 @@
 						merchant_uid : 'semosi_'+ new Date().getTime(), //물품 주문번호 
 						name : '이용권 결제_'+checkedVoucherType, //물품 이름
 						amount : voucherPrice, //물품 가격 
-						buyer_name : '<%=pm.getMemberName()%>',
-						buyer_tel : <%=pm.getPhone()%>,
+						buyer_name : '<%=sm.getMemberName()%>',
+						buyer_tel : <%=sm.getPhone()%>,
 						buyer_email: "",
-						buyer_addr : '<%=pm.getAddress()%>'
+						buyer_addr : '<%=sm.getAddress()%>'
 					},
 					function(rsp) {
 						if (rsp.success) {

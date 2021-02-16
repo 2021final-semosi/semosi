@@ -40,13 +40,13 @@
   </insert>
   
   <insert id="7daysVoucher">
-  	INSERT INTO PARENTS_VOUCHER VALUES(PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'7일 이용권',5000,sysdate,sysdate+7,'N' )
+  	INSERT INTO PARENTS_VOUCHER VALUES('PV'||PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'7일 이용권',5000,sysdate,sysdate+7,'N' )
   </insert>
   <insert id="14daysVoucher">
-  	INSERT INTO PARENTS_VOUCHER VALUES(PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'14일 이용권',8000,sysdate,sysdate+14,'N' )
+  	INSERT INTO PARENTS_VOUCHER VALUES('PV'||PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'14일 이용권',8000,sysdate,sysdate+14,'N' )
   </insert>
   <insert id="30daysVoucher">
-  	INSERT INTO PARENTS_VOUCHER VALUES(PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
+  	INSERT INTO PARENTS_VOUCHER VALUES('PV'||PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
   </insert>
   
   
