@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>세상의 모든 시터</title>
+<title>세모시 - 세상의 모든 시터</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/common_wrapper.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/common_board.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/admin_voucher.css">
@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin_voucher.js"></script>
 <script>
 $(document).ready(function() {
 	var totalPage = ${totalPage}; 
@@ -87,64 +88,76 @@ $("#pagination").append(pagination);//--페이지 셋팅
 				<div id="content-wrapper" class="board-wrapper">
 					<p>구직자 이용권</p>
 					<div class="search">
-						<form action="/searchBoard.ad" method="get" id="search">
+						<form>
 							<select name="category">
 								<!-- 이대로 value 값을 db에 넣을거라서 db컬럼명과 똑같이해줘야함 -->
-								<option>전체</option>
-								<option value="post_no">게시글 번호</option>
-								<option value="sortofvoucher">이용권 종류</option>
-								<option value="voucherprice">이용권 금액</option>
-								<option value="refund-YN">환불</option>
+								<option value="all">전체</option>
+								<option value="voucher_no">이용권 번호</option>
+								<option value="member_id">아이디</option>
+								<option value="voucher_name">이용권 종류</option>
+								<option value="voucher_price">이용권 금액</option>
+								<option value="refund_YN">환불여부</option>
 							</select>
 							<input type="text" name="keyword" />
 							<button class="search-btn" type="submit">검색</button>
-						</td>
 						</form>
 					</div>
 					<div class="tab-content">
 						<table class="board">
 							<tr class="head">
-								<th id="all_select"><input type="checkbox" /></th>
-								<th class='post-no'>번호</th>
-								<th class='memberid'>아이디</th>
-								<th class='sortofvoucher'>이용권 종류</th>
-								<th class='voucherprice'>이용권금액</th>
-								<th class='bought'>구매일</th>
-								<th class='enddate'>만료일</th>
-								<th class='refund-YN'>환불</th>
+								<th class='voucher_no'>번호</th>
+								<th class='member_id'>아이디</th>
+								<th class='voucher_name'>이용권 종류</th>
+								<th class='voucher_price'>이용권금액</th>
+								<th class='bought_date'>구매일</th>
+								<th class='end_date'>만료일</th>
+								<th class='refund_YN'>환불</th>
 							</tr>
-							<tr class="contents">
-								<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-								<td class='post-no'></td>
-								<td class='memberid'></td>
-								<td class='sortofvoucher'>베이직</a></td>
-								<td class='voucherprice'>4,900</td>
-								<td class='bought'></td>
-								<td class='enddate'></td>
-								<td class='refund-YN'><button type="submit" class="refund-done">환불완료</button></td>
-							</tr>
-							<tr class="contents">
-								<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-								<td class='post-no'></td>
-								<td class='memberid'></td>
-								<td class='sortofvoucher'>프리미엄</a></td>
-								<td class='voucherprice'>29,900</td>
-								<td class='bought'></td>
-								<td class='enddate'></td>
-								<td class='del-YN'><button type="submit" class="restore-btn">환불대기</button></td>
-							</tr>
-							<tr class="contents">
-								<td class='select'><input type="checkbox" value="" name="send-select" /></td>
-								<td class='post-no'></td>
-								<td class='memberid'></td>
-								<td class='sortofvoucher'>베이직</a></td>
-								<td class='voucherprice'>4,900</td>
-								<td class='bought'></td>
-								<td class='enddate'></td>
-								<td class='del-YN'><button type="submit" class="refund-request">환불신청</button></td>
-							</tr>
+							<c:choose>
+								<c:when test="${fn:length(sitterVoucher)!=0 }">
+									<c:forEach var="sitterVoucher" items="${sitterVoucher}" varStatus="status">
+									<tr class="contents">
+										<td class='voucher_no'>${sitterVoucher.voucherNo}</td>
+										<td class='member_id'>${sitterVoucher.memberId}</td>
+										<td class='voucher_name'>${sitterVoucher.voucherName}</td>
+										<td class='voucher_price'>${sitterVoucher.voucherPrice}</td>
+										<td class='bought_date'>${sitterVoucher.boughtDate}</td>
+										<td class='end_date'>
+											<c:choose>
+												<c:when test="${sitterVoucher.endDate == null}">
+													-
+												</c:when>
+												<c:otherwise>${sitterVoucher.endDate}</c:otherwise>
+											</c:choose>
+										</td>
+										<td class='refund_YN'>
+											<c:choose>
+												<c:when test='${sitterVoucher.refundYN eq "Y"}'>
+													<button type="button" class="refund-done">환불완료</button>	
+												</c:when>
+												<c:otherwise>
+													<button type="button" class="refund-request" id="${sitterVoucher.voucherNo}" name="${sitterVoucher.phone}">환불신청</button>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+									</c:forEach>
+								</c:when>
+							</c:choose>
+							<c:forEach begin="${fn:length(sitterVoucher)}" end="12">
+									<tr class="contents">
+										<td class='voucher_no'></td>
+										<td class='member_id'></td>
+										<td class='voucher_name'></td>
+										<td class='voucher_price'></td>
+										<td class='bought_date'></td>
+										<td class='end_date'></td>
+										<td class='refund_YN'></td>
+									</tr>
+							</c:forEach>
 						</table>
 					</div>
+					<div id="pagination" class="pagenavigation"></div>
 				</div>
 			</div>
 		</div>
