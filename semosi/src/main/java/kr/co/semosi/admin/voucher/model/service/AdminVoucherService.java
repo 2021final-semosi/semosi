@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.semosi.admin.voucher.model.dao.AdminVoucherDAO;
 import kr.co.semosi.admin.voucher.model.vo.ParentsVoucherView;
+import kr.co.semosi.admin.voucher.model.vo.SitterVoucherView;
 
 @Service("voucherService")
 public class AdminVoucherService {
@@ -25,5 +26,18 @@ public class AdminVoucherService {
 
 	public int parentsVoucherContentCnt(Map<String, Object> paramMap) {
 		return voucherDAO.parentsVoucherContentCnt(sqlSession,paramMap);
+	}
+
+	public int refundUpdate(int voucherNo, String phone) {
+		return voucherDAO.refundUpdate(sqlSession,voucherNo,phone);
+		
+	}
+
+	public List<SitterVoucherView> sitterVoucher(Map<String, Object> paramMap) {
+		return voucherDAO.sitterVoucher(sqlSession,paramMap);
+	}
+
+	public int sitterVoucherContentCnt(Map<String, Object> paramMap) {
+		return voucherDAO.sitterVoucherContentCnt(sqlSession,paramMap);
 	}
 }

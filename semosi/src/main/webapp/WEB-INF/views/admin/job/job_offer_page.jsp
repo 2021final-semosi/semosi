@@ -192,7 +192,7 @@
 										<c:if test='${not fn:contains(aOffer.careDays,"일")}'>-</c:if>
 									</td>
 									<td>근무일</td>
-									<td>
+									<td style="font-weight:bold; font-size:1.3rem;">
 										총 <c:forTokens var="days" items="${aOffer.careDays}" delims=",">
 											<c:forEach items="${days}" end="6" step="1">
 												<c:set var="count" value="${count+1}"/>

@@ -7,6 +7,8 @@ public class ParentsVoucherView {
     private int voucherNo;
     // 부모 회원 아이디 
     private String memberId;
+    // 부모 회원 전화번호
+    private String phone;
     // 이용권종류 
     private String voucherName;
     // 이용권금액 
@@ -23,11 +25,12 @@ public class ParentsVoucherView {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ParentsVoucherView(int voucherNo, String memberId, String voucherName, String voucherPrice, Date boughtDate,
+	public ParentsVoucherView(int voucherNo, String memberId, String phone, String voucherName, String voucherPrice, Date boughtDate,
 			Date endDate, String refundYN) {
 		super();
 		this.voucherNo = voucherNo;
 		this.memberId = memberId;
+		this.phone = phone;
 		this.voucherName = voucherName;
 		this.voucherPrice = voucherPrice;
 		this.boughtDate = boughtDate;
@@ -51,7 +54,15 @@ public class ParentsVoucherView {
         this.memberId = memberId;
     }
 
-    public String getVoucherName() {
+    public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getVoucherName() {
         return voucherName;
     }
 
