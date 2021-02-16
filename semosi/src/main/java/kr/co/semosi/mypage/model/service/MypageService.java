@@ -1,18 +1,16 @@
 package kr.co.semosi.mypage.model.service;
 
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import kr.co.semosi.admin.member.model.vo.MemberP;
 import kr.co.semosi.mypage.model.dao.MypageDAO;
-import kr.co.semosi.mypage.model.vo.Criteria;
-import kr.co.semosi.mypage.model.vo.Voucher;
+import kr.co.semosi.mypage.model.vo.PageMaker;
+import kr.co.semosi.mypage.model.vo.ParentVoucher;
+import kr.co.semosi.mypage.model.vo.SitterVoucher;
 
 @Service("myPageService")
 public class MypageService {
@@ -24,21 +22,29 @@ public class MypageService {
 	@Autowired
 	@Qualifier(value="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSession;
-
-	public Object listVoucherCriteria(Criteria cri, String memberNo) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//부모 이용권 조희 페이징 처리
+	public int selectParentVoucherTotalCount(String memberNo) {
+		int result = myDAO.selectParentVoucherTotalCount(sqlSession, memberNo);
+		return result;
 	}
 
-	public int listVoucherCountCriteria(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<ParentVoucher> selectParentVoucherList(PageMaker pageMaker) {
+		List<ParentVoucher> list = myDAO.selectParentVoucherList(sqlSession, pageMaker);
+		return list;
 	}
-/*
-	public List<Voucher> selectVoucherList(Criteria cri) {
-		return myDAO.selectVoucherList(sqlSession, cri);
+
+	//시터 이용권 조회 페이징 처리
+	public int selectSitterVoucherTotalCount(String memberNo) {
+		int result = myDAO.selectSitterVoucherTotalCount(sqlSession, memberNo);
+		return result;
 	}
-*/
+
+	public List<SitterVoucher> selectSitterVoucherList(PageMaker pageMaker) {
+		List<SitterVoucher> list = myDAO.selectSitterVoucherList(sqlSession, pageMaker);
+		return list;
+	}
+
 
 	
 }

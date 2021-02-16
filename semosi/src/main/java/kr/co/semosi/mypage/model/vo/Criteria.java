@@ -3,11 +3,20 @@ package kr.co.semosi.mypage.model.vo;
 public class Criteria {
 	private int page; //현재 페이지 번호 
     private int perPageNum; //한 페이지 당 보여줄 게시글의 갯수 
+    private String memberNo;
     
     
     
-    public int getPageStart() {
-        return (this.page-1)*perPageNum;
+    public String getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+
+	public int getPageStart() {
+        return (this.page-1)*perPageNum+1;
     }
     
     public Criteria() {

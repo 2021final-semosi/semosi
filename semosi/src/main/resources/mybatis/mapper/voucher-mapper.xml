@@ -40,7 +40,7 @@
   	RNUM BETWEEN #{start} AND #{end} 
   </select>
   
-  <select id="parentsVoucherContentCnt" resultType="int" parameterType="java.util.HashMap">
-  	SELECT count(*) FROM ADMIN_P_VOUCHER_VIEW
-  </select>
+
+  
+
 </mapper>
