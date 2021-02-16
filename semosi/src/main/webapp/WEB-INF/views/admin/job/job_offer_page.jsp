@@ -109,21 +109,11 @@
 								<tr id="fourth">
 									<td class="first-td">원하는 시터 나이</td>
 									<c:forTokens var="age" items="${aOffer.age}" delims=",">
-										<c:if test='${age eq "G20"}'>
-											<td class="sitter_age">20대</td>
-										</c:if>
-										<c:if test='${age eq "G30"}'>
-											<td class="sitter_age">30대</td>
-										</c:if>
-										<c:if test='${age eq "G40"}'>
-											<td class="sitter_age">40대</td>
-										</c:if>
-										<c:if test='${age eq "G50"}'>
-											<td class="sitter_age">50대</td>
-										</c:if>
-										<c:if test='${age eq "G60"}'>
-											<td class="sitter_age">60대</td>
-										</c:if>										
+										<c:if test='${age eq "G20"}'> <td class="sitter_age">20대</td> </c:if>
+										<c:if test='${age eq "G30"}'> <td class="sitter_age">30대</td> </c:if>
+										<c:if test='${age eq "G40"}'> <td class="sitter_age">40대</td> </c:if>
+										<c:if test='${age eq "G50"}'> <td class="sitter_age">50대</td> </c:if>
+										<c:if test='${age eq "G60"}'> <td class="sitter_age">60대</td> </c:if>										
 									</c:forTokens>
 								</tr>
 							</table>
@@ -151,42 +141,107 @@
 								<tr class="tr-title"><td colspan="8">희망 돌봄 시간</td></tr>
 								<tr class="possible-active time">
 									<td>월</td>
-									<td>10:00 - 16:00</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"월")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"월")}'>-</c:if>
+									</td>
 									<td>화</td>
-									<td>-</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"화")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"화")}'>-</c:if>
+									</td>
 									<td>수</td>
-									<td>10:00 - 16:00</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"수")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"수")}'>-</c:if>
+									</td>
 									<td>목</td>
-									<td>-</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"목")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"목")}'>-</c:if>
+									</td>
 								</tr>
 								<tr class="possible-active time">
 									<td>금</td>
-									<td>10:00 - 16:00</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"금")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"금")}'>-</c:if>
+									</td>
 									<td>토</td>
-									<td>-</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"토")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"토")}'>-</c:if>
+									</td>
 									<td>일</td>
-									<td>-</td>
+									<td>
+										<c:if test='${fn:contains(aOffer.careDays,"일")}'>
+											${aOffer.careTime}
+										</c:if> 
+										<c:if test='${not fn:contains(aOffer.careDays,"일")}'>-</c:if>
+									</td>
 									<td>근무일</td>
-									<td>총 3일</td>
+									<td>
+										총 <c:forTokens var="days" items="${aOffer.careDays}" delims=",">
+											<c:forEach items="${days}" end="6" step="1">
+												<c:set var="count" value="${count+1}"/>
+											</c:forEach>
+										</c:forTokens> <c:out value="${count}"/> 일
+																				
+									</td>
 								</tr>
 							</table>
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr class="tr-title"><td colspan="4">원하는 활동</td></tr>
 								<tr class="possible-active active">
-									<td>실내놀이</td>
-									<td>등하원돕기</td>
-									<td>책 읽기</td>
-									<td>야외활동</td>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A1")}'><td class="checked">실내놀이</td></c:when>
+										<c:otherwise><td>실내놀이</td></c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A2")}'><td class="checked">등하원돕기</td></c:when>
+										<c:otherwise><td>등하원돕기</td></c:otherwise>
+									</c:choose>					
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A3")}'><td class="checked">책 읽기</td></c:when>
+										<c:otherwise><td>책 읽기</td></c:otherwise>
+									</c:choose>												
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A4")}'><td class="checked">야외활동</td></c:when>
+										<c:otherwise><td>야외활동</td></c:otherwise>
+									</c:choose>
 								</tr>
 								<tr class="possible-active active">
-									<td>한글놀이</td>
-									<td>영어놀이</td>
-									<td>학습지도</td>
-									<td>체육놀이</td>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A5")}'><td class="checked">한글놀이</td></c:when>
+										<c:otherwise><td>한글놀이</td></c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A6")}'><td class="checked">영어놀이</td></c:when>
+										<c:otherwise><td>영어놀이</td></c:otherwise>
+									</c:choose>					
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A7")}'><td class="checked">학습지도</td></c:when>
+										<c:otherwise><td>학습지도</td></c:otherwise>
+									</c:choose>												
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careActivity,"A8")}'><td class="checked">체육놀이</td></c:when>
+										<c:otherwise><td>체육놀이</td></c:otherwise>
+									</c:choose>
 								</tr>
-							</table>
-							
+							</table>							
 						</div>
 						<button id="close">닫기</button>	
 					</center>
