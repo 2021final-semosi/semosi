@@ -18,6 +18,10 @@
 		<typeAlias type="kr.co.semosi.admin.customer.model.vo.FAQ" alias="FAQ"/>
      	<typeAlias type="kr.co.semosi.admin.customer.model.vo.Notice" alias="Notice"/>
       	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnA" alias="QnA"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.Guide" alias="Guide"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.FAQ" alias="FAQ"/>
+		<typeAlias type="kr.co.semosi.cs.model.vo.QnA" alias="QnA"/>
       	<typeAlias type="kr.co.semosi.admin.customer.model.vo.QnAComment" alias="QnAComment"/>
       	<typeAlias type="kr.co.semosi.admin.customer.model.vo.Inquiry" alias="Inquiry"/>
       

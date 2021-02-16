@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cs">
+	<!-- csMain에 공지사항 최근 5개 가져오기 -->
+	<select id="selectCsMainNoticeList" resultType="Notice">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER as writer,
+			DEL_YN as delYn
+		FROM NOTICE
+		WHERE DEL_YN='N' 
+		ORDER BY POST_NO DESC
+	</select>
+	
+	<!-- csMain에 이용가이드 최근 5개 가져오기 -->
+	<select id="selectCsMainGuideList" resultType="Guide">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM GUIDE
+		WHERE DEL_YN='N' 
+		ORDER BY POST_NO DESC
+	</select>
+	
+	<!-- csMain에 FAQ 최근 5개 가져오기 -->
+	<select id="selectCsMainFAQList" resultType="FAQ">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM FAQ
+		WHERE DEL_YN='N' 
+		ORDER BY POST_NO DESC
+	</select>
+
+	<!-- csMain에 1:1문의 최근 5개 가져오기 -->
+	<select id="selectCsMainQnAList" resultType="QnA">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER_P_NO as writerPNo,
+			WRITER_S_NO as writerSNo,
+			DEL_YN as delYn
+		FROM QNA
+		WHERE DEL_YN='N'
+		ORDER BY POST_NO DESC
+	</select>
+	
+	<!-- 공지사항 게시글 한 개 가져오기 -->
+	<select id="selectNoticePost" parameterType="Notice" resultType="Notice">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NAME as writer,
+			DEL_YN as delYn 
+		FROM MEMBER_P, NOTICE 
+		WHERE POST_NO=#{postNo} AND DEL_YN='N' AND MEMBER_P.MEMBERP_NO = NOTICE.WRITER
+	</select>
+
+	<!-- 이용가이드 게시글 한 개 가져오기 -->
+	<select id="selectGuidePost" parameterType="Guide" resultType="Guide">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NAME as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM MEMBER_P, GUIDE 
+		WHERE POST_NO=#{postNo} AND DEL_YN='N' AND MEMBER_P.MEMBERP_NO = GUIDE.WRITER
+	</select>
+	
+	<!-- FAQ 게시글 한 개 가져오기 -->
+	<select id="selectFAQPost" parameterType="FAQ" resultType="FAQ">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NAME as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM MEMBER_P, FAQ 
+		WHERE POST_NO=#{postNo} AND DEL_YN='N' AND MEMBER_P.MEMBERP_NO = FAQ.WRITER
+	</select>
+	
+	<!-- QnA 게시글 한 개 가져오기-->
+	<select id="selectQnAPost" parameterType="QnA" resultType="QnA">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NO as writerPNo,
+			MEMBER_NAME as writerSNo,
+			DEL_YN as delYn
+		FROM CS_QNA_LIST_VIEW
+		WHERE POST_NO=#{postNo} AND DEL_YN='N'
+	</select>
+	
+	<!-- Notice 한 페이지리스트 가져오기 -->
+	<select id="selectNoticeBoardPageList" parameterType="map" resultType="Notice">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NAME as writer,
+			DEL_YN as delYn
+		FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY POST_NO DESC) as ROW_NUM, NOTICE.*, MEMBER_NAME
+			FROM NOTICE, MEMBER_P
+			WHERE DEL_YN='N' AND NOTICE.WRITER=MEMBER_P.MEMBERP_NO)
+		WHERE ROW_NUM BETWEEN #{start} and #{end}
+	</select>
+	
+	
+	<!-- Guide 한 페이지리스트 가져오기 -->
+	<select id="selectGuideBoardPageList" parameterType="map" resultType="Guide">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NAME as writer,
+			DEL_YN as delYn
+		FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY POST_NO DESC) as ROW_NUM, GUIDE.*, MEMBER_NAME
+			FROM GUIDE, MEMBER_P
+			WHERE DEL_YN='N' AND GUIDE.WRITER=MEMBER_P.MEMBERP_NO)
+		WHERE ROW_NUM BETWEEN #{start} and #{end}
+	</select>
+	
+	<!-- FAQ 한 페이지리스트 가져오기 -->
+	<select id="selectFAQBoardPageList" parameterType="map" resultType="FAQ">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NAME as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY POST_NO DESC) as ROW_NUM, FAQ.*, MEMBER_NAME
+			FROM FAQ, MEMBER_P
+			WHERE DEL_YN='N' AND FAQ.WRITER=MEMBER_P.MEMBERP_NO)
+		WHERE ROW_NUM BETWEEN #{start} and #{end}
+	</select>
+	
+	<!-- 1:1문의 한 페이지리스트 가져오기 -->
+	<select id="selectQnABoardPageList" parameterType="map" resultType="QnA">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			MEMBER_NO as writerPNo,
+			MEMBER_NAME as writerSNo,
+			DEL_YN as delYn
+		FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY POST_NO DESC) as ROW_NUM, CS_QNA_LIST_VIEW.*
+			FROM CS_QNA_LIST_VIEW
+			WHERE DEL_YN='N')
+		WHERE ROW_NUM BETWEEN #{start} and #{end}
+	</select>
+	
+	
+	<!-- 전체 게시물 수 가져오기 (cs 게시판 공용) -->
+	<select id="postTotalCount" parameterType="String" resultType="int">
+		SELECT
+			COUNT(*) AS TOTALCOUNT
+		FROM ${value}
+		WHERE DEL_YN='N'
+	</select>
+	
+</mapper>
