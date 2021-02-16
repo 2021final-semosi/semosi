@@ -72,6 +72,14 @@ public class AdminJobService {
 	public int postReportDelete(String postNo) {
 		return jobDAO.postReportDelete(sqlSession,postNo);
 	}
+
+	public int jocheckDelete(String[] joList) {
+		return jobDAO.jocheckDelete(sqlSession, joList);
+	}
+
+	public int jscheckDelete(String[] jsList) {
+		return jobDAO.jscheckDelete(sqlSession, jsList);
+	}
 	
 	
 }

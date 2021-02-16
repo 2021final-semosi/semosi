@@ -54,7 +54,7 @@
 								</tr>
 							</table>
 							<table id="tabletwo">
-								<tr class="first_re">
+								<tr class="first_re1">
 									<th class="title" width="130px">게시판 제목</th>
 									<td class='title' colspan="5">
 										<c:choose>

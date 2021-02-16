@@ -124,7 +124,7 @@ div {
 	border-bottom: 1px solid gray;
 	text-align: center;
 	color: gray;
-	padding: 5px 0 5px 0;
+	padding: 10px 0 10px 0;
 }
 
 #noticeBoard>tbody>tr>td:nth-child(2) {

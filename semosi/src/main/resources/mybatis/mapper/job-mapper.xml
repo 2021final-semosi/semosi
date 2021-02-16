@@ -209,10 +209,10 @@
   		</if>
   		<if test='category.equals("del_YN")'>
   			<choose>
-  				<when test='keyword.equals("삭제")'>
-  					DEL_YN = 'N' and
+  				<when test='keyword.equals("삭제대기")'>
+  					ODEL = 'N' or SDEL = 'N' and
   				</when>
-  				<otherwise>DEL_YN = 'Y' and</otherwise>
+  				<otherwise>ODEL = 'Y' or SDEL = 'Y' and</otherwise>
   			</choose>
   		</if>
   	</if>
@@ -260,4 +260,19 @@
   			<otherwise>job_search set del_YN='Y' where post_no=#{postNo}</otherwise>
   		</choose>
   </update>
+  
+   <update id="jocheckDelete">
+     update JOB_OFFER set del_YN='Y' where post_no in
+     <foreach collection="array" item="data" open="( " separator=", " close=")">
+        '${data}'
+     </foreach>
+  </update>
+
+  <update id="jscheckDelete">
+     update JOB_SEARCH set del_YN='Y' where post_no in
+     <foreach collection="array" item="data" open="( " separator=", " close=")">
+        '${data}'
+     </foreach>
+  </update>
+
 </mapper>
