@@ -58,5 +58,17 @@ public class AdminReviewService {
 	return rDAO.searchDelYN(sqlSession, js);
     }
 
+	public int OReviewcheckDelete(String[] orList) {
+		return rDAO.OReviewcheckDelete(sqlSession, orList);
+	}
+
+	public int SReviewcheckDelete(String[] srList) {
+		return rDAO.SReviewcheckDelete(sqlSession, srList);
+	}
+
+	public int reviewAcheckDelete(String[] raList) {
+		return rDAO.reviewAcheckDelete(sqlSession, raList);
+	}
+
 
 }

@@ -25,7 +25,7 @@
 		select
 		count(*)
 		from
-		Member_P where memberP_no like 'p%'
+		Member_P where memberP_no not like '%a%'
 	</select>
 
 	<select id="selectMemberSContentCnt" resultType="int"
@@ -49,9 +49,8 @@
 		END_DATE as endDate,
 		END_YN as endYn,
 		BIRTH_DAY as birthDay
-		from (select row_number() over (order by
-		memberp_no) as row_num, member_P.* from member_P where memberP_no like 'p%')
-		where
+		from (select row_number() over (order by memberp_no) as row_num, member_P.* from member_P where memberP_no not like '%a%')
+		where memberP_no not like '%a%' and
 		<if test='category !=null and category != all and !keyword.equals("")'>
 			<if test='category == "memberp_no"'>
 				MEMBERP_NO like '%'||#{keyword}||'%' and
@@ -100,10 +99,7 @@
 		END_YN as endYn,
 		BIRTH_DAY as birthDay,
 		DOCUMENT_YN as documentYN
-		from (select row_number() over
-		(order by members_no)
-		as row_num, member_s.* from
-		member_s)
+		from (select row_number() over (order by members_no) as row_num, member_s.* from member_s)
 		where
 		<if test='category !=null and category != all and !keyword.equals("")'>
 			<if test='category == "memberp_no"'>
@@ -224,9 +220,16 @@
 	</update>
 	
 	<update id="memberPcheckDelete" >
-	update member_p set end_yn = 'Y', end_date=sysdate where memberp_no IN
+		update member_p set end_yn = 'Y', end_date=sysdate where memberp_no IN
 	<foreach collection="array" item="data" open="(" separator="," close=")">
 	   '${data}'
+	</foreach>
+	</update>
+	
+	<update id="memberScheckDelete">
+		update member_s set end_yn='Y', end_date=sysdate where members_no in
+	<foreach collection="array" item="data" open="(" separator=", " close=")">
+		'${data}'
 	</foreach>
 	</update>
 </mapper>

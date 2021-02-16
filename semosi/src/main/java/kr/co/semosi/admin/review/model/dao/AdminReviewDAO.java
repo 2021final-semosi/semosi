@@ -55,4 +55,16 @@ public class AdminReviewDAO {
 	return sqlSession.update("review.searchDelYN", js);
     }
 
+	public int OReviewcheckDelete(SqlSessionTemplate sqlSession, String[] orList) {
+		return sqlSession.update("review.OReviewcheckDelete", orList);
+	}
+
+	public int SReviewcheckDelete(SqlSessionTemplate sqlSession, String[] srList) {
+		return sqlSession.update("review.SReviewcheckDelete", srList);
+	}
+
+	public int reviewAcheckDelete(SqlSessionTemplate sqlSession, String[] raList) {
+		return sqlSession.update("review.reviewAcheckDelete", raList);
+	}
+
 }

@@ -138,7 +138,7 @@
 	</select>
 	
 	<update id="answerDelYN">
-		update review_answer set del_yn = #{delYn} where answer_review_no=#{answerReviewNo}
+		update review_answer set del_yn = #{delYN} where answer_review_no=#{answerReviewNo}
 	</update>
 
 	<update id="offerDelYN">
@@ -148,5 +148,25 @@
 	<update id="searchDelYN">
 		update JOB_SEARCH_REVIEW set del_yn = #{delYn} where review_no=#{reviewNo}
 	</update>
-
+	
+	<update id="OReviewcheckDelete">
+		update JOB_OFFER_REVIEW set del_yn='Y' where review_no in
+		<foreach collection="array" item="data" open="(" separator=", " close=")">
+			'${data}'		
+		</foreach>
+	</update>
+	
+	<update id="SReviewcheckDelete">
+		update JOB_SEARCH_REVIEW set del_yn = 'Y' where review_no in
+	<foreach collection="array" item="data" open="(" separator=", " close=")">
+		'${data}'
+	</foreach>	
+	</update>
+	
+	<update id="reviewAcheckDelete">
+		update review_answer set del_yn = 'Y' where answer_review_no in
+		<foreach collection="array" item="data" open="(" separator=", " close=")">
+		'${data}'
+		</foreach>
+	</update>
 </mapper>
