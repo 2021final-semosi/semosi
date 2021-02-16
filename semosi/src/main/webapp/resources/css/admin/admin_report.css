@@ -4,6 +4,9 @@ table {
    width: 1400px;
    margin: 0 auto;
 }
+tr {
+	height: 46px;
+}
 
 .search {
    margin-right: 60px;
