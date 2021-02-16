@@ -95,6 +95,56 @@ $(function(){
 	});
 });
 </script>
+<script>
+$(document).ready(function() {
+	$("#all_select").click(function() {
+		if ($(".allSelect").prop("checked")) {
+			$(".check").prop("checked", true);
+		} else {
+			$(".check").prop("checked", false);
+		}
+	});
+	$(".check").click(function() {
+		if ($("input[name='send-select']:checked").length == 13) {
+			$(".allSelect").prop("checked", true);
+		} else {
+			$(".allSelect").prop("checked", false);
+		}
+	});
+});
+	
+function deleteValue() {
+	var valueArr = new Array();
+	var list = $("input[name='send-select']:checked");
+	for (var i = 0; i < list.length; i++) {
+		valueArr.push(list[i].value);
+	}
+	
+	if (valueArr.length == 0) {
+		alert("선택된 글이 없습니다.");
+	}else{
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk==true){
+			$.ajax({
+				url : "/OReviewcheckDelete.sms",
+				type : "post",
+				data : {'valueArr' : valueArr},
+				success : function(result){
+					if (result == "true") {
+						alert("삭제 성공");
+					} else {
+						console.log("삭제 실패");
+					}
+					location.reload();
+				},
+				error : function() {
+					console.log("ajax통신 실패");
+				}
+			});
+		}
+	}
+};
+</script>
 	<div class="page-wrapper">
 		<div class="admin-header">
 			<c:import url="/WEB-INF/views/admin/common/admin_header.jsp" />
@@ -129,10 +179,10 @@ $(function(){
 									<button type="submit" class="search-btn" >검색</button>
 								</form>
 							</div>
-							<div class="tab-content">
+							<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
 								<table class="board">
 									<tr class="head">
-										<th id="all_select"><input type="checkbox" /></th>
+										<th id="all_select"><input type="checkbox" class="allSelect" /></th>
 										<th class='post-no'>번호</th>
 										<th class="membertype">회원 유형</th>
 										<th class='memberid'>아이디</th>
@@ -146,7 +196,7 @@ $(function(){
 										<c:when test="${fn:length(OfferReviewList)!=0 }">
 											<c:forEach var="orList" items="${OfferReviewList}" varStatus="status">
 												<tr class="contents">
-													<td class='select'><input type="checkbox" value="" name="send-select" /></td>
+													<td class='select'><input type="checkbox" value="${orList.reviewNo }" class="check" name="send-select" /></td>
 													<td class='post-no'><c:out value='${orList.reviewNo }'/></td>
 													<td class="membertype">시터회원</td>
 													<td class='memberid'>${orList.memberId }</td>
@@ -201,7 +251,6 @@ $(function(){
 										</tr>
 									</c:forEach>
 								</table>
-							</div>
 						</div>
 						<div id="pagination" class="pagenavigation"></div>
 					</div>

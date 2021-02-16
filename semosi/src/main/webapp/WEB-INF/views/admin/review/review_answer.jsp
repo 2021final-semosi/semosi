@@ -72,13 +72,13 @@
 $(function(){
 	$('.delChangeBtn').click(function(){
 		var answerReviewNo = $(this).attr('id');
-		var delYn = $(this).attr('name');
+		var delYN = $(this).attr('name');
 		var $btnObject = $(this);
 		
 		$.ajax({
 			url:"/answerDelYN.sms",
 			type : "post",
-			data : {"answerReviewNo":answerReviewNo, "delYn":delYn},
+			data : {"answerReviewNo":answerReviewNo, "delYN":delYN},
 			success : function(result){
 				 if(result=="true") {
 					console.log("성공");
@@ -93,6 +93,56 @@ $(function(){
 		}); 
 	});
 });
+</script>
+<script>
+$(document).ready(function() {
+	$("#all_select").click(function() {
+		if ($(".allSelect").prop("checked")) {
+			$(".check").prop("checked", true);
+		} else {
+			$(".check").prop("checked", false);
+		}
+	});
+	$(".check").click(function() {
+		if ($("input[name='send-select']:checked").length == 13) {
+			$(".allSelect").prop("checked", true);
+		} else {
+			$(".allSelect").prop("checked", false);
+		}
+	});
+});
+	
+function deleteValue() {
+	var valueArr = new Array();
+	var list = $("input[name='send-select']:checked");
+	for (var i = 0; i < list.length; i++) {
+		valueArr.push(list[i].value);
+	}
+	
+	if (valueArr.length == 0) {
+		alert("선택된 글이 없습니다.");
+	}else{
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk==true){
+			$.ajax({
+				url : "/reviewAcheckDelete.sms",
+				type : "post",
+				data : {'valueArr' : valueArr},
+				success : function(result){
+					if (result == "true") {
+						alert("삭제 성공");
+					} else {
+						console.log("삭제 실패");
+					}
+					location.reload();
+				},
+				error : function() {
+					console.log("ajax통신 실패");
+				}
+			});
+		}
+	}
+};
 </script>
 	<div class="page-wrapper">
 		<div class="admin-header">
@@ -127,10 +177,11 @@ $(function(){
 									<button type="submit" class="search-btn" >검색</button>
 								</form>
 							</div>
+							<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
 							<div class="tab-content">
 								<table class="board">
 									<tr class="head">
-										<th id="all_select"><input type="checkbox" /></th>
+										<th id="all_select"><input type="checkbox" class="allSelect" /></th>
 										<th class='post-no'>번호</th>
 										<th class="originContent">본 후기</th>
 										<th class='memberid'>작성자 아이디</th>
@@ -144,7 +195,7 @@ $(function(){
 											<c:forEach var="raList" items="${ReviewAnswerList}"
 												varStatus="status">
 												<tr class="contents">
-													<td class='select'><input type="checkbox" value="" name="send-select" /></td>
+													<td class='select'><input type="checkbox" value="${raList.answerReviewNo }" class="check" name="send-select" /></td>
 													<td class='post-no'>${raList.answerReviewNo }</td>
 													<td class="originContent">${raList.content}</td>
 													<td class='memberid'>${raList.memberId }</td>

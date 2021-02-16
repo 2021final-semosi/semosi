@@ -59,12 +59,9 @@ public class AdminMemberController {
 			Model model) {
 
 		// 조회 하려는 페이지
-		int startPage = (paramMap.get("startPage") != null && paramMap.get("startPage").toString().length() != 0
-				? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
+		int startPage = (paramMap.get("startPage") != null && paramMap.get("startPage").toString().length() != 0 ? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
 		// 한페이지에 보여줄 리스트 수
-		int visiblePages = (paramMap.get("visiblePages") != null
-				&& paramMap.get("visiblePages").toString().length() != 0
-						? Integer.parseInt(paramMap.get("visiblePages").toString()) : 13);
+		int visiblePages = (paramMap.get("visiblePages") != null && paramMap.get("visiblePages").toString().length() != 0 ? Integer.parseInt(paramMap.get("visiblePages").toString()) : 13);
 		// 검색
 		paramMap.put("category", category);
 		paramMap.put("keyword", keyword);
@@ -101,12 +98,9 @@ public class AdminMemberController {
 			Model model) {
 
 		// 조회 하려는 페이지
-		int startPage = (paramMap.get("startPage") != null && paramMap.get("startPage").toString().length() != 0
-				? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
+		int startPage = (paramMap.get("startPage") != null && paramMap.get("startPage").toString().length() != 0 ? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
 		// 한페이지에 보여줄 리스트 수
-		int visiblePages = (paramMap.get("visiblePages") != null
-				&& paramMap.get("visiblePages").toString().length() != 0
-						? Integer.parseInt(paramMap.get("visiblePages").toString()) : 13);
+		int visiblePages = (paramMap.get("visiblePages") != null && paramMap.get("visiblePages").toString().length() != 0 ? Integer.parseInt(paramMap.get("visiblePages").toString()) : 13);
 
 		// 검색
 		paramMap.put("category", category);
@@ -231,5 +225,24 @@ public class AdminMemberController {
 			response.getWriter().print(false);
 		}
 		return null;
+	}
+	
+	@RequestMapping(value="/memberScheckDelete.sms")
+	public String memberScheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String [] memberSList = new String[20]; //넉넉하게 배열 공간을 잡은것
+		int i=0;
+		//배열로 받아온 data를 datas만큼 memberSList에 넣어준다
+		for(String data : datas){
+			memberSList[i] = data;
+			i++;
+		}
+		int result = mService.memberScheckDelete(memberSList);
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+		return null;
+		
 	}
 }

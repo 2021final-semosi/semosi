@@ -1,5 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="false"%>
@@ -8,14 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>세상의 모든 시터</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/admin/common_wrapper.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/admin/common_board.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/admin/admin_member_board.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/common_wrapper.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/common_board.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin/admin_member_board.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -65,12 +60,6 @@
 	
 	//하단 페이지 부분에 붙인다.
 	$("#pagination").append(pagination);//--페이지 셋팅
-		$("a[name='subject']").click(function() {
-			location.href = "/board/view?id="+ $(this).attr("content_id");
-		});
-		$("#write").click(function() {
-			location.href = "/board/edit";
-		});
 
 		$(document).on("click", "button[name='page_move']",function() {
 			var visiblePages = 13;//리스트 보여줄 페이지
@@ -89,10 +78,7 @@
 				$.ajax({
 					url : "/memberPEndYn.sms",
 					type : "post",
-					data : {
-						"memberId" : memberId,
-						"endYn" : endYn
-					},
+					data : { "memberId" : memberId, "endYn" : endYn },
 					success : function(result) {
 						if (result == "true") {
 							if (endYn == 'N') {
@@ -111,56 +97,56 @@
 		});
 </script>
 <script>
-		$(document).ready(function() {
-			$("#all_select").click(function() {
-				if ($(".allSelect").prop("checked")) {
-					$(".check").prop("checked", true);
-				} else {
-					$(".check").prop("checked", false);
-				}
-			});
-			$(".check").click(function() {
-				if ($("input[name='send-select']:checked").length == 13) {
-					$(".allSelect").prop("checked", true);
-				} else {
-					$(".allSelect").prop("checked", false);
-				}
-			});
-		});
-		
-		function deleteValue() {
-			var valueArr = new Array();
-			
-			var list = $("input[name='send-select']:checked");
-			for (var i = 0; i < list.length; i++) {
-				valueArr.push(list[i].value);
-			}
-		if (valueArr.length == 0) {
-			alert("선택된 글이 없습니다.");
-		}else{
-			var chk = confirm("정말 삭제하시겠습니까?");
-			if(chk==true){
-				$.ajax({
-					url : "/memberPcheckDelete.sms",
-					type : "post",
-					data : {'valueArr' : valueArr},
-					success : function(result){
-						if (result == "true") {
-								alert("삭제 성공");
-						} else {
-							console.log("삭제 실패");
-						}
-						location.reload();
-					},
-					error : function() {
-						console.log("ajax통신 실패");
-					}
-				});
-			}
+$(document).ready(function() {
+	$("#all_select").click(function() {
+		if ($(".allSelect").prop("checked")) {
+			$(".check").prop("checked", true);
+		} else {
+			$(".check").prop("checked", false);
 		}
-	};
+	});
+	$(".check").click(function() {
+		if ($("input[name='send-select']:checked").length == 13) {
+			$(".allSelect").prop("checked", true);
+		} else {
+			$(".allSelect").prop("checked", false);
+		}
+	});
+});
+	
+function deleteValue() {
+	var valueArr = new Array();
+	var list = $("input[name='send-select']:checked");
+	for (var i = 0; i < list.length; i++) {
+		valueArr.push(list[i].value);
+	}
+	
+	if (valueArr.length == 0) {
+		alert("선택된 글이 없습니다.");
+	}else{
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if(chk==true){
+			$.ajax({
+				url : "/memberPcheckDelete.sms",
+				type : "post",
+				data : {'valueArr' : valueArr},
+				success : function(result){
+					if (result == "true") {
+						alert("삭제 성공");
+					} else {
+						console.log("삭제 실패");
+					}
+					location.reload();
+				},
+				error : function() {
+					console.log("ajax통신 실패");
+				}
+			});
+		}
+	}
+};
 </script>
-		
+
 	<div class="page-wrapper">
 		<div class="admin-header">
 			<c:import url="/WEB-INF/views/admin/common/admin_header.jsp" />
@@ -209,41 +195,37 @@
 								</tr>
 								<c:choose>
 									<c:when test="${fn:length(memberPList)!=0 }">
-										<c:forEach var="memberPList" items="${memberPList }"
-											varStatus="status">
+										<c:forEach var="memberPList" items="${memberPList }" varStatus="status">
 											<tr class="contents">
-												<td class='select'><input type="checkbox" value="${memberPList.memberpNo }" class="check" name="send-select" /></td>
+												<td class='select'>
+												<input type="checkbox" value="${memberPList.memberpNo }" class="check" name="send-select" /></td>
 												<td class='member-no'>${memberPList.memberpNo }</td>
 												<td class='member-id'>${memberPList.memberId }</td>
 												<td class='member-name'>${memberPList.memberName }</td>
 												<td class='gender'><c:choose>
-														<c:when test="${memberPList.gender eq 'F' }">
-										여성
-									</c:when>
-														<c:otherwise>
-										 남성
-									</c:otherwise>
+													<c:when test="${memberPList.gender eq 'F' }">
+														여성
+													</c:when>
+													<c:otherwise>
+														 남성
+													</c:otherwise>
 													</c:choose></td>
 												<td class='birth-day'>${memberPList.birthDay }</td>
 												<td class='enroll-date'>${memberPList.enrollDate }</td>
 												<td class='end-date'><c:choose>
-														<c:when test="${memberPList.endDate == null }">
-										 - 
-									</c:when>
-														<c:otherwise>
-										${memberPList.endDate }
-									</c:otherwise>
+													<c:when test="${memberPList.endDate == null }">
+														 - 
+													</c:when>
+													<c:otherwise>
+														${memberPList.endDate }
+													</c:otherwise>
 													</c:choose></td>
 												<td class="function"><c:choose>
 														<c:when test="${memberPList.endYn eq 'Y'.charAt(0) }">
-															<button type="button" class="endChangeBtn restore-btn"
-																id="${memberPList.memberId }"
-																name="${memberPList.endYn }">복구</button>
+															<button type="button" class="endChangeBtn restore-btn" id="${memberPList.memberId }" name="${memberPList.endYn }">복구</button>
 														</c:when>
 														<c:otherwise>
-															<button type="button" class="endChangeBtn delete-btn"
-																id="${memberPList.memberId }"
-																name="${memberPList.endYn }">삭제</button>
+															<button type="button" class="endChangeBtn delete-btn" id="${memberPList.memberId }" name="${memberPList.endYn }">삭제</button>
 														</c:otherwise>
 													</c:choose></td>
 											</tr>
@@ -265,7 +247,6 @@
 									</tr>
 								</c:forEach>
 							</table>
-							
 						</div>
 						<div id="pagination" class="pagenavigation"></div>
 					</div>

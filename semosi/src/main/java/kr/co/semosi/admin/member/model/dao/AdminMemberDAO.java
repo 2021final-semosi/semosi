@@ -60,4 +60,8 @@ public class AdminMemberDAO {
 		return sqlSession.update("member.memberPcheckDelete", memberPList);
 	}
 
+	public int memberScheckDelete(SqlSessionTemplate sqlSession, String[] memberSList) {
+		return sqlSession.update("member.memberScheckDelete", memberSList);
+	}
+
 }

@@ -68,4 +68,8 @@ public class MemberService {
 		return mDAO.memberPcheckDelete(sqlSession, memberPList);
 	}
 
+	public int memberScheckDelete(String[] memberSList) {
+		return mDAO.memberScheckDelete(sqlSession, memberSList);
+	}
+
 }

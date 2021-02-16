@@ -2,6 +2,7 @@ package kr.co.semosi.admin.review.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -139,16 +140,16 @@ public class AdminReviewController {
     
     			     
     @RequestMapping(value = "/answerDelYN.sms")
-    public String answerDelYN(@RequestParam String answerReviewNo, @RequestParam char delYn, HttpServletResponse response) throws IOException{
+    public String answerDelYN(@RequestParam String answerReviewNo, @RequestParam char delYN, HttpServletResponse response) throws IOException{
 	ReviewAnswer ra = new ReviewAnswer();
-	if(delYn=='Y'){
-	   delYn='N';
+	if(delYN=='Y'){
+	   delYN='N';
 	}else{
-	    delYn='Y';
+		delYN='Y';
 	}
 	
 	ra.setAnswerReviewNo(answerReviewNo);
-	ra.setDelYN(delYn);
+	ra.setDelYN(delYN);
 	
 	int result = rService.answerDelYN(ra); 
 	
@@ -189,26 +190,78 @@ public class AdminReviewController {
     
     @RequestMapping(value = "/searchDelYN.sms")
     public String searchDelYN(@RequestParam String reviewNo, @RequestParam char delYn, HttpServletResponse response) throws IOException{
-	JobSearchReviewView js = new JobSearchReviewView();
+    	JobSearchReviewView js = new JobSearchReviewView();
 	
-	if(delYn=='Y'){
-	   delYn='N';
-	}else{
-	    delYn='Y';
-	}
+    	if(delYn=='Y'){
+    		delYn='N';
+    	}else{
+    		delYn='Y';
+    	}
 	
-	js.setReviewNo(reviewNo);
-	js.setDelYn(delYn);
+    	js.setReviewNo(reviewNo);
+    	js.setDelYn(delYn);
 	
-	int result = rService.searchDelYN(js); 
+    	int result = rService.searchDelYN(js); 
 	
-	if(result>0){
-	    System.out.println("정보 변경 성공");
-	    response.getWriter().print(true);
-	}else{
-	    System.out.println("정보 변경 실패");
-	    response.getWriter().print(false);
-	}
-	return null;
+    	if(result>0){
+    		System.out.println("정보 변경 성공");
+    		response.getWriter().print(true);
+    	}else{
+    		System.out.println("정보 변경 실패");
+    		response.getWriter().print(false);
+    	}
+    	return null;
     }
+    
+    @RequestMapping(value="/OReviewcheckDelete.sms")
+    public String OReviewcheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+    	String [] orList = new String[20];
+    	int i=0;
+    	for(String data : datas){
+    		orList[i]=data;
+    		i++;
+    	}
+    	int result = rService.OReviewcheckDelete(orList);
+    	if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+		return null;
+    }
+
+    @RequestMapping(value="/SReviewcheckDelete.sms")
+    public String SReviewcheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+    	String [] srList = new String[20];
+    	int i=0;
+    	for(String data : datas){
+    		srList[i]=data;
+    		i++;
+    	}
+    	int result = rService.SReviewcheckDelete(srList);
+    	if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+		return null;
+    }
+ 
+    @RequestMapping(value="/reviewAcheckDelete.sms")
+    public String reviewAcheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+    	String [] raList = new String[20];
+    	int i=0;
+    	for(String data : datas){
+    		raList[i]=data;
+    		i++;
+    	}
+    	int result = rService.reviewAcheckDelete(raList);
+    	if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+		return null;
+    }
+    
 }
