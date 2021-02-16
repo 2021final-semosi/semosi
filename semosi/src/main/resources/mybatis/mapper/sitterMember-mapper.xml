@@ -38,7 +38,7 @@
   </select>
   
   <insert id="memberSignup" parameterType="SitterMember">
-  	INSERT INTO MEMBER_S VALUES(MEMBERS_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, sysdate, null, null, #{birthDay}, 'N')
+  	INSERT INTO MEMBER_S VALUES('S'||MEMBERS_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, sysdate, null, null, #{birthDay}, 'N')
   </insert>
   
    <insert id="7daysVoucher">

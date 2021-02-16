@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
 
 @Service
 @Aspect
@@ -64,8 +65,8 @@ public class MemberAOP {
 		String memberPw = pm.getMemberPw();
 
 		System.out.println("비밀번호암호화");
-		System.out.println("ID:"+memberId);
-		System.out.println("PW"+memberPw);
+		//System.out.println("ID:"+memberId);
+		//System.out.println("PW"+memberPw);
 		
 		String encryUserPwd = enc.encryData(memberId, memberPw);
 		
@@ -79,15 +80,16 @@ public class MemberAOP {
 	{
 		System.out.println("sitterSignupPointcut [before]");
 		//비밀번호 암호화를 위해 Id/ PW를 추출
-		ParentMember sm = ((ParentMember)jp.getArgs()[0]);
+		SitterMember sm = ((SitterMember)jp.getArgs()[0]);
 		String memberId = sm.getMemberId();
 		String memberPw = sm.getMemberPw();
 
 		System.out.println("비밀번호암호화");
-		System.out.println("ID:"+memberId);
-		System.out.println("PW"+memberPw);
+		//System.out.println("ID:"+memberId);
+		//System.out.println("PW:"+memberPw);
 		
 		String encryUserPwd = enc.encryData(memberId, memberPw);
+		
 		
 		sm.setMemberPw(encryUserPwd); // 암호화 된 데이터를 객체에 넣어줌
 
