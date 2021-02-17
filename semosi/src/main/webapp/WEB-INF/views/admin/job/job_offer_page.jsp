@@ -108,13 +108,26 @@
 							<table class="data-table">
 								<tr id="fourth">
 									<td class="first-td">원하는 시터 나이</td>
-									<c:forTokens var="age" items="${aOffer.age}" delims=",">
-										<c:if test='${age eq "G20"}'> <td class="sitter_age">20대</td> </c:if>
-										<c:if test='${age eq "G30"}'> <td class="sitter_age">30대</td> </c:if>
-										<c:if test='${age eq "G40"}'> <td class="sitter_age">40대</td> </c:if>
-										<c:if test='${age eq "G50"}'> <td class="sitter_age">50대</td> </c:if>
-										<c:if test='${age eq "G60"}'> <td class="sitter_age">60대</td> </c:if>										
-									</c:forTokens>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careAge,"2")}'> <td class="sitter_age">20대</td> </c:when>
+										<c:otherwise> <td>20대</td> </c:otherwise>									
+									</c:choose>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careAge,"3")}'> <td class="sitter_age">30대</td> </c:when>
+										<c:otherwise> <td>30대</td> </c:otherwise>									
+									</c:choose>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careAge,"4")}'> <td class="sitter_age">40대</td> </c:when>
+										<c:otherwise> <td>40대</td> </c:otherwise>									
+									</c:choose>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careAge,"5")}'> <td class="sitter_age">50대</td> </c:when>
+										<c:otherwise> <td>50대</td> </c:otherwise>									
+									</c:choose>
+									<c:choose>
+										<c:when test='${fn:contains(aOffer.careAge,"6")}'> <td class="sitter_age">60대</td> </c:when>
+										<c:otherwise> <td>60대</td> </c:otherwise>									
+									</c:choose>									
 								</tr>
 							</table>
 							<div class="blank"></div>
@@ -128,7 +141,13 @@
 										</c:choose>
 									</td>
 									<td style="width: 20%;" class="first-td">돌봄 유형</td>
-									<td style="width: 45%;">${aOffer.careType}</td>
+									<td style="width: 45%;">
+									[
+										<c:if test='${fn:contains(aOffer.careType,"1")}'>정기 </c:if>
+										<c:if test='${fn:contains(aOffer.careType,"2")}'>단기 </c:if>
+										<c:if test='${fn:contains(aOffer.careType,"3")}'>협의 </c:if>]
+										기간 유형
+									</td>
 								</tr>
 							</table>
 							<div class="blank"></div>
@@ -139,6 +158,12 @@
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr class="tr-title"><td colspan="8">희망 돌봄 시간</td></tr>
+								<tr class="tr-title"><td colspan="8">시작일 [${aOffer.startDate}] -
+									<c:choose>
+										<c:when test="${aOffer.endDate==null}">종료일 미정</c:when>
+										<c:otherwise>종료일 [${aOffer.endDate}]</c:otherwise>
+									</c:choose>
+									</td></tr>
 								<tr class="possible-active time">
 									<td>월</td>
 									<td>

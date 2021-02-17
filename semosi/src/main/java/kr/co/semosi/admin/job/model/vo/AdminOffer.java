@@ -12,7 +12,7 @@ public class AdminOffer {
     private int carePerson;
     private Date careAge;
     private String location;
-    private char careType;
+    private String careType;
     private Date startDate;
 
     private Date endDate;
@@ -94,11 +94,11 @@ public class AdminOffer {
    this.location = location;
     }
 
-    public char getCareType() {
+    public String getCareType() {
    return careType;
     }
 
-    public void setCareType(char careType) {
+    public void setCareType(String careType) {
    this.careType = careType;
     }
 
@@ -220,7 +220,7 @@ public class AdminOffer {
     }
 
     public AdminOffer(String postNo, String title, String memberpNo, String content, String age, int carePerson,
-       Date careAge, String location, char careType, Date startDate, Date endDate, String careDays,
+       Date careAge, String location, String careType, Date startDate, Date endDate, String careDays,
        String careTime, int pay, String careActivity, char preperGender, String memberName, String memberId,
        String phone, char gender, String address, Date writeDate, char delYN) {
    super();
