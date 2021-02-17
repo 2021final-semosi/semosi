@@ -43,15 +43,10 @@ public class MypageController {
    //마이페이지 프로필 수정
    @RequestMapping(value="/parentProfileUpdate.sms")
    public void updateParentFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
-         ,HttpServletResponse response,HttpSession session) throws IOException
+	         ,HttpServletResponse response,HttpSession session, @SessionAttribute("pMember") ParentMember pMember) throws IOException
    {
-      System.out.println("[/parentProfileUpdate.sms] : 정상호출");
-      System.out.println("[/parentProfileUpdate.sms] :" + phone);
-      System.out.println("[/parentProfileUpdate.sms] :" + address);
-      System.out.println("[/parentProfileUpdate.sms] :" + memberId);
-      
-      
-      ParentMember pMember = new ParentMember();
+	   System.out.println("[/parentProfileUpdate.sms] : 정상호출"+ phone+" / "+ address+" / "+memberId);   
+
       pMember.setPhone(phone);
       pMember.setAddress(address);
       pMember.setMemberId(memberId);
@@ -59,13 +54,16 @@ public class MypageController {
       int result = myService.updateParentFrofile(pMember);
 
       if (result >0) {
-         // 회원 정보 변경 성공
-         response.getWriter().print(true);
-         
-      } else {
-         //변경 실패 
-         response.getWriter().print(false);
-      }
+          // 회원 정보 변경 성공
+          response.getWriter().print(true);
+          session.removeAttribute("pMember");
+          session.setAttribute("pMember", pMember);   
+          
+       } else {
+          //변경 실패 
+          response.getWriter().print(false);
+       }
+
       
       return ;   
       
@@ -105,11 +103,20 @@ public class MypageController {
    
    //작성한 후기
    @RequestMapping(value="/parentReviewReceive.sms")
-   public String parentReviewReceive(){
-      
+   public String seletParentReviewReceive(@SessionAttribute("pMember") ParentMember pMember){
       System.out.println("[/parentReviewReceive.sms] 정상적으로 호출 되었습니다.");
+      
+      String memberNo = pMember.getMemberNo();
+      System.out.println(memberNo);
+      
+      myService.seletParentReviewReceive(memberNo);
+      
+      
       return "mypage/parent/reviewReceive";
    }
+   
+   
+   
    
    //받은 후기
    @RequestMapping(value="/parentReviewWrite.sms")
@@ -216,15 +223,11 @@ public class MypageController {
    //마이페이지 프로필 수정
    @RequestMapping(value="/sitterProfileUpdate.sms")
    public void updateSitterFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
-         ,HttpServletResponse response) throws IOException
+	         ,HttpServletResponse response, HttpSession session, @SessionAttribute("sMember") SitterMember sMember) throws IOException
    {
-      System.out.println("[/sitterProfileUpdate.sms] : 정상호출");
-      System.out.println("[/sitterProfileUpdate.sms] :" + phone);
-      System.out.println("[/sitterProfileUpdate.sms] :" + address);
-      System.out.println("[/sitterProfileUpdate.sms] :" + memberId);
+	   System.out.println("[/sitterProfileUpdate.sms] : 정상호출"+ phone+" / "+ address+" / "+memberId);  
       
-      
-      SitterMember sMember = new SitterMember();
+
       sMember.setPhone(phone);
       sMember.setAddress(address);
       sMember.setMemberId(memberId);
@@ -232,13 +235,15 @@ public class MypageController {
       int result = myService.updateSitterFrofile(sMember);
 
       if (result >0) {
-         // 회원 정보 변경 성공
-         response.getWriter().print(true);
-         
-      } else {
-         //변경 실패 
-         response.getWriter().print(false);
-      }
+          // 회원 정보 변경 성공
+          response.getWriter().print(true);
+          session.removeAttribute("sMember");
+          session.setAttribute("sMember", sMember);         
+       } else {
+          //변경 실패 
+          response.getWriter().print(false);
+       }
+
       
       return ;   
       

@@ -87,6 +87,16 @@ public class MypageService {
 	}
 	
 
+	//부모 리뷰작성 조회
+	public void seletParentReviewReceive(String memberNo) {
+		System.out.println("[MypageService]: 정상호출");
+		myDAO.seletParentReviewReceive(sqlSession,memberNo);
+		
+		return;
+		
+	}
+
+
 
    
 
