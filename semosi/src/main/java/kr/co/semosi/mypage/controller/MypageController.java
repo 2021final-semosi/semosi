@@ -33,19 +33,14 @@ public class MypageController {
       return "mypage/parent/memberProfile";
    }
    
-   //마이페이지 프로필 수정
+ //마이페이지 프로필 수정
    @RequestMapping(value="/parentProfileUpdate.sms")
    public void updateParentFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
-         ,HttpServletResponse response,HttpSession session) throws IOException
+         ,HttpServletResponse response,HttpSession session, @SessionAttribute("pMember") ParentMember pMember) throws IOException
    {
-      System.out.println("[/parentProfileUpdate.sms] : 정상호출");
-      System.out.println("[/parentProfileUpdate.sms] :" + phone);
-      System.out.println("[/parentProfileUpdate.sms] :" + address);
-      System.out.println("[/parentProfileUpdate.sms] :" + memberId);
+      System.out.println("[/parentProfileUpdate.sms] : 정상호출"+ phone+" / "+ address+" / "+memberId);   
       
-      
-      ParentMember pMember = new ParentMember();
-      pMember.setPhone(콜);
+      pMember.setPhone(phone);
       pMember.setAddress(address);
       pMember.setMemberId(memberId);
       
@@ -54,14 +49,14 @@ public class MypageController {
       if (result >0) {
          // 회원 정보 변경 성공
          response.getWriter().print(true);
+         session.removeAttribute("pMember");
+         session.setAttribute("pMember", pMember);   
          
       } else {
          //변경 실패 
          response.getWriter().print(false);
       }
-      
       return ;   
-      
    }
    
    //내가 신청한 구인현황
@@ -156,35 +151,29 @@ public class MypageController {
    }
    
 
-   //마이페이지 프로필 수정
+ //마이페이지 프로필 수정
    @RequestMapping(value="/sitterProfileUpdate.sms")
    public void updateSitterFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
-         ,HttpServletResponse response) throws IOException
+         ,HttpServletResponse response, HttpSession session, @SessionAttribute("sMember") SitterMember sMember) throws IOException
    {
-      System.out.println("[/sitterProfileUpdate.sms] : 정상호출");
-      System.out.println("[/sitterProfileUpdate.sms] :" + phone);
-      System.out.println("[/sitterProfileUpdate.sms] :" + address);
-      System.out.println("[/sitterProfileUpdate.sms] :" + memberId);
+      System.out.println("[/sitterProfileUpdate.sms] : 정상호출"+ phone+" / "+ address+" / "+memberId);      
       
-      
-      SitterMember sMember = new SitterMember();
-      sMember.setPhone(콜);
+      sMember.setPhone(phone);
       sMember.setAddress(address);
       sMember.setMemberId(memberId);
       
       int result = myService.updateSitterFrofile(sMember);
-
+     
       if (result >0) {
          // 회원 정보 변경 성공
          response.getWriter().print(true);
-         
+         session.removeAttribute("sMember");
+         session.setAttribute("sMember", sMember);         
       } else {
          //변경 실패 
          response.getWriter().print(false);
       }
-      
       return ;   
-      
    }
    
    
