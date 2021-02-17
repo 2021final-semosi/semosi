@@ -134,4 +134,32 @@ public class MypageService {
 		return teacherDocu;
 	}
 
+	public int insertResiDocu(ResidentDocu resiDocu) {
+		System.out.println("[MyPageService] ResidentDocu 메소드 호출");
+
+		int result = myDAO.insertResiDocu(sqlSession, resiDocu);
+		return result;
+	}
+
+	public int insertHealthDocu(HealthDocu healthDocu) {
+		System.out.println("[MyPageService] insertHealthDocu 메소드 호출");
+
+		int result = myDAO.insertHealthDocu(sqlSession, healthDocu);
+		return result;
+	}
+
+	public int insertFamilyDocu(FamilyDocu familyDocu) {
+		System.out.println("[MyPageService] insertFamilyDocu 메소드 호출");
+
+		int result = myDAO.insertFamilyDocu(sqlSession, familyDocu);
+		return result;
+	}
+
+	public int insertTeacherDocu(TeacherDocu teacherDocu) {
+		System.out.println("[MyPageService] insertTeacherDocu 메소드 호출");
+
+		int result = myDAO.insertTeacherDocu(sqlSession, teacherDocu);
+		return result;
+	}
+
 }
