@@ -49,6 +49,12 @@
   	INSERT INTO PARENTS_VOUCHER VALUES(PARENTS_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
   </insert>
   
+
+  <update id="updateParentFrofile">
+		UPDATE MEMBER_P SET PHONE=#{phone},ADDRESS=#{address} WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+  
   
   
 </mapper>

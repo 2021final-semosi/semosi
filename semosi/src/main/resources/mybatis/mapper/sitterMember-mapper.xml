@@ -50,4 +50,8 @@
   <insert id="30daysVoucher">
   	INSERT INTO SITTER_VOUCHER VALUES(SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
   </insert>
+    <update id="updateSitterFrofile">
+		UPDATE MEMBER_S SET PHONE=#{phone},ADDRESS=#{address} WHERE MEMBER_ID=#{memberId}
+	</update>
+	
 </mapper>

@@ -1,11 +1,28 @@
 package kr.co.semosi.mypage.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
+import kr.co.semosi.mypage.model.service.MypageService;
 
 @Controller
 public class MypageController {
 	
+	@Autowired
+	@Qualifier(value = "MypageService")
+	private MypageService myService;
 	//부모
 	
 	//마이페이지 메인
@@ -14,6 +31,37 @@ public class MypageController {
 		
 		System.out.println("[/parentProfile.sms] 정상적으로 호출 되었습니다.");
 		return "mypage/parent/memberProfile";
+	}
+	
+	//마이페이지 프로필 수정
+	@RequestMapping(value="/parentProfileUpdate.sms")
+	public void updateParentFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
+			,HttpServletResponse response) throws IOException
+	{
+		System.out.println("[/parentProfileUpdate.sms] : 정상호출");
+		System.out.println("[/parentProfileUpdate.sms] :" + phone);
+		System.out.println("[/parentProfileUpdate.sms] :" + address);
+		System.out.println("[/parentProfileUpdate.sms] :" + memberId);
+		
+		
+		ParentMember pMember = new ParentMember();
+		pMember.setPhone(phone);
+		pMember.setAddress(address);
+		pMember.setMemberId(memberId);
+		
+		int result = myService.updateParentFrofile(pMember);
+
+		if (result >0) {
+			// 회원 정보 변경 성공
+			response.getWriter().print(true);
+			
+		} else {
+			//변경 실패 
+			response.getWriter().print(false);
+		}
+		
+		return ;	
+		
 	}
 	
 	//내가 신청한 구인현황
@@ -106,6 +154,39 @@ public class MypageController {
 		System.out.println("[/sitterProfile.sms] 정상적으로 호출 되었습니다.");
 		return "mypage/sitter/memberProfile";
 	}
+	
+
+	//마이페이지 프로필 수정
+	@RequestMapping(value="/sitterProfileUpdate.sms")
+	public void updateSitterFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
+			,HttpServletResponse response) throws IOException
+	{
+		System.out.println("[/sitterProfileUpdate.sms] : 정상호출");
+		System.out.println("[/sitterProfileUpdate.sms] :" + phone);
+		System.out.println("[/sitterProfileUpdate.sms] :" + address);
+		System.out.println("[/sitterProfileUpdate.sms] :" + memberId);
+		
+		
+		SitterMember sMember = new SitterMember();
+		sMember.setPhone(phone);
+		sMember.setAddress(address);
+		sMember.setMemberId(memberId);
+		
+		int result = myService.updateSitterFrofile(sMember);
+
+		if (result >0) {
+			// 회원 정보 변경 성공
+			response.getWriter().print(true);
+			
+		} else {
+			//변경 실패 
+			response.getWriter().print(false);
+		}
+		
+		return ;	
+		
+	}
+	
 	
 	//내가 신청한 구직현황
 	@RequestMapping(value="/sitterApplicationSent.sms")
