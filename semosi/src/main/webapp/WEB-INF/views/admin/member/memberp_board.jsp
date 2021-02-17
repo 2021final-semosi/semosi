@@ -143,10 +143,9 @@ $(function() {
 						console.log("ajax통신 실패");
 					}
 				});
-			};
-		};
+			}
+		}
 	};
-});
 </script>
 	<div class="page-wrapper">
 		<div class="admin-header">
