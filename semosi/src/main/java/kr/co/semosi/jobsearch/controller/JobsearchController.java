@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.semosi.jobsearch.model.service.JobsearchService;
 import kr.co.semosi.jobsearch.model.vo.JobSearchList;
+import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
 
 @Controller
 public class JobsearchController {
@@ -43,29 +47,58 @@ public class JobsearchController {
 		
 		return ageCalculator(list);
 	}
-	
+
 	@RequestMapping(value="/moveSearchJobPost.sms")
-	public String moveSearchJob(){
-		return "jobsearch/searchJobPost";
+	public String moveSearchJobPost(HttpSession session, @RequestParam String MemberPNo, Model model){
+		System.out.println("[JobofferController : moveSearchJobPost] 호출 성공");
+		
+		ParentMember pm=(ParentMember)session.getAttribute("pMember");
+		SitterMember sm=(SitterMember)session.getAttribute("sMember");
+		
+		if(pm!=null || sm!=null){		// 부모회원 또는 시터회원 중 하나라도 로그인 되어 있다면
+			JobSearchList jsl=jService.selectOneJobPost(MemberPNo);
+			model.addAttribute("postData", ageCalculator(jsl));
+			
+			return "jobsearch/searchJobPost";
+		}
+		else{							// 비로그인 상태라면 포스트를 조회할 수 없도록 하기 위해
+			model.addAttribute("msg", "로그인 후 이용해주세요.\\n로그인 페이지로 이동합니다.");
+			model.addAttribute("location", "/loginPage.sms");
+			
+			return "jobsearch/result";
+		}
 	}
-	
+
+	private Object ageCalculator(JobSearchList jsl) {
+		LocalDate present=LocalDate.now();
+		LocalDate birth=new java.sql.Date(jsl.getCareBirth().getTime()).toLocalDate();
+		
+		int nAge=present.minusYears(birth.getYear()).getYear();
+		if(birth.plusYears(nAge).isAfter(present)){
+			nAge--;
+		}
+		jsl.setnAge(nAge);
+		
+		return jsl;
+	}
+
 	// 나이 계산 메소드
 	public ArrayList<JobSearchList> ageCalculator(ArrayList<JobSearchList> list){
 		LocalDate present=LocalDate.now();
 		int i=0;
 		
-		for(JobSearchList jol : list){
-			LocalDate birth=new java.sql.Date(jol.getCareBirth().getTime()).toLocalDate();	// 계산을 위해 java.sql.Date 형식을 java.time 형식으로 변환 
-			int age=present.minusYears(birth.getYear()).getYear();		// 현재 년도 - 생일 년도
-			if(birth.plusYears(age).isAfter(present)){					// 생년월일을 현재년도월일로 바꿔주고 월일이 지났는지 비교
-				age--;
+		for(JobSearchList jsl : list){
+			LocalDate birth=new java.sql.Date(jsl.getCareBirth().getTime()).toLocalDate();	// 계산을 위해 java.sql.Date 형식을 java.time 형식으로 변환 
+			int nAge=present.minusYears(birth.getYear()).getYear();		// 현재 년도 - 생일 년도
+			if(birth.plusYears(nAge).isAfter(present)){					// 생년월일을 현재년도월일로 바꿔주고 월일이 지났는지 비교
+				nAge--;
 			}
-			jol.setAge(age);
+			jsl.setnAge(nAge);
 			
 			long months=Period.between(birth, present).toTotalMonths();	// 두 날짜의 차를 개월 수로 변환
-			jol.setMonths(months);
+			jsl.setMonths(months);
 			
-			list.set(i, jol);
+			list.set(i, jsl);
 			i++;
 		}
 		

@@ -18,4 +18,33 @@
 	  	WHERE #{page}<=RNUM AND RNUM<=#{page}+9
 	]]>
   </select>
+  
+  <select id="selectOneJobPost" resultType="JobSearchList">
+  	SELECT
+	  		FILE_NO AS fileNo,
+	  		ORIGINAL_NAME AS originalName,
+	  		POST_NO AS postNo,
+	  		MEMBERP_NO AS memberpNo,
+	  		MEMBER_NAME as memberName,
+	  		TITLE AS title,
+	  		CONTENT AS content,
+	  		CARE_AGE AS careBirth,
+	  		CARE_PERSON AS carePerson,
+	  		LOCATION AS location,
+	  		CARE_TYPE AS careType,
+	  		HIT as hit,
+	  		START_DATE AS startDate,
+	  		PAY AS pay,
+	  		WRITE_DATE AS writeDate,
+	  		DEL_YN as delYN,
+	  		CARE_ACTIVITY AS careActivity,
+	  		PREPER_GENDER AS preperGender,
+	  		CARE_DAYS AS careDays,
+	  		CARE_TIME AS careTime,
+	  		END_DATE AS endDate,
+	  		AGE as age	  		
+	  	FROM Job_Search_list where memberp_no=#{memberPNo}
+  
+  </select>
+  
 </mapper>
