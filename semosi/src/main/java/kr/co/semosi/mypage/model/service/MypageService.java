@@ -9,6 +9,7 @@ import kr.co.semosi.jobsearch.model.dao.JobsearchDAO;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.dao.MypageDAO;
+import kr.co.semosi.mypage.model.vo.Criteria;
 
 @Service("MypageService")
 public class MypageService {
@@ -36,7 +37,16 @@ public class MypageService {
       return result;
       
    }
+   
+	public Object listVoucherCriteria(Criteria cri, String memberNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	public int listVoucherCountCriteria(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
    
 
