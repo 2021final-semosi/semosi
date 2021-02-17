@@ -38,6 +38,9 @@
 		<typeAlias type="kr.co.semosi.member.model.vo.Authentication" alias="Authentication"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.ParentMember" alias="ParentMember"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.SitterMember" alias="SitterMember"/>
+		<typeAlias type="kr.co.semosi.mypage.model.vo.ParentReceiveReview" alias="parentReceiveReview"/>
+
+		
 		
 		<typeAlias type="kr.co.semosi.index.model.vo.IndexReviews" alias="IndexReviews"/>
 		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferList" alias="JobOfferList"/>

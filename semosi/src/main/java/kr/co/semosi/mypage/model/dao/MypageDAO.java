@@ -53,6 +53,13 @@ public class MypageDAO {
   		return list;
   	}
 
+	public void seletParentReviewReceive(SqlSessionTemplate sqlSession, String memberNo) {
+		System.out.println("[MypageDAO]: 정상호출");
+		sqlSession.selectList("ParentReceiveReview.seletParentReviewReceive", memberNo);
+		
+	}
+
+
 
 
 
