@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myPageQnA">
+
+	<select id="selectParentQnATotalCount" resultType="Integer">
+		SELECT count(*)
+		FROM QNA
+		WHERE WRITER_P_NO = #{memberNo}
+	</select>
+
+	<select id="selectParentQnAList" parameterType="java.util.HashMap"
+		resultType="QnA">
+		SELECT
+		*
+		FROM(
+		SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, QNA.*
+		FROM QNA WHERE WRITER_P_NO = #{memberNo}
+		)
+		WHERE Row_Num BETWEEN #{startPage} AND #{endPage}
+	</select>
+
+
+	<select id="selectSitterQnATotalCount" resultType="Integer">
+		SELECT count(*)
+		FROM QNA
+		WHERE WRITER_S_NO = #{memberNo}
+	</select>
+
+	<select id="selectSitterQnAList" parameterType="java.util.HashMap"
+		resultType="QnA">
+		SELECT
+		*
+		FROM(
+		SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, QNA.*
+		FROM QNA WHERE WRITER_S_NO = #{memberNo}
+		)
+		WHERE Row_Num BETWEEN #{startPage} AND #{endPage}
+	</select>
+
+
+</mapper>
