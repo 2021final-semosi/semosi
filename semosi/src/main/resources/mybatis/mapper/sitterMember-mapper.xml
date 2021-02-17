@@ -99,6 +99,24 @@
 			WHERE MEMBER_ID=#{memberId}
 	</update>
 	
-	
+	<select id="selectApplicationReceived" resultType="ApplicationReceived">
+		SELECT
+			FILE_NO AS fileNo,
+			ORIGINAL_NAME AS originalName,
+			APPLY_NO AS applyNo,
+			APPLY_POST_NO AS applyPostNo,
+			MEMBERP_NO AS memberpNo,
+			APPLY_DATE AS applyDate,
+			MY_NO AS myNo,
+			MEMBER_NAME AS memberName,
+			ADDRESS AS address,
+			GENDER AS gender,
+			PHONE AS phone,
+			BIRTH_DAY AS birthDay,
+			POST_NO AS postNo,
+			PAY AS pay,
+			AVG_GRADE AS avgGrade
+		FROM JOB_APPLICATION_RECEIVED WHERE MY_NO=#{membersNo}
+	</select>
 	
 </mapper>

@@ -198,7 +198,7 @@ section{
 }
 .card-title>div>p{
 	font-weight: 900;
-	font-size: 1.1rem;
+	font-size: 1.0rem;
 }
 .card-title>div>p:last-child{
 	color: #f6d257;
@@ -211,7 +211,7 @@ section{
 	text-align: left;
 	word-wrap: break-word;
 	display: -webkit-box;
-	-webkit-line-clamp: 5;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 }
 

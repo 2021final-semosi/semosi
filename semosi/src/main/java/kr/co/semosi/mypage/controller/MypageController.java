@@ -1,6 +1,7 @@
 package kr.co.semosi.mypage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
+import kr.co.semosi.mypage.model.vo.ApplicationReceived;
 import kr.co.semosi.mypage.model.vo.Criteria;
 import kr.co.semosi.mypage.model.vo.FamilyDocu;
 import kr.co.semosi.mypage.model.vo.HealthDocu;
@@ -264,9 +267,16 @@ public class MypageController {
    
    //내게 지원한 구직 현황
    @RequestMapping(value="/sitterApplicationReceive.sms")
-   public String sitterApplicationReceive(){
+   public String sitterApplicationReceive(HttpSession session, Model model){
       
       System.out.println("[/sitterApplicationReceive.sms] 정상적으로 호출 되었습니다.");
+      
+      String membersNo=(String) session.getAttribute("sMember");
+      
+      ArrayList<ApplicationReceived> list=myService.selectApplicationReceive(membersNo);
+      
+      model.addAttribute("list", list);
+      
       return "mypage/sitter/applicationReceive";
    }
    
