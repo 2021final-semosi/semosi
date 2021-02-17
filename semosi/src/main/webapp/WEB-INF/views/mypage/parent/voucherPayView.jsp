@@ -207,7 +207,9 @@
 			<div class="col-sm-12 m-0 p-0"><span>이용권 결제 내역</span></div>
 		</div>
 		<%if(list.isEmpty()) {%>
-		구매한 이용권이 없습니다.
+		<div class=" row m-0">
+			<div class="col-sm-12 m-0 p-0"><center><H5>구매한 이용권이 없습니다. 이용권을 구매해보세요.</H5></center></div>
+		</div>
 		<%}else{ %>
 		<div id="subtitle" class="row p-0 m-0 category line-name text-center">
 			<div class="d-none d-md-block col-md-1 p-0 m-0 font-weight-bold c-name ">번호</div>

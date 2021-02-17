@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.semosi.joboffer.model.service.JobofferService;
+import kr.co.semosi.joboffer.model.vo.JobOfferApply;
 import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.joboffer.model.vo.JobOfferPost;
 import kr.co.semosi.member.model.vo.ParentMember;
@@ -67,6 +68,32 @@ public class JobofferController {
 			
 			return "joboffer/result";
 		}
+	}
+	
+	@RequestMapping(value="/searchPostApply.sms")
+	public String searchPostApply(HttpSession session, @RequestParam int postNo, Model model){
+		System.out.println("[JobofferController : searchPostApply] 호출 성공");
+		
+		ParentMember pm=(ParentMember)session.getAttribute("pMember");
+		
+		JobOfferApply joa=new JobOfferApply();
+		joa.setMemberpNo(pm.getMemberNo());
+		joa.setPostNo(postNo);
+		
+		if(pm!=null){		// 부모 회원으로 로그인되어 있다면 로직 진행
+			int result=jService.insertOfferApply(joa);
+			
+			if(result>0){
+				model.addAttribute("msg", "신청이 완료되었습니다.");
+				model.addAttribute("location", "/moveSearchSitterPost.sms?postNo="+postNo);
+				
+				return "joboffer/result";
+			}
+		}
+		model.addAttribute("msg", "부모 회원만 신청 가능합니다.");
+		model.addAttribute("location", "/moveSearchSitterPost.sms?postNo="+postNo);
+		
+		return "joboffer/result";
 	}
 	
 	// 나이 계산 메소드

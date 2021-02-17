@@ -177,7 +177,7 @@ function deleteValue() {
 									<button type="submit" class="search-btn" >검색</button>
 								</form>
 							</div>
-							<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
+							<input type="button" value="선택삭제" class="btn btn-outline-info" id="checkDBtn" onclick="deleteValue();">
 							<div class="tab-content">
 								<table class="board">
 									<tr class="head">

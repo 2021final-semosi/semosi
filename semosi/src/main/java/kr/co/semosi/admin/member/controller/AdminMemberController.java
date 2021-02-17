@@ -50,7 +50,7 @@ public class AdminMemberController {
 	public String memberLogout(HttpSession session) {
 		session.invalidate();
 
-		return "redirect:/";
+		return "redirect:/admin_index.jsp";
 	}
 
 	@RequestMapping(value = "/memberp_board.sms")

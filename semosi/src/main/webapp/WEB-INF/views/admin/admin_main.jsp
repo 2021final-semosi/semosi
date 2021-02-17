@@ -35,10 +35,17 @@
 						<th class="board-column">구인게시판</th>
 						<th class="board-link"><a class="link-btn" href="/job_offer_list.sms">더보기</a></th>
 					</tr>
+
 					<c:forEach var="OfferList" items="${OfferList }" end="4" varStatus="status">
 					<tr>
 						<td class="content-title">${OfferList.title }</td>
 						<td class="content-date">${OfferList.memberName }</td>
+					</tr>
+					</c:forEach>
+					<c:forEach begin="${fn:length(OfferList)}" end="4">
+					<tr>
+						<td class="content-title"></td>
+						<td class="content-date"></td>
 					</tr>
 					</c:forEach>
 				</table>
@@ -49,24 +56,18 @@
 						<th class="board-column">구직프로필</th>
 						<th class="board-link"><a class="link-btn" href="/job_search_list.sms">더보기</a></th>
 					</tr>
-					<c:choose>
-					<c:when test="${fn:length(SearchList)==0 }">
-					<c:forEach begin="${fn:length(SearchList)}" end="4">
-					<tr>
-						<td class="content-title"></td>
-						<td class="content-date"></td>
-					</tr>
-					</c:forEach>
-					</c:when>
-					<c:otherwise>
 					<c:forEach var="SearchList" items="${SearchList }" end="4" varStatus="status">
 					<tr>
 						<td class="content-title">${SearchList.title }</td>
 						<td class="content-date">${SearchList.memberName }</td>
 					</tr>
 					</c:forEach>
-					</c:otherwise>
-					</c:choose>
+					<c:forEach begin="${fn:length(SearchList)}" end="4">
+					<tr>
+						<td class="content-title"></td>
+						<td class="content-date"></td>
+					</tr>
+					</c:forEach>
 				</table>
 			</div>
 			<div id="inquiry-board">
@@ -79,6 +80,12 @@
 					<tr>
 						<td class="content-title">${QnAList.title }</td>
 						<td class="content-date"><fmt:formatDate value="${QnAList.writeDate }" pattern="yyyy-MM-dd"/></td>
+					</tr>
+					</c:forEach>
+										<c:forEach begin="${fn:length(QnAList)}" end="4">
+					<tr>
+						<td class="content-title"></td>
+						<td class="content-date"></td>
 					</tr>
 					</c:forEach>
 				</table>

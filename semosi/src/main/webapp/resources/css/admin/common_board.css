@@ -137,7 +137,7 @@ table {
     cursor: pointer;
 }
 
-input[type="button"]{
+#checkDBtn{
 	margin-bottom:10px;
 	padding:0px;
 	width : 60px;

@@ -88,6 +88,12 @@ div {
 #introductionBox>div:first-child {
 	font-weight: bold;
 }
+#introductionBox>div>h5>span{
+	font-weight: 900;
+}
+#introductionBox>div:last-child{
+	padding: 2% 5%;
+}
 
 #ageBox {
 	margin-top: 20px;
@@ -168,4 +174,21 @@ reviewComment {
 
 #reviewReply {
 	padding: 10px;
+}
+
+#btn-panel{
+	text-align: center;
+}
+#btn-panel>a{
+	margin-top: 1%;
+	width: 300px;
+	font-size: 1.2rem;
+	font-weight: 900;
+	color: gray;
+	background-color: white;
+	border: 1px solid gray;
+	padding: 1% 0;
+}
+#btn-panel>a:hover{
+	background-color: #f6d257;
 }

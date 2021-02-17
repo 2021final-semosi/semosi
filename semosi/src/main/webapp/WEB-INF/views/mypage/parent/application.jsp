@@ -15,6 +15,124 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 <style>
+* {
+	box-sizing: border-box;
+}
+
+.formArea {
+	width: 100%;
+	height: 50px;
+}
+
+.form-group {
+	padding: 5px 0px 5px 0px;
+}
+
+#wrapper {
+	padding-top: 100px;
+	padding-bottom: 200px;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+.spanArea {
+	display: inline-block;
+	border: 1px solid #dbdbda;
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+.birthArea {
+	display: inline-block;
+	border: 1px solid #dbdbda;
+	width: 33.3%;
+	height: 100%;
+}
+
+#birthYY {
+	border-right: 0px;
+	border-radius: 10px 0px 0px 10px;
+}
+
+#birthDD {
+	border-left: 0px;
+	border-radius: 0px 10px 10px 0px;
+}
+
+.inputArea {
+	border-radius: 10px;
+	border: 0px;
+	width: 100%;
+	height: 100%;
+	padding-left: 10px;
+}
+
+.inputArea:focus {
+	outline: none;
+}
+
+.inputAreaEmail {
+	border-radius: 10px;
+	border: 0px;
+	width: 95%;
+	height: 100%;
+	padding-left: 10px;
+}
+
+.inputAreaEmail:focus {
+	outline: none;
+}
+
+.emailArea {
+	display: inline-block;
+	border: 1px solid #dbdbda;
+	border-radius: 10px;
+	width: 90%;
+	height: 100%;
+}
+
+#loginText {
+	margin-bottom: 70px;
+}
+
+.genderChoice {
+	text-align: left;
+}
+
+.col-form-label {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: bold;
+	height: 50px;
+	text-align: left;
+	line-height: 50px;
+}
+
+.phoneBtn {
+	width: 90%;
+	height: 100%;
+}
+
+#addressFindBtn {
+	width: 90%;
+	height: 100%;
+}
+
+#submitBtn {
+	width: 100%;
+	height: 50px;
+}
+
+.form-message {
+	text-align: left;
+}
 @media(min-width:1500px){
 	#mypage-wrap{
 		margin: 0 auto;
@@ -319,6 +437,291 @@ function uploadImg() {
 <div id="parentsApplication_contents">
 	<center>
 	<div id="application_title"><span>구직 신청서 조회</span></div>
+	
+	
+	
+	
+		<div id="formArea">
+				<form name="" action="" method="post">
+
+
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">사진 등록</label>
+						<div class="col-sm-10 m-0 p-0">
+							<form action="/profileUpload.rw" method="post" enctype="multipart/form-data" id="profile_form">
+								<div id="image_box">
+									<input type="hidden">
+									<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" id="profile_img" />
+								</div>
+								<label id="profile_change_btn"> <input type="file" onChange="uploadImg();" id="input_file" name="profileImg" /></label>
+							</form>
+						</div>
+					</div>
+
+					<div class="form-group row m-0">
+						<label for="inputPassword" class="col-sm-2 col-form-label">제목 입력</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> <input type="text"
+								class="inputArea" name="" id=""></span>
+						</div>
+					</div>
+
+
+					<div class="form-group row m-0">
+						<label for="inputPassword" class="col-sm-2 col-form-label">원하는 시터 나이</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> 
+					<input type='checkbox' name='age' value='20' class="age_width"/> 20대
+					<input type='checkbox' name='age' value='30' class="age_width"/> 30대
+					<input type='checkbox' name='age' value='40' class="age_width"/> 40대
+					<input type='checkbox' name='age' value='50' class="age_width"/> 50대
+					<input type='checkbox' name='age' value='60' class="age_width"/> 60대</span>
+						</div>
+					</div>
+					
+
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">원하는 시터 성별</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> <select id="gender"
+								class="inputArea" name="gender">
+									<option name="gender" value="">성별</option>
+									<option name="gender" value="M">남</option>
+									<option name="gender" value="F">여</option>
+									<option name="gender" value="G">무관</option>
+							</select></span>
+						</div>
+					</div>
+					
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">돌봄 장소</label>
+
+						<div class="col-sm-8 m-0 p-0">
+							<span class="spanArea"> <input type="text"
+								class="inputArea" id="sample6_address" name="address" placeholder="주소" readonly></span>
+						</div>
+						<div class="col-sm-2 m-0 p-0">
+							<span> <input type="button" class="btn btn-light"
+								id="addressFindBtn" value="주소 찾기"
+								onclick="sample6_execDaumPostcode()"></span>
+						</div>
+
+					</div>
+
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">돌봄 유형</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> <select id="gender"
+								class="inputArea" name="gender">
+									<option name="gender" value="">돌봄 유형</option>
+									<option name="gender" value="M">정기적으로</option>
+									<option name="gender" value="F">특정날에만</option>
+							</select></span>
+						</div>
+					</div>
+
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">희망 활동 시작일</label>
+						<div class="col-sm-10 m-0 p-0">
+							<!-- BIRTH_YY -->
+							<span class="birthArea" id="birthYY"> <input type="text"
+								id="yy" class="inputArea" maxlength="4" placeholder="년(4자)"
+								onblur="birthYYCheck();" name="yyyy">
+							</span><span class="birthArea" id="birthMM"> <select id="mm"
+								class="inputArea" name="mm">
+									<option value="">월</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+							</select>
+							</span><span class="birthArea" id="birthDD"> <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span>
+
+						</div>
+					</div>
+					
+									<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">희망 활동 종료일</label>
+						<div class="col-sm-10 m-0 p-0">
+							<!-- BIRTH_YY -->
+							<span class="birthArea" id="birthYY"> <input type="text"
+								id="yy" class="inputArea" maxlength="4" placeholder="년(4자)"
+								onblur="birthYYCheck();" name="yyyy">
+							</span><span class="birthArea" id="birthMM"> <select id="mm"
+								class="inputArea" name="mm">
+									<option value="">월</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+							</select>
+							</span><span class="birthArea" id="birthDD"> <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span>
+
+						</div>
+					</div>
+
+
+
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">희망 활동 시작 시간</label>
+						<div class="col-sm-10 m-0 p-0">
+							<!-- BIRTH_YY -->
+							<span class="birthArea" id="birthYY"> <select id=""
+								class="inputArea" name="">
+									<option name="gender" value="">시간</option>
+									<option name="gender" value="">오전</option>
+									<option name="gender" value="F">오후</option>
+							</select>
+							</span><span class="birthArea" id="birthMM">  <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span><span class="birthArea" id="birthDD"> <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span>
+
+						</div>
+					</div>
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">희망 활동 종료 시간</label>
+						<div class="col-sm-10 m-0 p-0">
+							<!-- BIRTH_YY -->
+							<span class="birthArea" id="birthYY"> <select id=""
+								class="inputArea" name="">
+									<option name="gender" value="">시간</option>
+									<option name="gender" value="">오전</option>
+									<option name="gender" value="F">오후</option>
+							</select>
+							</span><span class="birthArea" id="birthMM">  <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span><span class="birthArea" id="birthDD"> <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span>
+
+						</div>
+					</div>
+					
+			
+					<div class="form-group row m-0">
+						<label for="inputPassword" class="col-sm-2 col-form-label">원하는 돌봄 요일</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> 
+					<input type="checkbox" name="careDays" value="월" class="days_width"/>월 
+					<input type="checkbox" name="careDays" value="화" class="days_width"/>화 
+					<input type="checkbox" name="careDays" value="수" class="days_width"/>수 
+					<input type="checkbox" name="careDays" value="목" class="days_width"/>목 
+					<input type="checkbox" name="careDays" value="금" class="days_width"/>금 
+					<input type="checkbox" name="careDays" value="토" class="days_width"/>토 
+					<input type="checkbox" name="careDays" value="일" class="days_width"/>일</span>
+						</div>
+					</div>
+
+
+					<div class="form-group row m-0">
+						<label for="inputText" class="col-sm-2 col-form-label">돌볼 아이 정보</label>
+						<div class="col-sm-10 m-0 p-0">
+							<!-- BIRTH_YY -->
+							<span class="birthArea" id="birthYY"> <input type="text"
+								id="yy" class="inputArea" maxlength="4" placeholder="년(4자)"
+								onblur="birthYYCheck();" name="yyyy">
+							</span><span class="birthArea" id="birthMM"> <select id="mm"
+								class="inputArea" name="mm">
+									<option value="">월</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+							</select>
+							</span><span class="birthArea" id="birthDD"> <input type="text"
+								id="dd" class="inputArea" maxlength="2" placeholder="일"
+								onblur="birthDDCheck();" name="dd">
+							</span>
+
+						</div>
+					</div>
+					
+					
+					
+
+					<div class="form-group row m-0">
+						<label for="inputPassword" class="col-sm-2 col-form-label">시급</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> <input type="text"
+								class="inputArea" name="" id=""></span>
+						</div>
+					</div>
+
+					<div class="form-group row m-0">
+						<label for="inputPassword" class="col-sm-2 col-form-label">원하는 돌봄 요일</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> 
+							
+					<input type="checkbox" name="careActivity" value="실내놀이" class="activity_width"/> 실내놀이
+					<input type="checkbox" name="careActivity" value="등하원돕기" class="activity_width"/> 등하원돕기
+					<input type="checkbox" name="careActivity" value="책읽기" class="activity_width"/> 책읽기
+					
+					<input type="checkbox" name="careActivity" value="야외활동" class="activity_width"/> 야외활동
+					<br>
+					<input type="checkbox" name="careActivity" value="한글놀이" class="activity_width"/> 한글놀이
+					<input type="checkbox" name="careActivity" value="영어놀이" class="activity_width"/> 영어놀이
+					<input type="checkbox" name="careActivity" value="학습지도" class="activity_width"/> 학습지도
+					<input type="checkbox" name="careActivity" value="체육놀이" class="activity_width"/> 체육놀이
+					
+							</span>
+						</div>
+					</div>
+
+
+
+					<div class="form-group row m-0">
+						<label for="inputPassword" class="col-sm-2 col-form-label">요청사항</label>
+						<div class="col-sm-10 m-0 p-0">
+							<span class="spanArea"> 
+				<textarea name="content">value값을 넣어준다</textarea></span>
+						</div>
+					</div>
+					
+
+
+					<br> <input type="button" id="submitBtn"
+						class="btn btn-warning" onclick="totalCheck();" value="정보 임시 저장" />
+				</form>
+	
+	
+	
+	
 	<div id="application_table">
 		<div class="application_img">
 			<div class="info-title"><span>사진등록</span></div>	

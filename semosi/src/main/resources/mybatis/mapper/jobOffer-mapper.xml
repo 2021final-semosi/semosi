@@ -56,4 +56,7 @@
   <update id="updatePostHitCount">
   	UPDATE JOB_SEARCH SET HIT=HIT+1 WHERE POST_NO=#{postNo}
   </update>
+  <insert id="insertOfferApply" parameterType="JobOfferApply">
+  	INSERT INTO JOB_SEARCH_APPLY VALUES (JOB_SEARCH_APPLY_SEQ.NEXTVAL, #{postNo}, #{memberpNo}, SYSDATE)
+  </insert>
 </mapper>

@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.dao.MypageDAO;
+import kr.co.semosi.mypage.model.vo.FamilyDocu;
+import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
+import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
+import kr.co.semosi.mypage.model.vo.TeacherDocu;
 
 @Service("mypageService")
 public class MypageService {
@@ -100,6 +104,34 @@ public class MypageService {
 	public List<QnA> selectSitterQnAList(PageMaker pageMaker) {
 		List<QnA> list = myDAO.selectSitterQnAList(sqlSession, pageMaker);
 		return list;
+	}
+
+	public ResidentDocu selectResiDocu(String memberNo) {
+		System.out.println("[MyPageService] selectResiDocu 메소드 호출");
+		ResidentDocu resiDocu = myDAO.selectResiDocu(sqlSession, memberNo);
+
+		return resiDocu;
+	}
+
+	public HealthDocu selectHealthDocu(String memberNo) {
+		System.out.println("[MyPageService] selectHealthDocu 메소드 호출");
+		HealthDocu healthDocu = myDAO.selectHealthDocu(sqlSession, memberNo);
+
+		return healthDocu;
+	}
+
+	public FamilyDocu selectFamilyDocu(String memberNo) {
+		System.out.println("[MyPageService] selectFamilyDocu 메소드 호출");
+		FamilyDocu familyDocu = myDAO.selectFamilyDocu(sqlSession, memberNo);
+
+		return familyDocu;
+	}
+
+	public TeacherDocu selectTeacherDocu(String memberNo) {
+		System.out.println("[MyPageService] selectTeacherDocu 메소드 호출");
+		TeacherDocu teacherDocu = myDAO.selectTeacherDocu(sqlSession, memberNo);
+
+		return teacherDocu;
 	}
 
 }

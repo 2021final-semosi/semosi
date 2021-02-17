@@ -95,7 +95,7 @@
     						for(var i=0; i<result.length; i++){
     							var content="";
     							content+='<li>';
-    							content+='<a href="/moveSearchSitterPost.sms">';
+    							content+='<a href="/moveSearchSitterPost.sms?postNo='+result[i].postNo+'">';
     							content+='<div>';
     							content+='<img alt="프로필사진" src="/resources/images/profile/'+result[i].originalName+'" onerror="this.src='+"'"+'/resources/images/sitter_image.png'+"'"+'">';
     							content+='</div>';
