@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
+import kr.co.semosi.mypage.model.vo.FamilyDocu;
+import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
+import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
+import kr.co.semosi.mypage.model.vo.TeacherDocu;
 
 @Repository("mypageDAO")
 public class MypageDAO {
@@ -87,6 +91,27 @@ public class MypageDAO {
 		List<QnA> list = sqlSession.selectList("myPageQnA.selectSitterQnAList", pageMaker);
 		return list;
 	}
+
+	public ResidentDocu selectResiDocu(SqlSessionTemplate sqlSession, String memberNo) {
+		ResidentDocu resiDocu = sqlSession.selectOne("certification.selectResiDocu", memberNo);
+		return resiDocu;
+	}
+
+	public HealthDocu selectHealthDocu(SqlSessionTemplate sqlSession, String memberNo) {
+		HealthDocu healthDocu = sqlSession.selectOne("certification.selectHealthDocu", memberNo);
+		return healthDocu;
+	}
+
+	public FamilyDocu selectFamilyDocu(SqlSessionTemplate sqlSession, String memberNo) {
+		FamilyDocu familyDocu = sqlSession.selectOne("certification.selectFamilyDocu", memberNo);
+		return familyDocu;
+	}
+
+	public TeacherDocu selectTeacherDocu(SqlSessionTemplate sqlSession, String memberNo) {
+		TeacherDocu teacherDocu = sqlSession.selectOne("certification.selectTeacherDocu", memberNo);
+		return teacherDocu;
+	}
+
 
 	
 	

@@ -177,21 +177,23 @@ svg {
 						</svg>
 					</div>
 				</div>
+				
 				<div class="menu-sub">
 					<div class="hide">
-						<a href="/parentApplicationSent.sms"><span>내가 신청한 구인 현황</span></a>
+						<a href="/parentMyApplication.sms"><span>나의 구인 신청서
+						</span></a>
 					</div>
 					<div class="hide">
-						<a href="/parentApplicationReceive.sms"><span>내게 지원한 구인
-								현황</span></a>
+						<a href="/parentMyApplySitter.sms"><span>나에게 지원한 시터 회원</span></a>
+					</div>
+					<div class="hide">
+						<a href="/parentMyApply.sms"><span>내가 신청한 구인 현황</span></a>
+					</div>
+					<div class="hide">
+						<a href="/parentScrap.sms"><span>스크랩한 구직글</span></a>
 					</div>
 				</div>
-				<div class="menu-main">
-					<a href="/parentApplicationScrap.sms"><span>찜한 맘시터</span></a>
-				</div>
-				<div class="menu-main">
-					<a href="/parentApplication.sms"><span>내 신청서 조회</span></a>
-				</div>
+				
 				<hr class="line">
 				<div class="menu-main row m-0">
 					<div class="menu-title col-9 p-0">
@@ -219,16 +221,13 @@ svg {
 					</div>
 				</div>
 				<div class="menu-main">
-					<a href="/parentMyRecruitment.sms"><span>내 채용 내역</span></a>
-				</div>
-				<div class="menu-main">
 					<a href="/parentReport.sms"><span>신고 내역</span></a>
 				</div>
 
 				<div class="menu-main">
 					<a href="/parentQnA.sms"><span>나의 문의 내역</span></a>
 				</div>
-				
+
 				<hr class="line">
 				<div class="menu-main row m-0">
 					<div class="menu-title col-9 p-0">

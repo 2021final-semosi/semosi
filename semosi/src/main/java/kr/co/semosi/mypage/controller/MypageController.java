@@ -19,10 +19,14 @@ import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
 import kr.co.semosi.mypage.model.vo.Criteria;
+import kr.co.semosi.mypage.model.vo.FamilyDocu;
+import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
+import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
+import kr.co.semosi.mypage.model.vo.TeacherDocu;
 
 @Controller
 public class MypageController {
@@ -300,10 +304,44 @@ public class MypageController {
    
    //인증 관리
    @RequestMapping(value="/sitterCertification.sms")
-   public String sitterCertification(){
+   public ModelAndView sitterCertification(@SessionAttribute("sMember") SitterMember sMember, ModelAndView mav){
       
       System.out.println("[/sitterCertification.sms] 정상적으로 호출 되었습니다.");
-      return "mypage/sitter/memberCertification";
+
+      String memberNo = sMember.getMemberNo();
+      
+      //등초본 인증 
+      ResidentDocu resiDocu = myService.selectResiDocu(memberNo);
+      
+      //건강 인증
+      HealthDocu healthDocu = myService.selectHealthDocu(memberNo);
+  
+      //부모 인증
+      FamilyDocu familyDocu = myService.selectFamilyDocu(memberNo);
+
+      //선생님 인증
+      TeacherDocu teacherDocu = myService.selectTeacherDocu(memberNo);
+      
+      
+      if(resiDocu!=null){
+    	  //등초본 인증이 있다면 -> 등초본 인증 신청을 한 사람 
+  		mav.addObject("resiDocu", resiDocu);
+  		
+      }else if(healthDocu!=null){ //신청자
+  		mav.addObject("healthDocu", healthDocu);
+  		
+      }else if(familyDocu!=null){ //신청자
+  		mav.addObject("familyDocu", familyDocu);
+  		
+      }else if(teacherDocu!=null){ //신청자
+  		mav.addObject("teacherDocu", teacherDocu);
+  		
+      }
+      //없는 경우는 null인 상태로 넘어감
+      
+		mav.setViewName("mypage/sitter/memberCertification");  //ViewResolver에 의해서 경로가 최종 완성됨
+      
+      return mav;
    }
    
    //내 채용내역
