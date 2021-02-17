@@ -152,7 +152,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 						</form>
 					</div>
 					<div class="tab-content">
-					<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();">
+					<input type="button" value="선택삭제" class="btn btn-outline-info" id="checkDBtn" onclick="deleteValue();">
 						<table class="board">
 							<tr class="head">
 								<th id="all_select"><input type="checkbox" class="allSelect" /></th>
