@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.semosi.joboffer.model.dao.JobofferDAO;
 import kr.co.semosi.joboffer.model.vo.JobOfferList;
+import kr.co.semosi.joboffer.model.vo.JobOfferPost;
 
 @Service("jobofferService")
 public class JobofferService {
@@ -27,5 +28,13 @@ public class JobofferService {
 		ArrayList<JobOfferList> list=jDAO.selectSearchAllList(sqlSession, page);
 		
 		return list;
+	}
+
+	public JobOfferPost selectOneSearchPost(String postNo) {
+		System.out.println("[JobofferService : selectOneSearchPost] 호출 성공");
+		
+		JobOfferPost jop=jDAO.selectOneSearchPost(sqlSession, postNo);
+		
+		return jop;
 	}
 }

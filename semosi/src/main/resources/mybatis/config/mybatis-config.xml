@@ -41,6 +41,7 @@
 		
 		<typeAlias type="kr.co.semosi.index.model.vo.IndexReviews" alias="IndexReviews"/>
 		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferList" alias="JobOfferList"/>
+		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferPost" alias="JobOfferPost"/>
 		<typeAlias type="kr.co.semosi.jobsearch.model.vo.JobSearchList" alias="JobSearchList"/>
 		
 		<typeAlias type="kr.co.semosi.cs.model.vo.Notice" alias="Notice"/>
