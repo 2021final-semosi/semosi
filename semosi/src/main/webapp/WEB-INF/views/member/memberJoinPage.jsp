@@ -661,13 +661,11 @@
 						
 						function checkPhoneNumberBeforeSMS(){
 							if(!phoneCheck()){
-								//유효성 검사를 통과하지 못했다면
+								//유효성 통과하고 / 중복체크도 통과했다면 
+								sendSMS();//문자를 보내준다.
 							}else{
-								//통과했다면
 								
-								//DB가서 확인하는 작업 추가 
-								
-								sendSMS();
+								$('#phone').focus();
 							}
 						}
 
