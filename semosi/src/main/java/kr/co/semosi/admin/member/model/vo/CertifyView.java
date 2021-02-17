@@ -11,18 +11,22 @@ public class CertifyView {
 	private String imageFANo;
 	private String imageFaPath;
 	private char certFAYN;
+	private String faChangedName;
 
 	private String imageHENo;
 	private String imageHePath;
 	private char certHEYN;
+	private String heChangedName;
 
 	private String imageRENo;
 	private String imageRePath;
 	private char certREYN;
+	private String reChangedName;
 
 	private String imageTENo;
 	private String imageTePath;
 	private char certTEYN;
+	private String teChangedName;
 
 	public String getMembersNo() {
 		return membersNo;
@@ -96,6 +100,14 @@ public class CertifyView {
 		this.certFAYN = certFAYN;
 	}
 
+	public String getFaChangedName() {
+		return faChangedName;
+	}
+
+	public void setFaChangedName(String faChangedName) {
+		this.faChangedName = faChangedName;
+	}
+
 	public String getImageHENo() {
 		return imageHENo;
 	}
@@ -118,6 +130,14 @@ public class CertifyView {
 
 	public void setCertHEYN(char certHEYN) {
 		this.certHEYN = certHEYN;
+	}
+
+	public String getHeChangedName() {
+		return heChangedName;
+	}
+
+	public void setHeChangedName(String heChangedName) {
+		this.heChangedName = heChangedName;
 	}
 
 	public String getImageRENo() {
@@ -144,6 +164,14 @@ public class CertifyView {
 		this.certREYN = certREYN;
 	}
 
+	public String getReChangedName() {
+		return reChangedName;
+	}
+
+	public void setReChangedName(String reChangedName) {
+		this.reChangedName = reChangedName;
+	}
+
 	public String getImageTENo() {
 		return imageTENo;
 	}
@@ -168,9 +196,19 @@ public class CertifyView {
 		this.certTEYN = certTEYN;
 	}
 
+	public String getTeChangedName() {
+		return teChangedName;
+	}
+
+	public void setTeChangedName(String teChangedName) {
+		this.teChangedName = teChangedName;
+	}
+
 	public CertifyView(String membersNo, String memberName, String memberId, String phone, char gender, String address,
-			String imageFANo, String imageFaPath, char certFAYN, String imageHENo, String imageHePath, char certHEYN,
-			String imageRENo, String imageRePath, char certREYN, String imageTENo, String imageTePath, char certTEYN) {
+			String imageFANo, String imageFaPath, char certFAYN, String faChangedName, String imageHENo,
+			String imageHePath, char certHEYN, String heChangedName, String imageRENo, String imageRePath,
+			char certREYN, String reChangedName, String imageTENo, String imageTePath, char certTEYN,
+			String teChangedName) {
 		super();
 		this.membersNo = membersNo;
 		this.memberName = memberName;
@@ -181,15 +219,19 @@ public class CertifyView {
 		this.imageFANo = imageFANo;
 		this.imageFaPath = imageFaPath;
 		this.certFAYN = certFAYN;
+		this.faChangedName = faChangedName;
 		this.imageHENo = imageHENo;
 		this.imageHePath = imageHePath;
 		this.certHEYN = certHEYN;
+		this.heChangedName = heChangedName;
 		this.imageRENo = imageRENo;
 		this.imageRePath = imageRePath;
 		this.certREYN = certREYN;
+		this.reChangedName = reChangedName;
 		this.imageTENo = imageTENo;
 		this.imageTePath = imageTePath;
 		this.certTEYN = certTEYN;
+		this.teChangedName = teChangedName;
 	}
 
 	public CertifyView() {

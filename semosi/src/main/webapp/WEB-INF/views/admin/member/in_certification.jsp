@@ -107,17 +107,17 @@
 								<ul class="nav nav-tabs ulnav">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#qwe">주민등록등본, 초본</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#asd">건강진단결과서</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#zxc">가족관계증명서</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#pop">교사자격증</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#asd">건강진단결과서</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#zxc">가족관계증명서</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pop">교사자격증</a></li>
 								</ul>
 
 								<div class="tab-pane fade show active" id="qwe">
 									<p class="img">
-										<img src="${certifyview.imageRePath}" />
+									<c:if test="${certifyview.reChangedName!=null }">
+										<img src="${pageContext.request.contextPath}/resources/file/resiDocu/${certifyview.reChangedName }" />
+										</c:if>
+										<c:if test="${certifyview.reChangedName==null }"><h3>인증 전</h3></c:if>
 									</p>
 									<c:choose>
 										<c:when test='${certifyview.certREYN eq "N".charAt(0) }'>
@@ -135,7 +135,10 @@
 
 								<div class="tab-pane fade" id="asd">
 									<p class="img">
-										<img src="${certifyview.imageHePath}" />
+									<c:if test="${certifyview.heChangedName!=null }">
+										<img src="${pageContext.request.contextPath}/resources/file/healthDocu/${certifyview.heChangedName }" />
+										</c:if>
+										<c:if test="${certifyview.heChangedName==null }"></c:if>
 									</p>
 									<c:choose>
 										<c:when test="${certifyview.certHEYN eq 'N'.charAt(0) }">
@@ -153,7 +156,10 @@
 
 								<div class="tab-pane fade" id="zxc">
 									<p class="img">
-										<img src="${certifyview.imageFaPath}" />
+											<c:if test="${certifyview.faChangedName!=null }">
+										<img src="${pageContext.request.contextPath}/resources/file/familyDocu/${certifyview.faChangedName }" />
+										</c:if>
+										<c:if test="${certifyview.faChangedName==null }"></c:if>
 									</p>
 									<c:choose>
 										<c:when test="${certifyview.certFAYN eq 'N'.charAt(0) }">
@@ -171,7 +177,11 @@
 
 								<div class="tab-pane fade" id="pop">
 									<p class="img">
-										<img src="${certifyview.imageTePath}" />
+									<c:if test="${certifyview.teChangedName!=null }">
+										<img src="${pageContext.request.contextPath}/resources/file/teacherDocu/${certifyview.teChangedName }" />
+										</c:if>
+										<c:if test="${certifyview.teChangedName==null }"></c:if>
+										
 									</p>
 									<c:choose>
 										<c:when test="${certifyview.certTEYN eq 'N'.charAt(0) }">
