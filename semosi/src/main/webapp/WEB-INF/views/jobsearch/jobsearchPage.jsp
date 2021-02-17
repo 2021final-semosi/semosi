@@ -193,12 +193,12 @@
 				<ul>
 				<% for(JobSearchList jsl : list) { %>
 					<li>
-						<a href="/moveSearchJobPost.sms">
+						<a href="/moveSearchJobPost.sms?MemberPNo=<%=jsl.getMemberpNo() %>">
 							<div>
 								<img alt="프로필사진" src="/resources/images/profile/<%=jsl.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'">
 							</div>
 							<div>
-							<% if(jsl.getAge()<=3) { %>
+							<% if(jsl.getnAge()<=3) { %>
 								<p><%=jsl.getMonths() %> 개월</p>
 							<% } else { %>
 								<p>만 <%=jsl.getAge() %>세</p>
