@@ -414,8 +414,34 @@
 				$('#phoneMessage').css('color', 'red');
 				return false;
 			} else {
-				$('#phoneMessage').hide();
-				return true;
+				//유효성 검사 통과하였을 때 
+				
+				$.ajax({
+					url : "/memberPhoneCheck.sms",
+					type : "post",
+					data : {
+						"phone" : phone
+					},
+					success : function(result) {
+						if (result == "false") {
+							//사용 불가능 할 때
+							$('#phoneMessage').text("이미 사용중인 핸드폰 번호 입니다.");
+							$('#phoneMessage').show();
+							$('#phoneMessage').css('color', 'red');
+							return false;
+						} else {
+							//사용 가능할 때
+							$('#phoneMessage').hide();
+							return true;
+						}
+					},
+					error : function() {
+						console.log("ajax 통신 실패");
+					}
+
+				});
+				
+				
 			}
 
 		}

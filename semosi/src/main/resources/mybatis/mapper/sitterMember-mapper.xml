@@ -37,6 +37,24 @@
   	WHERE MEMBER_ID=#{memberId}  
   </select>
   
+  <select id="selectPhoneCheck" resultType="SitterMember">
+  	SELECT 
+  		MEMBERS_NO as memberNo,
+  		MEMBER_NAME as memberName,
+  		MEMBER_ID as memberId,
+  		MEMBER_PW as memberPw,
+  		PHONE as phone,
+  		ADDRESS as address,
+  		GENDER as gender,
+  		ENROLL_DATE as enrollDate,
+  		END_DATE as endDate,
+  		END_YN as endYN,
+  		BIRTH_DAY as birthDay,
+  		DOCUMENT_YN as documentYN
+  	FROM MEMBER_S
+  	WHERE PHONE=#{phone}  
+  </select>
+  
   <insert id="memberSignup" parameterType="SitterMember">
   	INSERT INTO MEMBER_S VALUES('S'||MEMBERS_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, sysdate, null, 'N', #{birthDay}, 'N')
   </insert>
@@ -53,5 +71,34 @@
     <update id="updateSitterFrofile">
 		UPDATE MEMBER_S SET PHONE=#{phone},ADDRESS=#{address} WHERE MEMBER_ID=#{memberId}
 	</update>
+	
+	
+	
+  <select id="selectCurrentPwCheck" parameterType="SitterMember" resultType="SitterMember">
+  	SELECT 
+  		MEMBERS_NO as memberNo,
+  		MEMBER_NAME as memberName,
+  		MEMBER_ID as memberId,
+  		MEMBER_PW as memberPw,
+  		PHONE as phone,
+  		ADDRESS as address,
+  		GENDER as gender,
+  		ENROLL_DATE as enrollDate,
+  		END_DATE as endDate,
+  		END_YN as endYN,
+  		BIRTH_DAY as birthDay,
+  		DOCUMENT_YN as documentYN
+  	FROM MEMBER_S
+  	WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
+  </select>
+  
+ 	<update id="updatePw">
+		UPDATE MEMBER_S
+			SET
+				MEMBER_PW = #{memberPw}
+			WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+	
 	
 </mapper>

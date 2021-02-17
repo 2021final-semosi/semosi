@@ -35,6 +35,23 @@
   	WHERE MEMBER_ID=#{memberId}  
   </select>
   
+  <select id="selectPhoneCheck" resultType="ParentMember">
+  	SELECT 
+  		MEMBERP_NO as memberNo,
+  		MEMBER_NAME as memberName,
+  		MEMBER_ID as memberId,
+  		MEMBER_PW as memberPw,
+  		PHONE as phone,
+  		ADDRESS as address,
+  		GENDER as gender,
+  		ENROLL_DATE as enrollDate,
+  		END_DATE as endDate,
+  		END_YN as endYN,
+  		BIRTH_DAY as birthDay
+  	FROM MEMBER_P
+  	WHERE PHONE=#{phone}  
+  </select>
+  
   <insert id="memberSignup" parameterType="ParentMember">
   	INSERT INTO MEMBER_P VALUES('P'||MEMBERP_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, default, default, default, #{birthDay} )
   </insert>
@@ -55,6 +72,29 @@
 	</update>
 	
   
+  <select id="selectCurrentPwCheck" parameterType="ParentMember" resultType="ParentMember">
+  	SELECT 
+  		MEMBERP_NO as memberNo,
+  		MEMBER_NAME as memberName,
+  		MEMBER_ID as memberId,
+  		MEMBER_PW as memberPw,
+  		PHONE as phone,
+  		ADDRESS as address,
+  		GENDER as gender,
+  		ENROLL_DATE as enrollDate,
+  		END_DATE as endDate,
+  		END_YN as endYN,
+  		BIRTH_DAY as birthDay
+  	FROM MEMBER_P
+  	WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
+  </select>
   
+ 	<update id="updatePw">
+		UPDATE MEMBER_P
+			SET
+				MEMBER_PW = #{memberPw}
+			WHERE MEMBER_ID=#{memberId}
+	</update>
+	
   
 </mapper>

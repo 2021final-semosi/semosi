@@ -503,9 +503,34 @@ function phoneCheck() {
 		$('#phoneMessage').text("정확한 핸드폰 번호를 입력해주세요.");
 		$('#phoneMessage').css('color', 'red');
 		return false;
-	} else {
-		$('#phoneMessage').hide();
-		return true;
+	} else {//유효성 검사 통과하였을 때 
+		
+		$.ajax({
+			url : "/memberPhoneCheck.sms",
+			type : "post",
+			data : {
+				"phone" : phone
+			},
+			success : function(result) {
+				if (result == "false") {
+					//사용 불가능 할 때
+					$('#phoneMessage').text("이미 사용중인 핸드폰 번호 입니다.");
+					$('#phoneMessage').show();
+					$('#phoneMessage').css('color', 'red');
+					return false;
+				} else {
+					//사용 가능할 때
+					$('#phoneMessage').hide();
+					return true;
+				}
+			},
+			error : function() {
+				console.log("ajax 통신 실패");
+			}
+
+		});
+		
+		
 	}
 
 }
@@ -533,6 +558,11 @@ function authenticationNumberCheck() {
 	}
 
 }
+
+function pwChangeBtn(){
+	location.href = "/parentPwChangePage.sms";
+
+}
 </script>
 		<section id="section-wrap">
 	<div id="wrap">
@@ -555,9 +585,7 @@ function authenticationNumberCheck() {
 			<div class="input_info row">
 				<div class="col-md-2 col-sm-12"><label>비밀번호</label></div>
 				<div class="col-md-10 col-sm-12" >
-					<input type="password" class="form-control" style="width:70%; display: inline-block;" name="memberPw" id="memberPw"
-					onblur="pwCheck();" value="<%=pMember.getMemberPw()%>" readonly>
-					<input type="button" id="passBtn" class="btn btn-warning" value="비밀번호 수정"/>
+					<input type="button" id="passBtn" class="btn btn-warning" value="비밀번호 수정" onclick="pwChangeBtn();"/>
 				</div>
 				
 			</div>
