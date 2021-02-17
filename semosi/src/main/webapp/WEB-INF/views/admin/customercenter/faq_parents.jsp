@@ -152,7 +152,7 @@ function deleteValue() {
 						<button id="write-btn" type="button"><a data-toggle="modal" data-target="#writeModal">글쓰기</a></button>
 					</div>
 					<div class="tab-content">
-					<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();" style="margin-left:11%;">
+					<input type="button" value="선택삭제" class="btn btn-outline-info del-btn" onclick="deleteValue();" style="margin-left:11%;">
 						<table class="board">
 							<tr class="head">
 								<th id="all_select"><input type="checkbox" class="allSelect"/></th>
