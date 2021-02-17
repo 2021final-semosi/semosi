@@ -3,6 +3,8 @@ package kr.co.semosi.joboffer.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.semosi.joboffer.model.service.JobofferService;
 import kr.co.semosi.joboffer.model.vo.JobOfferList;
+import kr.co.semosi.joboffer.model.vo.JobOfferPost;
+import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
 
 @Controller
 public class JobofferController {
@@ -44,8 +49,24 @@ public class JobofferController {
 	}
 	
 	@RequestMapping(value="/moveSearchSitterPost.sms")
-	public String moveSearchSitterPost(){
-		return "joboffer/searchSitterPost";
+	public String moveSearchSitterPost(HttpSession session, @RequestParam String postNo, Model model){
+		System.out.println("[JobofferController : moveSearchSitterPost] 호출 성공");
+		
+		ParentMember pm=(ParentMember)session.getAttribute("pMember");
+		SitterMember sm=(SitterMember)session.getAttribute("sMember");
+		
+		if(pm!=null || sm!=null){		// 부모회원 또는 시터회원 중 하나라도 로그인 되어 있다면
+			JobOfferPost jop=jService.selectOneSearchPost(postNo);
+			model.addAttribute("postData", ageCalculator(jop));
+			
+			return "joboffer/searchSitterPost";
+		}
+		else{							// 비로그인 상태라면 포스트를 조회할 수 없도록 하기 위해
+			model.addAttribute("msg", "로그인 후 이용해주세요.\\n로그인 페이지로 이동합니다.");
+			model.addAttribute("location", "/loginPage.sms");
+			
+			return "joboffer/result";
+		}
 	}
 	
 	// 나이 계산 메소드
@@ -65,5 +86,18 @@ public class JobofferController {
 		}
 		
 		return list;
+	}
+	
+	public JobOfferPost ageCalculator(JobOfferPost jop){
+		LocalDate present=LocalDate.now();
+		LocalDate birth=new java.sql.Date(jop.getBirthDay().getTime()).toLocalDate();
+		
+		int age=present.minusYears(birth.getYear()).getYear();
+		if(birth.plusYears(age).isAfter(present)){
+			age--;
+		}
+		jop.setAge(age);
+		
+		return jop;
 	}
 }

@@ -38,7 +38,7 @@
 	border: 2px solid #f6d257;
 	border-radius: 5px;
 }
-#search-panel>div:nth-child(4) span{
+#search-panel>div span{
 	padding: 3%;
 }
 #amount{

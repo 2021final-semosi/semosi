@@ -148,6 +148,14 @@
     				}
     			});
             });
+            
+            
+            /* 검색 */
+            /* 
+            $("#searchBtn").click(function(){
+            	
+            });
+             */
 		});
 	</script>
 
@@ -172,13 +180,20 @@
 				</div>
 				<hr>
 				<div>
-					<h4>아이 나이</h4>
-					<input type="checkbox"><span>1개월 ~ 6개월</span><br>
-					<input type="checkbox"><span>7개월 ~ 12개월</span><br>
-					<input type="checkbox"><span>13개월 ~ 24개월</span><br>
-					<input type="checkbox"><span>25개월 ~ 36개월</span><br>
-					<input type="checkbox"><span>만 3세 ~ 만 5세</span><br>
-					<input type="checkbox"><span>만 6세 ~ 초등학생</span><br>
+					<h4>희망 연령대</h4>
+					<input type="checkbox"><span>20대</span>
+					<input type="checkbox"><span>30대</span><br>
+					<input type="checkbox"><span>40대</span>
+					<input type="checkbox"><span>50대</span><br>
+					<input type="checkbox"><span>60대</span>
+				</div>
+				<hr>
+				<div>
+					<h4>인증 여부</h4>
+					<input type="checkbox"><span>등본인증</span>
+					<input type="checkbox"><span>건강인증</span><br>
+					<input type="checkbox"><span>부모인증</span>
+					<input type="checkbox"><span>선생님인증</span><br>
 				</div>
 				<hr>
 				<div>
@@ -187,7 +202,7 @@
 					<div id="slider-range"></div>
 				</div>
 				<div>
-					<button type="button">검색</button>
+					<button type="button" id="searchBtn">검색</button>
 				</div>
 			</div>
 			
@@ -198,7 +213,7 @@
 				<ul>
 				<% for(JobOfferList jol : list) { %>
 					<li>
-						<a href="/moveSearchSitterPost.sms">
+						<a href="/moveSearchSitterPost.sms?postNo=<%=jol.getPostNo() %>">
 							<div>
 								<img alt="프로필사진" src="/resources/images/profile/<%=jol.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'">
 							</div>
