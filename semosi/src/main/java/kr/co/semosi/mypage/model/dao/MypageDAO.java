@@ -10,6 +10,7 @@ import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
+import kr.co.semosi.mypage.model.vo.QnA;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 
 @Repository("mypageDAO")
@@ -53,9 +54,25 @@ public class MypageDAO {
   		return list;
   	}
 
+	public int selectParentQnATotalCount(SqlSessionTemplate sqlSession, String memberNo) {
+  		int result = sqlSession.selectOne("myPageQnA.selectParentQnATotalCount", memberNo);
+  		return result;
+	}
 
+	public List<QnA> selectParentQnAList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
+  		List<QnA> list = sqlSession.selectList("myPageQnA.selectParentQnAList", pageMaker);
+  		return list;
+	}
 
+	public int selectSitterQnATotalCount(SqlSessionTemplate sqlSession, String memberNo) {
+  		int result = sqlSession.selectOne("myPageQnA.selectSitterQnATotalCount", memberNo);
+  		return result;
+	}
 
-
-
+	public List<QnA> selectSitterQnAList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
+  		List<QnA> list = sqlSession.selectList("myPageQnA.selectSitterQnAList", pageMaker);
+  		return list;
+	}
+	
+	
 }

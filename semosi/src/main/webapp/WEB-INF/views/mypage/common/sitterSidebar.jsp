@@ -226,6 +226,9 @@ svg {
 				<div class="menu-main">
 					<a href="/sitterReport.sms"><span>신고 내역</span></a>
 				</div>
+				<div class="menu-main">
+					<a href="/sitterQnA.sms"><span>나의 문의 내역</span></a>
+				</div>
 
 				<hr class="line">
 				<div class="menu-main row m-0">
