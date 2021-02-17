@@ -27,6 +27,7 @@
       	
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminOffer" alias="AdminOffer"/>
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminSearch" alias="AdminSearch"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminSearchPage" alias="AdminSearchPage"/>
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminReport" alias="AdminReport"/>
       
      	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.ParentsVoucherView" alias="ParentsVoucherView"/>
