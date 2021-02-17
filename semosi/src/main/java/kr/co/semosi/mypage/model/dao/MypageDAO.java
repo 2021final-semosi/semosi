@@ -15,72 +15,80 @@ import kr.co.semosi.mypage.model.vo.SitterVoucher;
 
 @Repository("mypageDAO")
 public class MypageDAO {
+	
+	///////////////////////
+	//승규
+	
+	public int updateParentFrofile(SqlSessionTemplate sqlSession, ParentMember pMember) {
+		System.out.println("[MypageDAO] : 정상 호출");
+		int result = sqlSession.update("parentMember.updateParentFrofile", pMember);
 
-   public int updateParentFrofile(SqlSessionTemplate sqlSession, ParentMember pMember) {
-      System.out.println("[MypageDAO] : 정상 호출");
-      int result= sqlSession.update("parentMember.updateParentFrofile", pMember);
-      
-      System.out.println(result);
-      return result;
-   }
+		System.out.println(result);
+		return result;
+	}
 
-      public int updateSitterFrofile(SqlSessionTemplate sqlSession, SitterMember sMember) {
-      System.out.println("[MypageDAO] : 정상 호출");
-      int result= sqlSession.update("sitterMember.updateSitterFrofile", sMember);
-      
-      System.out.println(result);
-      return result;
-   }
-      
+	public int updateSitterFrofile(SqlSessionTemplate sqlSession, SitterMember sMember) {
+		System.out.println("[MypageDAO] : 정상 호출");
+		int result = sqlSession.update("sitterMember.updateSitterFrofile", sMember);
 
-  	public int selectParentVoucherTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
-  		int result = sqlSession.selectOne("parentVoucher.selectVoucherTotalCount", memberNo);
-  		return result;
-  	}
-  	
-  	public List<ParentVoucher> selectParentVoucherList(SqlSession sqlSession, PageMaker pageMaker) {
-  		List<ParentVoucher> list = sqlSession.selectList("parentVoucher.selectVoucherList", pageMaker);
-  		return list;
-
-  	}
-
-  	public int selectSitterVoucherTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
-  		int result = sqlSession.selectOne("sitterVoucher.selectVoucherTotalCount", memberNo);
-  		return result;
-  	}
-
-  	public List<SitterVoucher> selectSitterVoucherList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
-  		List<SitterVoucher> list = sqlSession.selectList("sitterVoucher.selectVoucherList", pageMaker);
-  		return list;
-  	}
-
+		System.out.println(result);
+		return result;
+	}
 
 	public void seletParentReviewReceive(SqlSessionTemplate sqlSession, String memberNo) {
 		System.out.println("[MypageDAO]: 정상호출");
 		sqlSession.selectList("ParentReceiveReview.seletParentReviewReceive", memberNo);
-		
+
+	}
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////////////////
+	//혜린
+	
+	public int selectParentVoucherTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
+		int result = sqlSession.selectOne("parentVoucher.selectVoucherTotalCount", memberNo);
+		return result;
 	}
 
+	public List<ParentVoucher> selectParentVoucherList(SqlSession sqlSession, PageMaker pageMaker) {
+		List<ParentVoucher> list = sqlSession.selectList("parentVoucher.selectVoucherList", pageMaker);
+		return list;
+
+	}
+
+	public int selectSitterVoucherTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
+		int result = sqlSession.selectOne("sitterVoucher.selectVoucherTotalCount", memberNo);
+		return result;
+	}
+
+	public List<SitterVoucher> selectSitterVoucherList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
+		List<SitterVoucher> list = sqlSession.selectList("sitterVoucher.selectVoucherList", pageMaker);
+		return list;
+	}
 
 	public int selectParentQnATotalCount(SqlSessionTemplate sqlSession, String memberNo) {
-  		int result = sqlSession.selectOne("myPageQnA.selectParentQnATotalCount", memberNo);
-  		return result;
+		int result = sqlSession.selectOne("myPageQnA.selectParentQnATotalCount", memberNo);
+		return result;
 	}
 
 	public List<QnA> selectParentQnAList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
-  		List<QnA> list = sqlSession.selectList("myPageQnA.selectParentQnAList", pageMaker);
-  		return list;
+		List<QnA> list = sqlSession.selectList("myPageQnA.selectParentQnAList", pageMaker);
+		return list;
 	}
 
 	public int selectSitterQnATotalCount(SqlSessionTemplate sqlSession, String memberNo) {
-  		int result = sqlSession.selectOne("myPageQnA.selectSitterQnATotalCount", memberNo);
-  		return result;
+		int result = sqlSession.selectOne("myPageQnA.selectSitterQnATotalCount", memberNo);
+		return result;
 	}
 
 	public List<QnA> selectSitterQnAList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
-  		List<QnA> list = sqlSession.selectList("myPageQnA.selectSitterQnAList", pageMaker);
-  		return list;
+		List<QnA> list = sqlSession.selectList("myPageQnA.selectSitterQnAList", pageMaker);
+		return list;
 	}
+
+	
 	
 	
 }
