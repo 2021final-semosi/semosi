@@ -17,11 +17,18 @@
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<title>세모시 - 세상의 모든 시터</title>
 <link href="/resources/css/joboffer/searchSitterPost.css" rel="stylesheet"
 	type="text/css" />
-<title>세모시 - 세상의 모든 시터</title>
 </head>
 <body>
+
+	<script>
+		$(function(){
+			$(".opacityControl").css("opacity", "0.2");
+		});
+	</script>
 
 	<%
 		JobOfferPost jop=(JobOfferPost)request.getAttribute("postData");
@@ -82,22 +89,33 @@
 							</div>
 							<div class="col-sm-6 col-md-6 col-lg-3 sitterEval">
 								<div>
-									<% if(jop.getCareType().equals("")) %>
+									<% if(jop.getCareType().equals("CT1")) { %>
+									정기
+									<% } else if(jop.getCareType().equals("CT2")) { %>
+									단기
+									<% } else { %>
+									협의
+									<% } %>
 								</div>
-								<div>찜한 회원수 | 200명</div>
+								<div>기간 유형</div>
 							</div>
 							<div class="col-sm-6 col-md-6 col-lg-3 sitterEval">
 								<div>
 									&nbsp;
-									
+									<% for(int i=0; i<jop.getAvgGrade(); i++) { %>
+									<i class="fas fa-star"></i>
+									<% } %>
+									<% for(int i=0; i<5-jop.getAvgGrade(); i++) { %>
+									<i class="far fa-star"></i>
+									<% } %>
 									&nbsp;
 								</div>
 								<div>후기 평균</div>
 							</div>
 							<div id="familyCount"
 								class="col-sm-6 col-md-6 col-lg-3 sitterEval">
-								<div>9</div>
-								<div>함께한 가족 수</div>
+								<div><%=jop.getWriteDate() %></div>
+								<div>작성일</div>
 							</div>
 						</div>
 					</div>
@@ -105,19 +123,54 @@
 				<div class="row no-gutters">
 					<div class="col-md-12">
 						<div class="row no-gutters" id="badgesBox">
-							<div class="col-3 badges">
+							<div class="col-1 badges">
+							</div>
+							<div class="col-2 badges">
+							<% if(jop.getCertREYN()=='Y') { %>
 								<img src="/resources/images/registration.png"/> <br>
-								등초본인증
+								<span style="font-weight: 900;">등초본인증</span>
+							<% } else { %>
+								<img src="/resources/images/registration.png" class="opacityControl"/> <br>
+								<span class="opacityControl">등초본인증</span>
+							<% } %>
 							</div>
-							<div class="col-3 badges">
-								<img src="/resources/images/health.png"> <br> 건강인증
+							<div class="col-2 badges">
+							<% if(jop.getCertHEYN()=='Y') { %>
+								<img src="/resources/images/health.png"> <br> 
+								<span style="font-weight: 900;">건강인증</span>
+							<% } else { %>
+								<img src="/resources/images/health.png" class="opacityControl"> <br> 
+								<span class="opacityControl">건강인증</span>
+							<% } %>
 							</div>
-							<div class="col-3  badges">
-								<img src="/resources/images/parents.png"> <br> 부모 인증
-
+							<div class="col-2  badges">
+							<% if(jop.getCertFAYN()=='Y') { %>
+								<img src="/resources/images/parents.png"> <br> 
+								<span style="font-weight: 900;">부모인증</span>
+							<% } else { %>
+								<img src="/resources/images/parents.png" class="opacityControl"> <br> 
+								<span class="opacityControl">부모인증</span>
+							<% } %>
 							</div>
-							<div class="col-3 badges">
-								<img src="/resources/images/teacher.png"> <br> 선생님 인증
+							<div class="col-2 badges">
+							<% if(jop.getCertTEYN()=='Y') { %>
+								<img src="/resources/images/teacher.png"> <br> 
+								<span style="font-weight: 900;">선생님인증</span>
+							<% } else { %>
+								<img src="/resources/images/teacher.png" class="opacityControl"> <br> 
+								<span class="opacityControl">선생님인증</span>
+							<% } %>
+							</div>
+							<div class="col-2 badges">
+							<% if(jop.getCertTEYN()=='Y') { %>
+								<img src="/resources/images/cctv-icon.png"> <br> 
+								<span style="font-weight: 900;">CCTV 동의</span>
+							<% } else { %>
+								<img src="/resources/images/cctv-icon.png" class="opacityControl"> <br> 
+								<span class="opacityControl">CCTV 동의</span>
+							<% } %>
+							</div>
+							<div class="col-1 badges">
 							</div>
 						</div>
 					</div>
@@ -125,9 +178,9 @@
 				<div class="row no-gutters">
 					<div class="col-md-12" id="introductionBox">
 						<div>
-							<h5>자기소개</h5>
+							<h5>자기소개 - <span><%=jop.getTitle() %></span></h5>
 						</div>
-						<div style="border: 1px solid black; height: 200px;"></div>
+						<div style="border: 1px solid black; height: 200px;"><%=jop.getSelfIntroduce() %></div>
 
 					</div>
 
@@ -136,17 +189,36 @@
 							<h5>돌봄 가능 연령</h5>
 						</div>
 						<div class="row no-gutters" id="ageOption">
+						<%
+							String[] careAge=jop.getCareAge().split(",");
+						%>
 							<div class="col-3 age">
+							<% if(jop.getCareAge().equals("CA1")) { %>
 								<div style="background-color: #F6D257; color: white;">신생아</div>
+							<% } else { %>
+								<div>신생아</div>
+							<% } %>
 							</div>
 							<div class="col-3 age">
+							<% if(jop.getCareAge().equals("CA2")) { %>
+								<div style="background-color: #F6D257; color: white;">영아</div>
+							<% } else { %>
 								<div>영아</div>
+							<% } %>
 							</div>
 							<div class="col-3 age">
+							<% if(jop.getCareAge().equals("CA3")) { %>
+								<div style="background-color: #F6D257; color: white;">유아</div>
+							<% } else { %>
 								<div>유아</div>
+							<% } %>
 							</div>
 							<div class="col-3 age">
+							<% if(jop.getCareAge().equals("CA4")) { %>
+								<div style="background-color: #F6D257; color: white;">초등학생</div>
+							<% } else { %>
 								<div>초등학생</div>
+							<% } %>
 							</div>
 						</div>
 					</div>
