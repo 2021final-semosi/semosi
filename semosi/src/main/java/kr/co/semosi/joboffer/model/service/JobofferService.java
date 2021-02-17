@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.co.semosi.joboffer.model.dao.JobofferDAO;
+import kr.co.semosi.joboffer.model.vo.JobOfferApply;
 import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.joboffer.model.vo.JobOfferPost;
 
@@ -36,5 +37,13 @@ public class JobofferService {
 		JobOfferPost jop=jDAO.selectOneSearchPost(sqlSession, postNo);
 		
 		return jop;
+	}
+
+	public int insertOfferApply(JobOfferApply joa) {
+		System.out.println("[JobofferService : insertOfferApply] 호출 성공");
+		
+		int result=jDAO.insertOfferApply(sqlSession, joa);
+		
+		return result;
 	}
 }

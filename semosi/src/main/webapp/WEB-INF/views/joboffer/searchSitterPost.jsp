@@ -418,6 +418,9 @@
 				</div>
 			</div>
 		</div>
+		<div id="btn-panel">
+			<a href="/searchPostApply.sms?postNo=<%=jop.getPostNo() %>">신청하기</a>
+		</div>
 	</div>
 	
 	
