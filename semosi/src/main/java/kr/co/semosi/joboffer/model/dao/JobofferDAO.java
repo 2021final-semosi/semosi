@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.co.semosi.joboffer.model.vo.JobOfferApply;
 import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.joboffer.model.vo.JobOfferPost;
 
@@ -27,5 +28,13 @@ public class JobofferDAO {
 		int result=sqlSession.update("joboffer.updatePostHitCount", postNo);
 		
 		return jop;
+	}
+
+	public int insertOfferApply(SqlSessionTemplate sqlSession, JobOfferApply joa) {
+		System.out.println("[JobofferDAO : insertOfferApply] 호출 성공");
+		
+		int result=sqlSession.insert("joboffer.insertOfferApply", joa);
+		
+		return result;
 	}
 }
