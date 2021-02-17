@@ -189,32 +189,29 @@
 							<h5>돌봄 가능 연령</h5>
 						</div>
 						<div class="row no-gutters" id="ageOption">
-						<%
-							String[] careAge=jop.getCareAge().split(",");
-						%>
 							<div class="col-3 age">
-							<% if(jop.getCareAge().equals("CA1")) { %>
+							<% if(jop.getCareType().contains("CT1")) { %>
 								<div style="background-color: #F6D257; color: white;">신생아</div>
 							<% } else { %>
 								<div>신생아</div>
 							<% } %>
 							</div>
 							<div class="col-3 age">
-							<% if(jop.getCareAge().equals("CA2")) { %>
+							<% if(jop.getCareType().contains("CT2")) { %>
 								<div style="background-color: #F6D257; color: white;">영아</div>
 							<% } else { %>
 								<div>영아</div>
 							<% } %>
 							</div>
 							<div class="col-3 age">
-							<% if(jop.getCareAge().equals("CA3")) { %>
+							<% if(jop.getCareType().contains("CT3")) { %>
 								<div style="background-color: #F6D257; color: white;">유아</div>
 							<% } else { %>
 								<div>유아</div>
 							<% } %>
 							</div>
 							<div class="col-3 age">
-							<% if(jop.getCareAge().equals("CA4")) { %>
+							<% if(jop.getCareType().contains("CT4")) { %>
 								<div style="background-color: #F6D257; color: white;">초등학생</div>
 							<% } else { %>
 								<div>초등학생</div>
@@ -229,37 +226,60 @@
 						</div>
 						<div class="row no-gutters" id="activityOption">
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A1")) { %>
 								<div style="background-color: #F6D257; color: white;">실내놀이</div>
+							<% } else { %>
+								<div>실내놀이</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A2")) { %>
+								<div style="background-color: #F6D257; color: white;">등하원돕기</div>
+							<% } else { %>
 								<div>등하원돕기</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A3")) { %>
+								<div style="background-color: #F6D257; color: white;">책읽기</div>
+							<% } else { %>
 								<div>책읽기</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A4")) { %>
+								<div style="background-color: #F6D257; color: white;">야외활동</div>
+							<% } else { %>
 								<div>야외활동</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A5")) { %>
+								<div style="background-color: #F6D257; color: white;">한글놀이</div>
+							<% } else { %>
 								<div>한글놀이</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A6")) { %>
 								<div style="background-color: #F6D257; color: white;">영어놀이</div>
+							<% } else { %>
+								<div>영어놀이</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A7")) { %>
 								<div style="background-color: #F6D257; color: white;">학습지도</div>
+							<% } else { %>
+								<div>학습지도</div>
+							<% } %>
 							</div>
 							<div class="col-4 col-sm-3 col-lg-3 activity">
+							<% if(jop.getCareActivity().contains("A8")) { %>
+								<div style="background-color: #F6D257; color: white;">체육놀이</div>
+							<% } else { %>
 								<div>체육놀이</div>
-							</div>
-							<div class="col-4 col-sm-3 col-lg-3 activity">
-								<div>간단청소</div>
-							</div>
-							<div class="col-4 col-sm-3 col-lg-3 activity">
-								<div>밥 챙겨주기</div>
-							</div>
-							<div class="col-4 col-sm-3 col-lg-3 activity">
-								<div>간단 설거지</div>
+							<% } %>
 							</div>
 						</div>
 					</div>
@@ -271,7 +291,7 @@
 									<div>
 										<h5>활동 가능 지역</h5>
 									</div>
-									<div id="areaBox">서울시 종로구 전체</div>
+									<div id="areaBox"><%=jop.getLocation() %> 전체</div>
 								</div>
 							</div>
 							<div class="col-md-8">
@@ -291,22 +311,69 @@
 											<col width=10%>
 										</colgroup>
 										<tr>
-											<td>월</td>
-											<td>화</td>
-											<td style="background-color: #F6D257; color: white;">수</td>
-											<td style="background-color: #F6D257; color: white;">목</td>
-											<td style="background-color: #F6D257; color: white;">금</td>
-											<td style="background-color: #F6D257; color: white;">토</td>
-											<td>일</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td>8~17시</td>
-											<td>8~17시</td>
-											<td>8~17시</td>
-											<td>8~17시</td>
-											<td></td>
+											<td>
+											<% if(jop.getCareDays().contains("월")) { %>
+												<div style="background-color: #F6D257; color: white;">월</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>월</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
+											<td>
+											<% if(jop.getCareDays().contains("화")) { %>
+												<div style="background-color: #F6D257; color: white;">화</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>화</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
+											<td>
+											<% if(jop.getCareDays().contains("수")) { %>
+												<div style="background-color: #F6D257; color: white;">수</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>수</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
+											<td>
+											<% if(jop.getCareDays().contains("목")) { %>
+												<div style="background-color: #F6D257; color: white;">목</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>목</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
+											<td>
+											<% if(jop.getCareDays().contains("금")) { %>
+												<div style="background-color: #F6D257; color: white;">금</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>금</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
+											<td>
+											<% if(jop.getCareDays().contains("토")) { %>
+												<div style="background-color: #F6D257; color: white;">토</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>토</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
+											<td>
+											<% if(jop.getCareDays().contains("일")) { %>
+												<div style="background-color: #F6D257; color: white;">일</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } else { %>
+												<div>일</div>
+												<div><%=jop.getCareTime() %></div>
+											<% } %>
+											</td>
 										</tr>
 									</table>
 								</div>
