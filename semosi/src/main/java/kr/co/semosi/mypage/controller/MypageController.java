@@ -1,6 +1,7 @@
 package kr.co.semosi.mypage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,20 +9,25 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
+import kr.co.semosi.mypage.model.vo.Criteria;
+import kr.co.semosi.mypage.model.vo.PageMaker;
+import kr.co.semosi.mypage.model.vo.ParentVoucher;
+import kr.co.semosi.mypage.model.vo.SitterVoucher;
 
 @Controller
 public class MypageController {
    
    @Autowired
-   @Qualifier(value = "MypageService")
+   @Qualifier(value = "mypageService")
    private MypageService myService;
    //부모
    
@@ -33,13 +39,18 @@ public class MypageController {
       return "mypage/parent/memberProfile";
    }
    
- //마이페이지 프로필 수정
+   //마이페이지 프로필 수정
    @RequestMapping(value="/parentProfileUpdate.sms")
    public void updateParentFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
-         ,HttpServletResponse response,HttpSession session, @SessionAttribute("pMember") ParentMember pMember) throws IOException
+         ,HttpServletResponse response,HttpSession session) throws IOException
    {
-      System.out.println("[/parentProfileUpdate.sms] : 정상호출"+ phone+" / "+ address+" / "+memberId);   
+      System.out.println("[/parentProfileUpdate.sms] : 정상호출");
+      System.out.println("[/parentProfileUpdate.sms] :" + phone);
+      System.out.println("[/parentProfileUpdate.sms] :" + address);
+      System.out.println("[/parentProfileUpdate.sms] :" + memberId);
       
+      
+      ParentMember pMember = new ParentMember();
       pMember.setPhone(phone);
       pMember.setAddress(address);
       pMember.setMemberId(memberId);
@@ -49,14 +60,14 @@ public class MypageController {
       if (result >0) {
          // 회원 정보 변경 성공
          response.getWriter().print(true);
-         session.removeAttribute("pMember");
-         session.setAttribute("pMember", pMember);   
          
       } else {
          //변경 실패 
          response.getWriter().print(false);
       }
+      
       return ;   
+      
    }
    
    //내가 신청한 구인현황
@@ -129,15 +140,35 @@ public class MypageController {
       System.out.println("[/parentVoucherBuy.sms] 정상적으로 호출 되었습니다.");
       return "mypage/parent/voucherBuy";
    }
-   
-   //이용권 결제 내역 조회
-   @RequestMapping(value="/parentVoucherPayView.sms")
-   public String parentvoucherPayView(){
-      
-      System.out.println("[/parentVoucherPayView.sms] 정상적으로 호출 되었습니다.");
-      return "mypage/parent/voucherPayView";
-   }   
-   
+
+	// 이용권 결제 내역 - 부모
+	@RequestMapping(value = "/parentVoucherPayView.sms")
+	public ModelAndView parentvoucherPayView(@ModelAttribute("cri") Criteria cri, ModelAndView mav,
+			@SessionAttribute("pMember") ParentMember sessionMember) {
+
+		System.out.println("[/parentVoucherPayView.sms] 정상적으로 호출 되었습니다.");
+
+		// 세션에서 조회할 회원 번호를 꺼내줌
+		String memberNo = sessionMember.getMemberNo();
+
+		System.out.println("조회할 회원 번호" + memberNo);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri); // page와 perPageNum 셋팅
+		// 기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
+
+		cri.setMemberNo(memberNo); // 조회할 회원의 번호
+		pageMaker.setTotalCount(myService.selectParentVoucherTotalCount(memberNo)); 
+
+		pageMaker.setMemberNo(memberNo);
+		List<ParentVoucher> list = myService.selectParentVoucherList(pageMaker);
+		mav.addObject("list", list);
+		mav.addObject("pageMaker", pageMaker);
+
+		mav.setViewName("mypage/parent/voucherPayView");  //ViewResolver에 의해서 경로가 최종 완성됨
+		
+		return mav;
+	}
    
    //---------------------------------------------------------------
    
@@ -151,29 +182,35 @@ public class MypageController {
    }
    
 
- //마이페이지 프로필 수정
+   //마이페이지 프로필 수정
    @RequestMapping(value="/sitterProfileUpdate.sms")
    public void updateSitterFrofile(@RequestParam String phone, @RequestParam String address, @RequestParam String memberId
-         ,HttpServletResponse response, HttpSession session, @SessionAttribute("sMember") SitterMember sMember) throws IOException
+         ,HttpServletResponse response) throws IOException
    {
-      System.out.println("[/sitterProfileUpdate.sms] : 정상호출"+ phone+" / "+ address+" / "+memberId);      
+      System.out.println("[/sitterProfileUpdate.sms] : 정상호출");
+      System.out.println("[/sitterProfileUpdate.sms] :" + phone);
+      System.out.println("[/sitterProfileUpdate.sms] :" + address);
+      System.out.println("[/sitterProfileUpdate.sms] :" + memberId);
       
+      
+      SitterMember sMember = new SitterMember();
       sMember.setPhone(phone);
       sMember.setAddress(address);
       sMember.setMemberId(memberId);
       
       int result = myService.updateSitterFrofile(sMember);
-     
+
       if (result >0) {
          // 회원 정보 변경 성공
          response.getWriter().print(true);
-         session.removeAttribute("sMember");
-         session.setAttribute("sMember", sMember);         
+         
       } else {
          //변경 실패 
          response.getWriter().print(false);
       }
+      
       return ;   
+      
    }
    
    
@@ -257,13 +294,37 @@ public class MypageController {
       return "mypage/sitter/voucherBuy";
    }
    
-   //이용권 결제 내역 조회
-   @RequestMapping(value="/sitterVoucherPayView.sms")
-   public String sitterVoucherPayView(){
-      
-      System.out.println("[/sitterVoucherPayView.sms] 정상적으로 호출 되었습니다.");
-      return "mypage/sitter/voucherPayView";
-   }   
+
+	// 이용권 결제 내역 - 시터
+	@RequestMapping(value = "/sitterVoucherPayView.sms")
+	public ModelAndView sitterVoucherPayView(@ModelAttribute("cri") Criteria cri, ModelAndView mav,
+			@SessionAttribute("sMember") SitterMember sessionMember) {
+
+		System.out.println("[/sitterVoucherPayView.sms] 정상적으로 호출 되었습니다.");
+
+		// 세션에서 조회할 회원 번호를 꺼내줌
+		String memberNo = sessionMember.getMemberNo();
+
+		System.out.println("조회할 회원 번호" + memberNo);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri); // page와 perPageNum 셋팅
+		// 기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
+
+		cri.setMemberNo(memberNo); // 조회할 회원의 번호
+		pageMaker.setTotalCount(myService.selectSitterVoucherTotalCount(memberNo)); 
+
+		pageMaker.setMemberNo(memberNo);
+		List<SitterVoucher> list = myService.selectSitterVoucherList(pageMaker);
+		mav.addObject("list", list);
+		mav.addObject("pageMaker", pageMaker);
+
+		mav.setViewName("mypage/sitter/voucherPayView");  //ViewResolver에 의해서 경로가 최종 완성됨
+		
+		
+		return mav;
+	}
+	
    
    
 }
