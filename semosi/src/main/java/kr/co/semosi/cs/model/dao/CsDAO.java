@@ -186,9 +186,54 @@ public class CsDAO {
 		return result;
 	}
 
+	//cs 1:1문의 게시글 삭제
 	public int updateCsPostDelYN(SqlSessionTemplate sqlSession, int postNo) {
 		int result = sqlSession.update("cs.updateCsPostDelYN", postNo);
 		return result;
+	}
+
+	//cs 공지사항 게시글 삭제
+	public int updateNoticePost(SqlSessionTemplate sqlSession, Notice n) {
+		int result = sqlSession.update("cs.updateNoticePost",n);
+		return result;
+		
+	}
+
+	//cs 1:1문의 게시글 수정
+	public int updateQnAPost(SqlSessionTemplate sqlSession, QnA q) {
+		int result = sqlSession.update("cs.updateQnAPost",q);
+		return result;
+	}
+
+	//cs FAQ 게시글 수정
+	public int updateFAQPost(SqlSessionTemplate sqlSession, FAQ f) {
+		int result = sqlSession.update("cs.updateFAQPost",f);
+		return result;
+	}
+
+	//cs 이용가이드 게시글 수정
+	public int updateGuidePost(SqlSessionTemplate sqlSession, Guide g) {
+		int result = sqlSession.update("cs.updateGuidePost",g);
+		return result;
+	}
+
+	//cs메인에서 공지사항 게시판 키워드 검색
+	public ArrayList<Notice> selectNoticeSearch(SqlSessionTemplate sqlSession, String keyword) {
+		List list = sqlSession.selectList("cs.selectNoticeSearch",keyword);
+		return (ArrayList<Notice>) list;
+		
+	}
+	
+	public ArrayList<FAQ> selectFAQSearch(SqlSessionTemplate sqlSession, String keyword) {
+		List list = sqlSession.selectList("cs.selectFAQSearch",keyword);
+		return (ArrayList<FAQ>) list;
+		
+	}
+	
+	public ArrayList<Guide> selectGuideSearch(SqlSessionTemplate sqlSession, String keyword) {
+		List list = sqlSession.selectList("cs.selectGuideSearch",keyword);
+		return (ArrayList<Guide>) list;
+		
 	}
 
 

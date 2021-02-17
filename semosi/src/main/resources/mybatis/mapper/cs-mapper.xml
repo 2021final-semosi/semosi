@@ -140,6 +140,7 @@
 			CONTENT as content,
 			WRITE_DATE as writeDate,
 			MEMBER_NAME as writer,
+			CATEGORY as category,
 			DEL_YN as delYn
 		FROM
 			(SELECT ROW_NUMBER() OVER(ORDER BY POST_NO DESC) as ROW_NUM, GUIDE.*, MEMBER_NAME
@@ -209,4 +210,87 @@
 		WHERE POST_NO=#{postNo}
 	</update>
 	
+	<!-- cs 공지사항 게시글 수정  -->
+	<update id="updateNoticePost" parameterType="Notice">
+		UPDATE NOTICE
+		SET
+			TITLE=#{title},
+			CONTENT=#{content}
+		WHERE POST_NO=#{postNo}
+	</update>
+	
+	
+	<!-- cs 1:1문의 게시글 수정  -->
+	<update id="updateQnAPost" parameterType="QnA">
+		UPDATE QNA
+		SET
+			TITLE=#{title},
+			CONTENT=#{content}
+		WHERE POST_NO=#{postNo}
+	</update>
+	
+	<!-- cs FAQ 게시글 수정  -->
+	<update id="updateFAQPost" parameterType="FAQ">
+		UPDATE FAQ
+		SET
+			TITLE=#{title},
+			CONTENT=#{content}
+		WHERE POST_NO=#{postNo}
+	</update>
+	
+	<!-- cs 이용가이드 수정  -->
+	<update id="updateGuidePost" parameterType="Guide">
+		UPDATE GUIDE
+		SET
+			TITLE=#{title},
+			CONTENT=#{content}
+		WHERE POST_NO=#{postNo}
+	</update>
+	
+	
+	<!-- cs메인에서 공지사항 게시판 키워드 검색 -->
+	<select id="selectNoticeSearch" parameterType="String" resultType="Notice">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER as writer,
+			DEL_YN as delYn
+		FROM NOTICE
+		WHERE TITLE LIKE  '%' ||  #{keyword} || '%'
+			OR CONTENT LIKE '%' ||  #{keyword} || '%'
+	</select>
+	
+	<!-- cs메인에서 FAQ 게시판 키워드 검색 -->
+	<select id="selectFAQSearch" parameterType="String" resultType="FAQ">
+		SELECT	
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM FAQ
+		WHERE TITLE LIKE  '%' ||  #{keyword} || '%'
+			OR CONTENT LIKE  '%' ||  #{keyword} || '%'
+	</select>
+	
+	<!-- cs메인에서 이용가이드 게시판 키워드 검색 -->
+	<select id="selectGuideSearch" parameterType="String" resultType="Guide">
+		SELECT
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER as writer,
+			DEL_YN as delYn,
+			CATEGORY as category
+		FROM GUIDE
+		WHERE TITLE LIKE '%' ||  #{keyword} || '%'
+			OR CONTENT LIKE  '%' ||  #{keyword} || '%'
+	</select>
+
+
 </mapper>

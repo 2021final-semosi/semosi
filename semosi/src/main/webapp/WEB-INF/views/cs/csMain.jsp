@@ -30,8 +30,8 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="searchBox">
 				<div id="search">
-					<form action="/moveCsSearch.sms" method="get">
-						<span><i class="fas fa-search"></i></span> <input type="text" />
+					<form action="/csSearch.sms" method="get">
+						<span><i class="fas fa-search"></i></span> <input name="keyword" type="text" />
 					</form>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 					<colgroup>
 						<col width="70%">
 						<col width="30%">
-					</colgroup>					
+					</colgroup>
 					<% ArrayList<Guide> guideList = (ArrayList<Guide>)request.getAttribute("guideList");%>
 
 					<% for(int i=0;i<5;i++){ 
@@ -132,27 +132,13 @@
 					<%} %>
 				</table>
 			</div>
-			<div class="col-md-6 csTableBox">
-				<table class="csTable" cellspacing="0px" cellpadding="0px">
-					<caption>
-						<h4>
-							<a href="/csQnA.sms">1:1문의</a>
-						</h4>
-					</caption>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>	
-					<% ArrayList<QnA> QnAList = (ArrayList<QnA>)request.getAttribute("QnAList");%>
-
-					<% for(int i=0;i<5;i++){ %>
-						<tr>
-							<td><a href="/csQnAPost.sms?postNo=<%=QnAList.get(i).getPostNo()%>"><%= QnAList.get(i).getTitle() %></a></td>
-							
-							<td><%= sdf.format(QnAList.get(i).getWriteDate()) %></td>
-						</tr>
-					<%} %>
-				</table>
+			
+			
+			
+			
+			
+			
+			
 			</div>
 		</div>
 	</div>

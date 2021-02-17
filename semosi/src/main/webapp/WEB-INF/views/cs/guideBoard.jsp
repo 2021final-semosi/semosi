@@ -66,14 +66,19 @@
 					ArrayList<Guide> list = gpd.getList();
 					String pageNavi = gpd.getPageNavi();%>
 					<% for(Guide guide : list) {%>
-					<tr>
-						<td><%=guide.getPostNo() %></td> 
-						<td title="<%=guide.getTitle() %>"><a
-							href="/csGuidePost.sms?postNo=<%=guide.getPostNo()%>"><%=guide.getTitle() %></a></td>
-						<td><%=guide.getWriter() %></td>
-						<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
-						<td><%=sdf.format(guide.getWriteDate().getTime()) %></td>
-					</tr>
+						<tr>
+							<td><%=guide.getPostNo() %></td> 
+							<%if(guide.getCategory().equals("S")){ %>
+							<td title="<%=guide.getTitle() %>"><a
+								href="/csGuidePost.sms?postNo=<%=guide.getPostNo()%>">[시터회원] <%=guide.getTitle() %></a></td>
+							<%} else if(guide.getCategory().equals("P")){ %>
+							<td title="<%=guide.getTitle() %>"><a
+								href="/csGuidePost.sms?postNo=<%=guide.getPostNo()%>">[부모회원] <%=guide.getTitle() %></a></td>
+							<%} %>
+							<td><%=guide.getWriter() %></td>
+							<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
+							<td><%=sdf.format(guide.getWriteDate().getTime()) %></td>
+						</tr>
 					<%} %>
 				</table>
 			</div>

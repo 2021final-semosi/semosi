@@ -1,3 +1,7 @@
+<%@page import="kr.co.semosi.cs.model.vo.FAQ"%>
+<%@page import="kr.co.semosi.cs.model.vo.Guide"%>
+<%@page import="kr.co.semosi.cs.model.vo.Notice"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,6 +24,12 @@
 <body>
 	<header> <%@ include file="/WEB-INF/views/commons/header.jsp"%>
 	</header>
+	<%
+	ArrayList<Notice> noticeList = (ArrayList<Notice>) request.getAttribute("noticeList");
+	ArrayList<Guide> guideList = (ArrayList<Guide>)request.getAttribute("guideList");
+	ArrayList<FAQ> FAQList = (ArrayList<FAQ>)request.getAttribute("FAQList");
+	String keyword = (String)request.getAttribute("keyword");
+	%>
 	<div class="container-fluid p-0">
 		<div class="row no-gutters">
 			<div class="col-12" id="searchBox">
@@ -36,20 +46,36 @@
 					<div class="d-none d-md-block" style="height: 66px;">&nbsp;</div>
 					<div class="col-4 col-md-12">
 						<div class="category">
-							<a href="#">모든카테고리 (5)</a>
+							<a href="#">모든카테고리 (<%=noticeList.size()+guideList.size()+FAQList.size() %>)</a>
 						</div>
 					</div>
-
+					
+					<%if(!noticeList.isEmpty()) {%>
 					<div class="col-4 col-md-12">
 						<div class="category">
-							<a href="#">공지사항 (0)</a>
+							<a href="#">공지사항 (<%=noticeList.size()%>)</a>
 						</div>
 					</div>
+					<%} %>
+					
+					<%if(!guideList.isEmpty()) {%>
 					<div class="col-4 col-md-12">
 						<div class="category">
-							<a href="#">이용가이드 (0)</a>
+							<a href="#">이용가이드 (<%=guideList.size()%>)</a>
 						</div>
 					</div>
+					<%} %>
+					
+					
+					<%if(!FAQList.isEmpty()) {%>
+					<div class="col-4 col-md-12">
+						<div class="category">
+							<a href="#">FAQ (<%=FAQList.size()%>)</a>
+						</div>
+					</div>
+					<%} %>
+					
+					<!-- 
 					<div class="col-4 col-md-12">
 						<div class="category">
 							<a href="#">부모회원 FAQ (2)</a>
@@ -60,12 +86,60 @@
 							<a href="#">시터회원 FAQ (3)</a>
 						</div>
 					</div>
+					 -->
 				</div>
 			</div>
 			<div class="col-12 col-sm-12 col-md-9">
 				<div id="resultMessage">
-					<strong>모든 카테고리에서 "비밀번호" 검색 결과 5개</strong>
+					<strong>모든 카테고리에서 "<%=keyword %>" 검색 결과 <%=noticeList.size()+guideList.size()+FAQList.size() %>개</strong>
 				</div>
+				<%if(!noticeList.isEmpty()) {
+					for(Notice n : noticeList){%>
+					
+					<div class="onePost" style="">
+						<div>
+							<a href="#"><%=n.getTitle() %></a>
+						</div>
+						<div>
+							<a href="/csNotice.sms">공지사항</a>
+						</div>
+						<div id="content"><%=n.getContent() %></div>
+					</div>
+					<%} %>
+				<%} %>
+				
+				<%if(!guideList.isEmpty()) {
+					for(Guide g : guideList){%>
+					
+					<div class="onePost" style="">
+						<div>
+							<a href="#"><%=g.getTitle() %></a>
+						</div>
+						<div>
+							<a href="/csGuide.sms">이용가이드</a>
+						</div>
+						<div id="content"><%=g.getContent() %></div>
+					</div>
+					<%} %>
+				<%} %>
+				
+				<%if(!FAQList.isEmpty()) {
+					for(FAQ f : FAQList){%>
+					
+					<div class="onePost" style="">
+						<div>
+							<a href="#"><%=f.getTitle() %></a>
+						</div>
+						<div>
+							<a href="/csFAQ.sms">자주 묻는 질문</a>
+						</div>
+						<div id="content"><%=f.getContent() %></div>
+					</div>
+					<%} %>
+				<%} %>
+				
+				
+				<!--  
 				<div class="onePost" style="">
 					<div>
 						<a href="#">[회원정보] 로그인 정보가 기억나지 않아요.</a>
@@ -85,33 +159,8 @@
 					</div>
 					<div id="content">게시글 내용이 일부 표시됩니다.</div>
 				</div>
-				<div class="onePost" style="">
-					<div>
-						<a href="#">게시글 제목이 표시됩니다.</a>
-					</div>
-					<div>
-						<a href="#">게시판 제목</a>
-					</div>
-					<div id="content">게시글 내용이 일부 표시됩니다.</div>
-				</div>
-				<div class="onePost">
-					<div>
-						<a href="#">게시글 제목이 표시됩니다.</a>
-					</div>
-					<div>
-						<a href="#">게시판 제목</a>
-					</div>
-					<div id="content">게시글 내용이 일부 표시됩니다.</div>
-				</div>
-				<div class="onePost">
-					<div>
-						<a href="#">게시글 제목이 표시됩니다.</a>
-					</div>
-					<div>
-						<a href="#">게시판 제목</a>
-					</div>
-					<div id="content">게시글 내용이 일부 표시됩니다.</div>
-				</div>
+				-->
+				
 
 				<div id="paginationBox">
 					<ul id="pagination">

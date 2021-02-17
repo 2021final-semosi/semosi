@@ -50,7 +50,12 @@
 					<% Guide guidePost = (Guide)request.getAttribute("guidePost");%>
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><%=guidePost.getTitle() %></td>
+						<%if(guidePost.getCategory().equals("S")){ %>
+						<td colspan="3">[시터회원] <%=guidePost.getTitle() %></td>
+						<%} %>
+						<%if(guidePost.getCategory().equals("P")){ %>
+						<td colspan="3">[부모회원] <%=guidePost.getTitle() %></td>
+						<%} %>
 					</tr>
 					<tr>
 						<td>작성자</td>
