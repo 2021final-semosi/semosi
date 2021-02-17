@@ -7,34 +7,23 @@
 <title>세모시 - 세상의 모든 시터</title>
 <style>
 
-* {
-	box-sizing: border-box;
-}
 
-#wrapper {
-	margin-top: 100px;
+#wrapperArea {
+	margin-top: 200px;
 	margin-bottom: 200px;
-}
-
-.container {
-	width: 100%;
-	margin:0 auto;
-}
-
-.formArea{
-	padding-top:150px;
 	width:100%;
-	height:500px;
+	height:200px;
 }
+
 
 #choiceArea{
-	width:50%;
-	heigh:100%;
+	width:500px;
+	height:100%;
+	margin: 0 auto;
 }
-
-#nbspArea{
-display:inline-block;
-float:left;
+#realChoice{
+	height:100%;
+	margin: 0 auto;
 }
 .choice{
 
@@ -54,24 +43,6 @@ font-size:1.3rem;
 }
 
 
-@media (max-width:1200px){
-#sitterJoin{
-	margin-left:50px;
-}
-}
-
-@media (max-width:1000px){
-
-#sitterJoin{
-	margin-left:0px;
-	margin-top:50px;
-}
-
-#wrapper {
-	margin-bottom: 250px;
-}
-
-}
 </style>
 </head>
 <body>
@@ -84,18 +55,16 @@ font-size:1.3rem;
 	<header> <%@ include file="/WEB-INF/views/commons/header.jsp"%>
 	</header>
 
-	<section id="wrapper">
-	<div class="container">
-		<div class="formArea">
-		<div id="choiceArea">
-			<div class="choice" id="parentJoin"><a href="/parentJoinPage.sms"><b>부모 회원 가입</b></a></div>
-			<div class="choice" id="sitterJoin"><a href="/sitterJoinPage.sms"><b>시터 회원 가입</b></a></div>
-</div>
-		</div>
+	<div id="wrapperArea">
+				<div id="choiceArea">
+				<div id="realChoice">
+					<div class="choice" id="parentJoin"><a href="/parentJoinPage.sms"><b>부모 회원 가입</b></a></div>
+					<div class="choice" id="sitterJoin"><a href="/sitterJoinPage.sms"><b>시터 회원 가입</b></a></div>
+					</div>
+				</div>
+		
 
 	</div>
-
-	</section>
 
 	<footer> <%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 	</footer>

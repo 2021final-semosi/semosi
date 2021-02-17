@@ -88,6 +88,32 @@ public class MemberService implements MemberServiceInterface {
 
 	}
 
+	public int selectMemberPhoneCheck(String phone) {
+		System.out.println("[MemberServiceImpl] selectMemberPhoneCheck 메소드 호출");
+
+		// parent 테이블과 sitter 테이블 두개 다 확인하여야 함
+		ParentMember pMember = mDAO.selectParentMemberPhoneCheck(sqlSession, phone); // 부모
+																						// 회원
+																						// 테이블확인
+		SitterMember sMember = mDAO.selectSitterMemberPhoneCheck(sqlSession, phone); // 시터
+																						// 회원
+																						// 테이블
+																						// 확인
+
+		// 결과 전달을 위한 구문
+		int result = 0;
+
+		// 둘 중에 하나라도 일치하는 id가 있다면 result>0 이고
+		// 일치하는 아이디가 없다면 result==0
+		if (pMember != null) {
+			result++;
+		} else if (sMember != null) {
+			result++;
+		}
+
+		return result;
+	}
+	
 	public int insertParentMemberSignup(ParentMember pMember) {
 		System.out.println("[MemberServiceImpl] insertParentMemberSignup 메소드 호출");
 		int parentResult = mDAO.insertParentMemberSignup(sqlSession, pMember);
@@ -139,5 +165,32 @@ public class MemberService implements MemberServiceInterface {
 		int result = mDAO.insertSitterVoucher30Days(sqlSession, memberNo);
 		return result;
 	}
+
+	public ParentMember selectParentCurrentPwCheck(ParentMember sessionMember) {
+		System.out.println("[MemberServiceImpl] selectParentCurrentPwCheck 메소드 호출");
+		ParentMember pMember = mDAO.selectParentCurrentPwCheck(sqlSession, sessionMember);
+
+		return pMember;
+	}
+
+	public int updateParentPw(ParentMember sessionMember) {
+		System.out.println("[MemberServiceImpl] updateParentPw 메소드 호출");
+		int result = mDAO.updateParentPw(sqlSession, sessionMember);
+		return result;
+	}
+
+	public SitterMember selectSitterCurrentPwCheck(SitterMember sessionMember) {
+		System.out.println("[MemberServiceImpl] selectSitterCurrentPwCheck 메소드 호출");
+		SitterMember sMember = mDAO.selectSitterCurrentPwCheck(sqlSession, sessionMember);
+
+		return sMember;
+	}
+
+	public int updateSitterPw(SitterMember sessionMember) {
+		System.out.println("[MemberServiceImpl] updateSitterPw 메소드 호출");
+		int result = mDAO.updateSitterPw(sqlSession, sessionMember);
+		return result;
+	}
+
 
 }

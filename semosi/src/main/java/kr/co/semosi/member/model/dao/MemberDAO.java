@@ -55,6 +55,15 @@ public class MemberDAO {
 		return result;
 	}
 
+	public ParentMember selectParentMemberPhoneCheck(SqlSessionTemplate sqlSession, String phone) {
+		ParentMember pMember = sqlSession.selectOne("parentMember.selectPhoneCheck", phone);
+		return pMember;
+	}
+	public SitterMember selectSitterMemberPhoneCheck(SqlSessionTemplate sqlSession, String phone) {
+		SitterMember sMember = sqlSession.selectOne("sitterMember.selectPhoneCheck", phone);
+		return sMember;
+	}
+	
 	public int insertParentMemberSignup(SqlSessionTemplate sqlSession, ParentMember pMember) {
 		int result = sqlSession.insert("parentMember.memberSignup", pMember);
 		return result;
@@ -94,5 +103,27 @@ public class MemberDAO {
 		int result = sqlSession.insert("sitterMember.30daysVoucher", memberNo);
 		return result;
 	}
+
+	public ParentMember selectParentCurrentPwCheck(SqlSessionTemplate sqlSession, ParentMember sessionMember) {
+		ParentMember pMember = sqlSession.selectOne("parentMember.selectCurrentPwCheck", sessionMember);
+		return pMember;
+	}
+
+	public int updateParentPw(SqlSessionTemplate sqlSession, ParentMember sessionMember) {
+		int result = sqlSession.update("parentMember.updatePw",sessionMember);
+		return result;
+	}
+
+	public SitterMember selectSitterCurrentPwCheck(SqlSessionTemplate sqlSession, SitterMember sessionMember) {
+		SitterMember sMember = sqlSession.selectOne("sitterMember.selectCurrentPwCheck", sessionMember);
+		return sMember;
+	}
+
+	public int updateSitterPw(SqlSessionTemplate sqlSession, SitterMember sessionMember) {
+		int result = sqlSession.update("sitterMember.updatePw",sessionMember);
+		return result;
+	}
+
+
 
 }
