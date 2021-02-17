@@ -112,6 +112,23 @@ public class MypageDAO {
 		return teacherDocu;
 	}
 
+	public int insertResiDocu(SqlSessionTemplate sqlSession, ResidentDocu resiDocu) {
+		int result = sqlSession.insert("certification.insertResiDocu", resiDocu);
+		return result;
+	}
+	public int insertHealthDocu(SqlSessionTemplate sqlSession, HealthDocu healthDocu) {
+		int result = sqlSession.insert("certification.insertHealthDocu", healthDocu);
+		return result;
+	}
+	public int insertFamilyDocu(SqlSessionTemplate sqlSession, FamilyDocu familyDocu) {
+		int result = sqlSession.insert("certification.insertFamilyDocu", familyDocu);
+		return result;
+	}
+	public int insertTeacherDocu(SqlSessionTemplate sqlSession, TeacherDocu teacherDocu) {
+		int result = sqlSession.insert("certification.insertTeacherDocu", teacherDocu);
+		return result;
+	}
+
 
 	
 	
