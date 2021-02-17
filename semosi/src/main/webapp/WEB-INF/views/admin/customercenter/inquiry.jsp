@@ -149,7 +149,7 @@ function deleteValue() {
 						</form>
 					</div>
 					<div class="tab-content">
-					<input type="button" value="선택삭제" class="btn btn-outline-info" onclick="deleteValue();" style="margin-left:11%;">
+					<input type="button" value="선택삭제" class="btn btn-outline-info" id="checkDBtn" onclick="deleteValue();" style="margin-left:11%;">
 						<table class="board">
 							<tr class="head">
 								<th id="all_select"><input type="checkbox" class="allSelect" /></th>
