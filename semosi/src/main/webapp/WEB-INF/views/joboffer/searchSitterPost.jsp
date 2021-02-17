@@ -1,3 +1,4 @@
+<%@page import="kr.co.semosi.joboffer.model.vo.JobOfferPost"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,27 +22,10 @@
 <title>세모시 - 세상의 모든 시터</title>
 </head>
 <body>
-	<!--  	
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.slider-for').slick({
-			  slidesToShow: 1,
-			  slidesToScroll: 1,
-			  arrows: false,
-			  fade: true,
-			  asNavFor: '.slider-nav'
-			});
-			$('.slider-nav').slick({
-			  slidesToShow: 3,
-			  slidesToScroll: 1,
-			  asNavFor: '.slider-for',
-			  dots: true,
-			  centerMode: true,
-			  focusOnSelect: true
-			});
-		});
-</script>
--->
+
+	<%
+		JobOfferPost jop=(JobOfferPost)request.getAttribute("postData");
+	%>
 
 	<header>
 		<%@ include file="/WEB-INF/views/commons/header.jsp" %>
@@ -81,36 +65,34 @@
 				</div>
 				 -->
 
-						<img class="profileImg" src="/resources/images/sitter_image.png" />
-						<img class="profileImg" src="/resources/images/sitter_image.png" />
+						<img class="profileImg" src="/resources/images/profile/<%=jop.getOriginalName() %>" />
 
 					</div>
 					<div class="col-md-12" id="sitterInfoBox">
 						<div>
-							<h4>김O희</h4>
+							<h4><%=jop.getMemberName() %></h4>
 						</div>
-						<div>20세 | 희망시급 8650원 | 서울시 종로구</div>
+						<div><%=jop.getAge() %>세 | 희망시급 <%=jop.getPay() %>원 | <%=jop.getLocation() %></div>
 					</div>
 					<div class="col-md-12" id="sitterEvalBox">
-						<div class="row no-gutters"">
+						<div class="row no-gutters">
 							<div id="hits" class="col-sm-6 col-md-6 col-lg-3 sitterEval">
-								<div>12,000</div>
+								<div><%=jop.getHit() %></div>
 								<div>조회수</div>
 							</div>
 							<div class="col-sm-6 col-md-6 col-lg-3 sitterEval">
 								<div>
-									<!-- <i class="far fa-heart" style="color: #F44336;"></i> -->
-									&nbsp;<i class="fas fa-heart" style="color: #F44336;"></i>&nbsp;
+									<% if(jop.getCareType().equals("")) %>
 								</div>
 								<div>찜한 회원수 | 200명</div>
 							</div>
 							<div class="col-sm-6 col-md-6 col-lg-3 sitterEval">
 								<div>
-									&nbsp;<i class="fas fa-star"></i><i class="fas fa-star"></i><i
-										class="fas fa-star"></i><i class="fas fa-star"></i><i
-										class="far fa-star"></i>&nbsp;
+									&nbsp;
+									
+									&nbsp;
 								</div>
-								<div>후기 30개</div>
+								<div>후기 평균</div>
 							</div>
 							<div id="familyCount"
 								class="col-sm-6 col-md-6 col-lg-3 sitterEval">
@@ -124,7 +106,7 @@
 					<div class="col-md-12">
 						<div class="row no-gutters" id="badgesBox">
 							<div class="col-3 badges">
-								<img src="/resources/images/registration.png" /> <br>
+								<img src="/resources/images/registration.png"/> <br>
 								등초본인증
 							</div>
 							<div class="col-3 badges">

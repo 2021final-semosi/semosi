@@ -27,6 +27,7 @@
       	
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminOffer" alias="AdminOffer"/>
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminSearch" alias="AdminSearch"/>
+      	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminSearchPage" alias="AdminSearchPage"/>
       	<typeAlias type="kr.co.semosi.admin.job.model.vo.AdminReport" alias="AdminReport"/>
       
      	<typeAlias type="kr.co.semosi.admin.voucher.model.vo.ParentsVoucherView" alias="ParentsVoucherView"/>
@@ -35,6 +36,9 @@
 	
 		<typeAlias type="kr.co.semosi.mypage.model.vo.ParentVoucher" alias="parentVoucher"/>
 		<typeAlias type="kr.co.semosi.mypage.model.vo.SitterVoucher" alias="sitterVoucher"/>
+		<typeAlias type="kr.co.semosi.mypage.model.vo.QnA" alias="myPageQnA"/>
+		
+		
 		<typeAlias type="kr.co.semosi.member.model.vo.Authentication" alias="Authentication"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.ParentMember" alias="ParentMember"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.SitterMember" alias="SitterMember"/>
@@ -44,6 +48,7 @@
 		
 		<typeAlias type="kr.co.semosi.index.model.vo.IndexReviews" alias="IndexReviews"/>
 		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferList" alias="JobOfferList"/>
+		<typeAlias type="kr.co.semosi.joboffer.model.vo.JobOfferPost" alias="JobOfferPost"/>
 		<typeAlias type="kr.co.semosi.jobsearch.model.vo.JobSearchList" alias="JobSearchList"/>
 		
 		<typeAlias type="kr.co.semosi.cs.model.vo.Notice" alias="Notice"/>

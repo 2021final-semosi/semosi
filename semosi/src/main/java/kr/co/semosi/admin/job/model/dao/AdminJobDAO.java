@@ -1,6 +1,5 @@
 package kr.co.semosi.admin.job.model.dao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminReport;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
+import kr.co.semosi.admin.job.model.vo.AdminSearchPage;
 import kr.co.semosi.admin.job.model.vo.JobOffer;
 import kr.co.semosi.admin.job.model.vo.JobSearch;
 
@@ -65,8 +65,8 @@ public class AdminJobDAO {
 		return sqlSession.selectOne("job.jobOfferPage",ao);
 	}
 
-	public AdminSearch jobSearchPage(SqlSessionTemplate sqlSession, String postNo, String title) {
-		AdminSearch as = new AdminSearch();
+	public AdminSearchPage jobSearchPage(SqlSessionTemplate sqlSession, String postNo, String title) {
+		AdminSearchPage as = new AdminSearchPage();
 		as.setPostNo(postNo);
 		as.setTitle(title);
 		return sqlSession.selectOne("job.jobSearchPage",as);

@@ -58,9 +58,19 @@ public class AdminVoucherController {
         return "admin/voucher/voucher_parents";
 	}
 	
-	@RequestMapping(value="/refundRequest.sms")
-	public void refundRequest(@RequestParam int voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
+	@RequestMapping(value="/refundRequestP.sms")
+	public void refundRequestP(@RequestParam int voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
 		int result = voucherService.refundUpdate(voucherNo,phone);
+		if(result>0) {
+			response.getWriter().print("true");
+		} else {
+			response.getWriter().print("false");
+		}
+	}
+	
+	@RequestMapping(value="/refundRequestS.sms")
+	public void refundRequestS(@RequestParam int voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
+		int result = voucherService.refundUpdateS(voucherNo,phone);
 		if(result>0) {
 			response.getWriter().print("true");
 		} else {

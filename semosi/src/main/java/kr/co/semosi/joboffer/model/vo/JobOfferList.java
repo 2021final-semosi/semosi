@@ -3,6 +3,7 @@ package kr.co.semosi.joboffer.model.vo;
 import java.sql.Date;
 
 public class JobOfferList {
+	private String postNo;
 	private int fileNo;
 	private String originalName;
 	private String memberNo;
@@ -22,10 +23,11 @@ public class JobOfferList {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public JobOfferList(int fileNo, String originalName, String memberNo, String location, int pay, Date writeDate,
-			String memberName, Date birthDay, char certFaYN, char certHeYN, char certReYN, char certTeYN, int avgGrade,
-			int age) {
+	public JobOfferList(String postNo, int fileNo, String originalName, String memberNo, String location, int pay,
+			Date writeDate, String memberName, Date birthDay, char certFaYN, char certHeYN, char certReYN,
+			char certTeYN, int avgGrade, int age) {
 		super();
+		this.postNo = postNo;
 		this.fileNo = fileNo;
 		this.originalName = originalName;
 		this.memberNo = memberNo;
@@ -42,6 +44,12 @@ public class JobOfferList {
 		this.age = age;
 	}
 	
+	public String getPostNo() {
+		return postNo;
+	}
+	public void setPostNo(String postNo) {
+		this.postNo = postNo;
+	}
 	public int getFileNo() {
 		return fileNo;
 	}

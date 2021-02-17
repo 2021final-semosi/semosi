@@ -35,4 +35,11 @@ public class AdminVoucherDAO {
 		return sqlSession.selectOne("voucher.sitterVoucherContentCnt",paramMap);
 	}
 
+	public int refundUpdateS(SqlSessionTemplate sqlSession, int voucherNo, String phone) {
+		SitterVoucherView sv = new SitterVoucherView();
+		sv.setVoucherNo(voucherNo);
+		sv.setPhone(phone);
+		return sqlSession.update("voucher.refundUpdateS",sv);
+	}
+
 }

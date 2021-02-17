@@ -21,6 +21,7 @@ import kr.co.semosi.mypage.model.service.MypageService;
 import kr.co.semosi.mypage.model.vo.Criteria;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
+import kr.co.semosi.mypage.model.vo.QnA;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 
 @Controller
@@ -132,12 +133,42 @@ public class MypageController {
       return "mypage/parent/recruitmentDetails";
    }
    
+   /*
    //신고내역
    @RequestMapping(value="/parentReport.sms")
    public String parentReport(){
       
       System.out.println("[/parentReport.sms] 정상적으로 호출 되었습니다.");
       return "mypage/parent/memberReport";
+   }
+   */
+   
+   //나의 문의 내역
+   @RequestMapping(value="/parentQnA.sms")
+   public ModelAndView parentQnA(@ModelAttribute("cri") Criteria cri, ModelAndView mav,
+			@SessionAttribute("pMember") ParentMember sessionMember){
+
+	      	System.out.println("[/parentQnA.sms] 정상적으로 호출 되었습니다.");
+	   		// 세션에서 조회할 회원 번호를 꺼내줌
+			String memberNo = sessionMember.getMemberNo();
+
+			System.out.println("조회할 회원 번호" + memberNo);
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri); // page와 perPageNum 셋팅
+			// 기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
+
+			cri.setMemberNo(memberNo); // 조회할 회원의 번호
+			pageMaker.setTotalCount(myService.selectParentQnATotalCount(memberNo)); 
+
+			pageMaker.setMemberNo(memberNo);
+			List<QnA> list = myService.selectParentQnAList(pageMaker);
+			mav.addObject("list", list);
+			mav.addObject("pageMaker", pageMaker);
+
+			mav.setViewName("mypage/parent/memberQnA");  //ViewResolver에 의해서 경로가 최종 완성됨
+			
+			return mav;
    }
    
    //이용권 구매
@@ -283,12 +314,42 @@ public class MypageController {
       return "mypage/sitter/recruitmentDetails";
    }
    
+   /*
    //신고내역
    @RequestMapping(value="/sitterReport.sms")
    public String sitterReport(){
       
       System.out.println("[/sitterReport.sms] 정상적으로 호출 되었습니다.");
       return "mypage/sitter/memberReport";
+   }
+   */
+   
+   //나의 문의 내역
+   @RequestMapping(value="/sitterQnA.sms")
+   public ModelAndView sitterQnA(@ModelAttribute("cri") Criteria cri, ModelAndView mav,
+			@SessionAttribute("sMember") SitterMember sessionMember){
+
+     		System.out.println("[/sitterQnA.sms] 정상적으로 호출 되었습니다.");
+     		// 세션에서 조회할 회원 번호를 꺼내줌
+			String memberNo = sessionMember.getMemberNo();
+
+			System.out.println("조회할 회원 번호" + memberNo);
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri); // page와 perPageNum 셋팅
+			// 기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
+
+			cri.setMemberNo(memberNo); // 조회할 회원의 번호
+			pageMaker.setTotalCount(myService.selectSitterQnATotalCount(memberNo)); 
+
+			pageMaker.setMemberNo(memberNo);
+			List<QnA> list = myService.selectSitterQnAList(pageMaker);
+			mav.addObject("list", list);
+			mav.addObject("pageMaker", pageMaker);
+
+			mav.setViewName("mypage/parent/memberQnA");  //ViewResolver에 의해서 경로가 최종 완성됨
+			
+			return mav;
    }
    
    //이용권 구매

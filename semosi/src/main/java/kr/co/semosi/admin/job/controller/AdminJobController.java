@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.semosi.admin.job.model.service.AdminJobService;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
+import kr.co.semosi.admin.job.model.vo.AdminSearchPage;
 
 @Controller
 public class AdminJobController {
@@ -188,7 +189,7 @@ public class AdminJobController {
 	
 	@RequestMapping(value="/job_search_page.sms")
 	public String jobSearchPage(@RequestParam String postNo, @RequestParam String title, Model model) {
-		AdminSearch aSearch = jobService.jobSearchPage(postNo,title);
+		AdminSearchPage aSearch = jobService.jobSearchPage(postNo,title);
 		model.addAttribute("aSearch",aSearch);
 		return "admin/job/job_search_page";
 	}

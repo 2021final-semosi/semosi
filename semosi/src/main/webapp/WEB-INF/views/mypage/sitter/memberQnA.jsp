@@ -1,4 +1,4 @@
-<%@page import="kr.co.semosi.mypage.model.vo.ParentVoucher"%>
+<%@page import="kr.co.semosi.mypage.model.vo.QnA"%>
 <%@page import="kr.co.semosi.mypage.model.vo.PageMaker"%>
 <%@page import="java.util.*, java.text.*"%>
 <%@page import="java.util.ArrayList"%>
@@ -184,7 +184,7 @@
 </script>
 
 <%
-	ArrayList<ParentVoucher> list = (ArrayList<ParentVoucher>)request.getAttribute("list");
+	ArrayList<QnA> list = (ArrayList<QnA>)request.getAttribute("list");
 	PageMaker pageMaker = (PageMaker)request.getAttribute("pageMaker");
 
 	
@@ -204,18 +204,23 @@
 <section id="wrapper">
 	<div class="container">
 		<div class="title row m-0">
-			<div class="col-sm-12 m-0 p-0"><span>이용권 결제 내역</span></div>
+			<div class="col-sm-12 m-0 p-0"><span>나의 문의 내역</span></div>
 		</div>
 		<%if(list.isEmpty()) {%>
-		구매한 이용권이 없습니다.
+			
+		<div class=" row m-0">
+			<div class="col-sm-12 m-0 p-0"><center><H5>문의한 게시글이 존재하지않습니다. 문의글을 작성해주세요.</H5></center></div>
+		</div>
 		<%}else{ %>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
 		<div id="subtitle" class="row p-0 m-0 category line-name text-center">
-			<div class="d-none d-md-block col-md-1 p-0 m-0 font-weight-bold c-name ">번호</div>
-			<div class="d-none d-md-block col-md-2 p-0 m-0 font-weight-bold c-name">사용자</div>
-			<div class="col-3 col-md-3 p-0 m-0 font-weight-bold c-name">이용권</div>
-			<div class="col-3 col-md-2 p-0 m-0 font-weight-bold c-name">금액</div>
-			<div class="col-3 col-md-2 p-0 m-0 font-weight-bold c-name">결제일</div>
-			<div class="col-3 col-md-2 p-0 m-0 font-weight-bold c-name">만료일</div>
+			<div class="d-none d-md-block col-md-2 p-0 m-0 font-weight-bold c-name ">번호</div>
+			<div class="col-4 col-md-6 p-0 m-0 font-weight-bold c-name">제목</div>
+			<div class="col-4 col-md-2 p-0 m-0 font-weight-bold c-name">작성자</div>
+			<div class="col-4 col-md-2 p-0 m-0 font-weight-bold c-name">작성일</div>
 		</div>
 		
 		<!-- 현재날짜 가져오기 -->
@@ -224,15 +229,13 @@
 		String sysdate =simpleDate.format(date);
 		
 		%>
-		<%for(ParentVoucher pv : list){ %>
+		<%for(QnA pQnA : list){ %>
 		
 		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 "><%=pv.getVoucherNo()%></div>
-			<div class="d-none d-md-block col-md-2 p-0"><%=pm.getMemberId()%></div>
-			<div class="col-3 col-md-3 p-0 "><%=pv.getVoucherName()%></div>
-			<div class="col-3 col-md-2 p-0 "><%=pv.getVoucherPrice()%></div>
-			<div class="col-3 col-md-2 p-0 "><%=pv.getBoughtDate()%></div>
-			<div class="col-3 col-md-2 p-0 "><%=pv.getEndDate()%>
+			<div class="d-none d-md-block col-md-2 p-0 "><%=pQnA.getPostNo()%></div>
+			<div class="col-4  col-md-6 p-0"><%=pQnA.getTitle()%></div>
+			<div class="col-4 col-md-2 p-0 "><%=sm.getMemberId()%></div>
+			<div class="col-4 col-md-2 p-0 "><%=pQnA.getWriteDate()%></div>
 			</div>
 		</div>
 		<%} %>

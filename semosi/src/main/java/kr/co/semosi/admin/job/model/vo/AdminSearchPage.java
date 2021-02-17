@@ -2,7 +2,7 @@ package kr.co.semosi.admin.job.model.vo;
 
 import java.sql.Date;
 
-public class AdminSearch {
+public class AdminSearchPage {
     private String postNo;
     private String membersNo;
     private String title;
@@ -26,7 +26,16 @@ public class AdminSearch {
     private String address;
     private Date writeDate;
     private char delYN;
-
+    
+    private char certFAYN;
+    private char fDel;
+    private char certHEYN;
+    private char hDel;
+    private char certREYN;
+    private char rDel;
+    private char certTEYN;
+    private char tDel;
+   
     public String getPostNo() {
    return postNo;
     }
@@ -195,10 +204,75 @@ public class AdminSearch {
 		this.delYN = delYN;
 	}
 
-	public AdminSearch(String postNo, String membersNo, String title, String selfIntroduce, char careType,
+	public char getCertFAYN() {
+		return certFAYN;
+	}
+
+	public void setCertFAYN(char certFAYN) {
+		this.certFAYN = certFAYN;
+	}
+
+	public char getfDel() {
+		return fDel;
+	}
+
+	public void setfDel(char fDel) {
+		this.fDel = fDel;
+	}
+
+	public char getCertHEYN() {
+		return certHEYN;
+	}
+
+	public void setCertHEYN(char certHEYN) {
+		this.certHEYN = certHEYN;
+	}
+
+	public char gethDel() {
+		return hDel;
+	}
+
+	public void sethDel(char hDel) {
+		this.hDel = hDel;
+	}
+
+	public char getCertREYN() {
+		return certREYN;
+	}
+
+	public void setCertREYN(char certREYN) {
+		this.certREYN = certREYN;
+	}
+
+	public char getrDel() {
+		return rDel;
+	}
+
+	public void setrDel(char rDel) {
+		this.rDel = rDel;
+	}
+
+	public char getCertTEYN() {
+		return certTEYN;
+	}
+
+	public void setCertTEYN(char certTEYN) {
+		this.certTEYN = certTEYN;
+	}
+
+	public char gettDel() {
+		return tDel;
+	}
+
+	public void settDel(char tDel) {
+		this.tDel = tDel;
+	}
+
+	public AdminSearchPage(String postNo, String membersNo, String title, String selfIntroduce, char careType,
        String careAge, String careActivity, String location, Date startDate, Date endDate, String careDays,
        String careTime, int pay, char cctvYN, String memberName, String memberId, String phone, char gender,
-       String address, Date wirteDate, char delYN) {
+       String address, Date wirteDate, char delYN, char certFAYN, char fDel, char certHEYN, char hDel,
+       char certREYN, char rDel, char certTEYN, char tDel) {
    super();
    this.postNo = postNo;
    this.membersNo = membersNo;
@@ -220,10 +294,17 @@ public class AdminSearch {
    this.gender = gender;
    this.address = address;
    this.writeDate = writeDate;
-   this.delYN = delYN;
+   this.certFAYN = certFAYN;
+   this.fDel = fDel;
+   this.certHEYN = certHEYN;
+   this.hDel = hDel;
+   this.certREYN = certREYN;
+   this.rDel = rDel;
+   this.certTEYN = certTEYN;
+   this.tDel = tDel;
     }
 
-    public AdminSearch() {
+    public AdminSearchPage() {
    super();
    // TODO Auto-generated constructor stub
     }

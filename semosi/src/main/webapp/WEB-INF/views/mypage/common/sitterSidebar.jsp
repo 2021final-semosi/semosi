@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>세모시 - 세상의 모든 시터</title>
 
 <!-- BootStrap 4.6.0 라이브러리 -->
 <link rel="stylesheet"
@@ -225,6 +225,9 @@ svg {
 				</div>
 				<div class="menu-main">
 					<a href="/sitterReport.sms"><span>신고 내역</span></a>
+				</div>
+				<div class="menu-main">
+					<a href="/sitterQnA.sms"><span>나의 문의 내역</span></a>
 				</div>
 
 				<hr class="line">

@@ -4,6 +4,7 @@
   <select id="selectSearchAllList" resultType="JobOfferList">
   	<![CDATA[
 	  	SELECT 
+	  		POST_NO AS postNo,
 			FILE_NO AS fileNo,
 			ORIGINAL_NAME AS originalName,
 			MEMBERS_NO AS memberNo,
@@ -21,4 +22,38 @@
 		WHERE #{START}<=RNUM AND RNUM<=#{END}+9
 	]]>
   </select>
+  <select id="selectOneSearchPost" resultType="JobOfferPost">
+  	SELECT
+  		FILE_NO AS fileNo,
+  		ORIGINAL_NAME AS originalName,
+  		POST_NO AS postNo,
+  		MEMBERS_NO AS membersNo,
+  		TITLE AS title,
+  		SELF_INTRODUCE AS selfIntroduce,
+  		CARE_TYPE AS careType,
+  		CARE_AGE AS careAge,
+  		CARE_ACTIVITY AS careActivity,
+  		LOCATION AS location,
+  		START_DATE AS startDate,
+  		END_DATE AS endDate,
+  		CARE_DAYS AS careDays,
+  		CARE_TIME AS careTime,
+  		PAY AS pay,
+  		CCTV_YN AS cctvYN,
+  		WRITE_DATE AS writeDate,
+  		HIT AS hit,
+  		MEMBER_NAME AS memberName,
+  		PHONE AS phone,
+  		GENDER AS gender,
+  		BIRTH_DAY AS birthDay,
+  		CERT_FA_YN AS certFAYN,
+  		CERT_HE_YN AS certHEYN,
+  		CERT_RE_YN AS certREYN,
+  		CERT_TE_YN AS certTEYN,
+  		AVG_GRADE AS avgGrade
+  	FROM JOB_SEARCH_POST WHERE POST_NO=#{postNo}
+  </select>
+  <update id="updatePostHitCount">
+  	UPDATE JOB_SEARCH SET HIT=HIT+1 WHERE POST_NO=#{postNo}
+  </update>
 </mapper>
