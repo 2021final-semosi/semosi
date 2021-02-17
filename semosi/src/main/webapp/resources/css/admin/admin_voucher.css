@@ -82,17 +82,8 @@ a {
 	text-align: left;
 }
 
-.restore-btn {
-	background-color: #9E9E9E;
-	color: white;
-	font-weight: 400;
-	font-size: 0.8rem;
-	border: 0px solid white;
-	padding: 3px 20px 3px 20px;
-	border-radius: 999px;
-}
-
 .refund-done {
+	height: 30px;
 	background-color: #F84949;
 	color: white;
 	font-weight: 400;

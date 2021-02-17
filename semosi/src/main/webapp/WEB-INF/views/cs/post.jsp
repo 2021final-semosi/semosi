@@ -65,12 +65,10 @@
 					</tr>
 				</table>
 			</div>
-			<div class="col-12" id="btnBox">
-				<div style="float: left;">
+			<div class="col-12" >
+				<div id="btnBox">
 					<button id="modBtn">수정</button>
 					<button id="delBtn">삭제</button>
-				</div>
-				<div style="float: right;">
 					<button id="listBtn" onclick="location.href='#'">목록</button>
 				</div>
 			</div>

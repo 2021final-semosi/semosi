@@ -51,13 +51,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/userMemberLogin.sms")
-	public String selectParentLogin(@RequestParam String member, @RequestParam String memberId,
+	public String selectParentLogin(@RequestParam String memberType, @RequestParam String memberId,
 			@RequestParam String memberPw, HttpServletRequest request) {
 
 		System.out.println("[/memberLogin.sms] 정상적으로 호출되었습니다.");
 
 		// 부모 회원일 때 로그인
-		if (member.equals("parent")) {
+		if (memberType.equals("parent")) {
+			System.out.println("부모회원 로그인");
 			ParentMember pm = new ParentMember();
 			pm.setMemberId(memberId);
 			pm.setMemberPw(memberPw);
@@ -77,6 +78,7 @@ public class MemberController {
 
 			// 시터 회원일 때 로그인
 		} else {
+			System.out.println("시터회원 로그인");
 			SitterMember sm = new SitterMember();
 			sm.setMemberId(memberId);
 			sm.setMemberPw(memberPw);
@@ -84,7 +86,7 @@ public class MemberController {
 			SitterMember sMember = mService.selectLoginSitter(sm);
 
 			if (sMember != null) {
-
+				
 				HttpSession session = request.getSession();
 				session.setAttribute("sMember", sMember);
 				System.out.println("로그인 성공[ 시터 회원 : " + sMember.getMemberId() + "]");

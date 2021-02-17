@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 
 body {
-	font-family: 'Nanum Gothic', sans-serif;
 	min-width: 400px;
 }
 
@@ -53,14 +52,20 @@ div {
 }
 
 .csBtn {
-	width: 135px;
-	height: 60px;
-	border: 1px solid orange;
-	border-radius: 120px;
-	background-color: orange;
+	width: 200px;
+	height: 80px;
+	border-radius: 100px;
+	background-color: #F6D257;
 	color: white;
 	padding-left: 10px;
 	padding-right: 10px;
+	font-size: 22px;
+	line-height: 80px;
+}
+
+.csBtn:hover {
+	color: white;
+	text-decoration: none;
 }
 
 .csTable {
@@ -91,6 +96,14 @@ div {
 	color: black;
 }
 
+.csTable>tbody>tr>td:first-child {
+	text-align: left;
+}
+
+.csTable>tbody>tr>td:last-child {
+	text-align: right;
+}
+
 .csTable th {
 		text-align: center;
 	border: 0px;
@@ -101,7 +114,6 @@ div {
 .csTable td {
 	border: 0px;
 	border-bottom: 1px solid gray;
-	text-align: center;
 	color: gray;
-	padding: 5px 0 5px 0;
+	padding: 10px 10px 10px 10px;
 }

@@ -1,3 +1,9 @@
+<%@page import="kr.co.semosi.mypage.model.vo.ParentVoucher"%>
+<%@page import="kr.co.semosi.mypage.model.vo.PageMaker"%>
+<%@page import="java.util.*, java.text.*"%>
+<%@page import="java.util.ArrayList"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -177,6 +183,13 @@
   })(document, 'script', 'kakao-js-sdk');
 </script>
 
+<%
+	ArrayList<ParentVoucher> list = (ArrayList<ParentVoucher>)request.getAttribute("list");
+	PageMaker pageMaker = (PageMaker)request.getAttribute("pageMaker");
+
+	
+%>
+
 <header>
 	<%@ include file="/WEB-INF/views/commons/header.jsp"%>
 </header>
@@ -193,115 +206,66 @@
 		<div class="title row m-0">
 			<div class="col-sm-12 m-0 p-0"><span>이용권 결제 내역</span></div>
 		</div>
-		<hr class="menu-hr d-block d-lg-none">
+		<%if(list.isEmpty()) {%>
+		구매한 이용권이 없습니다.
+		<%}else{ %>
 		<div id="subtitle" class="row p-0 m-0 category line-name text-center">
-			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name ">번호</div>
-			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">사용자</div>
-			<div class="col-3 d-none d-lg-block p-0 m-0 font-weight-bold c-name">결제한 이용권</div>
-			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">금액</div>
-			<div class="col-2 d-none d-lg-block p-0 m-0 font-weight-bold c-name">결제일</div>
-			<div class="col-1 d-none d-lg-block p-0 m-0 font-weight-bold c-name">만료여부</div>
+			<div class="d-none d-md-block col-md-1 p-0 m-0 font-weight-bold c-name ">번호</div>
+			<div class="d-none d-md-block col-md-2 p-0 m-0 font-weight-bold c-name">사용자</div>
+			<div class="col-3 col-md-3 p-0 m-0 font-weight-bold c-name">이용권</div>
+			<div class="col-3 col-md-2 p-0 m-0 font-weight-bold c-name">금액</div>
+			<div class="col-3 col-md-2 p-0 m-0 font-weight-bold c-name">결제일</div>
+			<div class="col-3 col-md-2 p-0 m-0 font-weight-bold c-name">만료일</div>
 		</div>
+		
+		<!-- 현재날짜 가져오기 -->
+		<% Date date = new Date();
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		String sysdate =simpleDate.format(date);
+		
+		%>
+		<%for(ParentVoucher pv : list){ %>
+		
 		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
+			<div class="d-none d-md-block col-md-1 p-0 "><%=pv.getVoucherNo()%></div>
+			<div class="d-none d-md-block col-md-2 p-0"><%=pm.getMemberId()%></div>
+			<div class="col-3 col-md-3 p-0 "><%=pv.getVoucherName()%></div>
+			<div class="col-3 col-md-2 p-0 "><%=pv.getVoucherPrice()%></div>
+			<div class="col-3 col-md-2 p-0 "><%=pv.getBoughtDate()%></div>
+			<div class="col-3 col-md-2 p-0 "><%=pv.getEndDate()%>
+			</div>
 		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-		<div class="row p-0 m-0 line-content text-center">
-			<div class="d-none d-md-block col-md-1 p-0 ">1</div>
-			<div class="col-12 col-md-3 p-0">user1</div>
-			<div class="col-3 col-md-3 p-0 ">7일권</div>
-			<div class="col-3 col-md-2 p-0 ">5,000원</div>
-			<div class="col-3 col-md-2 p-0 ">2021-02-01</div>
-			<div class="col-2 col-md-1 p-0 ">사용중</div>
-		</div>
-
+		<%} %>
 		<div class="row p-0 m-0 boardNavi">
 			<div class="col-12 p-0 m-0 overview">
 				<br> <br>
 
 				<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-					</a></li>
+				
+				
+    <c:if test="${pageMaker.prev}">
+    <li class="page-item">
+        <a class="page-link" href='<c:url value="/parentVoucherPayView.sms?page=${pageMaker.startPage-1}"/>' aria-label="Next"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    </c:if>
+    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+    <li class="page-item">
+        <a class="page-link" href='<c:url value="/parentVoucherPayView.sms?page=${pageNum }"/>'><span aria-hidden="true">${pageNum }</span></a>
+    </li>
+    </c:forEach>
+    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+    <li class="page-item">
+        <a class="page-link" href='<c:url value="/parentVoucherPayView.sms?page=${pageMaker.endPage+1 }"/>' aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    </c:if>
 				</ul>
 				</nav>
+				
+
 			</div>
 		</div>
+		<%} %>
 	</div>
 
 

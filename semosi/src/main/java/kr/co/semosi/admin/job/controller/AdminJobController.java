@@ -2,7 +2,7 @@ package kr.co.semosi.admin.job.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -210,4 +210,36 @@ public class AdminJobController {
 			response.getWriter().print(false);
 		}
 	}	
+	
+	@RequestMapping(value="/jocheckDelete.sms")
+	public void jocheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String[] joList = new String[20];
+		int i=0;
+		for(String data:datas){
+			joList[i] = data;
+			i++;
+		}
+		int result = jobService.jocheckDelete(joList);
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value="/jscheckDelete.sms")
+	public void jscheckDelete(@RequestParam(value="valueArr[]") List<String> datas, HttpServletResponse response) throws IOException{
+		String[] jsList = new String[20];
+		int i=0;
+		for(String data:datas){
+			jsList[i] = data;
+			i++;
+		}
+		int result = jobService.jscheckDelete(jsList);
+		if(result>0){
+			response.getWriter().print(true);
+		}else{
+			response.getWriter().print(false);
+		}
+	}
 }

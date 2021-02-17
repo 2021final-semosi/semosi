@@ -26,7 +26,7 @@
             <a href="/main.sms"><img src="/resources/img/semosi-logo-white.png"/></a>
         </div>
         <div class="header-gnb">
-            <a href="/memberLogout.sms">로그아웃</a> &nbsp; &nbsp; &nbsp; <a href="#">나가기</a>
+            <a href="/memberLogout.sms">로그아웃</a> &nbsp; &nbsp; &nbsp; <a href="/">나가기</a>
         </div>
     </div>
 </body>

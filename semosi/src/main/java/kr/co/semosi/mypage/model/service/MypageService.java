@@ -12,33 +12,33 @@ import kr.co.semosi.mypage.model.dao.MypageDAO;
 
 @Service("MypageService")
 public class MypageService {
-	
-	@Autowired
-	@Qualifier(value="MypageDAO")
-	private MypageDAO myDAO;
-	
-	@Autowired
-	@Qualifier(value="sqlSessionTemplate")
-	private SqlSessionTemplate sqlSession;
+   
+   @Autowired
+   @Qualifier(value="MypageDAO")
+   private MypageDAO myDAO;
+   
+   @Autowired
+   @Qualifier(value="sqlSessionTemplate")
+   private SqlSessionTemplate sqlSession;
 
-	public int updateParentFrofile(ParentMember pMember) {
-		System.out.println("[MypageService]: 정상호출");
-		int result = myDAO.updateParentFrofile(sqlSession,pMember);
-		
-		return result;
-		
-	}
+   public int updateParentFrofile(ParentMember pMember) {
+      System.out.println("[MypageService]: 정상호출");
+      int result = myDAO.updateParentFrofile(sqlSession,pMember);
+      
+      return result;
+      
+   }
 
-	public int updateSitterFrofile(SitterMember sMember) {
-		System.out.println("[MypageService]: 정상호출");
-		int result = myDAO.updateSitterFrofile(sqlSession,sMember);
-		
-		return result;
-		
-	}
+   public int updateSitterFrofile(SitterMember sMember) {
+      System.out.println("[MypageService]: 정상호출");
+      int result = myDAO.updateSitterFrofile(sqlSession,sMember);
+      
+      return result;
+      
+   }
 
 
-	
+   
 
-	
+   
 }

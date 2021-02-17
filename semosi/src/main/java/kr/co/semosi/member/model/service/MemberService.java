@@ -34,7 +34,7 @@ public class MemberService implements MemberServiceInterface {
 	public SitterMember selectLoginSitter(SitterMember sm) {
 		System.out.println("[MemberServiceImpl] selectLoginSitter 메소드 호출");
 		SitterMember sMember = mDAO.selectLoginSitter(sqlSession, sm);
-
+		
 		return sMember;
 	}
 

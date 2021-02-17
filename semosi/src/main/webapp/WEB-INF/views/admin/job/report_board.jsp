@@ -103,7 +103,6 @@ $("#pagination").append(pagination);//--페이지 셋팅
 					<div class="tab-content">
 						<table class="board">
 							<tr class="head">
-								<th id="all_select"><input type="checkbox" /></th>
 								<th class='post_no'>번호</th>
 								<th class='reporter_id'>신고 회원</th>
 								<th class='report_text'>신고 게시글 내용</th>
@@ -115,7 +114,6 @@ $("#pagination").append(pagination);//--페이지 셋팅
 								<c:when test="${fn:length(postReportList)!=0}">
 									<c:forEach var="postReportList" items="${postReportList}" varStatus="status">
 									<tr class="contents">
-										<td class='select'><input type="checkbox" value="" name="send-select" /></td>
 										<td class='post_no'>${postReportList.reportNo}</td>
 										<td class='reporter_id'> <c:choose>
 											<c:when test="${postReportList.oId eq null}">
@@ -158,14 +156,30 @@ $("#pagination").append(pagination);//--페이지 셋팅
 										
 										<td class='date'>${postReportList.reportDate}</td>
 										<td class='del_YN'> <c:choose>
-											<c:when test='${postReportList.oDel eq ""}'>${postReportList.sDel}</c:when>
-											<c:otherwise>${postReportList.oDel}</c:otherwise>
+											<c:when test='${postReportList.oDel eq ""}'>
+												<c:if test='${postReportList.sDel eq "Y".charAt(0)}'>삭제 완료</c:if>
+												<c:if test='${postReportList.sDel eq "N".charAt(0)}'>삭제 대기</c:if>
+											</c:when>
+											<c:otherwise>
+												<c:if test='${postReportList.oDel eq "Y".charAt(0)}'>삭제 완료</c:if>
+												<c:if test='${postReportList.oDel eq "N".charAt(0)}'>삭제 대기</c:if>
+											</c:otherwise>
 										</c:choose>											
 										</td>
 									</tr>
 									</c:forEach>
 								</c:when>
 							</c:choose>
+							<c:forEach begin="${fn:length(postReportList)}" end="12">
+									<tr class="contents">
+										<td class='post_no'></td>
+										<td class='reporter_id'></td>
+										<td class='report_text'></td>
+										<td class='reason'></td>
+										<td class='date'></td>
+										<td class="del_YN"></td>
+									</tr>
+							</c:forEach>
 						</table>
 					</div>
 					<div id="pagination" class="pagenavigation"></div>

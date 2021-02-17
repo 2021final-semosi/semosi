@@ -51,6 +51,12 @@
 </head>
 <body>
 
+
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+		crossorigin="anonymous"></script>
+
 	<link rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -69,19 +75,27 @@
 		<div id="formArea">
 			<center>
 
-				<form action="/userMemberLogin.sms" method="post">
-					<input type="radio" value="parent" name="member" checked><label>부모
-						회원</label> <input type="radio" value="sitter" name="member"><label>시터
-						회원</label> <input type="text" class="form-control" id="idArea"
+				<form name="memberLoginForm" action="/userMemberLogin.sms" method="post">
+					<input type="radio" value="parent" name="memberType" checked><label>부모
+						회원</label> <input type="radio" value="sitter" name="memberType"><label>시터
+						회원</label>
+						 <input type="text" class="form-control" id="idArea"
 						name="memberId" placeholder="아이디를 입력하세요" /><input type="password"
 						class="form-control" id="pwdArea" name="memberPw"
-						placeholder="비밀번호를 입력하세요" /> <br> <input type="submit"
+						placeholder="비밀번호를 입력하세요" /> <br> <input type="button"
 						id="submitBtn" class="btn btn-warning" value="로그인" />
 				</form>
 				<br> <a href="/memberIdFind.sms" class="finder">아이디 찾기</a> | <a href="/memberPwFine.sms" class="finder">비밀번호 찾기</a> <br>
 				<br> <a href="/memberJoinPageIndex.sms" class="finder">회원 가입</a>
 			</center>
 		</div>
+		<script>
+		$(function(){
+			$('#submitBtn').click(function(){
+				document.memberLoginForm.submit();
+			});
+		});
+		</script>
 
 	</div>
 
