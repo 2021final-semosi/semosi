@@ -181,15 +181,19 @@
 		ADDRESS as address,
 		IMAGE_FA_NO as imageFANo,
 		IMAGE_FA_PATH as imageFaPath,
+		fA_CHANGED_NAME AS faChangedName,
 		CERT_FA_YN as certFAYN,
 		IMAGE_HE_NO as imageHENo,
 		IMAGE_HE_PATH as imageHePath,
+		he_CHANGED_NAME AS heChangedName,
 		CERT_HE_YN as certHEYN,
 		IMAGE_RE_NO as imageRENo,
 		IMAGE_RE_PATH as imageRePath,
+		re_CHANGED_NAME AS reChangedName,
 		CERT_RE_YN as certREYN,
 		IMAGE_TE_NO as imageTENo,
 		IMAGE_TE_PATH as imageTePath,
+		te_CHANGED_NAME AS teChangedName,
 		CERT_TE_YN as certTEYN
 		FROM
 		ADMIN_CERTIFYVIEW
