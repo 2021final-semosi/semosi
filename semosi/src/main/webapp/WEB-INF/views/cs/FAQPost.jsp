@@ -69,7 +69,11 @@
 			</div>
 			<div class="col-12" >
 				<div id="btnBox">
-					<button id="modBtn">수정</button>
+					<form action="/csPostInfo.sms" method="post">
+						<input type="hidden" name="board" value="FAQ"/>
+						<input type="hidden" name="postNo" value="<%=FAQPost.getPostNo()%>"/>
+						<input type="submit" id="modBtn" value="수정">
+					</form>
 					<button id="delBtn">삭제</button>
 					<a href="/csFAQ.sms" id="listBtn">목록</a>
 				</div>

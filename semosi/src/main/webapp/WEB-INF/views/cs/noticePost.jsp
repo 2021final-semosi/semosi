@@ -68,9 +68,11 @@
 			</div>
 			<div class="col-12">
 				<div id="btnBox">
-					<a
-						href="/csPostInfo.sms?board=notice&postNo=<%=noticePost.getPostNo()%>"
-						id="modBtn">수정</a>
+					<form action="/csPostInfo.sms" method="post">
+						<input type="hidden" name="board" value="notice"/>
+						<input type="hidden" name="postNo" value="<%=noticePost.getPostNo()%>"/>
+						<input type="submit" id="modBtn" value="수정">
+					</form>
 					<button id="delBtn">삭제</button>
 					<a href="/csNotice.sms" id="listBtn">목록</a>
 				</div>

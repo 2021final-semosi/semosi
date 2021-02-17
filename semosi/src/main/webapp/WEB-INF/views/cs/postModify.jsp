@@ -1,3 +1,5 @@
+<%@page import="kr.co.semosi.cs.model.vo.FAQ"%>
+<%@page import="kr.co.semosi.cs.model.vo.Guide"%>
 <%@page import="oracle.jdbc.proxy.annotation.Post"%>
 <%@page import="kr.co.semosi.cs.model.vo.QnA"%>
 <%@page import="kr.co.semosi.cs.model.vo.Notice"%>
@@ -16,6 +18,7 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link href="/resources/css/cs/postWrite.css" rel="stylesheet"
 	type="text/css" />
 <title>세모시 - 세상의 모든 시터</title>
@@ -27,14 +30,15 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="csMenuBox">
 				<ul id="csMenu">
-					<li><a href="/moveNotice.sms">공지사항</a></li>
-					<li><a href="/moveGuide.sms">이용가이드</a></li>
-					<li><a href="/moveFaq.sms">자주묻는질문</a></li>
-					<li><a href="/moveQna.sms">1:1문의</a></li>
+					<li><a href="/csNotice.sms">공지사항</a></li>
+					<li><a href="/csGuide.sms">이용가이드</a></li>
+					<li><a href="/csFAQ.sms">자주묻는질문</a></li>
+					<li><a href="/csQnA.sms">1:1문의</a></li>
 				</ul>
 			</div>
 		</div>
 
+		<form action="/csPostModify.sms" method="post">
 		<div class="row no-gutters">
 			<div class="col-12" id="boardNameBox">
 				<div id="boardName">
@@ -51,48 +55,91 @@
 					String board = (String)request.getAttribute("board");
 					Notice noticePost = (Notice)request.getAttribute("noticePost");
 					QnA QnAPost = (QnA)request.getAttribute("QnAPost");
-					String code = (String)request.getAttribute("code");
+					Guide guidePost = (Guide)request.getAttribute("guidePost");
+					FAQ FAQPost = (FAQ)request.getAttribute("FAQPost");
 					%>
-					<%if(noticePost==null) {%>
+					<%if(board.equals("QnA")) {%>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" style="width: 100%;" value="<%=QnAPost.getTitle() %>" /></td>
+						<td><input type="text" name="title" style="width: 100%;" value="<%=QnAPost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<%if(code.equals("P")) {%>
-						<td><input type="text" value="<%=QnAPost.getWriterPNo() %>" id="writer" readonly /></td>
-						<%} else if(code.equals("S")){ %>
-						<td><input type="text" value="<%=QnAPost.getWriterSNo() %>" id="writer" readonly /></td>
-						<%} %>
+						<td><input type="text" name="writer" value="<%=QnAPost.getWriterSNo() %>" id="writer" readonly /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea style="width: 100%; height: 500px;"><%=QnAPost.getContent()%></textarea>
+						<td colspan="2"><textarea name="content" style="width: 100%;" ><%=QnAPost.getContent()%></textarea>
+						<input type="hidden" name="postNo" value="<%=QnAPost.getPostNo() %>"/>
 						</td>
 					</tr>
-					<%} else if(QnAPost==null) {%>
+					<%} else if(board.equals("notice")) {%>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" style="width: 100%;" value="<%=noticePost.getTitle() %>" /></td>
+						<td><input type="text" name="title" style="width: 100%;" value="<%=noticePost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" value="<%=noticePost.getWriter() %>" id="writer" readonly /></td>
+						<td><input type="text" name="writer" value="<%=noticePost.getWriter() %>" id="writer" readonly /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea style="width: 100%; height: 500px;"><%=noticePost.getContent()%></textarea>
+						<td colspan="2"><textarea name="content" style="width: 100%; height: 600px;"><%=noticePost.getContent()%></textarea>
+						<input type="hidden" name="postNo" value="<%=noticePost.getPostNo() %>"/>
 						</td>
 					</tr>
+					
+					<%} else if(board.equals("FAQ")) {%>
+					<tr>
+						<td>제목</td>
+						<td><input type="text" name="title" style="width: 100%;" value="<%=FAQPost.getTitle() %>" /></td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td><input type="text" name="writer"  value="<%=FAQPost.getWriter() %>" id="writer" readonly /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea name="content" style="width: 100%;"><%=FAQPost.getContent()%></textarea>
+						<input type="hidden" name="postNo" value="<%=FAQPost.getPostNo() %>"/>
+						</td>
+					</tr>
+					
+					<%} else if(board.equals("guide")) {%>
+					<tr>
+					<td>제목</td>
+					<td><input type="text" name="title" style="width: 100%;" value="<%=guidePost.getTitle() %>" /></td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td><input type="text" name="writer" value="<%=guidePost.getWriter() %>" id="writer" readonly /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea name="content" style="width: 100%;"><%=guidePost.getContent()%></textarea>
+						<input type="hidden" name="postNo" value="<%=guidePost.getPostNo() %>"/>
+						</td>
+					</tr>
+					
 					<%} %>
 				</table>
 			</div>
 			<div class="col-12" id="btnBox">
 				<div style="text-align: center;">
-					<button id="okBtn">확인</button>
-					<button id="cancelBtn">취소</button>
+					<input type="hidden" name="board" value="<%=board %>"/>
+					<button type="submit" id="okBtn">확인</button>
+					<script>
+						$(function(){
+							$('#cancelBtn').click(function(){
+								var result = confirm("수정을 취소하고 목록으로 돌아갑니까?");
+							
+								if(result){
+									window.history.back();
+								}
+							});
+						});
+					</script>
+					<button type="button" id="cancelBtn">취소</button>
 				</div>
 			</div>
 		</div>
+		</form>
 
 	</div>
 	<footer><%@ include file="/WEB-INF/views/commons/footer.jsp"%>
