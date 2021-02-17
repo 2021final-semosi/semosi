@@ -12,6 +12,7 @@ import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.dao.MypageDAO;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
+import kr.co.semosi.mypage.model.vo.QnA;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 
 @Service("mypageService")
@@ -63,6 +64,28 @@ public class MypageService {
 		List<SitterVoucher> list = myDAO.selectSitterVoucherList(sqlSession, pageMaker);
 		return list;
 	}
+	
+	//부모 문의 내역 
+	public int selectParentQnATotalCount(String memberNo) {
+		int result = myDAO.selectParentQnATotalCount(sqlSession, memberNo);
+		return result;
+	}
+
+	public List<QnA> selectParentQnAList(PageMaker pageMaker) {
+		List<QnA> list = myDAO.selectParentQnAList(sqlSession, pageMaker);
+		return list;
+	}
+
+	public int selectSitterQnATotalCount(String memberNo) {
+		int result = myDAO.selectSitterQnATotalCount(sqlSession, memberNo);
+		return result;
+	}
+
+	public List<QnA> selectSitterQnAList(PageMaker pageMaker) {
+		List<QnA> list = myDAO.selectSitterQnAList(sqlSession, pageMaker);
+		return list;
+	}
+	
 
 
    
