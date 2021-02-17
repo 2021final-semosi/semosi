@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="certification">
+
+	<select id="selectResiDocu" resultType="ResidentDocu">
+		SELECT
+		IMAGE_RE_NO as imageNo,
+		MEMBERS_RE_NO as membersNo,
+		ORIGINAL_NAME as originalName,
+		CHANGED_NAME as changedName,
+		IMAGE_RE_PATH as imagePath,
+		UPLOAD_TIME as uploadTime,
+		DEL_YN as delYn,
+		CERT_RE_YN as certYn
+		FROM RESIDENT_DOCU
+		WHERE MEMBERS_RE_NO=#{memberNo}
+	</select>
+
+
+	<select id="selectHealthDocu" resultType="HealthDocu">
+		SELECT
+		IMAGE_HE_NO as imageNo,
+		MEMBERS_HE_NO as membersNo,
+		ORIGINAL_NAME as originalName,
+		CHANGED_NAME as changedName,
+		IMAGE_HE_PATH as imagePath,
+		UPLOAD_TIME as uploadTime,
+		DEL_YN as delYn,
+		CERT_HE_YN as certYn
+		FROM HEALTH_DOCU
+		WHERE MEMBERS_HE_NO=#{memberNo}
+	</select>
+	
+	
+	<select id="selectFamilyDocu" resultType="HealthDocu">
+		SELECT
+		IMAGE_FA_NO as imageNo,
+		MEMBERS_FA_NO as membersNo,
+		ORIGINAL_NAME as originalName,
+		CHANGED_NAME as changedName,
+		IMAGE_FA_PATH as imagePath,
+		UPLOAD_TIME as uploadTime,
+		DEL_YN as delYn,
+		CERT_FA_YN as certYn
+		FROM FAMILY_DOCU
+		WHERE MEMBERS_FA_NO=#{memberNo}
+	</select>
+	
+	<select id="selectTeacherDocu" resultType="HealthDocu">
+		SELECT
+		IMAGE_TE_NO as imageNo,
+		MEMBERS_TE_NO as membersNo,
+		ORIGINAL_NAME as originalName,
+		CHANGED_NAME as changedName,
+		IMAGE_TE_PATH as imagePath,
+		UPLOAD_TIME as uploadTime,
+		DEL_YN as delYn,
+		CERT_TE_YN as certYn
+		FROM TEACHER_DOCU
+		WHERE MEMBERS_TE_NO=#{memberNo}
+	</select>
+	
+	
+	
+</mapper>

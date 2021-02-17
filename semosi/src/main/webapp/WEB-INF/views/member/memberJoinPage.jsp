@@ -152,6 +152,7 @@
 		function totalCheck() {
 
 			console.log("유효성시작");
+			
 			if (idCheck()) {
 				$('#memberId').focus();
 				return false;
@@ -432,7 +433,9 @@
 							return false;
 						} else {
 							//사용 가능할 때
-							$('#phoneMessage').hide();
+							$('#phoneMessage').text("사용가능한 핸드폰 번호 입니다.");
+							$('#phoneMessage').show();
+							$('#phoneMessage').css('color', 'green');
 							return true;
 						}
 					},
@@ -661,13 +664,53 @@
 						var sendSMSBtn = $('#sendSMSBtn');
 						
 						function checkPhoneNumberBeforeSMS(){
-							if(!phoneCheck()){
-								//유효성 통과하고 / 중복체크도 통과했다면 
-								sendSMS();//문자를 보내준다.
-							}else{
-								
-								$('#phone').focus();
-							}
+							console.log("버튼클릭");
+
+								var phone = $('#phone').val();
+
+								if (!(/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/.test(phone))) {
+									$('#phoneMessage').show();
+									$('#phoneMessage').text("핸드폰 번호는 -를 제외한 숫자만 입력 가능합니다.");
+									$('#phoneMessage').css('color', 'red');
+
+								} else if (!(/^[0][1][0][0-9]*$/
+										.test(phone))) {
+									$('#phoneMessage').show();
+									$('#phoneMessage').text("정확한 핸드폰 번호를 입력해주세요.");
+									$('#phoneMessage').css('color', 'red');
+								} else {
+									//유효성 검사 통과하였을 때 
+									
+									$.ajax({
+										url : "/memberPhoneCheck.sms",
+										type : "post",
+										data : {
+											"phone" : phone
+										},
+										success : function(result) {
+											if (result == "false") {
+												//사용 불가능 할 때
+												$('#phoneMessage').text("이미 사용중인 핸드폰 번호 입니다.");
+												$('#phoneMessage').show();
+												$('#phoneMessage').css('color', 'red');
+											} else {
+												//사용 가능할 때
+												$('#phoneMessage').text("사용가능한 핸드폰 번호 입니다.");
+												$('#phoneMessage').show();
+												$('#phoneMessage').css('color', 'green');
+												sendSMS();
+											}
+										},
+										error : function() {
+											console.log("ajax 통신 실패");
+										}
+
+									});
+									
+									
+								}
+
+							
 						}
 
 

@@ -176,20 +176,22 @@ svg {
 						</svg>
 					</div>
 				</div>
+				
+				
 				<div class="menu-sub">
 					<div class="hide">
-						<a href="/sitterApplicationSent.sms"><span>내가 신청한 구직 현황</span></a>
+						<a href="/sitterMyApplication.sms"><span>나의 구직 신청서</span></a>
 					</div>
 					<div class="hide">
-						<a href="/sitterApplicationReceive.sms"><span>내게 지원한 구직
-								현황</span></a>
+						<a href="/sitterMyApplyParent.sms"><span>나에게 지원한 부모 회원</span></a>
 					</div>
-				</div>
-				<div class="menu-main">
-					<a href="/sitterApplicationScrap.sms"><span>찜한 일자리</span></a>
-				</div>
-				<div class="menu-main">
-					<a href="/sitterApplication.sms"><span>내 신청서 조회</span></a>
+					<div class="hide">
+						<a href="/sitterMyApply.sms"><span>나의 신청 현황</span></a>
+					</div>
+					<div class="hide">
+						<a href="/sitterScrap.sms"><span>스크랩한
+								구인글</span></a>
+					</div>
 				</div>
 				<hr class="line">
 				<div class="menu-main row m-0">
@@ -219,9 +221,6 @@ svg {
 				</div>
 				<div class="menu-main">
 					<a href="/sitterCertification.sms"><span>인증 관리</span></a>
-				</div>
-				<div class="menu-main">
-					<a href="/sitterMyRecruitment.sms"><span>내 맘시터 채용 내역</span></a>
 				</div>
 				<div class="menu-main">
 					<a href="/sitterReport.sms"><span>신고 내역</span></a>
