@@ -7,7 +7,7 @@ public class AdminSearchPage {
     private String membersNo;
     private String title;
     private String selfIntroduce;
-    private char careType;
+    private String careType;
 
     private String careAge;
     private String careActivity;
@@ -68,11 +68,11 @@ public class AdminSearchPage {
    this.selfIntroduce = selfIntroduce;
     }
 
-    public char getCareType() {
+    public String getCareType() {
    return careType;
     }
 
-    public void setCareType(char careType) {
+    public void setCareType(String careType) {
    this.careType = careType;
     }
 
@@ -268,7 +268,7 @@ public class AdminSearchPage {
 		this.tDel = tDel;
 	}
 
-	public AdminSearchPage(String postNo, String membersNo, String title, String selfIntroduce, char careType,
+	public AdminSearchPage(String postNo, String membersNo, String title, String selfIntroduce, String careType,
        String careAge, String careActivity, String location, Date startDate, Date endDate, String careDays,
        String careTime, int pay, char cctvYN, String memberName, String memberId, String phone, char gender,
        String address, Date wirteDate, char delYN, char certFAYN, char fDel, char certHEYN, char hDel,

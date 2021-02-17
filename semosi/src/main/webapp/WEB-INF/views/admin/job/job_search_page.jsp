@@ -104,7 +104,12 @@
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr class="tr-title"><td style="width: 28%;">선호 돌봄 유형</td>
-									<td></td>
+									<td>[
+										<c:if test='${fn:contains(aSearch.careType,"1")}'>정기 </c:if>  
+										<c:if test='${fn:contains(aSearch.careType,"2")}'>단기 </c:if>
+										<c:if test='${fn:contains(aSearch.careType,"3")}'>협의 </c:if>]
+										기간 유형
+									</td>
 								</tr>
 							</table>
 							<div class="blank" id="blank-div"></div>
@@ -174,16 +179,22 @@
 								<tr class="tr-title"><td colspan="6">활동 가능 지역</td></tr>
 								<tr class="possible-active ranking">
 									<td class="place-ranking">1순위</td>
-									<td></td>
+									<td>${aSearch.location}</td>
 									<td class="place-ranking">2순위</td>
-									<td></td>
+									<td>${aSearch.location}</td>
 									<td class="place-ranking">3순위</td>
-									<td></td>
+									<td>${aSearch.location}</td>
 								</tr>
 							</table>
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr class="tr-title"><td colspan="8">활동 가능한 시간</td></tr>
+								<tr class="tr-title"><td colspan="8">시작일 [${aSearch.startDate}] -
+									<c:choose>
+										<c:when test="${aSearch.endDate==null}">종료일 미정</c:when>
+										<c:otherwise>종료일 [${aSearch.endDate}]</c:otherwise>
+									</c:choose>
+									</td></tr>
 								<tr class="possible-active time">
 									<td>월</td>
 									<td>
