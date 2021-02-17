@@ -1,7 +1,6 @@
 package kr.co.semosi.mypage.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,17 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
-import kr.co.semosi.mypage.model.vo.Criteria;
-import kr.co.semosi.mypage.model.vo.PageMaker;
 
 @Controller
 public class MypageController {
@@ -134,32 +130,13 @@ public class MypageController {
       return "mypage/parent/voucherBuy";
    }
    
-/*
-// 이용권 결제 내역 - 부모
-		@RequestMapping(value = "/parentVoucherPayView.sms")
-		public ModelAndView parentvoucherPayView(
-				@ModelAttribute("cri") Criteria cri, ModelAndView mav,
-				@SessionAttribute("pMember") ParentMember sessionMember) {
-			
-			System.out.println("[/parentVoucherPayView.sms] 정상적으로 호출 되었습니다.");
-			
-			
-			String memberNo = sessionMember.getMemberNo();
-			
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri); // page와 perPageNum 셋팅 
-			//기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
-			
-			pageMaker.setTotalCount(myService.listVoucherCountCriteria(cri)); //총 게시물 조회
-			
-			List<Voucher> list = myService.selectVoucherList(cri);
-			mav.addObject("list", list);
-			mav.addObject("pageMaker", pageMaker);
-
-			mav.setViewName("mypage/parent/voucherPayView");  //ViewResolver에 의해서 경로가 최종 완성됨
-			
-			return mav;
-		}*/
+   //이용권 결제 내역 조회
+   @RequestMapping(value="/parentVoucherPayView.sms")
+   public String parentvoucherPayView(){
+      
+      System.out.println("[/parentVoucherPayView.sms] 정상적으로 호출 되었습니다.");
+      return "mypage/parent/voucherPayView";
+   }   
    
    
    //---------------------------------------------------------------
@@ -280,16 +257,13 @@ public class MypageController {
       return "mypage/sitter/voucherBuy";
    }
    
-// 이용권 결제 내역 - 시터 
-	@RequestMapping(value = "/sitterVoucherPayView.sms")
-	public String sitterVoucherPayView(@SessionAttribute("sMember") SitterMember sessionMember) {
-		System.out.println("[/sitterVoucherPayView.sms] 정상적으로 호출 되었습니다.");
-
-		String memberNo = sessionMember.getMemberNo();
-
-		//myService.selectSitterVoucher(memberNo);
-		return "mypage/sitter/voucherPayView";
-	}
+   //이용권 결제 내역 조회
+   @RequestMapping(value="/sitterVoucherPayView.sms")
+   public String sitterVoucherPayView(){
+      
+      System.out.println("[/sitterVoucherPayView.sms] 정상적으로 호출 되었습니다.");
+      return "mypage/sitter/voucherPayView";
+   }   
    
    
 }
