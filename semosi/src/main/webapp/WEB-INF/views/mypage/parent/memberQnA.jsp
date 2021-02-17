@@ -212,10 +212,11 @@
 			<div class="col-sm-12 m-0 p-0"><center><H5>문의한 게시글이 존재하지않습니다. 문의글을 작성해주세요.</H5></center></div>
 		</div>
 		<%}else{ %>
-						<th>번호</th>
+					<!-- <th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						 -->
 		<div id="subtitle" class="row p-0 m-0 category line-name text-center">
 			<div class="d-none d-md-block col-md-2 p-0 m-0 font-weight-bold c-name ">번호</div>
 			<div class="col-4 col-md-6 p-0 m-0 font-weight-bold c-name">제목</div>
@@ -233,7 +234,7 @@
 		
 		<div class="row p-0 m-0 line-content text-center">
 			<div class="d-none d-md-block col-md-2 p-0 "><%=pQnA.getPostNo()%></div>
-			<div class="col-4  col-md-6 p-0"><%=pQnA.getTitle()%></div>
+			<div class="col-4  col-md-6 p-0"><a href="/csQnAPost.sms?postNo=<%=pQnA.getPostNo()%>"><%=pQnA.getTitle()%></a></div>
 			<div class="col-4 col-md-2 p-0 "><%=pm.getMemberId()%></div>
 			<div class="col-4 col-md-2 p-0 "><%=pQnA.getWriteDate()%></div>
 			</div>

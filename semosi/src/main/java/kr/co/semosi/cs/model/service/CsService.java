@@ -171,11 +171,50 @@ public class CsService {
 		
 	}
 
-	public Notice updateCsPost(int postNo, String board) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//cs 공지사항 게시글 수정
+	public int updateNoticePost(Notice n) {
+		int result = csDAO.updateNoticePost(sqlSession, n);
+		return result;
 	}
 
+	//cs 1:1문의 게시글 수정
+	public int updateQnAPost(QnA q) {
+		int result = csDAO.updateQnAPost(sqlSession, q);
+		return result;
+	}
+
+	//cs FAQ 게시글 수정
+	public int updateFAQPost(FAQ f) {
+		int result = csDAO.updateFAQPost(sqlSession, f);
+		return result;
+	}
+
+	//cs 이용가이드 게시글 수정
+	public int updateGuidePost(Guide g) {
+		int result = csDAO.updateGuidePost(sqlSession, g);
+		return result;
+		
+	}
+
+	public ArrayList<Notice> selectNoticeSearch(String keyword) {
+		ArrayList<Notice> list = csDAO.selectNoticeSearch(sqlSession, keyword);
+		return list;
+		
+	}
+
+	
+	public ArrayList<FAQ> selectFAQSearch(String keyword) {
+		ArrayList<FAQ> list = csDAO.selectFAQSearch(sqlSession, keyword);
+		return list;
+	}
+	
+	public ArrayList<Guide> selectGuideSearch(String keyword) {
+		ArrayList<Guide> list = csDAO.selectGuideSearch(sqlSession, keyword);
+		return list;
+	}
+	
+	
 
 
 

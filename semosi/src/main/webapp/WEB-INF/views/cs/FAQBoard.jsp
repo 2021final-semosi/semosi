@@ -66,8 +66,17 @@
 					<% for(FAQ faq : list) {%>
 					<tr>
 						<td><%=faq.getPostNo() %></td>
+						<%if(faq.getCategory().equals("S")){ %>
+						
 						<td title="<%=faq.getTitle() %>"><a
-							href="/csFAQPost.sms?postNo=<%=faq.getPostNo()%>"><%=faq.getTitle() %></a></td>
+							href="/csFAQPost.sms?postNo=<%=faq.getPostNo()%>">[시터회원] <%=faq.getTitle() %></a></td>
+							
+						<%} else if(faq.getCategory().equals("P")){ %>
+						
+						<td title="<%=faq.getTitle() %>"><a
+							href="/csFAQPost.sms?postNo=<%=faq.getPostNo()%>">[부모회원] <%=faq.getTitle() %></a></td>
+							
+						<%} %>
 						<td><%=faq.getWriter() %></td>
 						<% SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");%>
 						<td><%=sdf.format(faq.getWriteDate().getTime()) %></td>

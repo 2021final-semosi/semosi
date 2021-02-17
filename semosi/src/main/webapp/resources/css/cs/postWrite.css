@@ -118,6 +118,16 @@ td:nth-child(odd) {
 	border-bottom: 1px solid gray;
 }
 
+#postContent {
+	width: 100%; 
+	height: 600px;
+	padding: 5px;
+}
+
+#postTitle {
+	width: 100%;
+}
+
 #btnBox {
 	padding-bottom: 20px;
 }

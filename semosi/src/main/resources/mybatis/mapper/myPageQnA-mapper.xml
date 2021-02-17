@@ -9,9 +9,15 @@
 	</select>
 
 	<select id="selectParentQnAList" parameterType="java.util.HashMap"
-		resultType="QnA">
+		resultType="mQnA">
 		SELECT
-		*
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER_P_NO as writerPNo,
+			WRITER_S_NO as writerSNo,
+			DEL_YN as delYn
 		FROM(
 		SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, QNA.*
 		FROM QNA WHERE WRITER_P_NO = #{memberNo}
@@ -27,9 +33,15 @@
 	</select>
 
 	<select id="selectSitterQnAList" parameterType="java.util.HashMap"
-		resultType="QnA">
+		resultType="mQnA">
 		SELECT
-		*
+			POST_NO as postNo,
+			TITLE as title,
+			CONTENT as content,
+			WRITE_DATE as writeDate,
+			WRITER_P_NO as writerPNo,
+			WRITER_S_NO as writerSNo,
+			DEL_YN as delYn
 		FROM(
 		SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, QNA.*
 		FROM QNA WHERE WRITER_S_NO = #{memberNo}

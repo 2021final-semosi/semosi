@@ -61,28 +61,28 @@
 					<%if(board.equals("QnA")) {%>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="title" style="width: 100%;" value="<%=QnAPost.getTitle() %>" /></td>
+						<td><input type="text" name="title" id="postTitle" value="<%=QnAPost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
 						<td><input type="text" name="writer" value="<%=QnAPost.getWriterSNo() %>" id="writer" readonly /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="content" style="width: 100%;" ><%=QnAPost.getContent()%></textarea>
+						<td colspan="2"><textarea name="content" id="postContent"><%=QnAPost.getContent()%></textarea>
 						<input type="hidden" name="postNo" value="<%=QnAPost.getPostNo() %>"/>
 						</td>
 					</tr>
 					<%} else if(board.equals("notice")) {%>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="title" style="width: 100%;" value="<%=noticePost.getTitle() %>" /></td>
+						<td><input type="text" name="title" id="postTitle" value="<%=noticePost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
 						<td><input type="text" name="writer" value="<%=noticePost.getWriter() %>" id="writer" readonly /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="content" style="width: 100%; height: 600px;"><%=noticePost.getContent()%></textarea>
+						<td colspan="2"><textarea name="content" id="postContent"><%=noticePost.getContent()%></textarea>
 						<input type="hidden" name="postNo" value="<%=noticePost.getPostNo() %>"/>
 						</td>
 					</tr>
@@ -90,14 +90,14 @@
 					<%} else if(board.equals("FAQ")) {%>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="title" style="width: 100%;" value="<%=FAQPost.getTitle() %>" /></td>
+						<td><input type="text" name="title" id="postTitle" value="<%=FAQPost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
 						<td><input type="text" name="writer"  value="<%=FAQPost.getWriter() %>" id="writer" readonly /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="content" style="width: 100%;"><%=FAQPost.getContent()%></textarea>
+						<td colspan="2"><textarea name="content" id="postContent"><%=FAQPost.getContent()%></textarea>
 						<input type="hidden" name="postNo" value="<%=FAQPost.getPostNo() %>"/>
 						</td>
 					</tr>
@@ -105,14 +105,14 @@
 					<%} else if(board.equals("guide")) {%>
 					<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" style="width: 100%;" value="<%=guidePost.getTitle() %>" /></td>
+					<td><input type="text" name="title" id="postTitle" value="<%=guidePost.getTitle() %>" /></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
 						<td><input type="text" name="writer" value="<%=guidePost.getWriter() %>" id="writer" readonly /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="content" style="width: 100%;"><%=guidePost.getContent()%></textarea>
+						<td colspan="2"><textarea name="content" id="postContent"><%=guidePost.getContent()%></textarea>
 						<input type="hidden" name="postNo" value="<%=guidePost.getPostNo() %>"/>
 						</td>
 					</tr>

@@ -42,7 +42,7 @@ public class CsController {
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("guideList", guideList);
 		model.addAttribute("FAQList", FAQList);
-		model.addAttribute("QnAList", QnAList);
+		//model.addAttribute("QnAList", QnAList);
 
 		return "cs/csMain";
 	}
@@ -289,37 +289,91 @@ public class CsController {
 		
 		if (board.equals("notice")) {
 			System.out.println("[csController - notice] 게시글 수정에서 넘어온 값  - 제목 : "+title+" / 내용 : "+content+" / 게시글번호 : "+postNo);
-			//Notice n = csService.selectNoticePost(postNo);
-			//model.addAttribute("noticePost", n);
+			Notice n = new Notice();
+			n.setTitle(title);
+			n.setContent(content);
+			n.setPostNo(postNo);
+			
+			int result = csService.updateNoticePost(n);
+			
+			if(result>0){
+				model.addAttribute("location","/csNotice.sms");
+			}
+			else {
+				model.addAttribute("msg", "게시글 수정을 실패했습니다.");
+				model.addAttribute("location","/csNotice.sms");
+			}
+			
 		}
 		else if (board.equals("QnA")) {
 			System.out.println("[csController - QnA] 게시글 수정에서 넘어온 값  - 제목 : "+title+" / 내용 : "+content+" / 게시글번호 : "+postNo);
-			//QnA q = csService.selectQnAPost(postNo);
-			//model.addAttribute("QnAPost", q);
+			QnA q = new QnA();
+			q.setTitle(title);
+			q.setContent(content);
+			q.setPostNo(postNo);
+			int result = csService.updateQnAPost(q);
+			
+			if(result>0){
+				model.addAttribute("location","/csQnA.sms");
+			}
+			else {
+				model.addAttribute("msg", "게시글 수정을 실패했습니다.");
+				model.addAttribute("location","/csQnA.sms");
+			}
 		}
 		else if (board.equals("FAQ")) {
 			System.out.println("[csController - FAQ] 게시글 수정에서 넘어온 값  - 제목 : "+title+" / 내용 : "+content+" / 게시글번호 : "+postNo);
-			//FAQ f = csService.selectFAQPost(postNo);
-			//model.addAttribute("FAQPost", f);
+			FAQ f = new FAQ();
+			f.setTitle(title);
+			f.setContent(content);
+			f.setPostNo(postNo);
+			
+			int result = csService.updateFAQPost(f);
+			
+			if(result>0){
+				model.addAttribute("location","/csFAQ.sms");
+			}
+			else {
+				model.addAttribute("msg", "게시글 수정을 실패했습니다.");
+				model.addAttribute("location","/csFAQ.sms");
+			}
 		}
 		else if (board.equals("guide")) {
+			Guide g = new Guide();
 			System.out.println("[csController - guide] 게시글 수정에서 넘어온 값  - 제목 : "+title+" / 내용 : "+content+" / 게시글번호 : "+postNo);
-			//Guide g = csService.selectGuidePost(postNo);
-			//model.addAttribute("guidePost",g);
+			g.setTitle(title);
+			g.setContent(content);
+			g.setPostNo(postNo);
+			
+			int result = csService.updateGuidePost(g);
+			
+			if(result>0){
+				model.addAttribute("location","/csGuide.sms");
+			}
+			else {
+				model.addAttribute("msg", "게시글 수정을 실패했습니다.");
+				model.addAttribute("location","/csGuide.sms");
+			}
+
 		}
-		
-		
-		//Notice n = csService.updateCsPost(postNo, board);
 
-		//model.addAttribute("noticePost", n);
-
-		return "";
+		return "cs/result";
 	}
 	
 	
 	
-	@RequestMapping(value = "/moveCsSearch.sms")
-	public String moveCsSearch() {
+	@RequestMapping(value = "/csSearch.sms")
+	public String moveCsSearch(@RequestParam String keyword, Model model) {
+		
+		ArrayList<Notice> noticeList = csService.selectNoticeSearch(keyword);
+		ArrayList<FAQ> FAQList = csService.selectFAQSearch(keyword);
+		ArrayList<Guide> guideList = csService.selectGuideSearch(keyword);
+		
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("guideList", guideList);
+		model.addAttribute("FAQList", FAQList);
+		model.addAttribute("keyword", keyword);
+		
 		return "cs/csSearch";
 	}
 
