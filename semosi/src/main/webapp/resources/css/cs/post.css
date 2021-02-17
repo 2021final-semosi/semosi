@@ -128,6 +128,10 @@ td:nth-child(odd) {
 	margin: 0 auto;
 }
 
+#btnBox>form{
+	display: inline;
+}
+
 #modBtn, #delBtn, #listBtn {
 	border: 0px;
 	background-color: #F6D257;

@@ -96,10 +96,16 @@ div {
 
 #noticeBoard>tbody>tr>td:nth-child(2) {
 	text-align: left;
+}
+
+#noticeBoard>tbody>tr>td:nth-child(2)>a {
+	width: 100%;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
 }
+
+
 
 #noticeBoard a {
 	color: gray;

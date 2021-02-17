@@ -191,4 +191,22 @@
 		WHERE DEL_YN='N'
 	</select>
 	
+	<!-- cs 1:1 문의 게시글 작성 (부모회원)-->
+	<insert id="insertCsPostp" parameterType="QnA">
+		INSERT INTO QNA VALUES(QNA_SEQ.NEXTVAL,#{title},#{content},SYSDATE,#{writerPNo},null,'N')
+	</insert>
+	
+	<!-- cs 1:1 문의 게시글 작성 (시터회원)-->
+	<insert id="insertCsPosts" parameterType="QnA">
+		INSERT INTO QNA VALUES(QNA_SEQ.NEXTVAL,#{title},#{content},SYSDATE,null,#{writerSNo},'N')
+	</insert>
+	
+	<!-- cs 1:1 문의 게시글 삭제 -->
+	<update id="updateCsPostDelYN" parameterType="int">
+		UPDATE QNA
+		SET
+			DEL_YN='Y'
+		WHERE POST_NO=#{postNo}
+	</update>
+	
 </mapper>

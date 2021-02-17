@@ -13,6 +13,7 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link href="/resources/css/cs/postWrite.css" rel="stylesheet"
 	type="text/css" />
 <title>세모시 - 세상의 모든 시터</title>
@@ -24,20 +25,22 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="csMenuBox">
 				<ul id="csMenu">
-					<li><a href="/moveNotice.sms">공지사항</a></li>
-					<li><a href="/moveGuide.sms">이용가이드</a></li>
-					<li><a href="/moveFaq.sms">자주묻는질문</a></li>
-					<li><a href="/moveQna.sms">1:1문의</a></li>
+					<li><a href="/csNotice.sms">공지사항</a></li>
+					<li><a href="/csGuide.sms">이용가이드</a></li>
+					<li><a href="/csFAQ.sms">자주묻는질문</a></li>
+					<li><a href="/csQnA.sms">1:1문의</a></li>
 				</ul>
 			</div>
 		</div>
-
+		
+		<form action="/insertCsPost.sms" method="post">
 		<div class="row no-gutters">
 			<div class="col-12" id="boardNameBox">
 				<div id="boardName">
-					<a href="/moveQna.sms">1:1 문의</a>
+					<a href="/csQnA.sms">1:1 문의</a>
 				</div>
 			</div>
+			
 			<div class="col-12" id="postBox">
 				<table id="post" cellspacing="0px" cellpadding="0px">
 					<colgroup>
@@ -46,26 +49,50 @@
 					</colgroup>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" style="width: 100%;" /></td>
+						<td><input type="text" style="width: 100%;" name="title" /></td>
 					</tr>
 					<tr>
+					<% SitterMember sMember = (SitterMember)request.getAttribute("sMember");
+					ParentMember pMember = (ParentMember)request.getAttribute("pMember");%>
+					<% if(sMember!=null) {%>
 						<td>작성자</td>
-						<td><input type="text" value="김소희" id="writer" readonly /></td>
+						<td><input type="text" value="<%=sMember.getMemberName() %>" id="writer" readonly />
+						<input type="hidden" name="writerS" value="<%=sMember.getMemberNo()%>"/>
+						<input type="hidden" name="writerP" value=null/></td>
+						
+					<%} else if(pMember!=null) {%>
+						<td>작성자</td>
+						<td><input type="text" value="<%=pMember.getMemberName() %>" id="writer" readonly />
+						<input type="hidden" name="writerP" value="<%=pMember.getMemberNo()%>"/>
+						<input type="hidden" name="writerS" value=null/></td>
+					<%}%>
+						
 					</tr>
 					<tr>
-						<td colspan="2"><textarea style="width: 100%; height: 500px;"></textarea>
+						<td colspan="2"><textarea style="width: 100%; height: 600px;" name="content"></textarea>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<div class="col-12" id="btnBox">
-				<div style="text-align: center;">
-					<button id="okBtn">확인</button>
-					<button id="cancelBtn">취소</button>
+				<div style="text-align: center;">	
+					<input type="submit" id="okBtn" value="확인"></button>
+					<script>
+						$(function(){
+							$('#cancelBtn').click(function(){
+								var result = confirm("작성을 취소하고 목록으로 돌아갑니까?");
+							
+								if(result){
+									window.history.back();
+								}
+							});
+						});
+					</script>
+					<button type="button" id="cancelBtn">취소</button>
 				</div>
 			</div>
 		</div>
-
+		</form>
 	</div>
 	<footer><%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 	</footer>

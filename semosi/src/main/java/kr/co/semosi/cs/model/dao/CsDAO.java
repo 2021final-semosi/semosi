@@ -11,6 +11,7 @@ import kr.co.semosi.cs.model.vo.FAQ;
 import kr.co.semosi.cs.model.vo.Guide;
 import kr.co.semosi.cs.model.vo.Notice;
 import kr.co.semosi.cs.model.vo.QnA;
+import kr.co.semosi.member.model.vo.SitterMember;
 
 @Repository("csDAO")
 public class CsDAO {
@@ -172,6 +173,24 @@ public class CsDAO {
 		return sb.toString();
 
 	}
+
+	//cs 게시글 작성 (부모회원)
+	public int insertCsPostp(SqlSessionTemplate sqlSession, QnA q) {
+		int result = sqlSession.insert("cs.insertCsPostp", q);
+		return result;
+	}
+	
+	//cs 게시글 작성 (시터회원)
+	public int insertCsPosts(SqlSessionTemplate sqlSession, QnA q) {
+		int result = sqlSession.insert("cs.insertCsPosts", q);
+		return result;
+	}
+
+	public int updateCsPostDelYN(SqlSessionTemplate sqlSession, int postNo) {
+		int result = sqlSession.update("cs.updateCsPostDelYN", postNo);
+		return result;
+	}
+
 
 
 

@@ -25,7 +25,7 @@
 			<div id="customer-center-panel" class="footer-panel">
 				<ul class="style-bold style-color-white">고객센터
 					<li><a href="/csNotice.sms">공지사항</a></li>
-					<li><a href="/moveGuide.sms">이용가이드</a></li>
+					<li><a href="/csGuide.sms">이용가이드</a></li>
 					<li><a href="/csFAQ.sms">자주 묻는 질문</a></li>
 					<li><a href="/moveTerms.sms">이용약관</a></li>
 				</ul>

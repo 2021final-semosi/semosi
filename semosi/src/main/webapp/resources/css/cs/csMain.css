@@ -73,6 +73,7 @@ div {
 	border-top: 2px solid gray;
 	text-align: center;
 	margin: 0 auto;
+	table-layout: fixed;
 }
 
 #csTableRow {
@@ -105,7 +106,7 @@ div {
 }
 
 .csTable th {
-		text-align: center;
+	text-align: center;
 	border: 0px;
 	border-bottom: 2px solid gray;
 	padding: 5px 0 5px 0;
@@ -116,4 +117,15 @@ div {
 	border-bottom: 1px solid gray;
 	color: gray;
 	padding: 10px 10px 10px 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+.csTable td>a {
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }

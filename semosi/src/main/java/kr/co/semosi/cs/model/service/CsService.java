@@ -16,6 +16,8 @@ import kr.co.semosi.cs.model.vo.Notice;
 import kr.co.semosi.cs.model.vo.NoticePageData;
 import kr.co.semosi.cs.model.vo.QnA;
 import kr.co.semosi.cs.model.vo.QnAPageData;
+import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
 
 @Service("csService")
 public class CsService {
@@ -62,17 +64,20 @@ public class CsService {
 		
 	}
 
+	//이용가이드 게시글 한 개 가져오기
 	public Guide selectGuidePost(int postNo) {
 		Guide g = csDAO.selectGuidePost(sqlSession, postNo);
 		return g;
 	}
 
+	//FAQ 게시글 한 개 가져오기
 	public FAQ selectFAQPost(int postNo) {
 		FAQ f = csDAO.selectFAQPost(sqlSession, postNo);
 		return f;
 		
 	}
-
+	
+	//QnA 게시글 한 개 가져오기
 	public QnA selectQnAPost(int postNo) {
 		QnA q = csDAO.selectQnAPost(sqlSession, postNo);
 		return q;
@@ -144,13 +149,39 @@ public class CsService {
 	}
 	
 	
-	//cs 게시글 수정
+	//cs 1:1문의 게시글 작성
+	public int insertCsPost(QnA q, String member) {
+		int result = 0;
+		if(member.equals("parent")){
+			result = csDAO.insertCsPostp(sqlSession, q);
+		}
+		
+		if(member.equals("sitter")){
+			result = csDAO.insertCsPosts(sqlSession, q);
+		}
+		
+		return result;
+	}
+	
+	
+	//cs 1:1문의 게시글 삭제
+	public int updateCsPostDelYN(int postNo) {
+		int result = csDAO.updateCsPostDelYN(sqlSession, postNo);
+		return result;
+		
+	}
+
 	public Notice updateCsPost(int postNo, String board) {
-		
-		//csDAO.updateCsPost(sqlSession, postNo.)
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
+
+
+
 
 
 

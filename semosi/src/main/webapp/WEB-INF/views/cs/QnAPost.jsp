@@ -15,6 +15,7 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link href="/resources/css/cs/post.css" rel="stylesheet" type="text/css" />
 <title>세모시 - 세상의 모든 시터</title>
 </head>
@@ -68,7 +69,28 @@
 			</div>
 			<div class="col-12" >
 				<div id="btnBox">
-					<button id="modBtn">수정</button>
+					<form action="/csPostInfo.sms" method="post">
+						<input type="hidden" name="board" value="QnA"/>
+						<input type="hidden" name="postNo" value="<%=QnAPost.getPostNo()%>"/>
+						<input type="submit" id="modBtn" value="수정"/>
+					</form>
+					<script>
+						$(function(){
+							$('#delBtn').click(function(){
+								var result = confirm("게시글을 정말로 삭제합니까?");
+								
+								if(result){
+									$('#csDeleteForm').submit();
+								}
+								else {
+									
+								}
+							});
+						});
+					</script>
+					<form id="csDeleteForm" action="/csPostDelete.sms" method="post">
+						<input type="hidden" name="postNo" value="<%=QnAPost.getPostNo()%>"/>
+					</form>
 					<button id="delBtn">삭제</button>
 					<a href="/csQnA.sms" id="listBtn">목록</a>
 				</div>
