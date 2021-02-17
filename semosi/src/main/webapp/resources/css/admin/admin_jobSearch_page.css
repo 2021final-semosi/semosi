@@ -43,7 +43,6 @@ td {
 .blank {
 	width: 100%; height: 20px;
 	border: 1px solid black;
-	background-color: #E4F6F6;
 }
 
 #blank-div {
@@ -121,4 +120,10 @@ td {
    margin-top:15px;
    margin-right: 15px;
    cursor:pointer;
+}
+
+.checked {
+	background-color: #F6D258;
+	color: #707070;
+	font-weight: 800;
 }

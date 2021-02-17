@@ -106,6 +106,18 @@ a {
 	cursor: pointer;
 }
 
+.refund-requestS {
+	height: 30px;
+	background-color: #5189EB;
+	color: white;
+	font-weight: 400;
+	font-size: 0.8rem;
+	border: 0px solid white;
+	padding: 3px 20px 3px 20px;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
 .pagenavigation{
 	 margin-left:48%;
 	 margin-top:20px;

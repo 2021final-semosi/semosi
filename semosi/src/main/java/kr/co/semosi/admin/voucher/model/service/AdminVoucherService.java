@@ -40,4 +40,8 @@ public class AdminVoucherService {
 	public int sitterVoucherContentCnt(Map<String, Object> paramMap) {
 		return voucherDAO.sitterVoucherContentCnt(sqlSession,paramMap);
 	}
+
+	public int refundUpdateS(int voucherNo, String phone) {
+		return voucherDAO.refundUpdateS(sqlSession,voucherNo,phone);
+	}
 }
