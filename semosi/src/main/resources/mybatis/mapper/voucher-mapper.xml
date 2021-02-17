@@ -31,10 +31,12 @@
   		</if>
   		<if test='category.equals("refund_YN")'>
   			<choose>  		
-  				<when test='keyword.equals("환불신청")'>
+  				<when test='keyword.contains("신청")'>
   					REFUND_YN = 'N' and
+  				</when>
+  				<when test='keyword.contains("완료")'>
+  					REFUND_YN = 'Y' and
   				</when>  				
-  				<otherwise>REFUND_YN = 'Y' and</otherwise>
   			</choose>
   		</if>
   	</if>
@@ -75,10 +77,12 @@
   		</if>
   		<if test='category.equals("refund_YN")'>
   			<choose>  		
-  				<when test='keyword.equals("환불신청")'>
+  				<when test='keyword.contains("신청")'>
   					REFUND_YN = 'N' and
+  				</when>
+  				<when test='keyword.contains("완료")'>
+  					REFUND_YN = 'Y' and
   				</when>  				
-  				<otherwise>REFUND_YN = 'Y' and</otherwise>
   			</choose>
   		</if>
   	</if>
@@ -91,5 +95,9 @@
   
   <update id="refundUpdate">
   	UPDATE PARENTS_VOUCHER SET REFUND_YN='Y', END_DATE=SYSDATE WHERE VOUCHER_NO = #{voucherNo}
+  </update>
+  
+  <update id="refundUpdateS">
+  	UPDATE SITTER_VOUCHER SET REFUND_YN='Y', END_DATE=SYSDATE WHERE VOUCHER_NO = #{voucherNo}
   </update>
 </mapper>

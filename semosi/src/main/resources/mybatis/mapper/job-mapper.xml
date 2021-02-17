@@ -146,7 +146,7 @@
 	FROM ADMIN_OFFER_VIEW WHERE POST_NO=#{postNo}  	
   </select>
   
-  <select id="jobSearchPage" resultType="AdminSearch">
+  <select id="jobSearchPage" resultType="AdminSearchPage">
   	SELECT 
 		POST_NO AS postNo,
 		MEMBERS_NO AS membersNo,
@@ -168,8 +168,16 @@
 		GENDER AS gender,
 		ADDRESS AS address,
 		WRITE_DATE AS writeDate,
-		DEL_YN AS delYN
-	FROM ADMIN_SEARCH_VIEW WHERE POST_NO=#{postNo}  	
+		WDEL AS delYN,
+		CERT_FA_YN AS certFAYN,
+		FDEL AS fDel,
+		CERT_HE_YN AS certHEYN,
+		HDEL AS hDel,
+		CERT_RE_YN AS certREYN,
+		RDEL AS rDel,
+		CERT_TE_YN AS certTEYN,
+		TDEL AS tDel		
+	FROM ADMIN_SEARCH_PAGE_VIEW WHERE POST_NO=#{postNo}  	
   </select>
   
   <select id="postReportList" resultType="AdminReport" parameterType="java.util.HashMap">
@@ -209,10 +217,12 @@
   		</if>
   		<if test='category.equals("del_YN")'>
   			<choose>
-  				<when test='keyword.equals("삭제대기")'>
+  				<when test='keyword.contains("대기")'>
   					ODEL = 'N' or SDEL = 'N' and
   				</when>
-  				<otherwise>ODEL = 'Y' or SDEL = 'Y' and</otherwise>
+  				<when test='keyword.contains("완료")'>
+  					ODEL = 'Y' or SDEL = 'Y' and
+  				</when>
   			</choose>
   		</if>
   	</if>

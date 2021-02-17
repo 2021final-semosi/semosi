@@ -12,6 +12,7 @@ import kr.co.semosi.admin.job.model.dao.AdminJobDAO;
 import kr.co.semosi.admin.job.model.vo.AdminOffer;
 import kr.co.semosi.admin.job.model.vo.AdminReport;
 import kr.co.semosi.admin.job.model.vo.AdminSearch;
+import kr.co.semosi.admin.job.model.vo.AdminSearchPage;
 import kr.co.semosi.admin.job.model.vo.JobOffer;
 import kr.co.semosi.admin.job.model.vo.JobSearch;
 
@@ -60,7 +61,7 @@ public class AdminJobService {
 		return jobDAO.jobOfferPage(sqlSession,postNo,title);
 	}
 
-	public AdminSearch jobSearchPage(String postNo, String title) {
+	public AdminSearchPage jobSearchPage(String postNo, String title) {
 		return jobDAO.jobSearchPage(sqlSession,postNo,title);
 	}
 

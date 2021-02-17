@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class SitterVoucherView {
 	// 이용권번호 
-    private String voucherNo;
+    private int voucherNo;
     // 시터회원번호 
     private String memberId;
     // 시터 전화번호
@@ -25,7 +25,7 @@ public class SitterVoucherView {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SitterVoucherView(String voucherNo, String memberId, String phone, String voucherName, String voucherPrice, Date boughtDate,
+	public SitterVoucherView(int voucherNo, String memberId, String phone, String voucherName, String voucherPrice, Date boughtDate,
 			Date endDate, String refundYN) {
 		super();
 		this.voucherNo = voucherNo;
@@ -38,11 +38,11 @@ public class SitterVoucherView {
 		this.refundYN = refundYN;
 	}
 
-	public String getVoucherNo() {
+	public int getVoucherNo() {
         return voucherNo;
     }
 
-    public void setVoucherNo(String voucherNo) {
+    public void setVoucherNo(int voucherNo) {
         this.voucherNo = voucherNo;
     }
 
