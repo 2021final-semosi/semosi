@@ -1,40 +1,29 @@
 package kr.co.semosi.mypage.model.dao;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.co.semosi.mypage.model.vo.Criteria;
-import kr.co.semosi.mypage.model.vo.PageMaker;
-import kr.co.semosi.mypage.model.vo.ParentVoucher;
-import kr.co.semosi.mypage.model.vo.SitterVoucher;
+import kr.co.semosi.member.model.vo.ParentMember;
+import kr.co.semosi.member.model.vo.SitterMember;
 
-@Repository(value = "myPageDAO")
+@Repository("MypageDAO")
 public class MypageDAO {
 
-	public int selectParentVoucherTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
-		int result = sqlSession.selectOne("parentVoucher.selectVoucherTotalCount", memberNo);
-		return result;
-	}
-	
-	public List<ParentVoucher> selectParentVoucherList(SqlSession sqlSession, PageMaker pageMaker) {
-		List<ParentVoucher> list = sqlSession.selectList("parentVoucher.selectVoucherList", pageMaker);
-		return list;
+   public int updateParentFrofile(SqlSessionTemplate sqlSession, ParentMember pMember) {
+      System.out.println("[MypageDAO] : 정상 호출");
+      int result= sqlSession.update("parentMember.updateParentFrofile", pMember);
+      
+      System.out.println(result);
+      return result;
+   }
 
-	}
-
-	public int selectSitterVoucherTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
-		int result = sqlSession.selectOne("sitterVoucher.selectVoucherTotalCount", memberNo);
-		return result;
-	}
-
-	public List<SitterVoucher> selectSitterVoucherList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
-		List<SitterVoucher> list = sqlSession.selectList("sitterVoucher.selectVoucherList", pageMaker);
-		return list;
-	}
+      public int updateSitterFrofile(SqlSessionTemplate sqlSession, SitterMember sMember) {
+      System.out.println("[MypageDAO] : 정상 호출");
+      int result= sqlSession.update("sitterMember.updateSitterFrofile", sMember);
+      
+      System.out.println(result);
+      return result;
+   }
 
 
 
