@@ -13,7 +13,7 @@
 <!-- DB연동 코드 -->
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-	<property name="url" value="jdbc:oracle:thin:@khdsc1.iptime.org:15213:xe"></property>
+	<property name="url" value="jdbc:oracle:thin:@khdstest1.iptime.org:15213:xe"></property>
 	<property name="username" value="semosi"></property>
 	<property name="password" value="sms2021"></property>
 </bean> 
