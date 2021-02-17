@@ -150,6 +150,8 @@
 	
 		//전체 유효성 검사 진행
 		function totalCheck() {
+
+			console.log("유효성시작");
 			if (idCheck()) {
 				$('#memberId').focus();
 				return false;
@@ -174,7 +176,7 @@
 			} else if ($('#gender').val() == "") { //성별 select 무조건 하게끔
 				alert("성별을 입력해주세요.");
 				return false;
-			} else if (!phoneCheck()) {
+			} else if (phoneCheck()) {
 				$('#phone').focus();
 				return false;
 			} else if (!authenticationNumberCheck()) {
@@ -184,12 +186,11 @@
 				alert("휴대폰 본인인증을 완료해주세요.");
 				return false;
 			} else if ($('#sample6_address').val() == "") { //주소가 비어있다면 false
-				
+
 				alert("주소를 입력해주세요.");
 				sample6_execDaumPostcode();
 				return false;
 			} else {
-				console.log("유효성검사완료");
 				document.memberSignupForm.submit();
 				return true;
 			}
@@ -679,7 +680,6 @@
 								type : "post",
 								success : function(result) {
 									if (result == "true") {
-
 										$('#phone').attr("readonly", true);
 										$('#phoneMessage').show();
 										$('#phoneMessage').text(
