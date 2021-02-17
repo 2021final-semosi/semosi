@@ -24,7 +24,7 @@ public class JobofferDAO {
 		System.out.println("[JobofferDAO : selectOneSearchPost] 호출 성공");
 		
 		JobOfferPost jop=sqlSession.selectOne("joboffer.selectOneSearchPost", postNo);
-		//int result=sqlSession.update("joboffer.updatePostHitCount", postNo);
+		int result=sqlSession.update("joboffer.updatePostHitCount", postNo);
 		
 		return jop;
 	}
