@@ -78,6 +78,11 @@
 	margin-right: 10px;
 }
 
+.link-btn:hover {
+	text-decoration: none;
+	color: white;
+}
+
 .content-title {
 	width: 75%;
 	padding-left: 20px;

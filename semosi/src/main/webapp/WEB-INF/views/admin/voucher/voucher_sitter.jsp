@@ -122,21 +122,14 @@ $("#pagination").append(pagination);//--페이지 셋팅
 										<td class='voucher_name'>${sitterVoucher.voucherName}</td>
 										<td class='voucher_price'>${sitterVoucher.voucherPrice}</td>
 										<td class='bought_date'>${sitterVoucher.boughtDate}</td>
-										<td class='end_date'>
-											<c:choose>
-												<c:when test="${sitterVoucher.endDate == null}">
-													-
-												</c:when>
-												<c:otherwise>${sitterVoucher.endDate}</c:otherwise>
-											</c:choose>
-										</td>
+										<td class='end_date'>${sitterVoucher.endDate}</td>
 										<td class='refund_YN'>
 											<c:choose>
 												<c:when test='${sitterVoucher.refundYN eq "Y"}'>
 													<button type="button" class="refund-done">환불완료</button>	
 												</c:when>
 												<c:otherwise>
-													<button type="button" class="refund-request" id="${sitterVoucher.voucherNo}" name="${sitterVoucher.phone}">환불신청</button>
+													<button type="button" class="refund-requestS" id="${sitterVoucher.voucherNo}" name="${sitterVoucher.phone}">환불신청</button>
 												</c:otherwise>
 											</c:choose>
 										</td>
@@ -160,6 +153,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 					<div id="pagination" class="pagenavigation"></div>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>

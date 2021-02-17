@@ -122,14 +122,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 										<td class='voucher_name'>${parentsVoucher.voucherName}</td>
 										<td class='voucher_price'>${parentsVoucher.voucherPrice}</td>
 										<td class='bought_date'>${parentsVoucher.boughtDate}</td>
-										<td class='end_date'>
-											<c:choose>
-												<c:when test="${parentsVoucher.endDate == null}">
-													-
-												</c:when>
-												<c:otherwise>${parentsVoucher.endDate}</c:otherwise>
-											</c:choose>
-										</td>
+										<td class='end_date'>${parentsVoucher.endDate}</td>
 										<td class='refund_YN'>
 											<c:choose>
 												<c:when test='${parentsVoucher.refundYN eq "Y"}'>
@@ -160,6 +153,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 					<div id="pagination" class="pagenavigation"></div>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>
