@@ -76,10 +76,10 @@
 					<form action="/csPostInfo.sms" method="post">
 						<input type="hidden" name="board" value="guide"/>
 						<input type="hidden" name="postNo" value="<%=guidePost.getPostNo()%>"/>
-						<input type="submit" id="modBtn" value="수정">
+						<input style="visibility:hidden; type="submit" id="modBtn" value="수정">
 					</form>
 					
-					<button id="delBtn">삭제</button>
+					<button style="visibility:hidden; id="delBtn">삭제</button>
 					<a href="/csGuide.sms" id="listBtn">목록</a>
 				</div>
 			</div>

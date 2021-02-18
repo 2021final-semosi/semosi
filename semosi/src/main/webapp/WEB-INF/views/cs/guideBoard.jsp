@@ -44,8 +44,6 @@
 				<ul id="boardMenu">
 					<li><a href="#">부모회원 가이드</a></li>
 					<li><a href="#">시터회원 가이드</a></li>
-					<li><a href="#">맘시터 주의사항</a></li>
-					<li><a href="#">해결방법</a></li>
 				</ul>
 			</div>
 			<div class="col-12" id="noticeBoardBox">

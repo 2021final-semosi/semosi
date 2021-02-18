@@ -20,6 +20,7 @@ import kr.co.semosi.cs.model.vo.GuidePageData;
 import kr.co.semosi.cs.model.vo.Notice;
 import kr.co.semosi.cs.model.vo.NoticePageData;
 import kr.co.semosi.cs.model.vo.QnA;
+import kr.co.semosi.cs.model.vo.QnAComment;
 import kr.co.semosi.cs.model.vo.QnAPageData;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
@@ -42,7 +43,7 @@ public class CsController {
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("guideList", guideList);
 		model.addAttribute("FAQList", FAQList);
-		//model.addAttribute("QnAList", QnAList);
+		model.addAttribute("QnAList", QnAList);
 
 		return "cs/csMain";
 	}
@@ -169,8 +170,11 @@ public class CsController {
 	@RequestMapping(value = "/csQnAPost.sms")
 	public String moveCsQnAPost(@RequestParam int postNo, Model model) {
 		QnA q = csService.selectQnAPost(postNo);
+		QnAComment qc = csService.selectQnAComment(postNo);
 
 		model.addAttribute("QnAPost", q);
+		model.addAttribute("QnAComment", qc);
+		
 
 		return "cs/QnAPost";
 	}
@@ -207,7 +211,9 @@ public class CsController {
 		QnA q = new QnA();
 		int result = 0;
 		
-		if(writerP!=null){
+		System.out.println("title : "+title+" / content : "+content+" / writerP : "+writerP+" / writerS : "+writerS);
+		
+		if(!writerP.equals("null")){
 			q.setTitle(title);
 			q.setContent(content);
 			q.setWriterPNo(writerP);
@@ -217,10 +223,11 @@ public class CsController {
 			
 		}
 		
-		else if(writerS!=null){
+		else if(!writerS.equals("null")){
 			q.setTitle(title);
 			q.setContent(content);
-			q.setWriterPNo(writerS);
+			q.setWriterSNo(writerS);
+			System.out.println("시터 회원번호 : "+writerS);
 			
 			result = csService.insertCsPost(q, "sitter");
 			
@@ -361,7 +368,7 @@ public class CsController {
 	}
 	
 	
-	
+	//cs 메인페이지 검색
 	@RequestMapping(value = "/csSearch.sms")
 	public String moveCsSearch(@RequestParam String keyword, Model model) {
 		
@@ -376,7 +383,17 @@ public class CsController {
 		
 		return "cs/csSearch";
 	}
-
+	
+	
+	@RequestMapping(value = "/terms.sms")
+	public String moveTerms() {
+		return "cs/terms";
+	}
+	
+	@RequestMapping(value = "/introduce.sms")
+	public String moveIntroduce() {
+		return "cs/introduce";
+	}
 
 
 	@RequestMapping(value = "/moveOnePost.sms")

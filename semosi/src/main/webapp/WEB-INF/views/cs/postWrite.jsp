@@ -58,18 +58,18 @@
 						<td>작성자</td>
 						<td><input type="text" value="<%=sMember.getMemberName() %>" id="writer" readonly />
 						<input type="hidden" name="writerS" value="<%=sMember.getMemberNo()%>"/>
-						<input type="hidden" name="writerP" value=null/></td>
+						<input type="hidden" name="writerP" value="null" /></td>
 						
 					<%} else if(pMember!=null) {%>
 						<td>작성자</td>
 						<td><input type="text" value="<%=pMember.getMemberName() %>" id="writer" readonly />
 						<input type="hidden" name="writerP" value="<%=pMember.getMemberNo()%>"/>
-						<input type="hidden" name="writerS" value=null/></td>
+						<input type="hidden" name="writerS" value="null" /></td>
 					<%}%>
 						
 					</tr>
 					<tr>
-						<td colspan="2"><textarea style="width: 100%; height: 600px;" name="content"></textarea>
+						<td colspan="2"><textarea id="postContent" name="content"></textarea>
 						</td>
 					</tr>
 				</table>

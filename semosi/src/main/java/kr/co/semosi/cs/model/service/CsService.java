@@ -15,9 +15,8 @@ import kr.co.semosi.cs.model.vo.GuidePageData;
 import kr.co.semosi.cs.model.vo.Notice;
 import kr.co.semosi.cs.model.vo.NoticePageData;
 import kr.co.semosi.cs.model.vo.QnA;
+import kr.co.semosi.cs.model.vo.QnAComment;
 import kr.co.semosi.cs.model.vo.QnAPageData;
-import kr.co.semosi.member.model.vo.ParentMember;
-import kr.co.semosi.member.model.vo.SitterMember;
 
 @Service("csService")
 public class CsService {
@@ -81,6 +80,12 @@ public class CsService {
 	public QnA selectQnAPost(int postNo) {
 		QnA q = csDAO.selectQnAPost(sqlSession, postNo);
 		return q;
+	}
+	
+	// QnA 게시글 한 개의 댓글(관리자답변) 가져오기
+	public QnAComment selectQnAComment(int postNo) {
+		QnAComment qc = csDAO.selectQnAComment(sqlSession, postNo);
+		return qc;
 	}
 
 	//notice 글 리스트 가져오기
@@ -197,22 +202,26 @@ public class CsService {
 		
 	}
 
+	//cs메인에서 공지사항 게시판 키워드 검색
 	public ArrayList<Notice> selectNoticeSearch(String keyword) {
 		ArrayList<Notice> list = csDAO.selectNoticeSearch(sqlSession, keyword);
 		return list;
 		
 	}
 
-	
+	//cs메인에서 자주 묻는 질문 게시판 키워드 검색
 	public ArrayList<FAQ> selectFAQSearch(String keyword) {
 		ArrayList<FAQ> list = csDAO.selectFAQSearch(sqlSession, keyword);
 		return list;
 	}
 	
+	//cs메인에서 이용 가이드 게시판 키워드 검색
 	public ArrayList<Guide> selectGuideSearch(String keyword) {
 		ArrayList<Guide> list = csDAO.selectGuideSearch(sqlSession, keyword);
 		return list;
 	}
+
+
 	
 	
 

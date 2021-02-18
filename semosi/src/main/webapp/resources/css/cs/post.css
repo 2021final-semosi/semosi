@@ -120,6 +120,7 @@ td:nth-child(odd) {
 
 #content {
 	white-space:pre-wrap;
+	min-height: 400px;
 }
 
 #btnBox {

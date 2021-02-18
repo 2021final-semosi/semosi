@@ -96,12 +96,12 @@
 			<div class="carousel-inner">
 				<div id="carousel1" class="carousel-item active">
 					<div class="carousel-wrap">
-						<a href="/moveGuide.sms"><img src="/resources/images/carousel1.png"></a>
+						<a href="/csGuide.sms"><img src="/resources/images/carousel1.png"></a>
 					</div>
 				</div>
 				<div id="carousel2" class="carousel-item">
 					<div class="carousel-wrap">
-						<a href="/moveFaq.sms"><img src="/resources/images/carousel2.png"></a>
+						<a href="/csFAQ.sms"><img src="/resources/images/carousel2.png"></a>
 					</div>
 				</div>
 				<div id="carousel3" class="carousel-item">
@@ -153,7 +153,7 @@
 					</div>
 				</div>
 				<div id="info-btn-panel">
-					<a href="/moveIntroduce.sms">세모시 더 알아보기</a>
+					<a href="/introduce.sms">세모시 더 알아보기</a>
 				</div>
 			</div>
 		</div>
@@ -212,7 +212,7 @@
 					</div>
 				</div>
 				<div id="faq-btn-panel">
-					<a href="/moveFaq.sms">FAQ 더 알아보기</a>
+					<a href="/csFAQ.sms">FAQ 더 알아보기</a>
 				</div>
 			</div>
 		</div>

@@ -1,3 +1,4 @@
+<%@page import="kr.co.semosi.cs.model.vo.QnAComment"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="kr.co.semosi.cs.model.vo.QnA"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -96,29 +97,28 @@
 				</div>
 			</div>
 		</div>
+		<% QnAComment qc = (QnAComment)request.getAttribute("QnAComment");%>
 		<div class="row no-gutters">
 			<div class="col-md-12" id="commentBox">
+			<%if(qc!=null){ %>
 				<ul id="comment">
 					<li>
 						<p>
-							<strong>작성자1</strong> 2021-01-15 20:50:00
+							<strong><%=qc.getWriter()%></strong> <%=sdf.format(qc.getWriteDate())%>
 						</p>
-						<div>댓글 내용입니다.</div>
-					</li>
-					<li>
-						<p>
-							<strong>작성자1</strong> 2021-01-15 20:50:00
-						</p>
-						<div>댓글 내용입니다.</div>
+						<div><pre><%=qc.getContent() %></pre></div>
 					</li>
 				</ul>
+				<%} %>
 			</div>
+			<!-- 
 			<div class="col-md-12" id="commentInputBox" style="">
 				<div id="commentInput">
 					<textarea></textarea>
 					<button>댓글</button>
 				</div>
 			</div>
+			 -->
 		</div>
 
 	</div>

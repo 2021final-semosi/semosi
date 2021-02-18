@@ -66,17 +66,21 @@
 					</tr>
 				</table>
 			</div>
+			
 			<div class="col-12">
 				<div id="btnBox">
+					
 					<form action="/csPostInfo.sms" method="post">
 						<input type="hidden" name="board" value="notice"/>
 						<input type="hidden" name="postNo" value="<%=noticePost.getPostNo()%>"/>
-						<input type="submit" id="modBtn" value="수정">
+						<input style="visibility:hidden;" type="submit" id="modBtn" value="수정">
 					</form>
-					<button id="delBtn">삭제</button>
+					<button style="visibility:hidden;" id="delBtn">삭제</button>
 					<a href="/csNotice.sms" id="listBtn">목록</a>
+					
 				</div>
 			</div>
+			
 		</div>
 
 	</div>
