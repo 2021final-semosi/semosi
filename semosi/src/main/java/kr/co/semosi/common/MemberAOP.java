@@ -15,10 +15,6 @@ import kr.co.semosi.member.model.vo.SitterMember;
 @Aspect
 public class MemberAOP {
 
-	public MemberAOP() {
-		System.out.println("AOP 객체 만들어지는지 확인 테스트 코드");
-	}
-
 	@Autowired
 	@Qualifier("Sha256Util")
 	private Sha256Util enc;

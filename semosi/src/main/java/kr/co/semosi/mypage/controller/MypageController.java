@@ -122,10 +122,10 @@ public class MypageController {
 	}
 
 	// 내 신청서 조회
-	@RequestMapping(value = "/parentApplication.sms")
+	@RequestMapping(value = "/parentMyApplication.sms")
 	public String parentApplication() {
 
-		System.out.println("[/parentApplication.sms] 정상적으로 호출 되었습니다.");
+		System.out.println("[/parentMyApplication.sms] 정상적으로 호출 되었습니다.");
 		return "mypage/parent/application";
 	}
 
@@ -305,10 +305,10 @@ public class MypageController {
 	}
 
 	// 내 신청서 조회
-	@RequestMapping(value = "/sitterApplication.sms")
+	@RequestMapping(value = "/sitterMyApplication.sms")
 	public String sitterApplication() {
 
-		System.out.println("[/sitterApplication.sms] 정상적으로 호출 되었습니다.");
+		System.out.println("[/sitterMyApplication.sms] 정상적으로 호출 되었습니다.");
 		return "mypage/sitter/application";
 	}
 
