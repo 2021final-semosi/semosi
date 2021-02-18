@@ -52,6 +52,9 @@
 .certificationBtn {
 	width: 85%;
 }
+.certiImg{
+width:200px;
+height:200px;}
 </style>
 
 </head>
@@ -121,7 +124,7 @@
 
 				<div class="col-sm-4 m-0 p-0">
 					<center>
-						<img src="/resources/images/registration.png"><br>인증 뱃지
+						<img class="certiImg" src="/resources/images/registration.png"><br>인증 뱃지
 					</center>
 				</div>
 				<div class="col-sm-8 m-0 p-0">
@@ -143,7 +146,7 @@
 
 							<div class="col-sm-4 m-0 p-0">
 								<center>
-									<img src="/resources/images/none_certification.PNG"><br>인증
+									<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 									뱃지
 								</center>
 							</div>
@@ -166,7 +169,7 @@
 
 										<div class="col-sm-4 m-0 p-0">
 											<center>
-												<img src="/resources/images/none_certification.PNG"><br>인증
+												<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 												뱃지
 											</center>
 										</div>
@@ -202,7 +205,7 @@
 								%>
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/health.png"><br>인증 뱃지
+										<img class="certiImg" src="/resources/images/health.png"><br>인증 뱃지
 									</center>
 								</div>
 								<div class="col-sm-8 m-0 p-0">
@@ -210,14 +213,14 @@
 									<br>
 									<H5>건강 진단 결과서 (보건소 발급)</H5>
 									<br> <input type="button" id="subCertification1"
-										class="btn btn-warning certificationBtn" value="인증 받기" />
+										class="btn btn-warning certificationBtn" value="건강 진단 결과서 인증 완료!" />
 								</div>
 								<%
 									} else if (healthDocu != null && healthDocu.getCertYn() == 'N') {
 								%>
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/none_certification.PNG"><br>인증
+										<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 										뱃지
 									</center>
 								</div>
@@ -233,7 +236,7 @@
 								%>
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/none_certification.PNG"><br>인증
+										<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 										뱃지
 									</center>
 								</div>
@@ -243,7 +246,7 @@
 									<H5>건강 진단 결과서 (보건소 발급)</H5>
 									<br> <input type="button" id="subCertification1"
 										class="btn btn-warning certificationBtn"
-										onclick="healthDocuApply();" value="인증 받기" />
+										onclick="healthDocuApply();" value="건강 진단 결과서 인증 받기" />
 								</div>
 								<%
 									}
@@ -262,7 +265,7 @@
 
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/parents.png"><br>인증 뱃지
+										<img class="certiImg" src="/resources/images/parents.png"><br>인증 뱃지
 									</center>
 								</div>
 								<div class="col-sm-8 m-0 p-0">
@@ -271,7 +274,7 @@
 									<H5>가족 관계 증명서</H5>
 									<H5 style="color: gray;">- 발급일 6개월 이내만 유효</H5>
 									<br> <input type="button" id="subCertification2"
-										class="btn btn-warning certificationBtn" value="인증 받기" />
+										class="btn btn-warning certificationBtn" value="실제 부모 인증 완료!" />
 								</div>
 								<%
 									} else if (familyDocu != null && familyDocu.getCertYn() == 'N') {
@@ -279,7 +282,7 @@
 
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/none_certification.PNG"><br>인증
+										<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 										뱃지
 									</center>
 								</div>
@@ -297,7 +300,7 @@
 
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/none_certification.PNG"><br>인증
+										<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 										뱃지
 									</center>
 								</div>
@@ -308,7 +311,7 @@
 									<H5 style="color: gray;">- 발급일 6개월 이내만 유효</H5>
 									<br> <input type="button" id="subCertification2"
 										class="btn btn-warning certificationBtn"
-										onclick="familyDocuApply();" value="인증 받기" />
+										onclick="familyDocuApply();" value="실제 부모 인증 받기" />
 								</div>
 								<%
 									}
@@ -325,7 +328,7 @@
 								%>
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/teacher.png"><br>인증 뱃지
+										<img class="certiImg" src="/resources/images/teacher.png"><br>인증 뱃지
 									</center>
 								</div>
 								<div class="col-sm-8 m-0 p-0">
@@ -333,14 +336,14 @@
 									<br>
 									<H5>보육교사 자격증, 유치원/특수교사/초등학교 정교사 자격증</H5>
 									<br> <input type="button" id="subCertification2"
-										class="btn btn-warning certificationBtn" value="인증 받기" />
+										class="btn btn-warning certificationBtn" value="선생님 인증 완료!" />
 								</div>
 								<%
 									} else if (teacherDocu != null && teacherDocu.getCertYn() == 'N') {
 								%>
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/none_certification.PNG"><br>인증
+										<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 										뱃지
 									</center>
 								</div>
@@ -349,14 +352,14 @@
 									<br>
 									<H5>보육교사 자격증, 유치원/특수교사/초등학교 정교사 자격증</H5>
 									<br> <input type="button" id="subCertification2"
-										class="btn btn-warning certificationBtn" value="인증 받기" />
+										class="btn btn-warning certificationBtn" value="인증이 진행중입니다." />
 								</div>
 								<%
 									} else {
 								%>
 								<div class="col-sm-4 m-0 p-0">
 									<center>
-										<img src="/resources/images/none_certification.PNG"><br>인증
+										<img class="certiImg" src="/resources/images/none_certification.PNG"><br>인증
 										뱃지
 									</center>
 								</div>
@@ -366,16 +369,15 @@
 									<H5>보육교사 자격증, 유치원/특수교사/초등학교 정교사 자격증</H5>
 									<br> <input type="button" id="subCertification2"
 										class="btn btn-warning certificationBtn"
-										onclick="teacherDocuApply();" value="인증 받기" />
+										onclick="teacherDocuApply();" value="선생님 인증 받기" />
 								</div>
 								<%
 									}
 								%>
 							</div>
 				</div>
-
+<br><br><br>
 				<center>
-					<br> <br> <br> 로고<br> <br>
 					<H5 style="color: gray;">많은 인증을 받을수록 부모님에게 더 많은 선택을 받게 됩니다!</H5>
 				</center>
 			</div>
