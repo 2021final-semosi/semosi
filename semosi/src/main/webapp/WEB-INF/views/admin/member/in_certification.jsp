@@ -26,8 +26,7 @@
 		$(function() {
 			$('.certYN').click(function() {
 				var imageNo = $(this).attr('id');
-				var $btnObject = $(this);
-
+				
 				$.ajax({
 					url : "/documentcertYN.sms",
 					type : "post",
@@ -48,7 +47,7 @@
 				});
 			});
 		});
-		</script>
+</script>
 <script>
 		$(function() {
 			$('.documentYN').click(function() {
@@ -117,7 +116,7 @@
 									<c:if test="${certifyview.reChangedName!=null }">
 										<img src="${pageContext.request.contextPath}/resources/file/resiDocu/${certifyview.reChangedName }" />
 										</c:if>
-										<c:if test="${certifyview.reChangedName==null }"><h3>인증 전</h3></c:if>
+										<c:if test="${certifyview.reChangedName==null }"></c:if>
 									</p>
 									<c:choose>
 										<c:when test='${certifyview.certREYN eq "N".charAt(0) }'>

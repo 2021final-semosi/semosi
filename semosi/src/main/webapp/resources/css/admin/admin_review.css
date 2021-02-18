@@ -38,6 +38,11 @@ table {
 }
 .content{
 	width:40%;
+
+}
+
+.content{
+	overflow:hidden; text-overflow:ellipsis;
 }
 
 .date {
