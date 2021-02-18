@@ -17,7 +17,7 @@
 	</select>
 
   <insert id="insertResiDocu" parameterType="myPageResidentDocu">
-  	INSERT INTO RESIDENT_DOCU VALUES(RESIDENT_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  	INSERT INTO RESIDENT_DOCU VALUES('R'||RESIDENT_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
   </insert>
   
 
@@ -37,7 +37,7 @@
 	
 	
   <insert id="insertHealthDocu" parameterType="myPageHealthDocu">
-  	INSERT INTO HEALTH_DOCU VALUES(HEALTH_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  	INSERT INTO HEALTH_DOCU VALUES('H'||HEALTH_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
   </insert>
   
 	<select id="selectFamilyDocu" resultType="myPageFamilyDocu">
@@ -55,7 +55,7 @@
 	</select>
 	
 	<insert id="insertFamilyDocu" parameterType="myPageFamilyDocu">
-  	INSERT INTO FAMILY_DOCU VALUES(FAMILY_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  	INSERT INTO FAMILY_DOCU VALUES('F'||FAMILY_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
   </insert>
   
 	<select id="selectTeacherDocu" resultType="myPageTeacherDocu">
@@ -74,7 +74,7 @@
 	
 	
 	<insert id="insertTeacherDocu" parameterType="myPageTeacherDocu">
-  	INSERT INTO TEACHER_DOCU VALUES(TEACHER_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  	INSERT INTO TEACHER_DOCU VALUES('T'||TEACHER_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
   </insert>
   
 	

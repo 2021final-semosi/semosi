@@ -28,7 +28,7 @@ public class AdminVoucherService {
 		return voucherDAO.parentsVoucherContentCnt(sqlSession,paramMap);
 	}
 
-	public int refundUpdate(int voucherNo, String phone) {
+	public int refundUpdate(String voucherNo, String phone) {
 		return voucherDAO.refundUpdate(sqlSession,voucherNo,phone);
 		
 	}
@@ -41,7 +41,7 @@ public class AdminVoucherService {
 		return voucherDAO.sitterVoucherContentCnt(sqlSession,paramMap);
 	}
 
-	public int refundUpdateS(int voucherNo, String phone) {
+	public int refundUpdateS(String voucherNo, String phone) {
 		return voucherDAO.refundUpdateS(sqlSession,voucherNo,phone);
 	}
 }
