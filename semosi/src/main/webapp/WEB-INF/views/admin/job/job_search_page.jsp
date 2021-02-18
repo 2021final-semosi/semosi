@@ -99,7 +99,7 @@
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr class="tr-title"><td>자기소개</td></tr>
-								<tr style="width:100%; height: 300px;"><td>${aSearch.selfIntroduce}</td></tr>
+								<tr style="width:100%; height: 300px;"><td class="search-content">${aSearch.selfIntroduce}</td></tr>
 							</table>
 							<div class="blank"></div>
 							<table class="data-table">
