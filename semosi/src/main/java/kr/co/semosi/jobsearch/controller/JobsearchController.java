@@ -99,6 +99,7 @@ public class JobsearchController {
 			jsl.setMonths(months);
 			
 			list.set(i, jsl);
+			
 			i++;
 		}
 		
