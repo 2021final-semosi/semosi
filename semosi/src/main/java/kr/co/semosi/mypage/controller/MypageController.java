@@ -173,9 +173,9 @@ public class MypageController {
 		pageMaker.setTotalCount(myService.selectWriteOfferReviewTotalCount(memberNo));
 		
 		pageMaker.setMemberNo(memberNo); // 조회할 회원의 번호
-		List<WriteOfferReview> wor = myService.seletWriteOfferReview(pageMaker);
+		ArrayList<WriteOfferReview> wor = myService.seletWriteOfferReview(pageMaker);
 
-		mav.addObject("wor", wor);
+		mav.addObject("list", wor);
 		mav.addObject("pageMaker", pageMaker);
 
 		mav.setViewName("mypage/parent/reviewWrite"); // ViewResolver에 의해서
