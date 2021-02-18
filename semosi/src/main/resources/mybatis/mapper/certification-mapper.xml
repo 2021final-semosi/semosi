@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="certification">
 
-	<select id="selectResiDocu" resultType="ResidentDocu">
+	<select id="selectResiDocu" resultType="myPageResidentDocu">
 		SELECT
 		IMAGE_RE_NO as imageNo,
 		MEMBERS_RE_NO as membersNo,
@@ -16,8 +16,12 @@
 		WHERE MEMBERS_RE_NO=#{memberNo}
 	</select>
 
+  <insert id="insertResiDocu" parameterType="myPageResidentDocu">
+  	INSERT INTO RESIDENT_DOCU VALUES(RESIDENT_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  </insert>
+  
 
-	<select id="selectHealthDocu" resultType="HealthDocu">
+	<select id="selectHealthDocu" resultType="myPageHealthDocu">
 		SELECT
 		IMAGE_HE_NO as imageNo,
 		MEMBERS_HE_NO as membersNo,
@@ -32,7 +36,11 @@
 	</select>
 	
 	
-	<select id="selectFamilyDocu" resultType="HealthDocu">
+  <insert id="insertHealthDocu" parameterType="myPageHealthDocu">
+  	INSERT INTO HEALTH_DOCU VALUES(HEALTH_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  </insert>
+  
+	<select id="selectFamilyDocu" resultType="myPageFamilyDocu">
 		SELECT
 		IMAGE_FA_NO as imageNo,
 		MEMBERS_FA_NO as membersNo,
@@ -46,7 +54,11 @@
 		WHERE MEMBERS_FA_NO=#{memberNo}
 	</select>
 	
-	<select id="selectTeacherDocu" resultType="HealthDocu">
+	<insert id="insertFamilyDocu" parameterType="myPageFamilyDocu">
+  	INSERT INTO FAMILY_DOCU VALUES(FAMILY_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  </insert>
+  
+	<select id="selectTeacherDocu" resultType="myPageTeacherDocu">
 		SELECT
 		IMAGE_TE_NO as imageNo,
 		MEMBERS_TE_NO as membersNo,
@@ -61,5 +73,9 @@
 	</select>
 	
 	
+	<insert id="insertTeacherDocu" parameterType="myPageTeacherDocu">
+  	INSERT INTO TEACHER_DOCU VALUES(TEACHER_DOCU_SEQ.NEXTVAL, #{membersNo}, #{originalName}, #{changedName}, #{imagePath}, #{uploadTime}, 'N', 'N')
+  </insert>
+  
 	
 </mapper>

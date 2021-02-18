@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.vo.ApplicationReceived;
@@ -121,7 +120,24 @@ public class MypageDAO {
 		
 		return (ArrayList<ApplicationReceived>)list;
 	}
-	
+	public int insertResiDocu(SqlSessionTemplate sqlSession, ResidentDocu resiDocu) {
+		int result = sqlSession.insert("certification.insertResiDocu", resiDocu);
+		return result;
+	}
+	public int insertHealthDocu(SqlSessionTemplate sqlSession, HealthDocu healthDocu) {
+		int result = sqlSession.insert("certification.insertHealthDocu", healthDocu);
+		return result;
+	}
+	public int insertFamilyDocu(SqlSessionTemplate sqlSession, FamilyDocu familyDocu) {
+		int result = sqlSession.insert("certification.insertFamilyDocu", familyDocu);
+		return result;
+	}
+	public int insertTeacherDocu(SqlSessionTemplate sqlSession, TeacherDocu teacherDocu) {
+		int result = sqlSession.insert("certification.insertTeacherDocu", teacherDocu);
+		return result;
+	}
+
+
 	
 	
 }

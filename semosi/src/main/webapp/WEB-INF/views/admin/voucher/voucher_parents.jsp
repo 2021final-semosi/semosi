@@ -129,7 +129,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 													<button type="button" class="refund-done">환불완료</button>	
 												</c:when>
 												<c:otherwise>
-													<button type="button" class="refund-request" id="${parentsVoucher.voucherNo}" name="${parentsVoucher.phone}">환불신청</button>
+													<button type="button" class="refund-request cancelPay" id="${parentsVoucher.voucherNo}" name="${parentsVoucher.phone}">환불신청</button>
 												</c:otherwise>
 											</c:choose>
 										</td>

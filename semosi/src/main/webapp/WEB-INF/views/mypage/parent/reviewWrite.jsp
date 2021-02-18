@@ -226,8 +226,6 @@
 	<div id="content">
 <!-- 여기서 부터 적용 -->
 
-
-
 	<section id="wrapper">
 	<div class="container">
 

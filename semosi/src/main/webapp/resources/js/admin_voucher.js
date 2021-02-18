@@ -26,7 +26,7 @@ $(function(){
 		}
 	});
 	
-	/*$('.refund-requestS').click(function(){
+	$('.refund-requestS').click(function(){
 		var refundYN = confirm("정말 환불하시겠습니까?");
 
 		if(refundYN==true) {
@@ -50,5 +50,5 @@ $(function(){
 				}
 			});
 		}
-	});*/
+	});
 });

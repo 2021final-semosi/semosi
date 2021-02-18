@@ -2,12 +2,10 @@ package kr.co.semosi.mypage.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.dao.MypageDAO;
@@ -141,4 +139,33 @@ public class MypageService {
 		
 		return list;
 	}
+
+	public int insertResiDocu(ResidentDocu resiDocu) {
+		System.out.println("[MyPageService] ResidentDocu 메소드 호출");
+
+		int result = myDAO.insertResiDocu(sqlSession, resiDocu);
+		return result;
+	}
+
+	public int insertHealthDocu(HealthDocu healthDocu) {
+		System.out.println("[MyPageService] insertHealthDocu 메소드 호출");
+
+		int result = myDAO.insertHealthDocu(sqlSession, healthDocu);
+		return result;
+	}
+
+	public int insertFamilyDocu(FamilyDocu familyDocu) {
+		System.out.println("[MyPageService] insertFamilyDocu 메소드 호출");
+
+		int result = myDAO.insertFamilyDocu(sqlSession, familyDocu);
+		return result;
+	}
+
+	public int insertTeacherDocu(TeacherDocu teacherDocu) {
+		System.out.println("[MyPageService] insertTeacherDocu 메소드 호출");
+
+		int result = myDAO.insertTeacherDocu(sqlSession, teacherDocu);
+		return result;
+	}
+
 }
