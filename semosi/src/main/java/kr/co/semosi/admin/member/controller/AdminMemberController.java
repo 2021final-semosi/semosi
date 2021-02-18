@@ -77,7 +77,7 @@ public class AdminMemberController {
 		if (startPage == 1) {
 			startLimitPage = 0;
 		} else {
-			startLimitPage = (startPage - 1) * visiblePages + 1;
+			startLimitPage = (startPage - 1) * visiblePages + (startPage - 1);
 		}
 
 		paramMap.put("start", startLimitPage);
@@ -117,7 +117,7 @@ public class AdminMemberController {
 		if (startPage == 1) {
 			startLimitPage = 0;
 		} else {
-			startLimitPage = (startPage - 1) * visiblePages + 1;
+			startLimitPage = (startPage - 1) * visiblePages + (startPage - 1);
 		}
 
 		paramMap.put("start", startLimitPage);
@@ -183,6 +183,7 @@ public class AdminMemberController {
 	@RequestMapping(value = "/documentcertYN.sms")
 	public String documentCretYN(@RequestParam String imageNo, HttpServletResponse response) throws IOException {
 		int result = mService.documentCretYN(imageNo);
+		System.out.println(imageNo);
 
 		if (result > 0) {
 			System.out.println("성공");
