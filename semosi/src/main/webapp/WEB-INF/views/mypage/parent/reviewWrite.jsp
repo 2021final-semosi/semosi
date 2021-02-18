@@ -233,7 +233,7 @@
 <!-- 여기서 부터 적용 -->
 	<%
 		//ArrayList<IndexReviews> RList=(ArrayList<IndexReviews>)request.getAttribute("list");
-		List<WriteOfferReview> wor = (List<WriteOfferReview>)request.getAttribute("list");
+		ArrayList<WriteOfferReview> list = (ArrayList<WriteOfferReview>)request.getAttribute("list");
 	%>
 	<section id="wrapper">
 	<div class="container">
@@ -245,8 +245,8 @@
 			</div>
 		</div>
 		<hr class="menu-hr">
-		<c:choose>
-			<c:when test="${!empty wor }">
+		<% if(!list.isEmpty()) { %>
+		<% for(WriteOfferReview wor : list) { %>
 				<div id="interest-info" class="row">
 			<div id="interest-card-img" class="col-md-2 col-sm-12">
 				<center>
@@ -258,7 +258,7 @@
 			<div id="interest-card-info" class="col-md-10 col-sm-12">
 				<div  id="userInfo" class="row">
 					<div id="userInfo-1" class="col-11">	
-						<span><b><c:out value="${wor.memberName }"></c:out></b> <span> 채용 후기 </span> <sub>${wor.writeDate }</sub><br>${wor.grade } <br><br><span>${wor.content }</span>
+						<span><b><%=wor.getMemberName() %></b> <span> 채용 후기 </span> <sub><%=wor.getWriteDate() %></sub><br><%=wor.getGrade() %> <br><br><span><%=wor.getContent() %></span>
 					</div>
 					<div id="userInfo-2" class="col-1">
 						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -268,13 +268,12 @@
 				</div>
 			</div>
 		</div>		
-		</c:when>
-			<c:otherwise>
+		<% } %>
+		<% } else { %>
 				<div class=" row m-0">
 				<div class="col-sm-12 m-0 p-0"><center><H5>작성한 후기가 존재하지않습니다. 후기를 작성해주세요.</H5></center></div>
 			</div>
-			</c:otherwise>
-				</c:choose>		
+				<% } %>
 				<hr class="hr">	
 	</div>
 	</section>
