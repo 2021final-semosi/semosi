@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.semosi.jobsearch.model.service.JobsearchService;
+import kr.co.semosi.jobsearch.model.vo.JobSearchApply;
 import kr.co.semosi.jobsearch.model.vo.JobSearchList;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
@@ -49,14 +50,14 @@ public class JobsearchController {
 	}
 
 	@RequestMapping(value="/moveSearchJobPost.sms")
-	public String moveSearchJobPost(HttpSession session, @RequestParam String MemberPNo, Model model){
+	public String moveSearchJobPost(HttpSession session, @RequestParam int postNo, Model model){
 		System.out.println("[JobofferController : moveSearchJobPost] 호출 성공");
 		
 		ParentMember pm=(ParentMember)session.getAttribute("pMember");
 		SitterMember sm=(SitterMember)session.getAttribute("sMember");
 		
 		if(pm!=null || sm!=null){		// 부모회원 또는 시터회원 중 하나라도 로그인 되어 있다면
-			JobSearchList jsl=jService.selectOneJobPost(MemberPNo);
+			JobSearchList jsl=jService.selectOneJobPost(postNo);
 			model.addAttribute("postData", ageCalculator(jsl));
 			
 			return "jobsearch/searchJobPost";
@@ -67,6 +68,32 @@ public class JobsearchController {
 			
 			return "jobsearch/result";
 		}
+	}
+	
+	@RequestMapping(value="/offerPostApply.sms")
+	public String offerPostApply(HttpSession session, @RequestParam int postNo, Model model){
+		System.out.println("[JobofferController : searchPostApply] 호출 성공");
+		
+		SitterMember sm=(SitterMember)session.getAttribute("sMember");
+		
+		JobSearchApply jsa=new JobSearchApply();
+		jsa.setMembersNo(sm.getMemberNo());
+		jsa.setPostNo(postNo);
+		
+		if(sm!=null){		// 시터 회원으로 로그인되어 있다면 로직 진행
+			int result=jService.insertSearchApply(jsa);
+			
+			if(result>0){
+				model.addAttribute("msg", "신청이 완료되었습니다.");
+				model.addAttribute("location", "/moveSearchJobPost.sms?postNo="+postNo);
+				
+				return "jobsearch/result";
+			}
+		}
+		model.addAttribute("msg", "시터 회원만 신청 가능합니다.");
+		model.addAttribute("location", "/moveSearchJobPost.sms?postNo="+postNo);
+		
+		return "jobsearch/result";
 	}
 
 	private Object ageCalculator(JobSearchList jsl) {

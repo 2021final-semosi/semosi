@@ -13,7 +13,8 @@
 	  		CARE_TYPE AS careType,
 	  		START_DATE AS startDate,
 	  		PAY AS pay,
-	  		WRITE_DATE AS writeDate
+	  		WRITE_DATE AS writeDate,
+	  		POST_NO AS postNo
 	  	FROM (SELECT A.*, ROWNUM AS RNUM FROM (SELECT * FROM JOB_SEARCH_LIST WHERE DEL_YN='N' ORDER BY WRITE_DATE DESC) A)
 	  	WHERE #{page}<=RNUM AND RNUM<=#{page}+9
 	]]>
@@ -43,8 +44,14 @@
 	  		CARE_TIME AS careTime,
 	  		END_DATE AS endDate,
 	  		AGE as age	  		
-	  	FROM Job_Search_list where memberp_no=#{memberPNo}
+	  	FROM Job_Search_list where POST_NO=#{postNo}
   
   </select>
+  <update id="updatePostHitCount">
+  	UPDATE JOB_OFFER SET HIT=HIT+1 WHERE POST_NO=#{postNo}
+  </update>
+  <insert id="insertSearchApply" parameterType="JobSearchApply">
+  	INSERT INTO JOB_OFFER_APPLY VALUES (JOB_OFFER_APPLY_SEQ.NEXTVAL, #{postNo}, #{membersNo}, SYSDATE)
+  </insert>
   
 </mapper>

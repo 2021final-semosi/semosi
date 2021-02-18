@@ -10,7 +10,7 @@ div {
 }
 
 .container-fluid {
-	width: 70%;
+	width: 60%;
 	border: 20px solid #F6D257;
 	background-color: #F6D257;
 }
@@ -163,4 +163,22 @@ reviewComment {
 
 #reviewReply {
 	padding: 10px;
+}
+
+
+#btn-panel{
+	text-align: center;
+}
+#btn-panel>a{
+	margin-top: 1%;
+	width: 300px;
+	font-size: 1.2rem;
+	font-weight: 900;
+	color: gray;
+	background-color: white;
+	border: 1px solid gray;
+	padding: 1% 0;
+}
+#btn-panel>a:hover{
+	background-color: #f6d257;
 }

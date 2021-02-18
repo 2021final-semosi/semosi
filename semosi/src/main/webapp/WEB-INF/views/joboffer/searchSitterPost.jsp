@@ -72,7 +72,7 @@
 				</div>
 				 -->
 
-						<img class="profileImg" src="/resources/images/profile/<%=jop.getOriginalName() %>" />
+						<img class="profileImg" src="/resources/images/profile/<%=jop.getOriginalName() %>" onerror="this.src='/resources/images/parents.png'"/>
 
 					</div>
 					<div class="col-md-12" id="sitterInfoBox">
