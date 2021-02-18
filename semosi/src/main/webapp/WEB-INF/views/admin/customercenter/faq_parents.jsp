@@ -70,6 +70,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 	});
 });
 </script>
+
 <script>
 $(document).ready(function() {
 	$("#all_select").click(function() {

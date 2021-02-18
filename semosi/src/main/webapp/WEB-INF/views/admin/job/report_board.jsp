@@ -108,7 +108,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 								<th class='report_text'>신고 게시글 내용</th>
 								<th class='reason'>신고 사유</th>
 								<th class='date'>신고일</th>
-								<th class="del_YN">삭제여부</th>
+								<th class="del_YN">삭제</th>
 							</tr>
 							<c:choose>
 								<c:when test="${fn:length(postReportList)!=0}">

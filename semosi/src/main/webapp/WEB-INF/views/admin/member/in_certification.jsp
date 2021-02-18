@@ -116,7 +116,8 @@
 									<c:if test="${certifyview.reChangedName!=null }">
 										<img src="${pageContext.request.contextPath}/resources/file/resiDocu/${certifyview.reChangedName }" />
 										</c:if>
-										<c:if test="${certifyview.reChangedName==null }"></c:if>
+										<c:if test="${certifyview.reChangedName==null }"><span class="unCert">미인증</span></c:if>
+
 									</p>
 									<c:choose>
 										<c:when test='${certifyview.certREYN eq "N".charAt(0) }'>
@@ -137,7 +138,7 @@
 									<c:if test="${certifyview.heChangedName!=null }">
 										<img src="${pageContext.request.contextPath}/resources/file/healthDocu/${certifyview.heChangedName }" />
 										</c:if>
-										<c:if test="${certifyview.heChangedName==null }"></c:if>
+										<c:if test="${certifyview.heChangedName==null }"><span class="unCert">미인증</span></c:if>
 									</p>
 									<c:choose>
 										<c:when test="${certifyview.certHEYN eq 'N'.charAt(0) }">
@@ -158,7 +159,7 @@
 											<c:if test="${certifyview.faChangedName!=null }">
 										<img src="${pageContext.request.contextPath}/resources/file/familyDocu/${certifyview.faChangedName }" />
 										</c:if>
-										<c:if test="${certifyview.faChangedName==null }"></c:if>
+										<c:if test="${certifyview.faChangedName==null }"><span class="unCert">미인증</span></c:if>
 									</p>
 									<c:choose>
 										<c:when test="${certifyview.certFAYN eq 'N'.charAt(0) }">
@@ -179,7 +180,7 @@
 									<c:if test="${certifyview.teChangedName!=null }">
 										<img src="${pageContext.request.contextPath}/resources/file/teacherDocu/${certifyview.teChangedName }" />
 										</c:if>
-										<c:if test="${certifyview.teChangedName==null }"></c:if>
+										<c:if test="${certifyview.teChangedName==null }"><span class="unCert">미인증</span></c:if>
 										
 									</p>
 									<c:choose>

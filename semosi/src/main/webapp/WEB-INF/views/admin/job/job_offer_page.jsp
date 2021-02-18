@@ -153,7 +153,7 @@
 							<div class="blank"></div>
 							<table class="data-table">
 								<tr class="tr-title"><td>신청 내용(요청사항)</td></tr>
-								<tr style="width:100%; height: 300px;"><td>${aOffer.content}</td></tr>
+								<tr style="width:100%; height: 300px;"><td class="offer-content">${aOffer.content}</td></tr>
 							</table>
 							<div class="blank"></div>
 							<table class="data-table">
