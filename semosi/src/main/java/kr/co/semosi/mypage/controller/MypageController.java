@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
@@ -98,10 +100,17 @@ public class MypageController {
 
 	// 내게 지원한 구인 현황
 	@RequestMapping(value = "/parentApplicationReceive.sms")
-	public String parentApplicationReceive() {
+	public String parentApplicationReceive(HttpSession session, Model model) {
 
 		System.out.println("[/parentApplicationReceive.sms] 정상적으로 호출 되었습니다.");
-		return "mypage/parent/applicationReceive";
+		/*
+		String membersNo=(String) session.getAttribute("sMember");
+		
+		ArrayList<ApplicationReceived> list=myService.selectParentApplicationReceive(membersNo);
+		
+		model.addAttribute("list", list);
+		*/
+		return "mypage/sitter/applicationReceive";
 	}
 
 	// 찜한 맘시터
@@ -273,10 +282,17 @@ public class MypageController {
 	}
 
 	// 내게 지원한 구직 현황
-	@RequestMapping(value = "/sitterApplicationReceive.sms")
-	public String sitterApplicationReceive() {
+	@RequestMapping(value = "/sitterMyApplyParent.sms")
+	public String sitterApplicationReceive(HttpSession session, Model model) {
 
 		System.out.println("[/sitterApplicationReceive.sms] 정상적으로 호출 되었습니다.");
+		
+		SitterMember sMember=(SitterMember) session.getAttribute("sMember");
+
+		ArrayList<ApplicationReceived> list=myService.selectSitterMyApplyParent(sMember.getMemberNo());
+		
+		model.addAttribute("list", ageCalculator(list));
+
 		return "mypage/sitter/applicationReceive";
 	}
 
@@ -693,6 +709,25 @@ public class MypageController {
 															// 경로가 최종 완성됨
 
 		return mav;
+	}
+	
+	// 나이 계산 메소드
+	public ArrayList<ApplicationReceived> ageCalculator(ArrayList<ApplicationReceived> list){
+		LocalDate present=LocalDate.now();
+		int i=0;
+		
+		for(ApplicationReceived ar : list){
+			LocalDate birth=new java.sql.Date(ar.getBirthDay().getTime()).toLocalDate();	// 계산을 위해 java.sql.Date 형식을 java.time 형식으로 변환 
+			int age=present.minusYears(birth.getYear()).getYear();		// 현재 년도 - 생일 년도
+			if(birth.plusYears(age).isAfter(present)){					// 생년월일을 현재년도월일로 바꿔주고 월일이 지났는지 비교
+				age--;
+			}
+			ar.setAge(age);
+			list.set(i, ar);
+			i++;
+		}
+		
+		return list;
 	}
 
 }

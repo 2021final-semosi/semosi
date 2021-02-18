@@ -99,7 +99,7 @@
 			WHERE MEMBER_ID=#{memberId}
 	</update>
 	
-	<select id="selectApplicationReceived" resultType="ApplicationReceived">
+	<select id="selectSitterMyApplyParent" resultType="ApplicationReceived">
 		SELECT
 			FILE_NO AS fileNo,
 			ORIGINAL_NAME AS originalName,

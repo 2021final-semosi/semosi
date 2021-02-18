@@ -1,3 +1,5 @@
+<%@page import="java.time.temporal.ChronoUnit"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="kr.co.semosi.mypage.model.vo.ApplicationReceived"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -224,6 +226,10 @@
 }
 </style>
 
+<%
+	ArrayList<ApplicationReceived> list=(ArrayList<ApplicationReceived>)request.getAttribute("list");
+%>
+
 <%--카카오톡 채팅 스크립트--%>
 <script>
   window.kakaoAsyncInit = function() {
@@ -239,11 +245,19 @@
     js.src = 'https://developers.kakao.com/sdk/js/kakao.channel.min.js';
     fjs.parentNode.insertBefore(js, fjs);
   })(document, 'script', 'kakao-js-sdk');
+  
+  
+  /* 구직 현황 클릭 시 페이지 이동 */
+  $(function(){
+	 var postNo=$("#postNo").val();
+	 $("#userInfo").click(function(){
+		 $(location).attr('href', '/moveSearchSitterPost.sms?postNo='+postNo);
+	 }); 
+  });
+  
 </script>
 
-<%
-	ArrayList<ApplicationReceived> list=(ArrayList<ApplicationReceived>)request.getAttribute("list");
-%>
+
 
 <header>
 	<%@ include file="/WEB-INF/views/commons/header.jsp"%>
@@ -259,100 +273,37 @@
   		<div id="interest-title">
   			<div id="interest-title-1"><span>내게 지원한 구직 현황</span></div>	
   		</div>
-  		<hr class="menu-hr">
+  		<% for(ApplicationReceived ar : list) { %>
+  		<%
+  			LocalDate present=LocalDate.now();
+  			LocalDate applyDate=new java.sql.Date(ar.getApplyDate().getTime()).toLocalDate();
+  			long days=ChronoUnit.DAYS.between(applyDate, present);
+  			
+  			String gender="";
+  			if(ar.getGender()=='F'){
+  				gender="여";
+  			} else {
+  				gender="남";
+  			}
+  		%>
+  		<input type="hidden" id="postNo" val="<%=ar.getPostNo() %>"/>
   		<div id="interest-info" class="row">
   			<div id="interest-card-img" class="col-md-2 col-sm-12">
-  				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
+  				<img src="/resources/images/profile/<%=ar.getOriginalName() %>" class="card-img" alt="...">
   			</div>
   			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b><%=list.get(0).getMemberName() %></b> <sub>22일 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
-  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
-							</svg>
-  							<span>CCTV 동의함</span>
-  						</div>
-  					</div>
-  					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-						</svg>
-					</div>
-  				</div>
-  			</div>
-  		</div>
-  		<hr class="hr">
-  		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-md-2 col-sm-12">
-  				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
-  			</div>
-  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
-  				<div id="userInfo" class="row">
-  					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
-  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
-							</svg>
-  							<span>CCTV 동의함</span>
-  						</div>
-  					</div>
-  					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-						</svg>
-					</div>
-  				</div>
-  			</div>
-  		</div>
-  		<hr class="hr">
-  		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-md-2 col-sm-12">
-  				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
-  			</div>
-  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
-  				<div id="userInfo" class="row">
-  					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
-  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
-							</svg>
-  							<span>CCTV 동의함</span>
-  						</div>
-  					</div>
-  					<div id="userInfo-6" class="userInfo-p col-1">
-  						<svg id="deleteBtn" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-  							<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-						</svg>
-					</div>
-  				</div>
-  			</div>
-  		</div>
-  		<hr class="hr">
-  		<div id="interest-info" class="row">
-  			<div id="interest-card-img" class="col-md-2 col-sm-12">
-  				<img src="https://momsitter-service.s3.ap-northeast-2.amazonaws.com/momsitter-app/static/public/defaultProfileImage/profile-infant.png" class="card-img" alt="...">
-  			</div>
-  			<div id="interest-card-info" class="col-md-10 col-sm-12" >
-  				<div id="userInfo" class="row">
-  					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
-  						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
-  						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
-  						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>
-  							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-							  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
-							</svg>
-  							<span>CCTV 동의함</span>
+  						<div id="userInfo-1" class="userInfo-p col-12"><span><b><%=ar.getMemberName() %></b> <sub><%=days %>일 전 지원</sub></span></div>
+  						<div id="userInfo-2" class="userInfo-p col-12"><span><%=ar.getAddress() %> | 연락처 : <%=ar.getPhone() %></span></div>
+  						<div id="userInfo-3" class="userInfo-p col-12"><span><%=ar.getAge() %>세 | <%=gender %> | 희망시급 <%=ar.getPay() %>원</span></div>
+  						<div id="userInfo-4" class="userInfo-p col-12">
+  						<% for(int i=0; i<ar.getAvgGrade(); i++) { %>
+  							★
+  						<% } %>
+  						<% for(int i=0; i<5-ar.getAvgGrade(); i++) { %>
+  							☆
+  						<% } %>
   						</div>
   					</div>
   					<div id="userInfo-6" class="userInfo-p col-1">
@@ -364,6 +315,7 @@
   			</div>
   		</div>
   		<hr class="menu-hr">
+  		<% } %>
   	</div>	
 
 <!-- 여기까지 적용 -->

@@ -17,6 +17,7 @@ public class ApplicationReceived {
 	private Date birthDay;
 	private int age;
 	private int postNo;
+	private int pay;
 	private int avgGrade;
 	
 	public ApplicationReceived() {
@@ -25,7 +26,7 @@ public class ApplicationReceived {
 	}
 	public ApplicationReceived(int fileNo, String originalName, int applyNo, int applyPostNo, String memberpNo,
 			Date applyDate, String myNo, String memberName, String address, char gender, String phone, Date birthDay,
-			int age, int postNo, int avgGrade) {
+			int age, int postNo, int pay, int avgGrade) {
 		super();
 		this.fileNo = fileNo;
 		this.originalName = originalName;
@@ -41,9 +42,16 @@ public class ApplicationReceived {
 		this.birthDay = birthDay;
 		this.age = age;
 		this.postNo = postNo;
+		this.pay = pay;
 		this.avgGrade = avgGrade;
 	}
 	
+	public int getPay() {
+		return pay;
+	}
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
 	public int getFileNo() {
 		return fileNo;
 	}
