@@ -53,10 +53,42 @@
   		AVG_GRADE AS avgGrade
   	FROM JOB_SEARCH_POST WHERE POST_NO=#{postNo}
   </select>
+  
+  <!-- 부모가 작성한 후기 불러오기 -->
+  <select id="selectSearchReview" resultType="JobOfferReview">
+  	SELECT
+  		REVIEW_NO as reviewNo,
+  		WRITER_P_NO as writerPNo,
+  		REVIEWD_S_NO as reviewdSNo,
+  		MEMBERNAME as writerPName,
+  		JOB_SEARCH_REVIEW.CONTENT as content,
+  		JOB_SEARCH_REVIEW.GRADE as grade,
+  		JOB_SEARCH_REVIEW.DEL_YN as delYn,
+  		JOB_SEARCH_REVIEW.WRITE_DATE as writeDate
+  	FROM JOB_SEARCH_REVIEW, JOB_SEARCH_REVIEW_VIEW
+  	WHERE REVIEWD_S_NO=#{memberSNo} AND JOB_SEARCH_REVIEW.REVIEW_NO=JOB_SEARCH_REVIEW_VIEW.REVIEWNO
+  	ORDER BY WRITE_DATE
+  </select>
+  
   <update id="updatePostHitCount">
   	UPDATE JOB_SEARCH SET HIT=HIT+1 WHERE POST_NO=#{postNo}
   </update>
   <insert id="insertOfferApply" parameterType="JobOfferApply">
   	INSERT INTO JOB_SEARCH_APPLY VALUES (JOB_SEARCH_APPLY_SEQ.NEXTVAL, #{postNo}, #{memberpNo}, SYSDATE)
   </insert>
+ 
+  
+   <select id="selectSearchApply" parameterType="java.util.Map" resultType="int">
+  	SELECT
+  		count(*)
+  	FROM JOB_SEARCH_APPLY
+  	WHERE APPLY_POST_NO=${postNo} AND MEMBERP_NO=#{writerNo}
+  </select>
+  
+   <insert id="insertSitterReview" parameterType="java.util.Map">
+  	INSERT INTO JOB_SEARCH_REVIEW VALUES (JOB_SEARCH_REVIEW_SEQ.NEXTVAL, #{writerNo}, #{reviewedMemberNo}, #{content}, ${grade}, 'N',SYSDATE)
+  </insert>
+
+  
+  
 </mapper>

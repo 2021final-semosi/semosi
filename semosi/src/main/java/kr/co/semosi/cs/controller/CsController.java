@@ -384,12 +384,13 @@ public class CsController {
 		return "cs/csSearch";
 	}
 	
-	
+	//이용약관
 	@RequestMapping(value = "/terms.sms")
 	public String moveTerms() {
 		return "cs/terms";
 	}
 	
+	//서비스 소개
 	@RequestMapping(value = "/introduce.sms")
 	public String moveIntroduce() {
 		return "cs/introduce";

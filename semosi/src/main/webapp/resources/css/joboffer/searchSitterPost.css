@@ -160,6 +160,10 @@ div {
 	
 }
 
+#reviewPrintBox{
+	margin-bottom: 30px;
+}
+
 reviewComment {
 	padding: 0px;
 }
@@ -174,6 +178,52 @@ reviewComment {
 
 #reviewReply {
 	padding: 10px;
+}
+
+#reviewInputBox {
+	padding: 0px;
+}
+
+#reviewInput {
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+	background-color: rgb(246, 246, 246);
+	border: 1px solid gray;
+	
+}
+
+#reviewInput>textarea {
+	width: 90%;
+	height: 100px;
+	padding: 5px;
+	margin-right: 1%;
+}
+
+#reviewInput>textarea::-webkit-scrollbar {
+	width: 6px;
+}
+
+#reviewInput>textarea::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+#commentInput>textarea::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	background-color: gray;
+}
+
+#reviewInput>textarea::-webkit-scrollbar-button {
+	width: 0;
+	height: 0;
+}
+
+#reviewInput>button {
+	background-color: white;
+	border: 1px solid gray;
+	width: 9%;
+	float: right;
+	height: 100px;
 }
 
 #btn-panel{
@@ -191,4 +241,9 @@ reviewComment {
 }
 #btn-panel>a:hover{
 	background-color: #f6d257;
+}
+
+#gradeBox {
+	text-align: left;
+	padding-bottom: 10px;
 }

@@ -17,6 +17,7 @@ import kr.co.semosi.joboffer.model.service.JobofferService;
 import kr.co.semosi.joboffer.model.vo.JobOfferApply;
 import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.joboffer.model.vo.JobOfferPost;
+import kr.co.semosi.joboffer.model.vo.JobOfferReview;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 
@@ -58,7 +59,12 @@ public class JobofferController {
 		
 		if(pm!=null || sm!=null){		// 부모회원 또는 시터회원 중 하나라도 로그인 되어 있다면
 			JobOfferPost jop=jService.selectOneSearchPost(postNo);
+			
+			//부모가 작성한 후기 불러오기
+			ArrayList<JobOfferReview> list = jService.selectSearchReview(jop.getMembersNo());
+			
 			model.addAttribute("postData", ageCalculator(jop));
+			model.addAttribute("reviewData", list);
 			
 			return "joboffer/searchSitterPost";
 		}
@@ -127,4 +133,39 @@ public class JobofferController {
 		
 		return jop;
 	}
+	
+
+	//시터에 대한 후기 작성
+	@RequestMapping(value="/insertSitterReview.sms")
+	public String insertSitterReview(Model model, @RequestParam String writerNo, @RequestParam String reviewedMemberNo, 
+			@RequestParam int grade, @RequestParam String content,@RequestParam int postNo){
+		//후기를 작성하려고 하는 부모가 인터뷰 신청하기를 했는지 검사
+		System.out.println("[job offer controller] writerNo : "+writerNo);
+		int check = jService.selectSearchApply(postNo, writerNo);
+		if(check>0){
+			// 인터뷰 신청한 부모여서 후기 작성 가능
+			int result = jService.insertSitterReview(writerNo, reviewedMemberNo, grade, content);
+			if(result>0){
+				model.addAttribute("msg", "후기 작성을 완료했습니다.");
+				model.addAttribute("location", "/moveSearchSitterPost.sms?postNo="+postNo);
+			}
+			else {
+				model.addAttribute("msg", "후기 작성을 실패했습니다.");
+				model.addAttribute("location", "/moveSearchSitterPost.sms?postNo="+postNo);
+			}
+			
+		}
+		else {
+			//후기 작성 불가능
+			model.addAttribute("msg", "시터에게 신청한 후 후기를 작성할 수 있습니다.");
+			model.addAttribute("location", "/moveSearchSitterPost.sms?postNo="+postNo);
+		}
+		
+		
+		
+		return "joboffer/result";
+		
+		
+	}
+	
 }

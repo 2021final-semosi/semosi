@@ -34,8 +34,8 @@
 		<div class="row no-gutters">
 			<div class="col-12" id="searchBox">
 				<div id="search">
-					<form action="/moveCsSearch.sms" method="get">
-						<span><i class="fas fa-search"></i></span> <input type="text" />
+					<form action="/csSearch.sms" method="get">
+						<span><i class="fas fa-search"></i></span> <input type="text" name="keyword" value="<%=keyword %>" />
 					</form>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 					<div class="d-none d-md-block" style="height: 66px;">&nbsp;</div>
 					<div class="col-4 col-md-12">
 						<div class="category">
-							<a href="#">모든카테고리 (<%=noticeList.size()+guideList.size()+FAQList.size() %>)</a>
+							<a href="/csSearch.sms?keyword=<%=keyword%>">모든카테고리 (<%=noticeList.size()+guideList.size()+FAQList.size() %>)</a>
 						</div>
 					</div>
 					
@@ -96,9 +96,9 @@
 				<%if(!noticeList.isEmpty()) {
 					for(Notice n : noticeList){%>
 					
-					<div class="onePost" style="">
+					<div class="onePost">
 						<div>
-							<a href="#"><%=n.getTitle() %></a>
+							<a href="/csNoticePost.sms?postNo=<%= n.getPostNo()%>"><strong><%=n.getTitle() %></strong></a>
 						</div>
 						<div>
 							<a href="/csNotice.sms">공지사항</a>
@@ -111,9 +111,9 @@
 				<%if(!guideList.isEmpty()) {
 					for(Guide g : guideList){%>
 					
-					<div class="onePost" style="">
+					<div class="onePost">
 						<div>
-							<a href="#"><%=g.getTitle() %></a>
+							<a href="/csGuidePost.sms?postNo=<%= g.getPostNo()%>"><strong><%=g.getTitle() %></strong></a>
 						</div>
 						<div>
 							<a href="/csGuide.sms">이용가이드</a>
@@ -126,9 +126,9 @@
 				<%if(!FAQList.isEmpty()) {
 					for(FAQ f : FAQList){%>
 					
-					<div class="onePost" style="">
+					<div class="onePost">
 						<div>
-							<a href="#"><%=f.getTitle() %></a>
+							<a href="/csFAQPost.sms?postNo=<%= f.getPostNo()%>"><strong><%=f.getTitle() %></strong></a>
 						</div>
 						<div>
 							<a href="/csFAQ.sms">자주 묻는 질문</a>
@@ -161,7 +161,7 @@
 				</div>
 				-->
 				
-
+				<!-- 
 				<div id="paginationBox">
 					<ul id="pagination">
 						<a href="#"><li>&lt;</li></a>
@@ -173,6 +173,7 @@
 						<a href="#"><li>&gt;</li></a>
 					</ul>
 				</div>
+				 -->
 			</div>
 
 		</div>
