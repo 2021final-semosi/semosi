@@ -20,6 +20,7 @@ import kr.co.semosi.mypage.model.vo.ReceiveOfferReview;
 import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 import kr.co.semosi.mypage.model.vo.TeacherDocu;
+import kr.co.semosi.mypage.model.vo.WriteOfferReview;
 
 @Repository("mypageDAO")
 public class MypageDAO {
@@ -47,9 +48,19 @@ public class MypageDAO {
 		System.out.println("[MypageDAO]: 정상호출");
 		
 		List list =sqlSession.selectList("mypageReview.seletParentReviewReceive", page);
-		
-		return (ArrayList<ReceiveOfferReview>)list;
-		
+
+		return (ArrayList<ReceiveOfferReview>)list;		
+	}
+	
+	public ArrayList<WriteOfferReview> seletWriteOfferReview(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
+		System.out.println("[MypageDAO]: 정상호출");
+		List list =sqlSession.selectList("mypageReview.seletWriteOfferReview", pageMaker);
+		return (ArrayList<WriteOfferReview>)list;
+	}
+	
+	public int selectWriteOfferReviewTotalCount(SqlSessionTemplate sqlSession, String memberNo) {
+		System.out.println("[MypageDAO]: 정상호출");
+		return sqlSession.selectOne("mypageReview.selectWriteOfferReviewTotalCount", memberNo);
 	}
 
 	
