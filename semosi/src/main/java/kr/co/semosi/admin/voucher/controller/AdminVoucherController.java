@@ -39,7 +39,7 @@ public class AdminVoucherController {
         if(startPage==1){
         	startLimitPage = 0;
         }else{
-        	startLimitPage = (startPage-1)*visiblePages+1;
+        	startLimitPage = (startPage - 1) * visiblePages + (startPage - 1);
         }
         
         paramMap.put("start", startLimitPage);
@@ -59,7 +59,7 @@ public class AdminVoucherController {
 	}
 	
 	@RequestMapping(value="/refundRequestP.sms")
-	public void refundRequestP(@RequestParam int voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
+	public void refundRequestP(@RequestParam String voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
 		int result = voucherService.refundUpdate(voucherNo,phone);
 		if(result>0) {
 			response.getWriter().print("true");
@@ -69,7 +69,7 @@ public class AdminVoucherController {
 	}
 	
 	@RequestMapping(value="/refundRequestS.sms")
-	public void refundRequestS(@RequestParam int voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
+	public void refundRequestS(@RequestParam String voucherNo, @RequestParam String phone, HttpServletResponse response) throws IOException {
 		int result = voucherService.refundUpdateS(voucherNo,phone);
 		if(result>0) {
 			response.getWriter().print("true");
@@ -98,7 +98,7 @@ public class AdminVoucherController {
         if(startPage==1){
         	startLimitPage = 0;
         }else{
-        	startLimitPage = (startPage-1)*visiblePages+1;
+        	startLimitPage = (startPage - 1) * visiblePages + (startPage - 1);
         }
         
         paramMap.put("start", startLimitPage);

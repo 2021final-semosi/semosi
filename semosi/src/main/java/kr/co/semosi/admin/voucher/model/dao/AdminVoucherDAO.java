@@ -20,7 +20,7 @@ public class AdminVoucherDAO {
 		return sqlSession.selectOne("voucher.parentsVoucherContentCnt",paramMap);
 	}
 
-	public int refundUpdate(SqlSessionTemplate sqlSession, int voucherNo, String phone) {
+	public int refundUpdate(SqlSessionTemplate sqlSession, String voucherNo, String phone) {
 		ParentsVoucherView pv = new ParentsVoucherView();
 		pv.setVoucherNo(voucherNo);
 		pv.setPhone(phone);
@@ -35,7 +35,7 @@ public class AdminVoucherDAO {
 		return sqlSession.selectOne("voucher.sitterVoucherContentCnt",paramMap);
 	}
 
-	public int refundUpdateS(SqlSessionTemplate sqlSession, int voucherNo, String phone) {
+	public int refundUpdateS(SqlSessionTemplate sqlSession, String voucherNo, String phone) {
 		SitterVoucherView sv = new SitterVoucherView();
 		sv.setVoucherNo(voucherNo);
 		sv.setPhone(phone);
