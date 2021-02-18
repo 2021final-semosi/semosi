@@ -183,6 +183,7 @@ public class AdminMemberController {
 	@RequestMapping(value = "/documentcertYN.sms")
 	public String documentCretYN(@RequestParam String imageNo, HttpServletResponse response) throws IOException {
 		int result = mService.documentCretYN(imageNo);
+		System.out.println(imageNo);
 
 		if (result > 0) {
 			System.out.println("성공");

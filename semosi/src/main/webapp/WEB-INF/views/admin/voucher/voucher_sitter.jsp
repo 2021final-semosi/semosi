@@ -152,6 +152,7 @@ $("#pagination").append(pagination);//--페이지 셋팅
 					</div>
 					<div id="pagination" class="pagenavigation"></div>
 				</div>
+				
 			</div>
 			</form>
 		</div>
