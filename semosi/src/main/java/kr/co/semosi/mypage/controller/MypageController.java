@@ -2,11 +2,10 @@ package kr.co.semosi.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
-
-import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
@@ -39,10 +37,10 @@ import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
-import kr.co.semosi.mypage.model.vo.ReceiveOfferReview;
 import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 import kr.co.semosi.mypage.model.vo.TeacherDocu;
+import kr.co.semosi.mypage.model.vo.WriteOfferReview;
 
 @Controller
 public class MypageController {
@@ -123,10 +121,10 @@ public class MypageController {
 	}
 
 	// 내 신청서 조회
-	@RequestMapping(value = "/parentApplication.sms")
+	@RequestMapping(value = "/parentMyApplication.sms")
 	public String parentApplication() {
 
-		System.out.println("[/parentApplication.sms] 정상적으로 호출 되었습니다.");
+		System.out.println("[/parentMyApplication.sms] 정상적으로 호출 되었습니다.");
 		return "mypage/parent/application";
 	}
 
@@ -150,9 +148,9 @@ public class MypageController {
 		System.out.println("[/parentReviewReceive.sms] 정상적으로 호출 되었습니다.");
 
 		int page=1;
-		 ArrayList<ReceiveOfferReview> list= myService.seletParentReviewReceive(page);
+		 /*ArrayList<ReceiveOfferReview> list= myService.seletParentReviewReceive(page);
 		 System.out.println(list.get(0));
-		 model.addAttribute("list", list);
+		 model.addAttribute("list", list);*/
 		
 		return "mypage/parent/reviewReceive";
 	}
@@ -162,10 +160,27 @@ public class MypageController {
 	
 	// 작성한 후기
 	@RequestMapping(value = "/parentReviewWrite.sms")
-	public String parentReviewWrite() {
-
+	public ModelAndView parentReviewWrite(@ModelAttribute("cri") Criteria cri, ModelAndView mav, @SessionAttribute("pMember") ParentMember sessionMember) {
 		System.out.println("[/parentReviewWrite.sms] 정상적으로 호출 되었습니다.");
-		return "mypage/parent/reviewWrite";
+		String memberNo = sessionMember.getMemberNo();
+		System.out.println("session"+memberNo);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri); // page와 perPageNum 셋팅
+		// 기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
+		cri.setMemberNo(memberNo);
+		
+		pageMaker.setTotalCount(myService.selectWriteOfferReviewTotalCount(memberNo));
+		
+		pageMaker.setMemberNo(memberNo); // 조회할 회원의 번호
+		ArrayList<WriteOfferReview> wor = myService.seletWriteOfferReview(pageMaker);
+
+		mav.addObject("list", wor);
+		mav.addObject("pageMaker", pageMaker);
+
+		mav.setViewName("mypage/parent/reviewWrite"); // ViewResolver에 의해서
+															// 경로가 최종 완성됨
+		return mav;
 	}
 
 	// 내 채용내역
@@ -323,10 +338,10 @@ public class MypageController {
 	}
 
 	// 내 신청서 조회
-	@RequestMapping(value = "/sitterApplication.sms")
+	@RequestMapping(value = "/sitterMyApplication.sms")
 	public String sitterApplication() {
 
-		System.out.println("[/sitterApplication.sms] 정상적으로 호출 되었습니다.");
+		System.out.println("[/sitterMyApplication.sms] 정상적으로 호출 되었습니다.");
 		return "mypage/sitter/application";
 	}
 

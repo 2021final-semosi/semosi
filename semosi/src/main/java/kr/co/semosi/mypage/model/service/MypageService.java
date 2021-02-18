@@ -19,6 +19,7 @@ import kr.co.semosi.mypage.model.vo.ReceiveOfferReview;
 import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 import kr.co.semosi.mypage.model.vo.TeacherDocu;
+import kr.co.semosi.mypage.model.vo.WriteOfferReview;
 
 @Service("mypageService")
 public class MypageService {
@@ -53,12 +54,14 @@ public class MypageService {
 	}
 
 	// 부모 리뷰작성 조회
-	public ArrayList<ReceiveOfferReview> seletParentReviewReceive(int page) {
+	public ArrayList<WriteOfferReview> seletWriteOfferReview(PageMaker pageMaker) {
 		System.out.println("[MypageService]: 정상호출");
-		ArrayList<ReceiveOfferReview> list = myDAO.seletParentReviewReceive(sqlSession, page);
-
-		return list;
-
+		return myDAO.seletWriteOfferReview(sqlSession, pageMaker);
+	}
+	
+	public int selectWriteOfferReviewTotalCount(String memberNo) {
+		System.out.println("[MypageDAO]: 정상호출");
+		return myDAO.selectWriteOfferReviewTotalCount(sqlSession, memberNo);
 	}
 
 	//////////////////////////////////////////////////////////////////////////

@@ -58,30 +58,30 @@
 <body>
 	<script>
 		function resiDocuApply() {
-			
+
 			//작은 창 하나 띄워서 
 			window.open("/resiDocuUploadPage.sms", "세모시 - 세상의 모든 시터",
-            "width=500px,height=300px");
+					"width=500px,height=300px");
 			child.close();
 		}
-		
+
 		function healthDocuApply() {
 
 			window.open("/healthDocuUploadPage.sms", "세모시 - 세상의 모든 시터",
-            "width=500px,height=300px");
+					"width=500px,height=300px");
 			window.close();
 		}
-		
+
 		function familyDocuApply() {
 
 			window.open("/familyDocuUploadPage.sms", "세모시 - 세상의 모든 시터",
-            "width=500px,height=300px");
+					"width=500px,height=300px");
 			window.close();
 		}
-		
+
 		function teacherDocuApply() {
 			window.open("/teacherDocuUploadPage.sms", "세모시 - 세상의 모든 시터",
-            "width=500px,height=300px");
+					"width=500px,height=300px");
 		}
 	</script>
 	<link rel="stylesheet"

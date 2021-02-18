@@ -88,7 +88,7 @@ JobSearchList jsl = (JobSearchList)request.getAttribute("postData");
 				</div>
 				 -->
 
-						<img class="profileImg" src="/resources/images/profile/<%=jsl.getOriginalName() %>" />
+						<img class="profileImg" src="/resources/images/profile/<%=jsl.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'"/>
 
 					</div>
 					<div class="col-md-12" id="parentInfoBox">
@@ -390,6 +390,9 @@ JobSearchList jsl = (JobSearchList)request.getAttribute("postData");
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id="btn-panel">
+			<a href="/offerPostApply.sms?postNo=<%=jsl.getPostNo() %>">신청하기</a>
 		</div>
 	</div>
 		

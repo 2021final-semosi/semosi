@@ -183,12 +183,6 @@
   })(document, 'script', 'kakao-js-sdk');
 </script>
 
-<%
-	ArrayList<ParentVoucher> list = (ArrayList<ParentVoucher>)request.getAttribute("list");
-	PageMaker pageMaker = (PageMaker)request.getAttribute("pageMaker");
-
-	
-%>
 
 <header>
 	<%@ include file="/WEB-INF/views/commons/header.jsp"%>
@@ -201,6 +195,10 @@
 <!-- 여기서 부터 적용 -->
 
 
+<%
+	ArrayList<ParentVoucher> list = (ArrayList<ParentVoucher>)request.getAttribute("list");
+	PageMaker pageMaker = (PageMaker)request.getAttribute("pageMaker");
+%>
 <section id="wrapper">
 	<div class="container">
 		<div class="title row m-0">
@@ -226,6 +224,8 @@
 		String sysdate =simpleDate.format(date);
 		
 		%>
+		
+		
 		<%for(ParentVoucher pv : list){ %>
 		
 		<div class="row p-0 m-0 line-content text-center">

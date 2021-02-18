@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mypageReview">
 
-<select id="selectParentReivewTotalCount" resultType="Integer">
+<select id="selectWriteOfferReviewTotalCount" resultType="Integer">
       SELECT count(*)
       FROM WRITE_OFFER_REVIEW
-      WHERE REVIEW_NO = #{reviewNo}
+      WHERE memberP_no = #{memberNo}
    </select>
 
-   <select id="seletParentReviewReceive" parameterType="java.util.HashMap" resultType="WriterOfferReview">
+   <select id="seletWriteOfferReview" parameterType="java.util.HashMap" resultType="WriteOfferReview">
       SELECT
          POST_NO AS postNo,
          REVIEW_NO AS reviewNo,
@@ -18,7 +18,7 @@
          CONTENT AS content
       FROM(
       SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, WRITE_OFFER_REVIEW.*
-      FROM WRITE_OFFER_REVIEW WHERE REVIEW_NO = #{reviewNo})
+      FROM WRITE_OFFER_REVIEW WHERE memberP_no = #{memberNo})
       WHERE Row_Num BETWEEN #{startPage} AND #{endPage}
    </select>
  
