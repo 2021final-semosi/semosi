@@ -15,6 +15,7 @@ import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
+import kr.co.semosi.mypage.model.vo.ReceiveOfferReview;
 import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 import kr.co.semosi.mypage.model.vo.TeacherDocu;
@@ -52,11 +53,11 @@ public class MypageService {
 	}
 
 	// 부모 리뷰작성 조회
-	public void seletParentReviewReceive(String memberNo) {
+	public ArrayList<ReceiveOfferReview> seletParentReviewReceive(int page) {
 		System.out.println("[MypageService]: 정상호출");
-		myDAO.seletParentReviewReceive(sqlSession, memberNo);
+		ArrayList<ReceiveOfferReview> list = myDAO.seletParentReviewReceive(sqlSession, page);
 
-		return;
+		return list;
 
 	}
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mypageReview">
+
+<select id="selectParentReivewTotalCount" resultType="Integer">
+      SELECT count(*)
+      FROM WRITE_OFFER_REVIEW
+      WHERE REVIEW_NO = #{reviewNo}
+   </select>
+
+   <select id="seletParentReviewReceive" parameterType="java.util.HashMap" resultType="WriterOfferReview">
+      SELECT
+         POST_NO AS postNo,
+         REVIEW_NO AS reviewNo,
+         MEMBER_NAME AS memberName,
+         WRITE_DATE AS writeDate,
+         GRADE AS grade,
+         CONTENT AS content
+      FROM(
+      SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, WRITE_OFFER_REVIEW.*
+      FROM WRITE_OFFER_REVIEW WHERE REVIEW_NO = #{reviewNo})
+      WHERE Row_Num BETWEEN #{startPage} AND #{endPage}
+   </select>
+ 
+</mapper>
