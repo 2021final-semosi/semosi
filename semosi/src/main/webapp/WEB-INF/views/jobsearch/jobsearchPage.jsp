@@ -193,7 +193,7 @@
 				<ul>
 				<% for(JobSearchList jsl : list) { %>
 					<li>
-						<a href="/moveSearchJobPost.sms?MemberPNo=<%=jsl.getMemberpNo() %>">
+						<a href="/moveSearchJobPost.sms?postNo=<%=jsl.getPostNo() %>">
 							<div>
 								<img alt="프로필사진" src="/resources/images/profile/<%=jsl.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'">
 							</div>

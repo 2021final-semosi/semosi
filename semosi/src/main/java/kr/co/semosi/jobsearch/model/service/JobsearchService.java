@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import kr.co.semosi.joboffer.model.vo.JobOfferPost;
 import kr.co.semosi.jobsearch.model.dao.JobsearchDAO;
+import kr.co.semosi.jobsearch.model.vo.JobSearchApply;
 import kr.co.semosi.jobsearch.model.vo.JobSearchList;
 
 @Service("jobsearchService")
@@ -30,12 +30,20 @@ public class JobsearchService {
 		return list;
 	}
 
-	public JobSearchList selectOneJobPost(String memberPNo) {
+	public JobSearchList selectOneJobPost(int postNo) {
 		System.out.println("[JobofferService : selectOneJobPost] 호출 성공");
 		
-		JobSearchList jsp=jDAO.selectOneJobPost(sqlSession, memberPNo);
+		JobSearchList jsp=jDAO.selectOneJobPost(sqlSession, postNo);
 		
 		return jsp;
+	}
+	
+	public int insertSearchApply(JobSearchApply jsa) {
+		System.out.println("[JobsearchService : insertSearchApply] 호출 성공");
+		
+		int result=jDAO.insertSearchApply(sqlSession, jsa);
+		
+		return result;
 	}
 
 }
