@@ -11,7 +11,7 @@ import kr.co.semosi.cs.model.vo.FAQ;
 import kr.co.semosi.cs.model.vo.Guide;
 import kr.co.semosi.cs.model.vo.Notice;
 import kr.co.semosi.cs.model.vo.QnA;
-import kr.co.semosi.member.model.vo.SitterMember;
+import kr.co.semosi.cs.model.vo.QnAComment;
 
 @Repository("csDAO")
 public class CsDAO {
@@ -64,6 +64,13 @@ public class CsDAO {
 	public QnA selectQnAPost(SqlSessionTemplate sqlSession, int postNo) {
 		QnA q = sqlSession.selectOne("cs.selectQnAPost", postNo);
 		return q;
+	}
+	
+	// QnA 게시글 한 개의 댓글(관리자답변) 가져오기
+	public QnAComment selectQnAComment(SqlSessionTemplate sqlSession, int postNo) {
+		QnAComment qc =  sqlSession.selectOne("cs.selectQnAComment",postNo);
+		System.out.println("[CSDAO] : "+qc.getPostNo()+" / "+qc.getContent());
+		return qc;
 	}
 
 	// notice 글 리스트 가져오기
@@ -224,17 +231,21 @@ public class CsDAO {
 		
 	}
 	
+	//cs메인에서 자주 묻는 질문 게시판 키워드 검색
 	public ArrayList<FAQ> selectFAQSearch(SqlSessionTemplate sqlSession, String keyword) {
 		List list = sqlSession.selectList("cs.selectFAQSearch",keyword);
 		return (ArrayList<FAQ>) list;
 		
 	}
 	
+	//cs메인에서 이용 가이드 게시판 키워드 검색
 	public ArrayList<Guide> selectGuideSearch(SqlSessionTemplate sqlSession, String keyword) {
 		List list = sqlSession.selectList("cs.selectGuideSearch",keyword);
 		return (ArrayList<Guide>) list;
 		
 	}
+
+
 
 
 

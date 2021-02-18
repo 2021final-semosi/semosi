@@ -72,13 +72,14 @@
 					<form action="/csPostInfo.sms" method="post">
 						<input type="hidden" name="board" value="FAQ"/>
 						<input type="hidden" name="postNo" value="<%=FAQPost.getPostNo()%>"/>
-						<input type="submit" id="modBtn" value="수정">
+						<input style="visibility:hidden; type="submit" id="modBtn" value="수정">
 					</form>
-					<button id="delBtn">삭제</button>
+					<button style="visibility:hidden; id="delBtn">삭제</button>
 					<a href="/csFAQ.sms" id="listBtn">목록</a>
 				</div>
 			</div>
 		</div>
+		<!-- 
 		<div class="row no-gutters">
 			<div class="col-md-12" id="commentBox">
 				<ul id="comment">
@@ -103,6 +104,7 @@
 				</div>
 			</div>
 		</div>
+		 -->
 
 	</div>
 	<footer><%@ include file="/WEB-INF/views/commons/footer.jsp"%>

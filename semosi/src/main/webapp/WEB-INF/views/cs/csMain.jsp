@@ -133,12 +133,30 @@
 				</table>
 			</div>
 			
-			
-			
-			
-			
-			
-			
+			<div class="col-md-6 csTableBox">
+				<table class="csTable" cellspacing="0px" cellpadding="0px">
+					<caption>
+						<h4>
+							<a href="/csQnA.sms">1:1문의</a>
+						</h4>
+					</caption>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>	
+					<% ArrayList<QnA> QnAList = (ArrayList<QnA>)request.getAttribute("QnAList");%>
+					
+
+		
+					<% for(int i=0;i<5;i++){ %>
+						<tr>
+							<td><a href="/csQnAPost.sms?postNo=<%=QnAList.get(i).getPostNo()%>"><%= QnAList.get(i).getTitle() %></a></td>
+							
+							<td><%= sdf.format(QnAList.get(i).getWriteDate()) %></td>
+						</tr>
+					<%} %>
+					
+				</table>
 			</div>
 		</div>
 	</div>

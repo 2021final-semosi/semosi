@@ -17,7 +17,7 @@
 			</div>
 			<div id="info-panel" class="footer-panel">
 				<ul class="style-bold style-color-white">맘시터 정보
-					<li><a href="/moveIntroduce.sms">서비스 소개</a></li>
+					<li><a href="/introduce.sms">서비스 소개</a></li>
 					<hr>
 					<li><a href="/admin_index.jsp">관리자 페이지</a></li>
 				</ul>
@@ -27,7 +27,7 @@
 					<li><a href="/csNotice.sms">공지사항</a></li>
 					<li><a href="/csGuide.sms">이용가이드</a></li>
 					<li><a href="/csFAQ.sms">자주 묻는 질문</a></li>
-					<li><a href="/moveTerms.sms">이용약관</a></li>
+					<li><a href="/terms.sms">이용약관</a></li>
 				</ul>
 				<hr>
 				<div>
