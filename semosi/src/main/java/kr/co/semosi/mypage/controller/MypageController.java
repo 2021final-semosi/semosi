@@ -37,6 +37,7 @@ import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
+import kr.co.semosi.mypage.model.vo.ReceiveOfferReview;
 import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 import kr.co.semosi.mypage.model.vo.TeacherDocu;
@@ -120,7 +121,8 @@ public class MypageController {
 		return "mypage/parent/application";
 	}
 
-	// 작성한 후기
+/*	
+ 	// 받은 후기
 	@RequestMapping(value = "/parentReviewReceive.sms")
 	public String seletParentReviewReceive(@SessionAttribute("pMember") ParentMember pMember) {
 		System.out.println("[/parentReviewReceive.sms] 정상적으로 호출 되었습니다.");
@@ -132,8 +134,24 @@ public class MypageController {
 
 		return "mypage/parent/reviewReceive";
 	}
-
+*/
 	// 받은 후기
+	@RequestMapping(value = "/parentReviewReceive.sms")
+	public String seletParentReviewReceive(Model model) {
+		System.out.println("[/parentReviewReceive.sms] 정상적으로 호출 되었습니다.");
+
+		int page=1;
+		 ArrayList<ReceiveOfferReview> list= myService.seletParentReviewReceive(page);
+		 System.out.println(list.get(0));
+		 model.addAttribute("list", list);
+		
+		return "mypage/parent/reviewReceive";
+	}
+	
+	
+	
+	
+	// 작성한 후기
 	@RequestMapping(value = "/parentReviewWrite.sms")
 	public String parentReviewWrite() {
 

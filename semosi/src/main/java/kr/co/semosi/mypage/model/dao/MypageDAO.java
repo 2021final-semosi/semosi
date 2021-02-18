@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import kr.co.semosi.joboffer.model.vo.JobOfferList;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.vo.ApplicationReceived;
@@ -14,6 +16,7 @@ import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
 import kr.co.semosi.mypage.model.vo.ParentVoucher;
 import kr.co.semosi.mypage.model.vo.QnA;
+import kr.co.semosi.mypage.model.vo.ReceiveOfferReview;
 import kr.co.semosi.mypage.model.vo.ResidentDocu;
 import kr.co.semosi.mypage.model.vo.SitterVoucher;
 import kr.co.semosi.mypage.model.vo.TeacherDocu;
@@ -40,14 +43,15 @@ public class MypageDAO {
 		return result;
 	}
 
-	public void seletParentReviewReceive(SqlSessionTemplate sqlSession, String memberNo) {
+	public ArrayList<ReceiveOfferReview> seletParentReviewReceive(SqlSessionTemplate sqlSession, int page) {
 		System.out.println("[MypageDAO]: 정상호출");
-		sqlSession.selectList("ParentReceiveReview.seletParentReviewReceive", memberNo);
-
+		
+		List list =sqlSession.selectList("mypageReview.seletParentReviewReceive", page);
+		
+		return (ArrayList<ReceiveOfferReview>)list;
+		
 	}
-	
-	
-	
+
 	
 	//////////////////////////////////////////////////////////////////////////
 	//혜린

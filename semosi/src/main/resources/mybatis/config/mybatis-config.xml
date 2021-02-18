@@ -44,13 +44,16 @@
 		<typeAlias type="kr.co.semosi.mypage.model.vo.HealthDocu" alias="myPageHealthDocu" />
 		<typeAlias type="kr.co.semosi.mypage.model.vo.ResidentDocu" alias="myPageResidentDocu" />
 		<typeAlias type="kr.co.semosi.mypage.model.vo.TeacherDocu" alias="myPageTeacherDocu" />
-
+		
+		
+		<typeAlias type="kr.co.semosi.mypage.model.vo.ReceiveOfferReview" alias="ReceiveOfferReview"/>
+		<typeAlias type="kr.co.semosi.mypage.model.vo.WriteOfferReview" alias="WriteOfferReview"/>
 		
 		
 		<typeAlias type="kr.co.semosi.member.model.vo.Authentication" alias="Authentication"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.ParentMember" alias="ParentMember"/>
 		<typeAlias type="kr.co.semosi.member.model.vo.SitterMember" alias="SitterMember"/>
-		<typeAlias type="kr.co.semosi.mypage.model.vo.ParentReceiveReview" alias="parentReceiveReview"/>
+		
 
 		
 		
