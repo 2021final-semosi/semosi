@@ -1,122 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="sitterMember">
-  <select id="selectLogin" parameterType="SitterMember" resultType="SitterMember">
-  	SELECT 
-  		MEMBERS_NO as memberNo,
-  		MEMBER_NAME as memberName,
-  		MEMBER_ID as memberId,
-  		MEMBER_PW as memberPw,
-  		PHONE as phone,
-  		ADDRESS as address,
-  		GENDER as gender,
-  		ENROLL_DATE as enrollDate,
-  		END_DATE as endDate,
-  		END_YN as endYN,
-  		BIRTH_DAY as birthDay,
-  		DOCUMENT_YN as documentYN
-  	FROM MEMBER_S
-  	WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
-  </select>
-  
-  <select id="selectIdCheck" resultType="SitterMember">
-  	SELECT 
-  		MEMBERS_NO as memberNo,
-  		MEMBER_NAME as memberName,
-  		MEMBER_ID as memberId,
-  		MEMBER_PW as memberPw,
-  		PHONE as phone,
-  		ADDRESS as address,
-  		GENDER as gender,
-  		ENROLL_DATE as enrollDate,
-  		END_DATE as endDate,
-  		END_YN as endYN,
-  		BIRTH_DAY as birthDay,
-  		DOCUMENT_YN as documentYN
-  	FROM MEMBER_S
-  	WHERE MEMBER_ID=#{memberId}  
-  </select>
-  
-  <select id="selectPhoneCheck" resultType="SitterMember">
-  	SELECT 
-  		MEMBERS_NO as memberNo,
-  		MEMBER_NAME as memberName,
-  		MEMBER_ID as memberId,
-  		MEMBER_PW as memberPw,
-  		PHONE as phone,
-  		ADDRESS as address,
-  		GENDER as gender,
-  		ENROLL_DATE as enrollDate,
-  		END_DATE as endDate,
-  		END_YN as endYN,
-  		BIRTH_DAY as birthDay,
-  		DOCUMENT_YN as documentYN
-  	FROM MEMBER_S
-  	WHERE PHONE=#{phone}  
-  </select>
-  
-  <insert id="memberSignup" parameterType="SitterMember">
-  	INSERT INTO MEMBER_S VALUES('S'||MEMBERS_SEQ.NEXTVAL, #{memberName}, #{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, sysdate, null, 'N', #{birthDay}, 'N')
-  </insert>
-  
-   <insert id="7daysVoucher">
-  	INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'7일 이용권',5000,sysdate,sysdate+7,'N' )
-  </insert>
-  <insert id="14daysVoucher">
-  	INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'14일 이용권',8000,sysdate,sysdate+14,'N' )
-  </insert>
-  <insert id="30daysVoucher">
-  	INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL, #{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
-  </insert>
-    <update id="updateSitterFrofile">
-		UPDATE MEMBER_S SET PHONE=#{phone},ADDRESS=#{address} WHERE MEMBER_ID=#{memberId}
+	<select id="selectLogin" parameterType="SitterMember"
+		resultType="SitterMember">
+		SELECT
+		MEMBERS_NO as memberNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as memberId,
+		MEMBER_PW as memberPw,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN as endYN,
+		BIRTH_DAY as birthDay,
+		DOCUMENT_YN as documentYN
+		FROM MEMBER_S
+		WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
+	</select>
+
+	<select id="selectIdCheck" resultType="SitterMember">
+		SELECT
+		MEMBERS_NO as memberNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as memberId,
+		MEMBER_PW as memberPw,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN as endYN,
+		BIRTH_DAY as birthDay,
+		DOCUMENT_YN as documentYN
+		FROM MEMBER_S
+		WHERE MEMBER_ID=#{memberId}
+	</select>
+
+	<select id="selectPhoneCheck" resultType="SitterMember">
+		SELECT
+		MEMBERS_NO as memberNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as memberId,
+		MEMBER_PW as memberPw,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN as endYN,
+		BIRTH_DAY as birthDay,
+		DOCUMENT_YN as documentYN
+		FROM MEMBER_S
+		WHERE PHONE=#{phone}
+	</select>
+
+	<insert id="memberSignup" parameterType="SitterMember">
+		INSERT INTO MEMBER_S VALUES('S'||MEMBERS_SEQ.NEXTVAL, #{memberName},
+		#{memberId}, #{memberPw}, #{phone}, #{address}, #{gender}, sysdate,
+		null, 'N', #{birthDay}, 'N')
+	</insert>
+
+	<insert id="7daysVoucher">
+		INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL,
+		#{memberNo},'7일 이용권',5000,sysdate,sysdate+7,'N' )
+	</insert>
+	<insert id="14daysVoucher">
+		INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL,
+		#{memberNo},'14일 이용권',8000,sysdate,sysdate+14,'N' )
+	</insert>
+	<insert id="30daysVoucher">
+		INSERT INTO SITTER_VOUCHER VALUES('SV'||SITTER_VOUCHER_SEQ.NEXTVAL,
+		#{memberNo},'30일 이용권',15000,sysdate,sysdate+30,'N' )
+	</insert>
+	<update id="updateSitterFrofile">
+		UPDATE MEMBER_S SET PHONE=#{phone},ADDRESS=#{address}
+		WHERE MEMBER_ID=#{memberId}
 	</update>
-	
-	
-	
-  <select id="selectCurrentPwCheck" parameterType="SitterMember" resultType="SitterMember">
-  	SELECT 
-  		MEMBERS_NO as memberNo,
-  		MEMBER_NAME as memberName,
-  		MEMBER_ID as memberId,
-  		MEMBER_PW as memberPw,
-  		PHONE as phone,
-  		ADDRESS as address,
-  		GENDER as gender,
-  		ENROLL_DATE as enrollDate,
-  		END_DATE as endDate,
-  		END_YN as endYN,
-  		BIRTH_DAY as birthDay,
-  		DOCUMENT_YN as documentYN
-  	FROM MEMBER_S
-  	WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
-  </select>
-  
- 	<update id="updatePw">
+
+
+
+	<select id="selectCurrentPwCheck" parameterType="SitterMember"
+		resultType="SitterMember">
+		SELECT
+		MEMBERS_NO as memberNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as memberId,
+		MEMBER_PW as memberPw,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN as endYN,
+		BIRTH_DAY as birthDay,
+		DOCUMENT_YN as documentYN
+		FROM MEMBER_S
+		WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw} AND END_YN='N'
+	</select>
+
+	<update id="updatePw">
 		UPDATE MEMBER_S
-			SET
-				MEMBER_PW = #{memberPw}
-			WHERE MEMBER_ID=#{memberId}
+		SET
+		MEMBER_PW = #{memberPw}
+		WHERE MEMBER_ID=#{memberId}
 	</update>
-	
+
+	<select id="selectMemberIdFind" parameterType="SitterMember"
+		resultType="SitterMember">
+		SELECT
+		MEMBERS_NO as memberNo,
+		MEMBER_NAME as memberName,
+		MEMBER_ID as memberId,
+		MEMBER_PW as memberPw,
+		PHONE as phone,
+		ADDRESS as address,
+		GENDER as gender,
+		ENROLL_DATE as enrollDate,
+		END_DATE as endDate,
+		END_YN as endYN,
+		BIRTH_DAY as birthDay,
+		DOCUMENT_YN as documentYN
+		FROM MEMBER_S
+		WHERE PHONE=#{phone} AND END_YN='N'
+	</select>
+
 	<select id="selectSitterMyApplyParent" resultType="ApplicationReceived">
 		SELECT
-			FILE_NO AS fileNo,
-			ORIGINAL_NAME AS originalName,
-			APPLY_NO AS applyNo,
-			APPLY_POST_NO AS applyPostNo,
-			MEMBERP_NO AS memberpNo,
-			APPLY_DATE AS applyDate,
-			MY_NO AS myNo,
-			MEMBER_NAME AS memberName,
-			ADDRESS AS address,
-			GENDER AS gender,
-			PHONE AS phone,
-			BIRTH_DAY AS birthDay,
-			POST_NO AS postNo,
-			PAY AS pay,
-			AVG_GRADE AS avgGrade
+		FILE_NO AS fileNo,
+		ORIGINAL_NAME AS originalName,
+		APPLY_NO AS applyNo,
+		APPLY_POST_NO AS applyPostNo,
+		MEMBERP_NO AS memberpNo,
+		APPLY_DATE AS applyDate,
+		MY_NO AS myNo,
+		MEMBER_NAME AS memberName,
+		ADDRESS AS address,
+		GENDER AS gender,
+		PHONE AS phone,
+		BIRTH_DAY AS birthDay,
+		POST_NO AS postNo,
+		PAY AS pay,
+		AVG_GRADE AS avgGrade
 		FROM JOB_APPLICATION_RECEIVED WHERE MY_NO=#{membersNo}
 	</select>
-	
+
 </mapper>

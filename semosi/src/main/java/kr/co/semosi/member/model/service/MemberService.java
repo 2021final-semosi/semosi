@@ -192,5 +192,31 @@ public class MemberService implements MemberServiceInterface {
 		return result;
 	}
 
+	public String selectMemberIdFind(String phone) {
+		System.out.println("[MemberServiceImpl] selectMemberIdFind 메소드 호출");
+		ParentMember pMember = mDAO.selectParentMemberIdFind(sqlSession, phone);
+		SitterMember sMember = mDAO.selectSitterMemberIdFind(sqlSession, phone);
+		
+		String findResultId ="";
+		
+		if (pMember != null) { //부모회원테이블에 회원 아이디가 존재함 
+			findResultId = pMember.getMemberId();
+		} else if (sMember != null) {//부모회원테이블에 회원 아이디가 존재함 
+			findResultId = sMember.getMemberId();
+		}
+
+		return findResultId;
+	}
+
+	public ParentMember selectParentMemberPhone(String phone) {
+		ParentMember pMember = mDAO.selectParentMemberIdFind(sqlSession, phone);
+		return pMember;
+	}
+
+	public SitterMember selectSitterMemberPhone(String phone) {
+		SitterMember sMember = mDAO.selectSitterMemberIdFind(sqlSession, phone);
+		return sMember;
+	}
+
 
 }

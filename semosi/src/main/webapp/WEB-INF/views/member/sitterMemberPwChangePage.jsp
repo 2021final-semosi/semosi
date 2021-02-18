@@ -278,7 +278,7 @@
 					</div>
 
 					<br> <input type="button" id="submitBtn"
-						class="btn btn-warning" onclick="totalCheck();" value="회원가입" />
+						class="btn btn-warning" onclick="totalCheck();" value="비밀번호 변경" />
 				</form>
 
 				<br>

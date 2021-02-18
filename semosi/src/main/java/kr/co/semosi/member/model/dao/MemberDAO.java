@@ -124,6 +124,18 @@ public class MemberDAO {
 		return result;
 	}
 
+	public ParentMember selectParentMemberIdFind(SqlSessionTemplate sqlSession, String phone) {
+		ParentMember pMember = sqlSession.selectOne("parentMember.selectMemberIdFind", phone);
+		return pMember;
+		
+	}
+
+	public SitterMember selectSitterMemberIdFind(SqlSessionTemplate sqlSession, String phone) {
+		SitterMember sMember = sqlSession.selectOne("sitterMember.selectMemberIdFind", phone);
+		return sMember;
+	}
+
+
 
 
 }
