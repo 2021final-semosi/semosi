@@ -86,7 +86,7 @@ public class MemberController {
 			SitterMember sMember = mService.selectLoginSitter(sm);
 
 			if (sMember != null) {
-				
+
 				HttpSession session = request.getSession();
 				session.setAttribute("sMember", sMember);
 				System.out.println("로그인 성공[ 시터 회원 : " + sMember.getMemberId() + "]");
@@ -240,8 +240,8 @@ public class MemberController {
 		int result = mService.deleteAuthenticationNum(checkNumber);
 		return;
 	}
-	
-	//핸드폰 번호 DB에 중복저장된게 있는지 확인 -ajax
+
+	// 핸드폰 번호 DB에 중복저장된게 있는지 확인 -ajax
 	@RequestMapping(value = "/memberPhoneCheck.sms")
 	public void memberPhoneCheck(@RequestParam String phone, HttpServletResponse response) throws IOException {
 
@@ -261,7 +261,7 @@ public class MemberController {
 		return;
 		// ajax는 비동기 방식이기 때문에 리턴값 X
 	}
-	
+
 	// 회원가입 로직 진행
 	@RequestMapping(value = "/memberSignup.sms")
 	public ModelAndView memberSignup(@RequestParam String memberType, ParentMember pMember, SitterMember sMember,
@@ -306,132 +306,165 @@ public class MemberController {
 
 	// ID 찾기
 	@RequestMapping(value = "/memberIdFind.sms")
-	public void memberIdFind() {
+	public String memberIdFind() {
+		return "member/memberIdFind";
+	}
+
+	// ID 조회 SELECT
+	@RequestMapping(value = "/memberIdSearch.sms")
+	public String selectMemberIdFind(@RequestParam String phone, Model model) {
+
+		String findResultId = mService.selectMemberIdFind(phone);
+
+		model.addAttribute("searchId", findResultId);
+
+		return "member/memberIdFindResult";
 
 	}
 
 	// PW 찾기
 	@RequestMapping(value = "/memberPwFind.sms")
-	public void memberPwFind() {
-
+	public String memberPwFind() {
+		return "member/memberPwFind";
 	}
 	
-	//부모 - 비밀번호 수정 페이지 이동
+	// PW 찾기
+	@RequestMapping(value = "/memberPwChangeToPhone.sms")
+	public ModelAndView memberPwChangeToPhone(@RequestParam String phone, @RequestParam String memberPw,ModelAndView mav) {
+		
+		//일단 핸드폰으로 멤버 테이블들을 조회한 뒤 
+		// 수정할 멤버 객체를 가져와줘야함 
+		ParentMember pm = mService.selectParentMemberPhone(phone);
+		SitterMember sm = mService.selectSitterMemberPhone(phone);
+		int result=0;
+		if(pm!=null){
+			pm.setMemberPw(memberPw);
+			result = mService.updateParentPw(pm);
+			mav.addObject("msg", "비밀번호 변경이 완료되었습니다.");
+		}else if(sm!=null){
+			sm.setMemberPw(memberPw);
+			result = mService.updateSitterPw(sm);
+			mav.addObject("msg", "비밀번호 변경이 완료되었습니다.");
+		}else{//회원가입하지않은 사람 
+			mav.addObject("msg", "핸드폰 번호로 가입한 회원이 존재하지 않습니다. 회원가입을 하고 세모시를 이용해보세요.");
+		}
+		
+		mav.addObject("location", "/");
+		mav.setViewName("member/result");
+
+		return mav;
+	}
+
+	// 부모 - 비밀번호 수정 페이지 이동
 	@RequestMapping(value = "/parentPwChangePage.sms")
 	public String parentMemberPwChange() {
 		return "member/parentMemberPwChangePage";
 	}
-	
-	//부모 - 비밀번호 수정 - 현재 비밀번호화 일치하는지 확인 -ajax
+
+	// 부모 - 비밀번호 수정 - 현재 비밀번호화 일치하는지 확인 -ajax
 	@RequestMapping(value = "/parentCurrentPwCheck.sms")
 	public void selectParentCurrentPwCheck(@SessionAttribute("pMember") ParentMember sessionMember,
-			@RequestParam String memberPw, HttpServletResponse response)
-			throws IOException {
-		
+			@RequestParam String memberPw, HttpServletResponse response) throws IOException {
+
 		System.out.println("[/parentCurrentPwCheck.sms] 정상적으로 호출되었습니다.");
-		
-		sessionMember.setMemberPw(memberPw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW 확인
+
+		sessionMember.setMemberPw(memberPw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW
+											// 확인
 		ParentMember pMember = mService.selectParentCurrentPwCheck(sessionMember);
-		
+
 		if (pMember != null) {
-			// 디비에 ID/PW 일치하는 객체가 있다면 
+			// 디비에 ID/PW 일치하는 객체가 있다면
 			response.getWriter().print(true);
 		} else {
 			response.getWriter().print(false);
 		}
 		return;
 	}
-	
-	
-	//비밀번호 수정 - DB
-		@RequestMapping(value = "/parentPwChange.sms")
-		public ModelAndView parentMemberPwChange(@RequestParam String changePw, @SessionAttribute("pMember") ParentMember sessionMember,
-				ModelAndView mav, HttpSession session) {
-			System.out.println("[/parentPwChange.sms] 정상적으로 호출되었습니다.");
 
-			sessionMember.setMemberPw(changePw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW 확인
-			int result = mService.updateParentPw(sessionMember);
-			
-			
-			//결과처리
-			if(result>0)
-			{
-				//session 갱신
-				//기존 session에 저장된 member 객체 정보 삭제
-				session.removeAttribute("pMember");
-				session.setAttribute("pMember", sessionMember);
-				
-				mav.addObject("msg","비밀번호 변경이 완료되었습니다.");
-				
-			}else
-			{
-				mav.addObject("msg","비밀번호 변경에 실패하였습니다. 재시도해주십시오.");
-			}
-			mav.addObject("location", "/");
-			mav.setViewName("member/result");
-			
-			return mav;
-			
+	// 비밀번호 수정 - DB
+	@RequestMapping(value = "/parentPwChange.sms")
+	public ModelAndView parentMemberPwChange(@RequestParam String changePw,
+			@SessionAttribute("pMember") ParentMember sessionMember, ModelAndView mav, HttpSession session) {
+		System.out.println("[/parentPwChange.sms] 정상적으로 호출되었습니다.");
+
+		sessionMember.setMemberPw(changePw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW
+											// 확인
+		int result = mService.updateParentPw(sessionMember);
+
+		// 결과처리
+		if (result > 0) {
+			// session 갱신
+			// 기존 session에 저장된 member 객체 정보 삭제
+			session.removeAttribute("pMember");
+			session.setAttribute("pMember", sessionMember);
+
+			mav.addObject("msg", "비밀번호 변경이 완료되었습니다.");
+
+		} else {
+			mav.addObject("msg", "비밀번호 변경에 실패하였습니다. 재시도해주십시오.");
+		}
+		mav.addObject("location", "/");
+		mav.setViewName("member/result");
+
+		return mav;
+
 	}
-	
-		//시터 - 비밀번호 수정 페이지 이동
-		@RequestMapping(value = "/sitterPwChangePage.sms")
-		public String sitterMemberPwChange() {
-			return "member/sitterMemberPwChangePage";
-		}
-		
-		//시터 - 비밀번호 수정 - 현재 비밀번호화 일치하는지 확인 -ajax
-		@RequestMapping(value = "/sitterCurrentPwCheck.sms")
-		public void selectSitterCurrentPwCheck(@SessionAttribute("sMember") SitterMember sessionMember,
-				@RequestParam String memberPw, HttpServletResponse response)
-				throws IOException {
-			
-			System.out.println("[/sitterCurrentPwCheck.sms] 정상적으로 호출되었습니다.");
-			
-			sessionMember.setMemberPw(memberPw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW 확인
-			SitterMember sMember = mService.selectSitterCurrentPwCheck(sessionMember);
-			
-			if (sMember != null) {
-				// 디비에 ID/PW 일치하는 객체가 있다면 
-				response.getWriter().print(true);
-			} else {
-				response.getWriter().print(false);
-			}
-			return;
-		}
-		
-		
-		//시터 - 비밀번호 수정 - DB
-			@RequestMapping(value = "/sitterPwChange.sms")
-			public ModelAndView sitterMemberPwChange(@RequestParam String changePw, @SessionAttribute("sMember") SitterMember sessionMember,
-					ModelAndView mav, HttpSession session) {
-				System.out.println("[/sitterPwChange.sms] 정상적으로 호출되었습니다.");
 
-				sessionMember.setMemberPw(changePw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW 확인
-				int result = mService.updateSitterPw(sessionMember);
-				
-				
-				//결과처리
-				if(result>0)
-				{
-					//session 갱신
-					//기존 session에 저장된 member 객체 정보 삭제
-					session.removeAttribute("sMember");
-					session.setAttribute("sMember", sessionMember);
-					
-					mav.addObject("msg","비밀번호 변경이 완료되었습니다.");
-					
-				}else
-				{
-					mav.addObject("msg","비밀번호 변경에 실패하였습니다. 재시도해주십시오.");
-				}
-				mav.addObject("location", "/");
-				mav.setViewName("member/result");
-				
-				return mav;
-				
-		}	
-		
+	// 시터 - 비밀번호 수정 페이지 이동
+	@RequestMapping(value = "/sitterPwChangePage.sms")
+	public String sitterMemberPwChange() {
+		return "member/sitterMemberPwChangePage";
+	}
+
+	// 시터 - 비밀번호 수정 - 현재 비밀번호화 일치하는지 확인 -ajax
+	@RequestMapping(value = "/sitterCurrentPwCheck.sms")
+	public void selectSitterCurrentPwCheck(@SessionAttribute("sMember") SitterMember sessionMember,
+			@RequestParam String memberPw, HttpServletResponse response) throws IOException {
+
+		System.out.println("[/sitterCurrentPwCheck.sms] 정상적으로 호출되었습니다.");
+
+		sessionMember.setMemberPw(memberPw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW
+											// 확인
+		SitterMember sMember = mService.selectSitterCurrentPwCheck(sessionMember);
+
+		if (sMember != null) {
+			// 디비에 ID/PW 일치하는 객체가 있다면
+			response.getWriter().print(true);
+		} else {
+			response.getWriter().print(false);
+		}
+		return;
+	}
+
+	// 시터 - 비밀번호 수정 - DB
+	@RequestMapping(value = "/sitterPwChange.sms")
+	public ModelAndView sitterMemberPwChange(@RequestParam String changePw,
+			@SessionAttribute("sMember") SitterMember sessionMember, ModelAndView mav, HttpSession session) {
+		System.out.println("[/sitterPwChange.sms] 정상적으로 호출되었습니다.");
+
+		sessionMember.setMemberPw(changePw);// 세션 멤버에 회원이 입력한 PW 넣어주고 디비에서 ID/PW
+											// 확인
+		int result = mService.updateSitterPw(sessionMember);
+
+		// 결과처리
+		if (result > 0) {
+			// session 갱신
+			// 기존 session에 저장된 member 객체 정보 삭제
+			session.removeAttribute("sMember");
+			session.setAttribute("sMember", sessionMember);
+
+			mav.addObject("msg", "비밀번호 변경이 완료되었습니다.");
+
+		} else {
+			mav.addObject("msg", "비밀번호 변경에 실패하였습니다. 재시도해주십시오.");
+		}
+		mav.addObject("location", "/");
+		mav.setViewName("member/result");
+
+		return mav;
+
+	}
+
 	// 이용권 구매 - 부모
 	// DB에 값 넣어주기 - ajax
 	@RequestMapping(value = "/buyVoucherParent.sms")
