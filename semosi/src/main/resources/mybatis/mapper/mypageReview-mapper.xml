@@ -5,10 +5,10 @@
 <select id="selectWriteOfferReviewTotalCount" resultType="Integer">
       SELECT count(*)
       FROM WRITE_OFFER_REVIEW
-      WHERE MEMBER_NO = #{memberNo}
+      WHERE memberP_no = #{memberNo}
    </select>
 
-   <select id="seletWriteOfferReview" parameterType="java.util.HashMap" resultType="WriterOfferReview">
+   <select id="seletWriteOfferReview" parameterType="java.util.HashMap" resultType="WriteOfferReview">
       SELECT
          POST_NO AS postNo,
          REVIEW_NO AS reviewNo,
@@ -18,7 +18,7 @@
          CONTENT AS content
       FROM(
       SELECT Row_NUMBER() OVER (order by POST_NO DESC) AS Row_Num, WRITE_OFFER_REVIEW.*
-      FROM WRITE_OFFER_REVIEW WHERE MEMBER_NO = #{memberNo})
+      FROM WRITE_OFFER_REVIEW WHERE memberP_no = #{memberNo})
       WHERE Row_Num BETWEEN #{startPage} AND #{endPage}
    </select>
  

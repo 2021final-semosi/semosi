@@ -160,26 +160,25 @@ public class MypageController {
 	
 	// 작성한 후기
 	@RequestMapping(value = "/parentReviewWrite.sms")
-	public ModelAndView parentReviewWrite(@ModelAttribute("cri") Criteria cri, ModelAndView mav, 
-			@SessionAttribute("pMember") ParentMember sessionMember, @RequestParam int postNo) {
+	public ModelAndView parentReviewWrite(@ModelAttribute("cri") Criteria cri, ModelAndView mav, @SessionAttribute("pMember") ParentMember sessionMember) {
 		System.out.println("[/parentReviewWrite.sms] 정상적으로 호출 되었습니다.");
-		
-		String memberNo = sessionMember.getMemberNo();	
+		String memberNo = sessionMember.getMemberNo();
+		System.out.println("session"+memberNo);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri); // page와 perPageNum 셋팅
 		// 기본값은 현재 페이지 번호 1 / 한 페이지당 보여줄 게시글 수 10 개
-
-		cri.setMemberNo(memberNo); // 조회할 회원의 번호
+		cri.setMemberNo(memberNo);
+		
 		pageMaker.setTotalCount(myService.selectWriteOfferReviewTotalCount(memberNo));
+		
+		pageMaker.setMemberNo(memberNo); // 조회할 회원의 번호
+		List<WriteOfferReview> wor = myService.seletWriteOfferReview(pageMaker);
 
-		pageMaker.setMemberNo(memberNo);
-		List<WriteOfferReview> list = myService.seletWriteOfferReview(pageMaker);
-		mav.addObject("postNo",postNo);
-		mav.addObject("list", list);
+		mav.addObject("wor", wor);
 		mav.addObject("pageMaker", pageMaker);
 
-		mav.setViewName("mypage/parent/voucherPayView"); // ViewResolver에 의해서
+		mav.setViewName("mypage/parent/reviewWrite"); // ViewResolver에 의해서
 															// 경로가 최종 완성됨
 		return mav;
 	}
