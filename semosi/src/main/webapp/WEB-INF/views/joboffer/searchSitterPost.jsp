@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="kr.co.semosi.joboffer.model.vo.JobOfferReview"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.semosi.joboffer.model.vo.JobOfferPost"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -32,6 +35,8 @@
 
 	<%
 		JobOfferPost jop=(JobOfferPost)request.getAttribute("postData");
+		ArrayList<JobOfferReview> reviewList = (ArrayList<JobOfferReview>)request.getAttribute("reviewData");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	%>
 
 	<header>
@@ -384,7 +389,12 @@
 				<div class="row no-gutters" >
 					<div class="col-12" id="reviewBox">
 						<div><h5>부모 후기</h5></div>
-						<div class="row no-gutters">
+						<div class="row no-gutters" id="reviewPrintBox">
+							<%if(reviewList==null) {%>
+							<h2>작성된 후기가 없습니다!</h2>
+							<%}else {%>
+
+							<% for(JobOfferReview review : reviewList) {%>
 							<div class="col-12" >
 								<div class="row no-gutters" id="review">
 									<div class="col-2">
@@ -392,27 +402,48 @@
 											style="width: 80%;" />
 									</div>
 									<div class="col-10 reviewComment">
-										김O희 <span>영아 1명 | 채용 후기</span><br>
-										<span><i class="fas fa-star"></i><i
-											class="fas fa-star"></i><i class="fas fa-star"></i><i
-											class="fas fa-star"></i><i class="fas fa-star"></i></span>
-										<div>아이를 믿고 맡길 수 있는 시터!</div>
+										<%=review.getWriterPName() %> <span><%=sdf.format(review.getWriteDate()) %></span><br>
+										<span>
+											<%for(int i=0;i<review.getGrade();i++){%>
+												<i class="fas fa-star"></i>
+											<%}%></span>
+										<div><%=review.getContent() %></div>
 									</div>
 								</div>
 							</div>
-							<div class="col-12">
-								<div class="row no-gutters"  id="reviewReply">
-									<div class="col-1"></div>
-									<div class="col-2">
-										<img src="/resources/images/sitter_image.png"
-											style="width: 80%;" />
-									</div>
-									<div class="col-9 reviewComment">
-										시터 답변 <span>2개월 전</span><br>
-										<div>후기 감사합니다.</div>
-									</div>
+							<hr>
+							<%} %>
+							<%} %>
+						</div>
+
+						<div class="col-md-12" id="reviewInputBox">
+							<form action="/insertSitterReview.sms" method="post">
+							<% ParentMember pMember = (ParentMember)session.getAttribute("pMember"); 
+							SitterMember sMember = (SitterMember)session.getAttribute("sMember"); 
+							%>
+							<%if(pMember!=null) {%>
+								<input type="hidden" name="writerNo" value="<%=pMember.getMemberNo()%>"/>
+							<%} else if(sMember!=null) {%>
+								<input type="hidden" name="writerNo" value="<%=sMember.getMemberNo()%>"/>
+							<%} %>
+							<input type="hidden" name="reviewedMemberNo" value="<%=jop.getMembersNo()%>"/>
+							<input type="hidden" name="postNo" value="<%=jop.getPostNo()%>"/>
+							<div id="reviewInput" >
+								<div id="gradeBox">
+									별점 : 						
+									<select name="grade">
+									<option value="1">1점</option>
+									<option value="2">2점</option>
+									<option value="3">3점</option>
+									<option value="4">4점</option>
+									<option value="5">5점</option>
+								</select>
 								</div>
+
+								<textarea name="content"></textarea>
+								<button>작성</button>
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>
