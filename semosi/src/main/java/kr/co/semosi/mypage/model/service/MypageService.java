@@ -134,8 +134,8 @@ public class MypageService {
 		return teacherDocu;
 	}
 	
-	public ArrayList<ApplicationReceived> selectApplicationReceive(String membersNo) {
-		ArrayList<ApplicationReceived> list=myDAO.selectApplicationReceive(sqlSession, membersNo);
+	public ArrayList<ApplicationReceived> selectSitterMyApplyParent(String membersNo) {
+		ArrayList<ApplicationReceived> list=myDAO.selectSitterMyApplyParent(sqlSession, membersNo);
 		
 		return list;
 	}

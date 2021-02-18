@@ -115,8 +115,9 @@ public class MypageDAO {
 		return teacherDocu;
 	}
 
-	public ArrayList<ApplicationReceived> selectApplicationReceive(SqlSessionTemplate sqlSession, String membersNo) {
-		List list=sqlSession.selectList("sitterMember.selectApplicationReceived", membersNo);
+	public ArrayList<ApplicationReceived> selectSitterMyApplyParent(SqlSessionTemplate sqlSession, String membersNo) {
+		
+		List list=sqlSession.selectList("sitterMember.selectSitterMyApplyParent", membersNo);
 		
 		return (ArrayList<ApplicationReceived>)list;
 	}
