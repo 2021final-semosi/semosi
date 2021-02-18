@@ -1,5 +1,5 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="kr.co.semosi.joboffer.model.vo.JobOfferReview"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.semosi.joboffer.model.vo.JobOfferPost"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
