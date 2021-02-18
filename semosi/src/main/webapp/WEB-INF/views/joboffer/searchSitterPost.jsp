@@ -317,7 +317,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>월</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 											<td>
@@ -326,7 +326,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>화</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 											<td>
@@ -335,7 +335,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>수</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 											<td>
@@ -344,7 +344,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>목</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 											<td>
@@ -353,7 +353,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>금</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 											<td>
@@ -362,7 +362,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>토</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 											<td>
@@ -371,7 +371,7 @@
 												<div><%=jop.getCareTime() %></div>
 											<% } else { %>
 												<div>일</div>
-												<div><%=jop.getCareTime() %></div>
+												<div>-</div>
 											<% } %>
 											</td>
 										</tr>

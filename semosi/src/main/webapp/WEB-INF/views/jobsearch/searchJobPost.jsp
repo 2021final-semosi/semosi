@@ -89,7 +89,6 @@ JobSearchList jsl = (JobSearchList)request.getAttribute("postData");
 				 -->
 
 						<img class="profileImg" src="/resources/images/profile/<%=jsl.getOriginalName() %>" />
-						<img class="profileImg" src="/resources/images/profile/<%=jsl.getOriginalName() %>" />
 
 					</div>
 					<div class="col-md-12" id="parentInfoBox">
@@ -104,8 +103,16 @@ JobSearchList jsl = (JobSearchList)request.getAttribute("postData");
 								<div>조회수</div>
 							</div>
 							<div class="col-sm-6 col-md-6 col-lg-3 sitterEval"><!-- 지원자수 확인 -->
-								<div>2명</div>
-								<div>지원자수</div>
+								<div>
+									<% if(jsl.getCareType().equals("CT1")) { %>
+									정기
+									<% } else if(jsl.getCareType().equals("CT2")) { %>
+									단기
+									<% } else { %>
+									협의
+									<% } %>
+								</div>
+								<div>기간 유형</div>
 							</div>
 							<div class="col-sm-6 col-md-6 col-lg-3 sitterEval">
 								<div><%=jsl.getCarePerson() %></div>
@@ -384,7 +391,7 @@ JobSearchList jsl = (JobSearchList)request.getAttribute("postData");
 				</div>
 			</div>
 		</div>
-		
+	</div>
 		
 		
 	<footer>

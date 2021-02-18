@@ -198,10 +198,10 @@
 								<img alt="프로필사진" src="/resources/images/profile/<%=jsl.getOriginalName() %>" onerror="this.src='/resources/images/sitter_image.png'">
 							</div>
 							<div>
-							<% if(jsl.getnAge()<=3) { %>
+							<% if(jsl.getnAge()<3) { %>
 								<p><%=jsl.getMonths() %> 개월</p>
 							<% } else { %>
-								<p>만 <%=jsl.getAge() %>세</p>
+								<p>만 <%=jsl.getnAge() %>세</p>
 							<% } %>
 							<% if(jsl.getCareType().equals("CT1")) { %>
 								<p>정기</p>

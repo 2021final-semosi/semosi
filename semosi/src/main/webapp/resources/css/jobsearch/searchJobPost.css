@@ -24,8 +24,13 @@ div {
 	padding: 10px;
 }
 
+#imgBox{
+	text-align: center;
+}
+
 .profileImg {
-	width: 49%;
+	width: 50%;
+	border-radius: 10%;
 }
 
 #parentInfoBox {
@@ -47,10 +52,6 @@ div {
 }
 
 #hits>div:first-child {
-	font-weight: bold;
-}
-
-#familyCount>div:first-child {
 	font-weight: bold;
 }
 
@@ -78,6 +79,9 @@ div {
 
 #introductionBox>div:first-child {
 	font-weight: bold;
+}
+#introductionBox>div:last-child{
+	padding: 2% 5%;
 }
 
 #ageBox {
