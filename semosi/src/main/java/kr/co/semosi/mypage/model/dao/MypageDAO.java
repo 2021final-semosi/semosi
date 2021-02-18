@@ -1,13 +1,14 @@
 package kr.co.semosi.mypage.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
+import kr.co.semosi.mypage.model.vo.ApplicationReceived;
 import kr.co.semosi.mypage.model.vo.FamilyDocu;
 import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
@@ -114,6 +115,11 @@ public class MypageDAO {
 		return teacherDocu;
 	}
 
+	public ArrayList<ApplicationReceived> selectApplicationReceive(SqlSessionTemplate sqlSession, String membersNo) {
+		List list=sqlSession.selectList("sitterMember.selectApplicationReceived", membersNo);
+		
+		return (ArrayList<ApplicationReceived>)list;
+	}
 	public int insertResiDocu(SqlSessionTemplate sqlSession, ResidentDocu resiDocu) {
 		int result = sqlSession.insert("certification.insertResiDocu", resiDocu);
 		return result;
@@ -132,7 +138,6 @@ public class MypageDAO {
 	}
 
 
-	
 	
 	
 }

@@ -1,3 +1,5 @@
+<%@page import="kr.co.semosi.mypage.model.vo.ApplicationReceived"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -239,6 +241,10 @@
   })(document, 'script', 'kakao-js-sdk');
 </script>
 
+<%
+	ArrayList<ApplicationReceived> list=(ArrayList<ApplicationReceived>)request.getAttribute("list");
+%>
+
 <header>
 	<%@ include file="/WEB-INF/views/commons/header.jsp"%>
 </header>
@@ -251,7 +257,7 @@
 
 	<div id="parentsApplicationReceive_contents">
   		<div id="interest-title">
-  			<div id="interest-title-1"><span>내게 지원한 구인 현황</span></div>	
+  			<div id="interest-title-1"><span>내게 지원한 구직 현황</span></div>	
   		</div>
   		<hr class="menu-hr">
   		<div id="interest-info" class="row">
@@ -261,7 +267,7 @@
   			<div id="interest-card-info" class="col-md-10 col-sm-12" >
   				<div id="userInfo" class="row">
   					<div class="userInfo-p col-11">
-  						<div id="userInfo-1" class="userInfo-p col-12"><span><b>김○규</b> <sub>22일 전 작성</sub></span></div>
+  						<div id="userInfo-1" class="userInfo-p col-12"><span><b><%=list.get(0).getMemberName() %></b> <sub>22일 전 작성</sub></span></div>
   						<div id="userInfo-2" class="userInfo-p col-12"><span>서울시 은평구 녹번동</span></div>
   						<div id="userInfo-3" class="userInfo-p col-12"><span>20세 | 희망시급 10,000원</span></div>
   						<div id="userInfo-4" class="userInfo-p col-12">★★★★★<span>후기 0개</span>

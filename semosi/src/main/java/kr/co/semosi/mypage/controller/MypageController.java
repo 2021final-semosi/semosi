@@ -2,6 +2,8 @@ package kr.co.semosi.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.service.MypageService;
+import kr.co.semosi.mypage.model.vo.ApplicationReceived;
 import kr.co.semosi.mypage.model.vo.Criteria;
 import kr.co.semosi.mypage.model.vo.FamilyDocu;
 import kr.co.semosi.mypage.model.vo.HealthDocu;
@@ -231,6 +235,8 @@ public class MypageController {
 		return "mypage/sitter/memberProfile";
 	}
 
+   
+   
 	// 마이페이지 프로필 수정
 	@RequestMapping(value = "/sitterProfileUpdate.sms")
 	public void updateSitterFrofile(@RequestParam String phone, @RequestParam String address,

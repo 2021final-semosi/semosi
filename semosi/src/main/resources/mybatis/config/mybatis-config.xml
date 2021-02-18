@@ -37,10 +37,14 @@
 		<typeAlias type="kr.co.semosi.mypage.model.vo.ParentVoucher" alias="parentVoucher"/>
 		<typeAlias type="kr.co.semosi.mypage.model.vo.SitterVoucher" alias="sitterVoucher"/>
 		<typeAlias type="kr.co.semosi.mypage.model.vo.QnA" alias="myPageQnA"/>
+
+		<typeAlias type="kr.co.semosi.mypage.model.vo.ApplicationReceived" alias="ApplicationReceived"/>
+
 		<typeAlias type="kr.co.semosi.mypage.model.vo.FamilyDocu" alias="myPageFamilyDocu" />
 		<typeAlias type="kr.co.semosi.mypage.model.vo.HealthDocu" alias="myPageHealthDocu" />
 		<typeAlias type="kr.co.semosi.mypage.model.vo.ResidentDocu" alias="myPageResidentDocu" />
 		<typeAlias type="kr.co.semosi.mypage.model.vo.TeacherDocu" alias="myPageTeacherDocu" />
+
 		
 		
 		<typeAlias type="kr.co.semosi.member.model.vo.Authentication" alias="Authentication"/>

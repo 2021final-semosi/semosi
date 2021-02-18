@@ -1,15 +1,15 @@
 package kr.co.semosi.mypage.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import kr.co.semosi.member.model.vo.ParentMember;
 import kr.co.semosi.member.model.vo.SitterMember;
 import kr.co.semosi.mypage.model.dao.MypageDAO;
+import kr.co.semosi.mypage.model.vo.ApplicationReceived;
 import kr.co.semosi.mypage.model.vo.FamilyDocu;
 import kr.co.semosi.mypage.model.vo.HealthDocu;
 import kr.co.semosi.mypage.model.vo.PageMaker;
@@ -132,6 +132,12 @@ public class MypageService {
 		TeacherDocu teacherDocu = myDAO.selectTeacherDocu(sqlSession, memberNo);
 
 		return teacherDocu;
+	}
+	
+	public ArrayList<ApplicationReceived> selectApplicationReceive(String membersNo) {
+		ArrayList<ApplicationReceived> list=myDAO.selectApplicationReceive(sqlSession, membersNo);
+		
+		return list;
 	}
 
 	public int insertResiDocu(ResidentDocu resiDocu) {
