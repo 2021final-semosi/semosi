@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.semosi.jobsearch.model.dao.JobsearchDAO;
 import kr.co.semosi.jobsearch.model.vo.JobSearchApply;
 import kr.co.semosi.jobsearch.model.vo.JobSearchList;
+import kr.co.semosi.jobsearch.model.vo.JobSearchReview;
 
 @Service("jobsearchService")
 public class JobsearchService {
@@ -43,6 +44,25 @@ public class JobsearchService {
 		
 		int result=jDAO.insertSearchApply(sqlSession, jsa);
 		
+		return result;
+	}
+
+	//시터가 작성한 후기 불러오기
+	public ArrayList<JobSearchReview> selectSearchReview(String memberpNo) {
+		ArrayList<JobSearchReview> list = jDAO.selectSearchReview(sqlSession, memberpNo);
+		return list;
+	}
+
+	
+	//후기 작성하려고 하는데 작성자가 인터뷰 지원한 사람인지
+	public int selectOfferApply(int postNo, String writerNo) {
+		int result = jDAO.selectOfferApply(sqlSession, postNo, writerNo);
+		return result;
+	}
+
+	//후기 작성
+	public int insertParentReview(String writerNo, String reviewedMemberNo, int grade, String content) {
+		int result = jDAO.insertParentReview(sqlSession, writerNo, reviewedMemberNo,grade, content);
 		return result;
 	}
 
