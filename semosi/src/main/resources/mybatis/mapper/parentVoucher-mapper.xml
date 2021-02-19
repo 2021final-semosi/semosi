@@ -22,7 +22,6 @@
   			SELECT Row_NUMBER() OVER (order by VOUCHER_NO DESC) AS Row_Num, PARENTS_VOUCHER.* 
 						FROM PARENTS_VOUCHER WHERE MEMBERP_NO = #{memberNo}
   		)
-  		WHERE Row_Num BETWEEN #{startPage} AND #{endPage} 
   		
   </select>
   

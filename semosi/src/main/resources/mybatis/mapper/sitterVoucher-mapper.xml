@@ -21,7 +21,6 @@
   			SELECT Row_NUMBER() OVER (order by VOUCHER_NO DESC) AS Row_Num, SITTER_VOUCHER.* 
 						FROM SITTER_VOUCHER WHERE MEMBERS_NO = #{memberNo}
   		)
-  		WHERE Row_Num BETWEEN #{startPage} AND #{endPage} 
   </select>
   
 </mapper>
