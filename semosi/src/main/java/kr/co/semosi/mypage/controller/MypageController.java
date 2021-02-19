@@ -257,12 +257,6 @@ public class MypageController {
 
 		pageMaker.setMemberNo(memberNo);
 		List<ParentVoucher> list = myService.selectParentVoucherList(pageMaker);
-		System.out.println(list.get(0).getVoucherNo());
-		System.out.println(list.get(1).getVoucherNo());
-		System.out.println(list.get(2).getVoucherNo());
-		System.out.println(list.get(3).getVoucherNo());
-		System.out.println(list.get(4).getVoucherNo());
-		System.out.println(list.get(5).getVoucherNo());
 		mav.addObject("list", list);
 		mav.addObject("pageMaker", pageMaker);
 
