@@ -55,6 +55,7 @@ public class MypageDAO {
 	public ArrayList<WriteOfferReview> seletWriteOfferReview(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
 		System.out.println("[MypageDAO]: 정상호출");
 		List list =sqlSession.selectList("mypageReview.seletWriteOfferReview", pageMaker);
+		
 		return (ArrayList<WriteOfferReview>)list;
 	}
 	
