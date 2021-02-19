@@ -54,4 +54,31 @@
   	INSERT INTO JOB_OFFER_APPLY VALUES (JOB_OFFER_APPLY_SEQ.NEXTVAL, #{postNo}, #{membersNo}, SYSDATE)
   </insert>
   
+  <select id="selectSearchReview" resultType="JobSearchReview">
+    SELECT
+        REVIEW_NO as reviewNo,
+        WRITER_S_NO as writerSNo,
+        REVIEWD_P_NO as reviewdPNo,
+        MEMBERNAME as writerSName,
+        JOB_OFFER_review.CONTENT as content,
+        JOB_OFFER_review.GRADE as grade,
+        JOB_OFFER_review.DEL_YN as delYn,
+        JOB_OFFER_review.WRITE_DATE as writeDate
+     FROM JOB_OFFER_REVIEW, JOB_OFFER_REVIEW_VIEW
+    WHERE JOB_OFFER_review.review_no=JOB_OFFER_review_VIEW.reviewno and reviewd_p_no=#{memberpNo}
+    ORDER BY WRITE_DATE
+  </select>
+  
+  <select id="selectSearchApply" parameterType="java.util.Map" resultType="int">
+  	SELECT
+  		count(*)
+  	FROM JOB_OFFER_APPLY
+  	WHERE APPLY_POST_NO=${postNo} AND MEMBERS_NO=#{writerNo}
+  </select>
+  
+  <insert id="insertParentReview" parameterType="java.util.Map">
+  	INSERT INTO JOB_OFFER_REVIEW VALUES (JOB_OFFER_REVIEW_SEQ.NEXTVAL, #{writerNo}, #{reviewedMemberNo}, #{content}, ${grade}, 'N',SYSDATE)
+  </insert>
+  
+  
 </mapper>

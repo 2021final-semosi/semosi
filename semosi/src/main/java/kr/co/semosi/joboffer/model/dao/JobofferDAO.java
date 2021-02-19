@@ -34,8 +34,8 @@ public class JobofferDAO {
 	}
 	
 	//부모가 작성한 후기 불러오기
-	public ArrayList<JobOfferReview> selectSearchReview(SqlSessionTemplate sqlSession, String memberSNo) {
-		List list = sqlSession.selectList("joboffer.selectSearchReview", memberSNo);
+	public ArrayList<JobOfferReview> selectSearchReview(SqlSessionTemplate sqlSession, String membersNo) {
+		List list = sqlSession.selectList("joboffer.selectSearchReview", membersNo);
 		return (ArrayList<JobOfferReview>) list;
 	}
 

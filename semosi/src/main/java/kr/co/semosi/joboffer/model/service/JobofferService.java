@@ -41,8 +41,8 @@ public class JobofferService {
 	}
 	
 	//부모가 작성한 후기 불러오기
-	public ArrayList<JobOfferReview> selectSearchReview(String memberSNo) {
-		ArrayList<JobOfferReview> list = jDAO.selectSearchReview(sqlSession, memberSNo);
+	public ArrayList<JobOfferReview> selectSearchReview(String membersNo) {
+		ArrayList<JobOfferReview> list = jDAO.selectSearchReview(sqlSession, membersNo);
 		return list;
 		
 	}
