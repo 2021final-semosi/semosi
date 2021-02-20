@@ -171,5 +171,4 @@ public class JobsearchController {
 		return "jobsearch/result";
 	}
 	
-	
 }

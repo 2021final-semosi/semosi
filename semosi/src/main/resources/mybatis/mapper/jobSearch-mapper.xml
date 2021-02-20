@@ -54,7 +54,6 @@
   	INSERT INTO JOB_OFFER_APPLY VALUES (JOB_OFFER_APPLY_SEQ.NEXTVAL, #{postNo}, #{membersNo}, SYSDATE)
   </insert>
   
-  
   <select id="selectSearchReview" resultType="JobSearchReview">
     SELECT
         REVIEW_NO as reviewNo,
