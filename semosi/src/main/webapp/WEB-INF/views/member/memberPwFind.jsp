@@ -270,7 +270,7 @@
 						if (result == "true") {
 							$('#authenticationNumber').attr("readonly", true);
 							$('#confirmMessage').hide();
-							alert('휴대폰 인증이 완료되었습니다. 아이디를 조회해주세요.');
+							alert('휴대폰 인증이 완료되었습니다. 새 비밀번호를 입력해 주세요.');
 
 							$('#confirmPhone').val("true");
 							return true;

@@ -173,7 +173,7 @@ public class MypageController {
 		pageMaker.setTotalCount(myService.selectWriteOfferReviewTotalCount(memberNo));
 		
 		pageMaker.setMemberNo(memberNo); // 조회할 회원의 번호
-		ArrayList<WriteOfferReview> wor = myService.seletWriteOfferReview(pageMaker);
+		List<WriteOfferReview> wor = myService.seletWriteOfferReview(pageMaker);
 
 		mav.addObject("list", wor);
 		mav.addObject("pageMaker", pageMaker);
@@ -383,15 +383,15 @@ public class MypageController {
 
 		if (resiDocu != null) {
 			// 등초본 인증이 있다면 -> 등초본 인증 신청을 한 사람
-			mav.addObject("resiDocu", resiDocu);
+			mav.addObject("resiDocu", resiDocu);}
 
-		} else if (healthDocu != null) { // 신청자
-			mav.addObject("healthDocu", healthDocu);
+		if (healthDocu != null) { // 신청자
+			mav.addObject("healthDocu", healthDocu);}
 
-		} else if (familyDocu != null) { // 신청자
-			mav.addObject("familyDocu", familyDocu);
+		if (familyDocu != null) { // 신청자
+			mav.addObject("familyDocu", familyDocu);}
 
-		} else if (teacherDocu != null) { // 신청자
+		if (teacherDocu != null) { // 신청자
 			mav.addObject("teacherDocu", teacherDocu);
 
 		}

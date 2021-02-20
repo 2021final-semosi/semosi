@@ -55,6 +55,7 @@ public class MypageDAO {
 	public ArrayList<WriteOfferReview> seletWriteOfferReview(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
 		System.out.println("[MypageDAO]: 정상호출");
 		List list =sqlSession.selectList("mypageReview.seletWriteOfferReview", pageMaker);
+		
 		return (ArrayList<WriteOfferReview>)list;
 	}
 	
@@ -95,7 +96,6 @@ public class MypageDAO {
 
 	public List<QnA> selectParentQnAList(SqlSessionTemplate sqlSession, PageMaker pageMaker) {
 		List<QnA> list = sqlSession.selectList("myPageQnA.selectParentQnAList", pageMaker);
-		System.out.println("[mypageDAO] qna 값 - 번호 : "+list.get(0).getPostNo()+" / 제목 : "+list.get(0).getTitle()+" / 작성자 : "+list.get(0).getWriterPNo()+" / 작성일  : "+list.get(0).getWriteDate());
 
 		return list;
 	}
