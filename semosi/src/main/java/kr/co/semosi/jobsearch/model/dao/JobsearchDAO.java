@@ -55,7 +55,6 @@ public class JobsearchDAO {
 		return result;
 	}
 	
-
 	public int insertParentReview(SqlSessionTemplate sqlSession, String writerNo, String reviewedMemberNo, int grade,
 			String content) {
 		Map map = new HashMap();
