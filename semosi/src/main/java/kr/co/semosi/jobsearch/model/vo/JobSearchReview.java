@@ -110,6 +110,8 @@ public class JobSearchReview {
 	public void setWriteDate(Timestamp writeDate) {
 		this.writeDate = writeDate;
 	}
+	
+	
 
 
 }

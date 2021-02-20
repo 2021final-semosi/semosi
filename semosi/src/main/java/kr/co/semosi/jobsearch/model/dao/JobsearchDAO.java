@@ -54,6 +54,7 @@ public class JobsearchDAO {
 		int result = sqlSession.selectOne("jobsearch.selectSearchApply", map);
 		return result;
 	}
+	
 
 	public int insertParentReview(SqlSessionTemplate sqlSession, String writerNo, String reviewedMemberNo, int grade,
 			String content) {
