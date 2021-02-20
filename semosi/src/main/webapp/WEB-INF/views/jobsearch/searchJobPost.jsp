@@ -421,6 +421,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			<a href="/offerPostApply.sms?postNo=<%=jsl.getPostNo() %>">신청하기</a>
 		</div>
 	</div>
+	</div>
+	</div>
 		
 		
 	<footer>
