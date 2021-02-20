@@ -72,6 +72,7 @@
 		<typeAlias type="kr.co.semosi.cs.model.vo.QnA" alias="QnA"/>
 		<typeAlias type="kr.co.semosi.cs.model.vo.QnAComment" alias="QnAPostComment"/>
 		
+		
 		<typeAlias type="kr.co.semosi.mypage.model.vo.QnA" alias="mQnA"/>
 	</typeAliases>
 </configuration>

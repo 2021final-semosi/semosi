@@ -65,5 +65,8 @@ public class JobsearchService {
 		int result = jDAO.insertParentReview(sqlSession, writerNo, reviewedMemberNo,grade, content);
 		return result;
 	}
+	
+	
+	
 
 }
