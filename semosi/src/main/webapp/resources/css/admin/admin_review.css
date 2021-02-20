@@ -37,12 +37,17 @@ table {
 	width: 150px;
 }
 .content{
-	width:40%;
-
+	width:570px;
 }
-
-.content{
-	overflow:hidden; text-overflow:ellipsis;
+.content>a{
+	display:inline-block;
+	width:550px;
+	float:left;
+	text-align: left;
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	margin-left: 20px;
 }
 
 .date {

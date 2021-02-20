@@ -41,7 +41,14 @@ table {
 }
 
 .originContent{
-	width:30%;
+	width:420px;
+	display:inline-block;
+	float:left;
+	text-align: left;
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	border:0px;
 }
 
 .date {
@@ -56,6 +63,18 @@ a {
 	text-decoration: none;
 	border: 0;
 	text-align: left;
+
+}
+
+.content>a {
+	display:inline-block;
+	width:300px;
+	float:left;
+	text-align: left;
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	margin-left: 20px;
 }
 
 #modal-content{

@@ -201,8 +201,7 @@ function deleteValue() {
 													<td class="membertype">부모회원</td>
 													<td class='memberid'>${srList.memberId }</td>
 													<td class='membername'>${srList.memberName}</td>
-													<td class='content'><a data-toggle="modal"
-														data-target="#viewModal${status.index }">${srList.content }</a></td>
+													<td class='content'><a data-toggle="modal" data-target="#viewModal${status.index }">${srList.content }</a></td>
 													<!-- Modal -->
 													<!-- 글 수정 -->
 													<div class="modal fade" id="viewModal${status.index }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
