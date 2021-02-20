@@ -66,5 +66,6 @@ public class JobsearchDAO {
 		int result = sqlSession.insert("jobsearch.insertParentReview", map);
 		return result;
 	}
+	
 
 }
