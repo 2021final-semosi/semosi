@@ -423,7 +423,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	</div>
 	</div>
 	</div>
-		
+	
 		
 	<footer>
 		<%@ include file="/WEB-INF/views/commons/footer.jsp" %>
