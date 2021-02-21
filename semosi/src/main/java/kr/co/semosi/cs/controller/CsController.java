@@ -34,7 +34,7 @@ public class CsController {
 
 	// csMain으로 이동
 	@RequestMapping(value = "/csMain.sms")
-	public String moveCsMain(Model model) {
+	public String moveCsMain(Model model, HttpSession session) {
 		ArrayList<Notice> noticeList = csService.selectCsMainNoticeList();
 		ArrayList<Guide> guideList = csService.selectCsMainGuideList();
 		ArrayList<FAQ> FAQList = csService.selectCsMainFAQList();
@@ -44,7 +44,6 @@ public class CsController {
 		model.addAttribute("guideList", guideList);
 		model.addAttribute("FAQList", FAQList);
 		model.addAttribute("QnAList", QnAList);
-
 		return "cs/csMain";
 	}
 

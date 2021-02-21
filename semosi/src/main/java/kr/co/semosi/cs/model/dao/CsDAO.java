@@ -69,7 +69,7 @@ public class CsDAO {
 	// QnA 게시글 한 개의 댓글(관리자답변) 가져오기
 	public QnAComment selectQnAComment(SqlSessionTemplate sqlSession, int postNo) {
 		QnAComment qc =  sqlSession.selectOne("cs.selectQnAComment",postNo);
-		System.out.println("[CSDAO] : "+qc.getPostNo()+" / "+qc.getContent());
+		//System.out.println("[CSDAO] : "+qc.getPostNo()+" / "+qc.getContent());
 		return qc;
 	}
 
