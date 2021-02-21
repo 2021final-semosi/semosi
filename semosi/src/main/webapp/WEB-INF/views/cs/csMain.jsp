@@ -145,13 +145,50 @@
 						<col width="30%">
 					</colgroup>	
 					<% ArrayList<QnA> QnAList = (ArrayList<QnA>)request.getAttribute("QnAList");%>
+					<% ParentMember pMember = (ParentMember)session.getAttribute("pMember");%>
+					<% SitterMember sMember = (SitterMember)session.getAttribute("sMember");%>
 					
 
 		
 					<% for(int i=0;i<5;i++){ %>
-						<tr>
-							<td><a href="/csQnAPost.sms?postNo=<%=QnAList.get(i).getPostNo()%>"><%= QnAList.get(i).getTitle() %></a></td>
-							
+					<tr>
+						<td title="<%=QnAList.get(i).getTitle() %>">
+						<%if(pMember!=null) { //부모회원이라면  
+								if(QnAList.get(i).getWriterPNo()!=null){ //현재 출력할 글이 부모회원 글이라면
+									if(QnAList.get(i).getWriterPNo().equals(pMember.getMemberNo())){%>
+									<a href="/csQnAPost.sms?postNo=<%=QnAList.get(i).getPostNo()%>"><%=QnAList.get(i).getTitle() %></a>
+									<%}
+									else { %>
+									<a><%=QnAList.get(i).getTitle() %></a>
+									<%}
+								}
+						
+								else if(QnAList.get(i).getWriterSNo()!=null){ //현재 출력할 글이 시터회원 글이라면%> 
+									<a><%=QnAList.get(i).getTitle() %></a>
+
+								<%}%>
+								
+								
+						<%} else if(sMember!=null) { //시터회원이라면 
+							if(QnAList.get(i).getWriterSNo()!=null){ //현재 출력할 글이 시터회원 글이라면
+								if(QnAList.get(i).getWriterSNo().equals(sMember.getMemberNo())){%>
+								<a href="/csQnAPost.sms?postNo=<%=QnAList.get(i).getPostNo()%>"><%=QnAList.get(i).getTitle() %></a>
+								<%}
+								else { %>
+								<a><%=QnAList.get(i).getTitle() %></a>
+								<%}
+							}
+					
+							//현재 출력할 글이 부모회원 글이라면
+							else if(QnAList.get(i).getWriterPNo()!=null){ %>
+								<a><%=QnAList.get(i).getTitle() %></a>
+
+							<%}
+						} else {%>
+							<a><%=QnAList.get(i).getTitle() %></a>
+						<%} %>
+						</td>			
+						
 							<td><%= sdf.format(QnAList.get(i).getWriteDate()) %></td>
 						</tr>
 					<%} %>

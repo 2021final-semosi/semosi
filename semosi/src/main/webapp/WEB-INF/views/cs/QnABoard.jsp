@@ -75,7 +75,7 @@
 								else { %>
 									<a><%=qna.getTitle() %></a>
 								<%}
-						} else if(sMember!=null) { //부모회원이라면 
+						} else if(sMember!=null) { //시터회원이라면 
 								if(qna.getWriterPNo().equals(sMember.getMemberNo())){%>
 									<a href="/csQnAPost.sms?postNo=<%=qna.getPostNo()%>"><%=qna.getTitle() %></a>
 								<%}
